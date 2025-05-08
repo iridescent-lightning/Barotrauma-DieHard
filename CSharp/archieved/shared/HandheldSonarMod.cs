@@ -39,7 +39,7 @@ namespace BarotraumaDieHard
             Vector2 size = isConnectedToSteering ? controlBoxSize : new Vector2(0.46f, 0.4f);
 
             controlContainer = new GUIFrame(new RectTransform(size, GuiFrame.RectTransform, Anchor.BottomLeft), "ItemUI");
-            if (!isConnectedToSteering && !GUI.IsFourByThree())
+            if (!isConnectedToSteering) //&& !GUI.IsFourByThree()
             {
                 controlContainer.RectTransform.MaxSize = new Point((int)(380 * GUI.xScale), (int)(300 * GUI.yScale));
             }

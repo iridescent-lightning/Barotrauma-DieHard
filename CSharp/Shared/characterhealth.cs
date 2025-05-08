@@ -15,9 +15,9 @@ using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace CharacterHealthMod
+namespace BarotraumaDieHard
 {
-  class CharacterHealthMod : IAssemblyPlugin
+  partial class CharacterHealthMod : IAssemblyPlugin
   {
     public Harmony harmony;
 	public AfflictionPrefab hypothermiaPrefab;
@@ -25,26 +25,27 @@ namespace CharacterHealthMod
 	
     public void Initialize()
     {
-      harmony = new Harmony("CharacterHealth");
+      	harmony = new Harmony("CharacterHealth");
 
-      harmony.Patch(
-                original: typeof(CharacterHealth).GetMethod("ApplyDamage"),
-                postfix: new HarmonyMethod(typeof(CharacterHealthMod).GetMethod("ApplyDamage"))
-            );
+		harmony.Patch(
+					original: typeof(CharacterHealth).GetMethod("ApplyDamage"),
+					postfix: new HarmonyMethod(typeof(CharacterHealthMod).GetMethod("ApplyDamage"))
+				);
 
-	harmony.Patch(
-		original: typeof(CharacterHealth).GetMethod("Update"),
-		prefix: new HarmonyMethod(typeof(CharacterHealthMod).GetMethod("Update"))
-	);
+		harmony.Patch(
+			original: typeof(CharacterHealth).GetMethod("Update"),
+			prefix: new HarmonyMethod(typeof(CharacterHealthMod).GetMethod("Update"))
+		);		
 	
 	hypothermiaPrefab = AfflictionPrefab.Prefabs["coldwater"];
+	
     }
     public void OnLoadCompleted() { }
     public void PreInitPatching() { }
 
     public void Dispose()
     {
-      harmony.UnpatchAll();
+      harmony.UnpatchSelf();
       harmony = null;
     }
 	//leftHand = characterHealth.Character.Inventory.GetItemInLimbSlot(InvSlotType.LeftHand);

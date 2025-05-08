@@ -821,10 +821,11 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="450,192,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Misc/DHMisc2.png" sourcerect="0,298,87,231" depth="0.6" origin="0.5,0.5" />
       <body width="87" height="231" density="20" /> 
-      <PreferredContainer primary="storeagecab" amount="8" notcampaign="true" />
+      <PreferredContainer primary="pump" amount="1" />
+      <PreferredContainer secondary="storeagecab" amount="4" notcampaign="true" />
       <PreferredContainer secondary="engcab" />
       <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab" minamount="1" maxamount="6" spawnprobability="0.2" />
-      <Price baseprice="100">
+      <Price baseprice="200">
         <Price storeidentifier="merchantoutpost" minavailable="4" multiplier="1.25"/>
         <Price storeidentifier="merchantcity" minavailable="6" multiplier="2"/>
         <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="1" />

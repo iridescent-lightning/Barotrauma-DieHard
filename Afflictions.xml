@@ -304,4 +304,11 @@ maxstrength="100">
     <icon texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="768,896,128,128" color="195,136,60,255" origin="0,0"/>
   </SonarDamage>
   </Afflictions>
+  <Affliction name="" identifier="pressurizedhull" description="" type="pressurizedhull" isbuff="false" limbspecific="false" maxstrength="2">
+      <Effect minstrength="0" maxstrength="2" strengthchange="-1.5" minbodytint="60,0,0,0"
+      maxbodytint="60,0,0,200" />
+        
+      
+      <icon texture="%ModDir%/UI/dhicon.png" sourcerect="0,768,128,128" color="195,136,60,255" origin="0,0"/>
+    </Affliction>
 </Override>

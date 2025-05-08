@@ -85,6 +85,10 @@
           <LuaHook name="junctionboxfusedamage" />
         </StatusEffect>
         <Containable items="bigpumpmotor" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
+          <Containable items="pressurizedgastank" />
+        </SubContainer>
       </ItemContainer>
     </Item>
     <Item name="P-II" identifier="pumpII" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="P-II [Max Flow:700] [Power Consumption:450] [Min Voltage:0.3]" variantof="pump">
@@ -193,6 +197,10 @@
           <LuaHook name="junctionboxfusedamage" />
         </StatusEffect>
         <Containable items="smallpumpmotor" />
+        <SubContainer capacity="1" maxstacksize="1">
+          <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
+          <Containable items="pressurizedgastank" />
+        </SubContainer>
       </ItemContainer>
     </Item>
     <Item name="" identifier="smallpumpII" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="" variantof="smallpump">

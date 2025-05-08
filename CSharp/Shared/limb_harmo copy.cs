@@ -41,7 +41,7 @@ namespace LimbModNamespace//todo make a structural namespace DieHard.Item.Compon
 
         public void Dispose()
         {
-            harmony.UnpatchAll();
+            harmony.UnpatchSelf();
             harmony = null;
         }
 

@@ -587,7 +587,7 @@ namespace BarotraumaDieHard
             Vector2 size = _.isConnectedToSteering ? Sonar.controlBoxSize : new Vector2(0.46f, 0.4f);
 
             _.controlContainer = new GUIFrame(new RectTransform(size, _.GuiFrame.RectTransform, Anchor.BottomLeft), "ItemUI");
-            if (!_.isConnectedToSteering && !GUI.IsFourByThree())
+            if (!_.isConnectedToSteering ) //&& !GUI.IsFourByThree()
             {
                 _.controlContainer.RectTransform.MaxSize = new Point((int)(380 * GUI.xScale), (int)(300 * GUI.yScale));
             }

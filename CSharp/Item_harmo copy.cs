@@ -50,7 +50,7 @@ namespace ItemModNameSpace//todo make a structural namespace DieHard.Item.Compon
 
         public void Dispose()
         {
-            harmony.UnpatchAll();
+            harmony.UnpatchSelf();
             harmony = null;
         }
         public static void UpdatePostfix(Item __instance, float deltaTime, Camera cam)

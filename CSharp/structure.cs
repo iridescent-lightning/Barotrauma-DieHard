@@ -53,7 +53,7 @@ namespace StructureMod
 
     public void Dispose()
     {
-      harmony.UnpatchAll();
+      harmony.UnpatchSelf();
       harmony = null;
     }
 	

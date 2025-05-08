@@ -30,7 +30,7 @@ namespace BarotraumaDieHard
         public Harmony harmony;
 		
         public static bool hasZoomed = false;
-
+		public static AfflictionPrefab pressurizedhullPrefab;
 		public void Initialize()
 		{
 		    harmony = new Harmony("CharacterMod");
@@ -54,6 +54,8 @@ namespace BarotraumaDieHard
 
             var postfix = new HarmonyMethod(typeof(CharacterMod).GetMethod(nameof(CharacteConstructorPostfix)));
             harmony.Patch(originalConstructor, null, postfix);
+
+			pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
 			
         }
 
@@ -62,7 +64,7 @@ namespace BarotraumaDieHard
 
 		public void Dispose()
 		{
-		  harmony.UnpatchAll();
+		  harmony.UnpatchSelf();
 		  harmony = null;
 		}
 		
@@ -91,7 +93,7 @@ namespace BarotraumaDieHard
 			Character _ = __instance;
 			if (__instance == null) { return; }
 
-			if (__instance.CurrentHull == null || __instance.Submarine == null) { return; }
+			if (__instance.CurrentHull == null || __instance.Submarine == null || __instance.IsDead) { return; }
 			
 			if (!__instance.IsDead && __instance.UseHullOxygen)
 			{
@@ -127,17 +129,29 @@ namespace BarotraumaDieHard
 			
 			float normalAirPressureFactor = Math.Max(0, __instance.Submarine.RealWorldDepth) / 100f;
 			float normalHullVolume = __instance.CurrentHull.Volume / 10000f;
-			float normalHullPressure = normalHullVolume * normalAirPressureFactor;
+			float normalHullPressure = normalHullVolume * normalAirPressureFactor + 1f;
 			float airPressure = HullMod.GetGas(__instance.CurrentHull, "PressurizedAir");
 			float hullPressureRatio = airPressure / normalHullPressure;
 
-			//DebugConsole.NewMessage($"pressure timer: {customPressureTimers[__instance]}");
-			DebugConsole.NewMessage($"normalHullPressure: {normalHullPressure}");
-			DebugConsole.NewMessage($"hullPressureRatio: {hullPressureRatio}");
-			DebugConsole.NewMessage($"airPressure: {airPressure}");
+			//ApplyPressureForces(deltaTime, __instance, hullPressureRatio);
 
-			if ( hullPressureRatio > 5f) 
+			//DebugConsole.NewMessage($"pressure timer: {customPressureTimers[__instance]}");
+			//DebugConsole.NewMessage($"normalHullPressure: {normalHullPressure}");
+			// DebugConsole.NewMessage($"hullPressureRatio: {hullPressureRatio}");
+			//DebugConsole.NewMessage($"airPressure: {airPressure}");
+			Item innerCloth = _.Inventory.GetItemInLimbSlot(InvSlotType.InnerClothes);
+			if (hullPressureRatio > 2f)
 			{
+				_.CharacterHealth.ApplyAffliction(
+						targetLimb: _.AnimController.MainLimb, 
+						new Affliction(pressurizedhullPrefab, 2f * deltaTime));
+			}
+
+			if ( hullPressureRatio > 5f && !innerCloth.HasTag("deepdiving")) 
+			{
+				_.CharacterHealth.ApplyAffliction(
+						targetLimb: _.AnimController.MainLimb, 
+						new Affliction(pressurizedhullPrefab, 2f * deltaTime));
 				
 				// Increment the customPressureTimer for this character
 				customPressureTimers[__instance] += 1 * deltaTime;
@@ -170,6 +184,8 @@ namespace BarotraumaDieHard
 					customPressureTimers[__instance] = 0.0f;
 				}
 			}
+
+			
 			
 			
 		}
@@ -195,6 +211,8 @@ namespace BarotraumaDieHard
 			{
 				// Get the hull linked to the gap (assuming `gap.LinkedHull` exists).
 				Hull linkedHull = gap.flowTargetHull;
+
+				if (linkedHull == null) return;
 
 				// Check if the linked hull exists and if it's close to full water.
 				if (linkedHull != null && linkedHull.WaterPercentage >= 95f) // Assuming 95% is "close to full".
@@ -223,6 +241,50 @@ namespace BarotraumaDieHard
 					}
 
 					// DebugConsole.NewMessage($"Character Distance: {distance} Force Applied: {force}");
+				}
+			}
+		}
+
+		public static void ApplyPressureForces(float deltaTime, Character character, float hullPressureRatio)
+		{
+			var allGaps = Gap.GapList; // Assume Gap.GapList holds all gaps in the game world.
+			
+			foreach (var gap in allGaps.Where(gap => gap.Open > 0 && gap.IsRoomToRoom))
+			{
+
+				// Get the hull linked to the gap (assuming `gap.LinkedHull` exists).
+				Hull linkedHull = gap.flowTargetHull;
+
+				if (linkedHull == null) return;
+
+				// Check if the linked hull exists and if it's close to full water.
+				if (linkedHull != null && hullPressureRatio < 10f) // Assuming 95% is "close to full".
+				{
+					// DebugConsole.NewMessage($"Skipping force application due to high water level in hull: {linkedHull.WaterPercentage}");
+					continue; // Skip applying force if water level is too high.
+				}
+				
+				// Calculate the distance between the character and the gap.
+				var distance = MathHelper.Max(Vector2.DistanceSquared(character.WorldPosition, gap.WorldPosition) / 1000, 1f);
+
+				// Check if the gap is "nearby" within a certain range (e.g., 1000 units).
+				if (distance < 1000f) // You can adjust the threshold as needed.
+				{
+					
+					// Get the direction vector of the flow from the gap.
+					Vector2 flowDirection = Vector2.Normalize(gap.LerpedFlowForce);
+					if (flowDirection == Vector2.Zero) continue; // Skip if the flow direction is invalid.
+					DebugConsole.NewMessage("force");
+					// Calculate the force applied based on the flow direction and distance.
+					Vector2 force = (flowDirection * gap.LerpedFlowForce.Length() * 1000f / (distance / 15)) * gap.Open * deltaTime;
+
+					// Apply force to the character.
+					if (force.LengthSquared() > 0.01f)
+					{
+						character.AnimController.Collider.FarseerBody.ApplyForce(force * 10); // Adjust this factor as needed.
+					}
+
+					DebugConsole.NewMessage($"Character Distance: {distance} Force Applied: {force}");
 				}
 			}
 		}

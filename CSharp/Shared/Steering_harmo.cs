@@ -54,7 +54,7 @@ namespace SteeringMod//todo make a structural namespace DieHard.Item.Components.
 
         public void Dispose()
         {
-            harmony.UnpatchAll();
+            harmony.UnpatchSelf();
             harmony = null;
         }
 

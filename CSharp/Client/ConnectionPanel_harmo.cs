@@ -37,7 +37,7 @@ namespace BarotraumaDieHard
 
 		public void Dispose()
 		{
-		  harmony.UnpatchAll();
+		  harmony.UnpatchSelf();
 		  harmony = null;
 		}
 		

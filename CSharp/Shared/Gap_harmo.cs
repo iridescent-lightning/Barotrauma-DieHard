@@ -32,6 +32,11 @@ namespace BarotraumaDieHard
             var prefixUpdateOxygen = new HarmonyMethod(typeof(GapMod).GetMethod(nameof(UpdateOxygenPrefix), BindingFlags.Public | BindingFlags.Static));
             harmony.Patch(originalUpdateOxygen, prefixUpdateOxygen, null);
 
+
+            var originalUpdateRoomToOut = typeof(Gap).GetMethod("UpdateRoomToOut", BindingFlags.NonPublic | BindingFlags.Instance);
+            var postfixUpdateRoomToOut = new HarmonyMethod(typeof(GapMod).GetMethod(nameof(UpdateRoomToOutPostfix), BindingFlags.Public | BindingFlags.Static));
+            harmony.Patch(originalUpdateRoomToOut, postfixUpdateRoomToOut, null);
+
             // For client graphic effect patch always remember to only allow patch in client side. Or desynic in multiplayer.
 #if CLIENT
             var originalEmitParticles = typeof(Gap).GetMethod("EmitParticles", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -46,7 +51,7 @@ namespace BarotraumaDieHard
         
         public void Dispose()
         {
-            harmony.UnpatchAll();
+            harmony.UnpatchSelf();
             harmony = null;
             
         }
@@ -142,6 +147,54 @@ namespace BarotraumaDieHard
             // Let us lose more concentrated air if two hulls are connected so we don't instantly pressurize all hulls.
             HullMod.AddGas(hull1, gasType, deltaGas / 10f, 1f);
             HullMod.AddGas(hull2, gasType, -deltaGas * 10f, 1f);
+        }
+
+
+        // This part adds pressure air build up logics.
+        public static void UpdateRoomToOutPostfix(float deltaTime, Hull hull1, Gap __instance)
+        {
+            Gap _ = __instance;
+            // Iterate through linked hulls to access their properties
+            foreach (var linkedObject in __instance.linkedTo)
+            {
+                
+                if (linkedObject is Hull hull)
+                {
+                    var gapOpenSum = HullMod.gasMap[hull].GapOpenSum;
+                    // Check if the hull's gas level is above a threshold
+                    if (gapOpenSum > 0.1)
+                    {
+                        float normalAirPressureFactor = Math.Max(0, hull.Submarine.RealWorldDepth) / 100f;
+                        float normalHullVolume = hull.Volume / 10000f;
+                        float normalHullPressure = normalHullVolume * normalAirPressureFactor + 1f;
+                        float airPressure = HullMod.GetGas(hull, "PressurizedAir");
+                        float hullPressureRatio = airPressure / normalHullPressure; 
+    
+                        // Apply a reduction of pressurized air as it escapes through the gap
+                        HullMod.AddGas(hull, "PressurizedAir", -200f * normalAirPressureFactor *  gapOpenSum, deltaTime);
+
+                        
+
+                        
+                        if (hullPressureRatio > 5.0f)
+                        {
+                            DebugConsole.NewMessage($"target hull: {_.flowTargetHull.RoomName}");
+                            DebugConsole.NewMessage($"hull: {hull.RoomName}");
+                            // Calculate the force based on pressurized air amount and the gap open sum
+                            float forceMultiplier = hullPressureRatio * gapOpenSum * 1000f;
+
+                            // Ensure the force is applied in a direction pushing the water out of the hull
+                            Vector2 flowDirection = (hull.WorldPosition - _.WorldPosition); // Direction from hull to target (gap direction)
+                            flowDirection.Normalize(); // Normalize to get direction vector
+                            Vector2 flowForce = flowDirection * forceMultiplier * deltaTime;
+
+                            // Apply the calculated flow force to the hull
+                            hull.WaterVolume -= Math.Min(flowForce.Length() * 10f, hull.WaterVolume); // Ensure water volume doesn't go negative
+                            DebugConsole.NewMessage($"water out: {flowForce.Length()}");
+                        }
+                    }
+                }
+            }
         }
 
     }

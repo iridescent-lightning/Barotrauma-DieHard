@@ -17,6 +17,7 @@ namespace BarotraumaDieHard
     {
         public  Harmony harmony;
 		private static Item motor;
+        private static Item gasTank;
 
         public void Initialize()
 		{
@@ -35,7 +36,7 @@ namespace BarotraumaDieHard
 
         public void Dispose()
         {
-            harmony.UnpatchAll();
+            harmony.UnpatchSelf();
             harmony = null;
         }
 
@@ -47,7 +48,8 @@ namespace BarotraumaDieHard
             // add this tag so no other pump without container won't crash the game.
             if (_.item.HasTag("cspump"))
             {
-			    motor = _.item.GetComponent<ItemContainer>().Inventory.GetItemAt(0) as Item;
+			    motor = _.item.GetComponent<ItemContainer>().Inventory.GetItemAt(0);
+                gasTank = _.item.GetComponent<ItemContainer>().Inventory.GetItemAt(1);
             }
 
 
@@ -74,41 +76,63 @@ namespace BarotraumaDieHard
             {
                 float normalAirPressureFactor = Math.Max(0, _.item.Submarine.RealWorldDepth) / 100f;
                 float normalHullVolume = _.item.CurrentHull.Volume / 10000f;
-			    float normalHullPressure = normalHullVolume * normalAirPressureFactor;
+			    float normalHullPressure = normalHullVolume * normalAirPressureFactor + 1f;
 
                 float requiredAirPressure = Math.Max(0, normalHullPressure * 20f);
-                DebugConsole.NewMessage($"requiredAirPressure: {requiredAirPressure}");
+                
                 float currentPressurizedAir = HullMod.GetGas(_.item.CurrentHull, "PressurizedAir");
 
-                if (currentPressurizedAir < requiredAirPressure)
-                {
-                    HullMod.AddGas(_.item.CurrentHull, "PressurizedAir", 20f, deltaTime);
-                }
-            }
-            
-            
+                float currentHullPressureRatio = currentPressurizedAir / normalHullPressure;
 
-            _.currFlow = 0.0f;
+                DebugConsole.NewMessage($"currentPressurizedAir: {currentPressurizedAir}");
+                DebugConsole.NewMessage($"currentHullPressureRatio: {currentHullPressureRatio}");
+                
 
-            if (_.TargetLevel != null)
-            {
-                float hullPercentage = 0.0f;
-                if (_.item.CurrentHull != null) 
+                _.currFlow = 0.0f;
+
+                if (_.TargetLevel != null)
                 {
-                    float hullWaterVolume = _.item.CurrentHull.WaterVolume;
-                    float totalHullVolume = _.item.CurrentHull.Volume;
-                    foreach (var linked in _.item.CurrentHull.linkedTo)
+                    float hullPercentage = 0.0f;
+                    if (_.item.CurrentHull != null) 
                     {
-                        if ((linked is Hull linkedHull))
+                        float hullWaterVolume = _.item.CurrentHull.WaterVolume;
+                        float totalHullVolume = _.item.CurrentHull.Volume;
+                        foreach (var linked in _.item.CurrentHull.linkedTo)
                         {
-                            hullWaterVolume += linkedHull.WaterVolume;
-                            totalHullVolume += linkedHull.Volume;
+                            if ((linked is Hull linkedHull))
+                            {
+                                hullWaterVolume += linkedHull.WaterVolume;
+                                totalHullVolume += linkedHull.Volume;
+                            }
                         }
+                        hullPercentage = hullWaterVolume / totalHullVolume * 100.0f; 
                     }
-                    hullPercentage = hullWaterVolume / totalHullVolume * 100.0f; 
+
+                    // Pressure air and pump function
+                    float requiredAirPressureRatio = Math.Max(0, 100f - hullPercentage);
+                    if ((currentHullPressureRatio <= requiredAirPressureRatio) && gasTank != null && gasTank.Condition > 0)
+                    {
+                        // hull will nauturally decrease by 20 per deltatime. We need to double it to quickly pressurized the ballast tank.
+                        HullMod.AddGas(_.item.CurrentHull, "PressurizedAir", 21f + (requiredAirPressure / 2f), deltaTime);
+                        gasTank.Condition -= 0.001f  * deltaTime;
+                    }
+                    DebugConsole.NewMessage($"requiredAirPressureRatio: {requiredAirPressureRatio}");
+
+                    if (currentHullPressureRatio >= requiredAirPressureRatio)
+                    {
+                        _.FlowPercentage = ((float)_.TargetLevel - hullPercentage) * 10.0f;
+                    }
+                    else
+                    {
+                        // Water can only flow inside if not enough air.
+                        _.FlowPercentage = Math.Max(0, ((float)_.TargetLevel - hullPercentage) * 10.0f);
+                    }
                 }
-                _.FlowPercentage = ((float)_.TargetLevel - hullPercentage) * 10.0f;
             }
+            
+            
+
+            
 
             if (!_.HasPower)
             {

@@ -8,6 +8,10 @@
   <dh_hypothermia>You are about to be frozen!</dh_hypothermia>
   <brainshot>Shot to the brain. Death is imminent. At least the victim doesn't need to go through agony.</brainshot>
   <pain>Use morphine to stop the pain</pain>
+  <afflictionname.pressurizedhull>Pressurized Hull</afflictionname.pressurizedhull>
+  <afflictiondescription.pressurizedhull>The hull you're in is pressurized!</afflictiondescription.pressurizedhull>
+  <afflictioncauseofdeath.pressurizedhull>Died of internal injuries.</afflictioncauseofdeath.pressurizedhull>
+  <afflictioncauseofdeathself.pressurizedhull>You are crashed by air.</afflictioncauseofdeathself.pressurizedhull>
   <eventtext.clownbomb.c>A clown giggles towards you.</eventtext.clownbomb.c>
   <eventtext.clownbomb.c1>"It's such a beautiful ship." the clown giggles harder</eventtext.clownbomb.c1>
   <eventtext.clownbomb.c2>"So I gave a little gift to your ship. Hope you like it."</eventtext.clownbomb.c2>

@@ -56,7 +56,7 @@ namespace BarotraumaDieHard
 
         public void Dispose()
         {
-            harmony.UnpatchAll();
+            harmony.UnpatchSelf();
             harmony = null;
             
         }
@@ -132,49 +132,25 @@ namespace BarotraumaDieHard
                 AddGas(hull, "Temperature", -5f, deltaTime);
             }
 
+            //Pressurized Air
+            if (GetGas(hull, "PressurizedAir") > 0)
+            {
+                AddGas(hull, "PressurizedAir", -20f, deltaTime);
+            }
+
             // Calculate and store GapOpenSum
             float gapOpenSum = hull.ConnectedGaps
             .Where(g => g.linkedTo.Count == 1 && !g.IsHidden)
             .Sum(g => g.Open);
             
 
-            // Store the GapOpenSum in the GasInfo struct for this hull. Currently has no use.
-            // Maybe we need something else to access the value in the future.
+            // Store the GapOpenSum in the GasInfo struct for this hull. 
             if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
             {
                 gasInfo.GapOpenSum = gapOpenSum;
                 gasMap[hull] = gasInfo; // Update the dictionary with the modified struct
             }
-            // Check if the hull is breached 
-            if (gapOpenSum > 0.1f)
-{
-    DebugConsole.NewMessage($"Hull {hull.ID} is breached. GapOpenSum: {gapOpenSum}");
-    
-    // Apply a reduction of pressurized air as it escapes through the gap
-    AddGas(hull, "PressurizedAir", -500f * gapOpenSum, deltaTime);
 
-    // Check if there's pressurized air in the hull
-    float pressurizedAirAmount = GetGas(hull, "PressurizedAir");
-    
-    if (pressurizedAirAmount > 0.0f)
-    {
-        // Calculate the force based on pressurized air amount and the gap open sum
-        float forceMultiplier = pressurizedAirAmount * gapOpenSum;
-
-        // Ensure the force is applied in a direction pushing the water out of the hull
-        Vector2 flowDirection = (hull.Position - flowTargetHull.Position); // Direction from hull to target (gap direction)
-        flowDirection.Normalize(); // Normalize to get direction vector
-        Vector2 flowForce = flowDirection * forceMultiplier * deltaTime;
-
-        // Apply the calculated flow force to the hull
-        hull1.WaterVolume -= Math.Min(flowForce.Length(), hull1.WaterVolume); // Ensure water volume doesn't go negative
-        hull1.Pressure -= Math.Min(flowForce.Length() / 10f, hull1.Pressure); // Pressure drop due to air escaping
-        flowTargetHull.WaterVolume += flowForce.Length(); // Water flowing into the target hull due to pressurized air
-    }
-}
-
-
-            
         }
         
 

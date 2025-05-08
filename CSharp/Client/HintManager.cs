@@ -325,7 +325,7 @@ namespace BarotraumaDieHard
                 if (affliction?.Prefab == null) { continue; }
                 if (affliction.Prefab.IsBuff) { continue; }
                 if (affliction.Prefab == AfflictionPrefab.OxygenLow) { continue; }
-                if (affliction.Prefab == AfflictionPrefab.RadiationSickness && (GameMain.GameSession.Map?.Radiation?.IsEntityRadiated(character) ?? false)) { continue; }
+                if (affliction.Prefab == AfflictionPrefab.RadiationSickness && (GameMain.GameSession.Map?.Radiation?.DepthInRadiation(character) ?? 0) > 0) { continue; }
                 if (affliction.Strength < affliction.Prefab.ShowIconThreshold) { continue; }
                 DisplayHint("onafflictiondisplayed".ToIdentifier(),
                     variables: new[] { ("[key]".ToIdentifier(), GameSettings.CurrentConfig.KeyMap.KeyBindText(InputType.Health)) },
