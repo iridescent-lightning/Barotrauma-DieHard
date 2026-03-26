@@ -28,19 +28,23 @@ namespace BarotraumaDieHard
     {
         public Harmony harmony;
 		public void Initialize()
-		{
-		    harmony = new Harmony("ItemDieHard");
+{
+    harmony = new Harmony("ItemDieHard");
 
-            // Fix for ambiguous match.
-            // Use the correct method signature for the Draw method you want to patch
-            var originalDraw = typeof(Item).GetMethod("Draw", BindingFlags.Public | BindingFlags.Instance, null, 
-                new Type[] { typeof(SpriteBatch), typeof(bool), typeof(bool), typeof(Color?) }, null);
+    // 更新参数列表，加上最后的 typeof(float?)
+    var originalDraw = typeof(Item).GetMethod("Draw", BindingFlags.Public | BindingFlags.Instance, null, 
+        new Type[] { typeof(SpriteBatch), typeof(bool), typeof(bool), typeof(Color?), typeof(float?) }, null);
 
-            var postfixDraw = new HarmonyMethod(typeof(ItemDieHard).GetMethod(nameof(Draw), BindingFlags.Public | BindingFlags.Static));
-            
-            // Patch the original Draw method with your postfix method
-            harmony.Patch(originalDraw, null, postfixDraw);
-        }
+    if (originalDraw == null)
+    {
+        DebugConsole.ThrowError("[ItemDieHard] 找不到 Item.Draw 方法，请检查游戏版本兼容性。");
+        return;
+    }
+
+    var postfixDraw = new HarmonyMethod(typeof(ItemDieHard).GetMethod(nameof(Draw), BindingFlags.Public | BindingFlags.Static));
+    
+    harmony.Patch(originalDraw, null, postfixDraw);
+}
 
 		public void OnLoadCompleted() { }
 		public void PreInitPatching() { }
