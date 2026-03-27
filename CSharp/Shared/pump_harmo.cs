@@ -71,61 +71,70 @@ namespace BarotraumaDieHard
 				return false;
 			}
             
-            // Pressurized Air feature.
+            // Pressurized Air feature - Simplified Version
             if (_.item.CurrentHull != null && _.item.CurrentHull.IsWetRoom)
             {
-                float normalAirPressureFactor = Math.Max(0, _.item.Submarine.RealWorldDepth) / 100f;
-                float normalHullVolume = _.item.CurrentHull.Volume / 10000f;
-			    float normalHullPressure = normalHullVolume * normalAirPressureFactor + 1f;
-
-                float requiredAirPressure = Math.Max(0, normalHullPressure * 20f);
+                // 1. 获取基础数据
+                float hullWaterVolume = _.item.CurrentHull.WaterVolume;
+                float totalHullVolume = _.item.CurrentHull.Volume;
                 
+                // 处理链接的房间（如果是压载舱，通常会有链接）
+                foreach (var linked in _.item.CurrentHull.linkedTo)
+                {
+                    if (linked is Hull linkedHull)
+                    {
+                        hullWaterVolume += linkedHull.WaterVolume;
+                        totalHullVolume += linkedHull.Volume;
+                    }
+                }
+
+                float hullWaterPercentage = (hullWaterVolume / totalHullVolume) * 100.0f; 
                 float currentPressurizedAir = HullMod.GetGas(_.item.CurrentHull, "PressurizedAir");
 
-                float currentHullPressureRatio = currentPressurizedAir / normalHullPressure;
+                // 2. 定义所需压力：这里简化为空气占比（排水越多，需要的压力越高来顶住水）
+                // 比如：0% 水位时需要 100 压力，100% 水位时需要 0 压力
+                float requiredAir = Math.Max(0, 100f - hullWaterPercentage);
 
-                DebugConsole.NewMessage($"currentPressurizedAir: {currentPressurizedAir}");
-                DebugConsole.NewMessage($"currentHullPressureRatio: {currentHullPressureRatio}");
-                
-
-                _.currFlow = 0.0f;
-
+                // 3. 逻辑判断
                 if (_.TargetLevel != null)
                 {
-                    float hullPercentage = 0.0f;
-                    if (_.item.CurrentHull != null) 
+                    float targetLevel = (float)_.TargetLevel;
+                    
+                    // --- 排水逻辑 (目标水位 < 当前水位) ---
+                    if (targetLevel < hullWaterPercentage)
                     {
-                        float hullWaterVolume = _.item.CurrentHull.WaterVolume;
-                        float totalHullVolume = _.item.CurrentHull.Volume;
-                        foreach (var linked in _.item.CurrentHull.linkedTo)
+                        // 如果压力不足，无法排水，必须从气罐加压
+                        if (currentPressurizedAir < requiredAir)
                         {
-                            if ((linked is Hull linkedHull))
+                            if (gasTank != null && gasTank.Condition > 0)
                             {
-                                hullWaterVolume += linkedHull.WaterVolume;
-                                totalHullVolume += linkedHull.Volume;
+                                // 加速充气：补足缺口并额外增加一个基础流量
+                                float refillAmount = (requiredAir - currentPressurizedAir) + 30f;
+                                HullMod.AddGas(_.item.CurrentHull, "PressurizedAir", refillAmount, deltaTime);
+                                gasTank.Condition -= 0.002f * deltaTime; // 消耗气罐
                             }
+                            
+                            // 压力不够时，强制限制排水速度或停止排水
+                            _.FlowPercentage = 0.0f; 
                         }
-                        hullPercentage = hullWaterVolume / totalHullVolume * 100.0f; 
+                        else
+                        {
+                            // 压力够了，正常排水
+                            _.FlowPercentage = (targetLevel - hullWaterPercentage) * 10.0f;
+                        }
                     }
-
-                    // Pressure air and pump function
-                    float requiredAirPressureRatio = Math.Max(0, 100f - hullPercentage);
-                    if ((currentHullPressureRatio <= requiredAirPressureRatio) && gasTank != null && gasTank.Condition > 0)
-                    {
-                        // hull will nauturally decrease by 20 per deltatime. We need to double it to quickly pressurized the ballast tank.
-                        HullMod.AddGas(_.item.CurrentHull, "PressurizedAir", 21f + (requiredAirPressure / 2f), deltaTime);
-                        gasTank.Condition -= 0.001f  * deltaTime;
-                    }
-                    DebugConsole.NewMessage($"requiredAirPressureRatio: {requiredAirPressureRatio}");
-
-                    if (currentHullPressureRatio >= requiredAirPressureRatio)
-                    {
-                        _.FlowPercentage = ((float)_.TargetLevel - hullPercentage) * 10.0f;
-                    }
+                    // --- 吸水逻辑 (目标水位 > 当前水位) ---
                     else
                     {
-                        // Water can only flow inside if not enough air.
-                        _.FlowPercentage = Math.Max(0, ((float)_.TargetLevel - hullPercentage) * 10.0f);
+                        // 吸水时，多余的压力会自然释放（模拟排气阀）
+                        if (currentPressurizedAir > requiredAir)
+                        {
+                            // 吸水自动减压，减压速度随进水速度加快
+                            HullMod.AddGas(_.item.CurrentHull, "PressurizedAir", -40f, deltaTime);
+                        }
+                        
+                        // 进水不受压力限制
+                        _.FlowPercentage = (targetLevel - hullWaterPercentage) * 10.0f;
                     }
                 }
             }

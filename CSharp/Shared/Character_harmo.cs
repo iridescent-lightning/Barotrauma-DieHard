@@ -118,7 +118,7 @@ namespace BarotraumaDieHard
 			{
 				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["coldwater"].Instantiate(0.3f * deltaTime));
 			}
-			else if (HullMod.GetGas(__instance.CurrentHull, "Temperature") > 323.15f)
+			else if (HullMod.GetGas(__instance.CurrentHull, "Temperature" ) > 323.15f)
 			{
 				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["burn"].Instantiate((HullMod.GetGas(__instance.CurrentHull, "Temperature") - 318.15f) * deltaTime * 2f));
 			}
@@ -127,58 +127,57 @@ namespace BarotraumaDieHard
 				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["coldwater"].Instantiate(-0.5f * deltaTime));
 			}
 			
-			float normalAirPressureFactor = Math.Max(0, __instance.Submarine.RealWorldDepth) / 100f;
-			float normalHullVolume = __instance.CurrentHull.Volume / 10000f;
-			float normalHullPressure = normalHullVolume * normalAirPressureFactor + 1f;
+			// --- 简化的压力伤害逻辑 ---
+
+			// 直接获取当前房间的压力值（假设范围 0 到 100+）
 			float airPressure = HullMod.GetGas(__instance.CurrentHull, "PressurizedAir");
-			float hullPressureRatio = airPressure / normalHullPressure;
 
-			//ApplyPressureForces(deltaTime, __instance, hullPressureRatio);
-
-			//DebugConsole.NewMessage($"pressure timer: {customPressureTimers[__instance]}");
-			//DebugConsole.NewMessage($"normalHullPressure: {normalHullPressure}");
-			// DebugConsole.NewMessage($"hullPressureRatio: {hullPressureRatio}");
-			//DebugConsole.NewMessage($"airPressure: {airPressure}");
+			// 获取角色穿着
 			Item innerCloth = _.Inventory.GetItemInLimbSlot(InvSlotType.InnerClothes);
-			if (hullPressureRatio > 2f)
+
+			// 1. 轻微伤害阶段 (低压警告)
+			// 比如压力超过 30 就会开始感到不适
+			if (airPressure > 30f)
 			{
 				_.CharacterHealth.ApplyAffliction(
-						targetLimb: _.AnimController.MainLimb, 
-						new Affliction(pressurizedhullPrefab, 2f * deltaTime));
+					targetLimb: _.AnimController.MainLimb, 
+					new Affliction(pressurizedhullPrefab, 1f * deltaTime)); // 造成压力感官效果
 			}
 
-			if ( hullPressureRatio > 5f && !innerCloth.HasTag("deepdiving")) 
+			// 2. 致命伤害阶段 (高压危险)
+			// 比如压力超过 70 为致命线，如果没有 deepdiving 标签的衣服就会内爆
+			float lethalThreshold = 70f;
+
+			if (airPressure > lethalThreshold && (innerCloth == null || !innerCloth.HasTag("deepdiving"))) 
 			{
+				// 加重视觉/听觉压力效果
 				_.CharacterHealth.ApplyAffliction(
 						targetLimb: _.AnimController.MainLimb, 
-						new Affliction(pressurizedhullPrefab, 2f * deltaTime));
+						new Affliction(pressurizedhullPrefab, 3f * deltaTime));
 				
-				// Increment the customPressureTimer for this character
+				// 增加角色的压力计时器
 				customPressureTimers[__instance] += 1 * deltaTime;
 
-				if (customPressureTimers[__instance] > _.CharacterHealth.PressureKillDelay * 0.1f)
-				{
-					// Apply increasing amounts of organ damage. Use '-5' to make it start from 0. use 10 to make it slower
-					_.CharacterHealth.ApplyAffliction(
+				// 持续暴露造成内脏损伤
+				// 压力越高，伤害跳得越快
+				float damageSeverity = (airPressure - lethalThreshold) / 20f; 
+				_.CharacterHealth.ApplyAffliction(
 						targetLimb: _.AnimController.MainLimb, 
-						new Affliction(AfflictionPrefab.OrganDamage, ((hullPressureRatio - 5f) / 10f) * deltaTime));
-				}
+						new Affliction(AfflictionPrefab.OrganDamage, damageSeverity * deltaTime));
 
+				// 达到 15 秒计时直接内爆 (Implode)
 				if (customPressureTimers[__instance] >= 15.0f)
 				{
-					// Trigger implosion if needed
 					if (GameMain.NetworkMember == null || !GameMain.NetworkMember.IsClient)
 					{
 						_.Implode();
 						if (_.IsDead) { return; }
 					}
 				}
-					
-					
 			}
 			else
 			{
-				// Reset the customPressureTimer for this character
+				// 如果压力下降或者穿上了防护服，重置计时器
 				if (customPressureTimers.ContainsKey(__instance))
 				{
 					customPressureTimers[__instance] = 0.0f;

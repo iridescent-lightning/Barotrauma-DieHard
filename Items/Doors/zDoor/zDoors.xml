@@ -10,13 +10,12 @@
         <Affliction identifier="enteringdoor" amount="10" />
       </StatusEffect>
     </Controller>
-    <!--<Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true"  OpeningSpeed="999" ClosingSpeed="999" ToggleCoolDown="1">
+    <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true"  OpeningSpeed="999" ClosingSpeed="999" ToggleCoolDown="1">
         
-        <Sprite texture="door.png" sourcerect="158,0,42,416" depth="0.05" origin="0.5,0.0" />
-        <WeldedSprite texture="door.png" sourcerect="203,0,65,377" depth="0.0" origin="0.5,0.5" />
-        <BrokenSprite texture="door.png" sourcerect="271,0,121,416" depth="0.509" origin="0.5,0.0" scale="true" />
-        
-      </Door>-->
+        <Sprite texture="Doors.png" sourcerect="1,0,1,1" depth="0.05" origin="0.5,0.0" />
+                
+      </Door>
+      <!--At least one sprite is needed to avoid null error-->
     <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10" canbepicked="false">
       <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
       <RequiredItem identifier="screwdriver" type="Equipped" />

@@ -72,8 +72,8 @@
         <RequiredSkill identifier="mechanical" level="20" />
         <RequiredItem identifier="iron" amount="2" />
       </Fabricate>
-      <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="450,0,64,64" origin="0.5,0.5" />
-      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="161,235,64,20" depth="0.55" origin="0.5,0.5" />
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="512,0,64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="391,186,86,40" depth="0.55" origin="0.5,0.5" />
       <Body width="60" height="15" density="30" />
       <MeleeWeapon slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="-8,0" holdangle="60" reload="1.0" range="50" combatpriority="8" msg="ItemMsgPickUpSelect" canbecombined="true">
         <Attack structuredamage="0" itemdamage="2" targetimpulse="5">

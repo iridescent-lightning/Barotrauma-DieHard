@@ -45,22 +45,34 @@ namespace BarotraumaDieHard.AI
 
         public static bool CanAccessDoorPrefix(Door door, Func<Controller, bool> buttonFilter, IndoorsSteeringManager __instance, ref bool __result)
         {
-            // some doors are placed in a way that the item isn't inside a hull.
-            if (door.item.FindHull() == null) return false;
-            // There is a bug that when bots try to go to the airlock, they will still speak. They have no issue open the door though.
-            // Should be fixed automatically once the pressure check is added.
+            // 获取门所在的房间
+            Hull doorHull = door.item.FindHull();
+            
+            // 基础检查：如果找不到房间或不是压载舱，直接跳过拦截逻辑（允许通行）
+            if (doorHull == null) return true;
 
+            // 检查逻辑：
+            // 1. 是否是压载舱 (Ballast)
+            // 2. 是否是湿室 (IsWetRoom)
+            // 3. 关键：压力是否超过了安全阈值 (这里假设 30 为高压警戒线)
+            bool isBallast = doorHull.RoomName.ToString().Contains("ballast", StringComparison.OrdinalIgnoreCase);
+            float currentPressure = HullMod.GetGas(doorHull, "PressurizedAir");
 
-            float normalAirPressure = Math.Max(0, door.item.Submarine.RealWorldDepth);
+            // 设定一个固定的高压阈值，不再受深度影响
+            const float SafetyPressureThreshold = 30.0f;
 
-
-            if (door.item.FindHull().RoomName.ToString().Contains("ballast", System.StringComparison.OrdinalIgnoreCase) && door.item.FindHull().IsWetRoom && HullMod.GetGas(door.item.FindHull(), "PressurizedAir") > normalAirPressure * 1.75f)
+            if (isBallast && doorHull.IsWetRoom && currentPressure > SafetyPressureThreshold)
             {
-                // DebugConsole.NewMessage($"room name: {door.item.FindHull().RoomName}");
-                __instance.character.Speak(TextManager.Get("dialog.bots.cannotaccesswetroomdoor").Value, null, 0.0f, "cannotaccesswetroomdoor".ToIdentifier(), 30.0f);
-                __result = false;
-                return false;
+                // 只有在满足上述所有条件时，才阻止机器人并让其说话
+                __instance.character.Speak(
+                    TextManager.Get("dialog.bots.cannotaccesswetroomdoor").Value, 
+                    null, 0.0f, "cannotaccesswetroomdoor".ToIdentifier(), 30.0f);
+                    
+                __result = false; // 告诉路径搜索：此路不通
+                return false;     // 拦截原方法
             }
+
+            // 其他情况（低压或非压载舱）允许原方法执行
             return true;
         }
 

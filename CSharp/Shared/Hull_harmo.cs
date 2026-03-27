@@ -113,7 +113,7 @@ namespace BarotraumaDieHard
             // Fire
             if (hull.FireSources.Count > 0)
             {
-                AddGas(hull, "Temperature", 1f, deltaTime);
+                AddGas(hull, "Temperature", 5f, deltaTime);
                 AddGas(hull, "CO2", 20f, deltaTime);
                 AddGas(hull, "CO", 10f, deltaTime);
             }

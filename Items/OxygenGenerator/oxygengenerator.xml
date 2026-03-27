@@ -312,7 +312,7 @@
       </Price>
       <Deconstruct time="0.5" />
       
-      <Sprite texture="%ModDir%/Items/OxygenGenerator/Oxygengenerator.png" depth="0.54" sourcerect="876,681,85,83" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/OxygenGenerator/Oxygengenerator.png" depth="0.54" sourcerect="452,631,94,87" origin="0.5,0.5" />
       <Body width="85" height="85" density="25" />
       <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" canBeCombined="true">
         <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.7" setvalue="true" />

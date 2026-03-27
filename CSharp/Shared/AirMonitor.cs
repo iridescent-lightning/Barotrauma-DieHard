@@ -24,6 +24,7 @@ namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Compo
         private GUITextBlock chlorineTextBlock;
         private GUITextBlock coTextBlock;
         private GUITextBlock clTextBlock;
+        private GUITextBlock pressureTextBlock;
 #endif
         /*public override void OnItemLoaded()
         {
@@ -62,6 +63,11 @@ namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Compo
             {
                 clTextBlock = new GUITextBlock(new RectTransform(new Vector2(1.0f, 0.1f), mainFrame.RectTransform, Anchor.TopLeft){RelativeOffset = new Vector2(0.0f, 0.4f)}, "", textAlignment: Alignment.Center);
             }
+
+            if (pressureTextBlock == null)
+            {
+                pressureTextBlock = new GUITextBlock(new RectTransform(new Vector2(1.0f, 0.1f), mainFrame.RectTransform, Anchor.TopLeft){RelativeOffset = new Vector2(0.0f, 0.5f)}, "", textAlignment: Alignment.Center);
+            }
             
 
             #endif
@@ -92,7 +98,7 @@ namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Compo
                 // Prevent the display having jumping numbers.
                 if (cO2PPM < 0.5)
                 {
-                    co2TextBlock.Text = "0 PPM";
+                    co2TextBlock.Text = "CO2: 0 PPM";
                 }
                 else
                 {
@@ -106,6 +112,11 @@ namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Compo
                 float currentCL = HullMod.GetGas(item.CurrentHull, "Chlorine");
                 float cLPercentage = currentCL;
                 clTextBlock.Text = $"CL: {cLPercentage.ToString("F1")}" + "PPM";
+
+
+                float currentPressure = HullMod.GetGas(item.CurrentHull, "PressurizedAir");
+                float pressurePercentage = currentPressure;
+                clTextBlock.Text = pressurePercentage.ToString();
                 
             
         }
