@@ -477,8 +477,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.reactorcooline>Coolant to prevent the reactor from going overheat</entitydescription.reactorcooline>
   <entityname.lightfuse>Light Fuse</entityname.lightfuse>
   <entitydescription.lightfuse>An important part for any lamp to light on.</entitydescription.lightfuse>
-  <entityname.smallpumpmotor>Small Pump Motor</entityname.smallpumpmotor>
-  <entitydescription.smallpumpmotor>A motor for small pump to work</entitydescription.smallpumpmotor>
+  <entityname.pumppart>Pump Part</entityname.pumppart>
+  <entitydescription.pumppart>Part for pump to work</entitydescription.pumppart>
   <entityname.bigpumpmotor>Big Pump Motor</entityname.bigpumpmotor>
   <entitydescription.bigpumpmotor>A big motor for big pump to work</entitydescription.bigpumpmotor>
   <entityname.smallpumpII>M-II</entityname.smallpumpII>
@@ -751,6 +751,9 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <dialog.bots.dangerousfuelrod>We got a hot fuel rod over here!</dialog.bots.dangerousfuelrod>
   <dialog.bots.dangerousfuelrod>What the fuck! A radioactive fuel rod!</dialog.bots.dangerousfuelrod>
 
+
+  
+  <dialog.bots.cannotrepairpoweredreactor>I can't repair this, the reactor is still powered!</dialog.bots.cannotrepairpoweredreactor>
 
   <dialog.bots.findradiationsuit>I need find a radiadition suit!</dialog.bots.findradiationsuit>
   <dialog.bots.findradiationsuit.failure>I can't find radiation suit.</dialog.bots.findradiationsuit.failure>

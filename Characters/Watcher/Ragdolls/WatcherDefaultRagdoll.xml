@@ -11,7 +11,7 @@
     <damagemodifier damagemultiplier="5" armorsector="0,360" deflectprojectiles="False" afflictionidentifiers="gunshotwound,lacerations,burn" damagesound="gore" probabilitymultiplier="1" afflictiontypes="" damageparticle="waterblood" />
     <lightsource color="255,255,255,0" range="0" castshadows="false" scale="1" offset="-155,0">
       <lighttexture texture="Content/Lights/pointlight_falloff.png" origin="0.5,0.5" size="1,1" />
-      <deformablesprite texture="Content/Characters/Watcher/Watcher.png" sourcerect="772,644,124,192" alpha="1" />
+      <deformablesprite texture="Content/Characters/Watcher/Watcher.png" sourcerect="772,644,124,192" alpha="1"/>
     </lightsource>
     <StatusEffect type="OnSevered" target="This">
       <ParticleEmitter particle="bubbles" particleamount="60" scalemin="1" scalemax="2" velocitymin="50" velocitymax="100" anglemin="0" anglemax="360" />

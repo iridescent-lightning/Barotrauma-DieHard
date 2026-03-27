@@ -80,7 +80,7 @@ Timer.Wait(function()
 			local fakeDoor = item:GetComponentString('Door')
 			if fakeDoor then
 				fakeDoor.DisableBody()
-				print("body siabled")
+				--print("body siabled")
 			end
         end
 		

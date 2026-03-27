@@ -81,10 +81,11 @@
       </Repairable>
       <ItemContainer capacity="1" hideitems="true" canbeselected="true">
         <GuiFrame relativesize="0.15,0.2" anchor="Center" canbeselected="true" minsize="110,220" relativeoffset="0.1,0.0" style="ItemUI" />
+        <SlotIcon slotindex="0" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
         <StatusEffect type="OnBroken" target="This">
           <LuaHook name="junctionboxfusedamage" />
         </StatusEffect>
-        <Containable items="bigpumpmotor" />
+        <Containable items="pumppart" />
         <SubContainer capacity="1" maxstacksize="1">
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="pressurizedgastank" />
@@ -192,11 +193,11 @@
       </Repairable>
       <ItemContainer capacity="1" hideitems="true" canbeselected="true">
         <GuiFrame relativesize="0.15,0.2" anchor="Center" canbeselected="true" minsize="110,220" relativeoffset="0.1,0.0" style="ItemUI" />
-        <SlotIcon slotindex="0" texture="%ModDir%/Items/Pumps/Pumps_parts.png" sourcerect="244,6,114,62" origin="0.5,0.5" />
+        <SlotIcon slotindex="0" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
         <StatusEffect type="OnBroken" target="This">
           <LuaHook name="junctionboxfusedamage" />
         </StatusEffect>
-        <Containable items="smallpumpmotor" />
+        <Containable items="pumppart" />
         <SubContainer capacity="1" maxstacksize="1">
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="pressurizedgastank" />
@@ -229,8 +230,8 @@
         <IsActive targetcontaineditem="true" condition="gt 0" />
       </Pump>
     </Item>
-    <Item name="" identifier="smallpumpmotor" scale="0.5" category="Electricity" tags="mediumitem,pumpmotor" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" maxstacksize="4">
-      <PreferredContainer primary="smallpump,smallpumpII,smallpumpIII" amount="1" />
+    <Item name="" identifier="pumppart" scale="0.5" category="Electricity" tags="mediumitem,pumpmotor" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" maxstacksize="4">
+      <PreferredContainer primary="smallpump,smallpumpII,smallpumpIII,pump,pumpII,pumpIII" amount="1" />
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="storagecab" amount="2" notcampaign="true" />
       <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" spawnprobability="0.05" />
@@ -242,8 +243,8 @@
         <Price storeidentifier="merchantmine" minavailable="3" />
         <Price storeidentifier="merchantengineering" multiplier="0.9" />
       </Price>
-      <InventoryIcon texture="%ModDir%/Items/Pumps/Pumps_parts.png" sourcerect="244,6,114,62" origin="0.5,0.5" />
-      <Sprite texture="%ModDir%/Items/Pumps/Pumps_parts.png" depth="0.6" sourcerect="244,6,114,62" origin="0.5,0.5" />
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/Pumps/Pumps_parts.png" depth="0.6" sourcerect="372,0,137,122" origin="0.5,0.5" />
       <Body width="92" height="60" density="100" />
       <Deconstruct time="30">
         <Item identifier="iron" amount="2" />
@@ -264,41 +265,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="" identifier="bigpumpmotor" scale="0.5" category="Electricity" tags="mediumitem,pumpmotor" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" maxstacksize="2">
-      <PreferredContainer primary="pump,pumpII,pumpIII" amount="1" />
-      <PreferredContainer secondary="storagecab" />
-      <PreferredContainer primary="storagecab" amount="2" notcampaign="true" />
-      <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" spawnprobability="0.05" />
-      <Price baseprice="200" canbespecial="false">
-        <Price storeidentifier="merchantoutpost" minavailable="3" />
-        <Price storeidentifier="merchantcity" minavailable="3" />
-        <Price storeidentifier="merchantresearch" minavailable="3" />
-        <Price storeidentifier="merchantmilitary" minavailable="1" />
-        <Price storeidentifier="merchantmine" minavailable="3" />
-        <Price storeidentifier="merchantengineering" multiplier="0.9" />
-      </Price>
-      <InventoryIcon texture="%ModDir%/Items/Pumps/Pumps_parts.png" sourcerect="2,1,120,71" origin="0.5,0.5" />
-      <Sprite texture="%ModDir%/Items/Pumps/Pumps_parts.png" depth="0.6" sourcerect="2,1,120,71" origin="0.5,0.5" />
-      <Body width="120" height="71" density="15" />
-      <Deconstruct time="30">
-        <Item identifier="iron" amount="4" />
-      </Deconstruct>
-      <Holdable slots="RightHand+LeftHand" holdpos="0,0" handle1="0,0">
-        <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.7" setvalue="true" />
-      </Holdable>
-      <Repairable selectkey="Action" header="mechanicalrepairsheader" RepairThreshold="15" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
-        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="-0.1,0.27" style="ItemUI" />
-        <RequiredSkill identifier="mechanical" level="55" />
-        <RequiredItem items="mechanicalparts" type="Picked" optional="true" />
-        <RequiredItem items="wrench" type="Equipped" />
-        <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="1" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="0.0" maxcondition="50.0" />
-        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand">
-          <Sound file="Content/Items/MechanicalRepairFail.ogg" range="500" />
-          <Affliction identifier="lacerations" strength="5" />
-          <Affliction identifier="stun" strength="0.1" />
-        </StatusEffect>
-      </Repairable>
-    </Item>
+    
 
 
 
@@ -355,7 +322,7 @@
         <StatusEffect type="OnBroken" target="This">
           <LuaHook name="junctionboxfusedamage" />
         </StatusEffect>
-        <Containable items="bigpumpmotor" />
+        <Containable items="pumppart" />
       </ItemContainer>
   </Item>
   
@@ -412,7 +379,7 @@
         <StatusEffect type="OnBroken" target="This">
           <LuaHook name="junctionboxfusedamage" />
         </StatusEffect>
-        <Containable items="smallpumpmotor" />
+        <Containable items="pumppart" />
       </ItemContainer>
   </Item>
   </Items>

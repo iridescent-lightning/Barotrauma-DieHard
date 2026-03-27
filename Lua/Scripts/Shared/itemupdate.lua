@@ -1074,9 +1074,7 @@ local scooter = 0
 			waterTank = waterTank +1 
 		elseif v.Prefab.Identifier == 'weldingfueltank' and v.Condition ~= 0 then
 			weldingTank = weldingTank +1 
-		elseif v.Prefab.Identifier == 'bigpumpmotor' and v.Condition ~= 0 then
-			motorBig = motorBig +1 
-		elseif v.Prefab.Identifier == 'smallpumpmotor' and v.Condition ~= 0 then
+		elseif v.Prefab.Identifier == 'pumppart' and v.Condition ~= 0 then
 			motorSmall = motorSmall +1 
 		end
 	end

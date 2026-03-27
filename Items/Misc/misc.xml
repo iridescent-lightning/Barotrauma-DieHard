@@ -187,7 +187,7 @@
       </Holdable>
     </Item>
     <Item name="" identifier="mechanicalparts" scale="0.5" category="Electricity" tags="smallitem, mechanicalparts,repairconsumable" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" maxstacksize="32">
-      <PreferredContainer primary="engcab,reactorcab"/>
+      <PreferredContainer primary="engcab,reactorcab" amount="16"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="engcab,reactorcab" amount="32" notcampaign="true" />
       <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" minamount="2" maxamount="25" spawnprobability="0.75" />
@@ -217,7 +217,7 @@
       <Pickable slots="Any" canBeCombined="true" />
     </Item>
     <ElectricalParts name="" identifier="ElectricalParts" scale="0.25" category="Electricity" tags="smallitem, electricalparts,repairconsumable" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" maxstacksize="32">
-      <PreferredContainer primary="engcab,reactorcab"/>
+      <PreferredContainer primary="engcab,reactorcab" amount="16"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="engcab,reactorcab" amount="32" notcampaign="true" />
       <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" minamount="2" maxamount="25" spawnprobability="0.75" />
@@ -230,7 +230,7 @@
         <Price storeidentifier="merchantengineering" minavailable="20" multiplier="0.3" />
       </Price>
       
-      <Sprite texture="%ModDir%/Items/Misc/DHMisc2.png" depth="0.6" sourcerect="163,12,165,79" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/Misc/DHMisc2.png" depth="0.6" sourcerect="188,127,120,85" origin="0.5,0.5" />
       <Body width="165" height="79" density="30" />
       <ItemComponent><StatusEffect type="OnBroken" target="This"><Remove /></StatusEffect></ItemComponent>
       <Fabricate suitablefabricators="fabricator" requiredtime="5" amount="1">

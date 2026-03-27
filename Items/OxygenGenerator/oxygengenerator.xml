@@ -302,6 +302,7 @@
     <Oxygencandle name="" identifier="oxygencandle" category="Equipment" tags="allowcleanup, oxygencandle,smallitem" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="true" impactsoundtag="impact_metalcrate_light" waterproof="true" health="100">
       <Preferredcontainer primary="oxygengenerator" amount="1" spawnprobability="1" />
       <Preferredcontainer secondary="storagecab" amount="4" notcampaign="true" />
+      <Preferredcontainer secondary="storagecab" amount="1" />
       <Price baseprice="180" minavailable="2">
         <Price storeidentifier="merchantoutpost" minavailable="2" />
         <Price storeidentifier="merchantcity" minavailable="5" />

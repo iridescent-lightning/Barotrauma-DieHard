@@ -455,8 +455,8 @@
   <entitydescription.reactorcooline>用于反应堆降温，以防过热</entitydescription.reactorcooline>
   <entityname.lightfuse>灯泡保险丝</entityname.lightfuse>
   <entitydescription.lightfuse>一个使灯泡能够正常使用的重要部件</entitydescription.lightfuse>
-  <entityname.smallpumpmotor>小型水泵电机</entityname.smallpumpmotor>
-  <entitydescription.smallpumpmotor>一个适配小型水泵的电机</entitydescription.smallpumpmotor>
+  <entityname.pumppart>水泵配件</entityname.pumppart>
+  <entitydescription.pumppart>一个适配水泵的配件</entitydescription.pumppart>
   <entityname.bigpumpmotor>大型水泵电机</entityname.bigpumpmotor>
   <entitydescription.bigpumpmotor>一个适配大型水泵的电机</entitydescription.bigpumpmotor>
   <entityname.smallpumpII>II级小型水泵</entityname.smallpumpII>

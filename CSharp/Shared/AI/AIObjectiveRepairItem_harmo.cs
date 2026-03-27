@@ -64,7 +64,7 @@ namespace BarotraumaDieHard
             }
             else if (__instance.Item.GetComponent<Reactor>() is Reactor reactorPowered && !MathUtils.NearlyEqual(reactorPowered.CurrPowerConsumption, 0.0f, 0.1f)) 
             {
-                __instance.character.Speak("I can't repair this, the reactor is still powered!", identifier: "bot_repair_fail", minDurationBetweenSimilar: 20.0f);
+                __instance.character.Speak(TextManager.Get("dialog.bots.cannotrepairpoweredreactor").Value, identifier: "bot_repair_fail", minDurationBetweenSimilar: 20.0f);
                 __instance.Abandon = true;
                 //DebugConsole.NewMessage("Avoid repaire powered reactor");
                 

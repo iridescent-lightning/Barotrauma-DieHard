@@ -1,4 +1,4 @@
-local gasses = {}
+--[[local gasses = {}
 
 local mathUtils = dofile(DH.Path.."/Lua/Scripts/Shared/math_utils.lua")
 
@@ -59,4 +59,4 @@ gasses.GetTotalMoles = function (hull)
     return sum
 end
 
-return gasses
+return gasses--]]

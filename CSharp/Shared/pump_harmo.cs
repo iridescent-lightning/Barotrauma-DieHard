@@ -78,6 +78,7 @@ namespace BarotraumaDieHard
             }
 
             // --- 气压与排水逻辑 ---
+            //bool isPressurizing = false; //是否正在加压
             if (_.IsActive && _.item.CurrentHull != null && _.item.CurrentHull.IsWetRoom)
             {
                 float currentWaterPct = (_.item.CurrentHull.WaterVolume / _.item.CurrentHull.Volume) * 100.0f;
@@ -96,14 +97,44 @@ namespace BarotraumaDieHard
                             // 压力不足：尝试从气罐充气
                             if (gasTank != null && gasTank.Condition > 0)
                             {
+                                //isPressurizing = true;
                                 float refillAmount = (requiredAir - currentAir) + 30f;
                                 HullMod.AddGas(_.item.CurrentHull, "PressurizedAir", refillAmount, deltaTime);
                                 gasTank.Condition -= 0.002f * deltaTime;
+                                #if CLIENT
+    // 只有当正在加压（isPressurizing）且处于客户端时运行
+    
+        float particlesPerSec = 100f; // 对应 XML 中的 particlespersecond
+        float particleInterval = 1.0f / particlesPerSec;
+        
+        // 注意：在静态补丁中处理计时器比较麻烦，这里使用一个简化的增量逻辑
+        // 实际开发中建议将 particleTimer 存放在实例的自定义数据中
+        // 这里假设每帧至少生成 1-2 个粒子作为演示
+        int spawnCount = (int)(deltaTime * particlesPerSec);
+        for (int i = 0; i < spawnCount; i++)
+        {
+            // 计算随机速度（模拟灭火器 1000.0 到 1650.0 的喷射感）
+            float speed = Barotrauma.Rand.Range(500.0f, 1000.0f);
+            // 喷射方向：假设向上喷射 (Vector2.UnitY)，你可以根据 item.Rotation 修改
+            Vector2 velocity = Vector2.UnitY * speed; 
+
+            // 创建粒子 "extinguisher" (灭火器粒子)
+            GameMain.ParticleManager.CreateParticle(
+                "extinguisher", 
+                _.item.WorldPosition, // 产生位置：水泵中心
+                velocity, 
+                0.0f, 
+                _.item.CurrentHull);
+        }
+    
+#endif
                             }
                             
                             // 关键：修改 flowPercentage，让原版按这个速度排水（这里设为0表示压力不够排不动）
                             _.flowPercentage = 0.0f; 
                         }
+                        // --- [新增逻辑：释放粒子效果] ---
+
                     }
                     // 吸水模式 (目标水位 > 当前水位)
                     else

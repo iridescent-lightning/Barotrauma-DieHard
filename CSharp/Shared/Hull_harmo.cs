@@ -86,7 +86,7 @@ namespace BarotraumaDieHard
         public static void HullConstructorPostfix(Hull __instance)
     {
         
-        DebugConsole.Log("Hull constructor has been patched.");
+        //DebugConsole.Log("Hull constructor has been patched.");
         float volume = __instance.Volume;
 
         //init each gas for each hull here

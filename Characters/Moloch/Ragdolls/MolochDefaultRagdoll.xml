@@ -24,9 +24,9 @@
         <SpawnItem identifiers="molochdischarger" spawnposition="This" />
       </StatusEffect>
     </attack>
-    <StatusEffect type="OnDamaged" onlyplayertriggered="true" target="This">
-      <requiredaffliction type="damage" minstrength="10" />
-      <requiredaffliction type="burn" minstrength="10" />
+    <StatusEffect type="OnDamaged" target="This" onlyplayertriggered="true">
+      <requiredaffliction type="damage" minstrength="10"/>
+      <requiredaffliction type="burn" minstrength="10"/>
       <Conditional isdead="False" />
       <sound file="Content/Characters/Moloch/MOLOCH_damage1.ogg" range="5000" dontmuffle="true" selectionmode="Random" />
       <sound file="Content/Characters/Moloch/MOLOCH_damage2.ogg" range="5000" dontmuffle="true" />
@@ -38,7 +38,7 @@
   <limb id="1" width="400" height="300" name="ShellCore" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" radius="0" density="10" ignorecollisions="True" angulardamping="1000" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="0" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="0,736,656,482" origin="0.5,0.5" depth="0" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0" />
     <attack cooldown="12" range="600" damagerange="500" duration="0.25" force="15" targetforce="0" structuresoundtype="StructureBlunt" context="Any" targettype="Character" hitdetectiontype="Distance" afterattack="FollowThrough" secondarycooldown="5" structuredamage="0" itemdamage="0" stun="0" onlyhumans="False" applyforceonlimbs="" torque="0" applyforcesonlyonce="False" targetimpulse="500" targetimpulseworld="0,0" targetforceworld="0,0" severlimbsprobability="0" stickchance="0" priority="0" cooldownrandomfactor="0.1" targetlimbtype="None" reverse="False" retreat="False" targetdistance="0" afterattackdelay="0" rootforceworldstart="0,0" rootforceworldmiddle="0,0" rootforceworldend="0,0" roottransitioneasing="Linear">
-      <Affliction identifier="bitewounds" strength="100" probability="1" />
+      <Affliction identifier="blunttrauma" strength="150" probability="1" />
       <Affliction identifier="stun" strength="3" probability="1" />
     </attack>
   </limb>
@@ -92,27 +92,27 @@
     <deformablesprite texture="" sourcerect="1280,0,112,336" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="8" radius="0" width="60" height="290" name="TentacleA2" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="2" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1392,2,112,320" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="9" radius="0" width="60" height="310" name="TentacleA3" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="2" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1504,0,112,368" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="10" radius="0" width="60" height="330" name="TentacleA4" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="2" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1616,0,112,384" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
     <attack duration="0.25" structuredamage="10" structuresoundtype="StructureSlash" torque="1000" force="50" targetimpulse="500" severlimbsprobability="0" context="Any" targettype="Character" hitdetectiontype="Distance" afterattack="FallBackUntilCanAttack" cooldown="5" secondarycooldown="1" itemdamage="5" stun="0" onlyhumans="False" applyforceonlimbs="" applyforcesonlyonce="False" targetimpulseworld="0,0" targetforceworld="0,0" stickchance="0" priority="0.25" cooldownrandomfactor="0.1" targetforce="0" range="300" damagerange="50" reverse="False" retreat="True" targetlimbtype="None" targetdistance="0" afterattackdelay="0" rootforceworldstart="0,0" rootforceworldmiddle="0,0" rootforceworldend="0,0" roottransitioneasing="Linear">
-      <Affliction identifier="bitewounds" strength="75" probability="1" />
+      <Affliction identifier="blunttrauma" strength="100" probability="1" />
       <Affliction identifier="stun" strength="3" probability="1" />
     </attack>
   </limb>
@@ -120,27 +120,27 @@
     <deformablesprite texture="" sourcerect="1280,0,112,336" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="12" radius="0" width="60" height="290" name="TentacleB2" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="3" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1392,2,112,320" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="13" radius="0" width="60" height="310" name="TentacleB3" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="3" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1504,0,112,368" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="14" radius="0" width="60" height="330" name="TentacleB4" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="3" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1616,0,112,384" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
     <attack duration="0.25" structuredamage="10" structuresoundtype="StructureSlash" torque="1000" force="50" targetimpulse="500" severlimbsprobability="0" context="Any" targettype="Character" hitdetectiontype="Distance" afterattack="FallBackUntilCanAttack" cooldown="5" secondarycooldown="1" itemdamage="5" stun="0" onlyhumans="False" applyforceonlimbs="" applyforcesonlyonce="False" targetimpulseworld="0,0" targetforceworld="0,0" stickchance="0" priority="0.25" cooldownrandomfactor="0.1" targetforce="0" range="300" damagerange="50" reverse="False" retreat="True" targetlimbtype="None" targetdistance="0" afterattackdelay="0" rootforceworldstart="0,0" rootforceworldmiddle="0,0" rootforceworldend="0,0" roottransitioneasing="Linear">
-      <Affliction identifier="bitewounds" strength="75" probability="1" />
+      <Affliction identifier="blunttrauma" strength="100" probability="1" />
       <Affliction identifier="stun" strength="3" probability="1" />
     </attack>
   </limb>
@@ -148,27 +148,27 @@
     <deformablesprite texture="" sourcerect="1280,0,112,336" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="16" radius="0" width="60" height="290" name="TentacleC2" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="4" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1392,2,112,320" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="17" radius="0" width="60" height="310" name="TentacleC3" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="4" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1504,0,112,368" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="18" radius="0" width="60" height="330" name="TentacleC4" type="None" spriteorientation="NaN" flip="True" mirrorvertically="False" mirrorhorizontally="False" hide="False" attackpriority="1" steerforce="0" density="10" ignorecollisions="False" angulardamping="7" pullpos="0,0" stepoffset="0,0" refjoint="-1" mouthpos="0,0" notes="" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" healthindex="4" friction="0.3" restitution="0.05">
     <deformablesprite texture="" sourcerect="1616,0,112,384" origin="0.5,0.5" depth="0.1" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.5" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
     <attack duration="0.25" structuredamage="10" structuresoundtype="StructureSlash" torque="1000" force="50" targetimpulse="500" severlimbsprobability="0" context="Any" targettype="Character" hitdetectiontype="Distance" afterattack="FallBackUntilCanAttack" cooldown="5" secondarycooldown="1" itemdamage="5" stun="0" onlyhumans="False" applyforceonlimbs="" applyforcesonlyonce="False" targetimpulseworld="0,0" targetforceworld="0,0" stickchance="0" priority="0.25" cooldownrandomfactor="0.1" targetforce="0" range="300" damagerange="50" reverse="False" retreat="True" targetlimbtype="None" targetdistance="0" afterattackdelay="0" rootforceworldstart="0,0" rootforceworldmiddle="0,0" rootforceworldend="0,0" roottransitioneasing="Linear">
-      <Affliction identifier="bitewounds" strength="50" probability="1" />
+      <Affliction identifier="blunttrauma" strength="100" probability="1" />
       <Affliction identifier="stun" strength="2" probability="1" />
     </attack>
   </limb>
@@ -183,7 +183,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="20" name="Skirt 20" type="None" width="200" height="290" notes="71bc_Skirt32" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1">
     <deformablesprite sourcerect="1729,514,320,291" origin="0.617561,0.52525353" depth="0.31" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -191,7 +191,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="1,0.5 1,0.5 1,0.5 1,0.5 1,0.5" row2="1,1 1,1 1,1 1,1 1,1" row3="1,0.5 1,0.5 1,0.5 1,0.5 1,0.5" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="21" name="Skirt 21" type="None" width="180" height="242" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1730,806,322,247" origin="0.6757764,0.4579046" depth="0.311" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -201,7 +201,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="22" name="Skirt 22" type="None" width="150" height="231" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1053,322,230" origin="0.6732163,0.4884865" depth="0.32" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -211,7 +211,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="23" name="Skirt 23" type="None" width="150" height="177" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1283,321,172" origin="0.5,0.5" depth="0.321" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -221,7 +221,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="24" name="Skirt 24" type="None" width="150" height="210" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1454,321,214" origin="0.5,0.5" depth="0.322" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -231,7 +231,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="25" name="Skirt 25" type="None" width="150" height="350" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1670,320,378" origin="0.5,0.5" depth="0.33" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -241,7 +241,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="1,1 1,1 1,1 1,1 1,1" row4="1,1 1,1 1,1 1,1 1,1" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="26" name="Skirt 26" type="None" width="200" height="513" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1727,0,324,514" origin="0.5,0.5" depth="0.3" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -253,7 +253,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="27" name="Skirt 27" type="None" width="200" height="290" notes="71bc_Skirt32" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1">
     <deformablesprite sourcerect="1729,514,320,291" origin="0.617561,0.52525353" depth="0.31" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -261,7 +261,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="1,0.5 1,0.5 1,0.5 1,0.5 1,0.5" row2="1,1 1,1 1,1 1,1 1,1" row3="1,0.5 1,0.5 1,0.5 1,0.5 1,0.5" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="28" name="Skirt 28" type="None" width="180" height="242" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1730,806,322,247" origin="0.6757764,0.4579046" depth="0.311" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -271,7 +271,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="29" name="Skirt 29" type="None" width="150" height="231" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1053,322,230" origin="0.6732163,0.4884865" depth="0.32" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -281,7 +281,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="30" name="Skirt 30" type="None" width="150" height="177" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1283,321,172" origin="0.5,0.5" depth="0.321" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -291,7 +291,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="31" name="Skirt 31" type="None" width="150" height="210" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1454,321,214" origin="0.5,0.5" depth="0.322" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -301,7 +301,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="32" name="Skirt 32" type="None" width="150" height="350" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1670,320,378" origin="0.5,0.5" depth="0.33" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -311,7 +311,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="1,1 1,1 1,1 1,1 1,1" row4="1,1 1,1 1,1 1,1 1,1" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="33" name="Skirt 33" type="None" width="200" height="513" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1727,0,324,514" origin="0.5,0.5" depth="0.3" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -323,7 +323,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="34" name="Skirt 34" type="None" width="200" height="290" notes="71bc_Skirt32" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1">
     <deformablesprite sourcerect="1729,514,320,291" origin="0.617561,0.52525353" depth="0.31" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -331,7 +331,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="1,0.5 1,0.5 1,0.5 1,0.5 1,0.5" row2="1,1 1,1 1,1 1,1 1,1" row3="1,0.5 1,0.5 1,0.5 1,0.5 1,0.5" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="35" name="Skirt 35" type="None" width="180" height="242" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1730,806,322,247" origin="0.6757764,0.4579046" depth="0.311" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -341,7 +341,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="36" name="Skirt 36" type="None" width="150" height="231" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1053,322,230" origin="0.6732163,0.4884865" depth="0.32" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -351,7 +351,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="37" name="Skirt 37" type="None" width="150" height="177" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1283,321,172" origin="0.5,0.5" depth="0.321" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -361,7 +361,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="38" name="Skirt 38" type="None" width="150" height="210" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1454,321,214" origin="0.5,0.5" depth="0.322" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -371,7 +371,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row4="0,0 0,0 0,0 0,0 0,0" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <limb id="39" name="Skirt 39" type="None" width="150" height="350" flip="True" healthindex="5" attackpriority="1" steerforce="0" stepoffset="0,0" mass="0" density="1" pullpos="0,0" refjoint="-1" ignorecollisions="False" friction="0.3" restitution="0.05" spriteorientation="NaN" mirrorvertically="False" mirrorhorizontally="False" hide="False" radius="0" angulardamping="30" mouthpos="0,0" constanttorque="0" constantangle="0" scale="1" attackforcemultiplier="1" minseverancedamage="1" notes="">
     <deformablesprite sourcerect="1729,1670,320,378" origin="0.5,0.5" depth="0.33" subdivisions="5,5" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0">
@@ -381,7 +381,7 @@
       <SpriteDeformation type="custom" resolution="5,5" frequency="0" amplitude="1" blendmode="Multiply" row0="0,0 0,0 0,0 0,0 0,0" row1="0.5,0 0.5,0 0.5,0 0.5,0 0.5,0" row2="1,1 1,1 1,1 1,1 1,1" row3="1,1 1,1 1,1 1,1 1,1" row4="1,1 1,1 1,1 1,1 1,1" sync="-1" typename="custom" strength="1" maxrotation="90" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
       <spritedeformation type="bendjoint" resolution="5,5" maxrotation="30" sync="-1" typename="bendjoint" blendmode="Add" strength="1" usemovementsine="False" stopwhenhostisdead="False" sineoffset="0" onlyinwater="False" />
     </deformablesprite>
-    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib" />
+    <damagemodifier armorsector="0,360" afflictiontypes="damage,bleeding,burn" damagemultiplier="0.25" deflectprojectiles="False" damagesound="" afflictionidentifiers="" probabilitymultiplier="1" damageparticle="blackgib"/>
   </limb>
   <joint limb1="0" limb2="1" limb1anchor="31.722052,-6.974198" limb2anchor="-40.369743,-56.74873" name="Joint 0 - 1" canbesevered="False" severanceprobabilitymodifier="1" breaksound="gore" limitenabled="True" upperlimit="0" lowerlimit="0" stiffness="0.25" scale="1" weldjoint="True" />
   <!-- Shell -->

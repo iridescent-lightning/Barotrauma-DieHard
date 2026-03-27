@@ -392,8 +392,8 @@ namespace BarotraumaDieHard
                 }
             
             item.SendSignal(CurrFlow.ToString(), "oxygen_generated_amount_out");
-            
 
+                
             //DebugConsole.NewMessage(this.CurrFlow.ToString("F0"));
 
         }
