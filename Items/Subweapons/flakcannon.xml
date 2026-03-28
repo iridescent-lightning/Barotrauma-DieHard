@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Items>
-    <Item name="" description="" identifier="flakcannon" Tags="turret,flakcannon_turret" category="Machine,Weapon" interactthroughwalls="true" Scale="0.5" interactdistance="10" spritecolor="1.0,1.0,1.0,1.0" focusonselected="true" offsetonselected="900" linkable="true" allowedlinks="flakcannonequipment" damagedbyexplosions="true" explosiondamagemultiplier="0.2" damagedbymonsters="true" damagedbyprojectiles="true">
-      <Sprite texture="Turrets.png" depth="0.01" sourcerect="0,0,512,512" canflipy="false" />
+    <Item name=""
+    description="" identifier="flakcannon" Tags="turret,flakcannon_turret" category="Machine,Weapon" subcategory="subweapons" interactthroughwalls="true" Scale="0.5" interactdistance="10" spritecolor="1.0,1.0,1.0,1.0" focusonselected="true" offsetonselected="900" linkable="true" allowedlinks="flakcannonequipment" damagedbyexplosions="true" explosiondamagemultiplier="0.2" damagedbymonsters="true" damagedbyprojectiles="true">
+      <Sprite texture="Turrets.png" depth="0.01" sourcerect="4,4,504,504" canflipy="false" />
       <MinimapIcon name="Command_Weapons_FlakCannon" texture="Content/UI/CommandUIBackground.png" sourcerect="512,768,128,128" />
       <SwappableItem price="7500" replacementonuninstall="largeturrethardpoint" origin="256,438" swapidentifier="largeturret">
         <SchematicSprite texture="Content/UI/WeaponUI.png" sourcerect="768,389,256,389" />
@@ -99,28 +100,28 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
       <LightComponent lightcolor="219,0,36,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
-        <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="1.685,-4.74" alpha="1.0" />
-        <IsActiveConditional targetitemcomponent="ItemContainer" ContainedNonBrokenItemCount="gt 0" />
-      </LightComponent>
-      <LightComponent lightcolor="255,170,1,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
-        <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="1.135,-4.74" alpha="1.0" />
-        <IsActiveConditional targetitemcomponent="ItemContainer" ContainedNonBrokenItemCount="gt 1" />
-      </LightComponent>
-      <LightComponent lightcolor="246,210,2,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
-        <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="0.585,-4.74" alpha="1.0" />
-        <IsActiveConditional targetitemcomponent="ItemContainer" ContainedNonBrokenItemCount="gt 3" />
-      </LightComponent>
-      <LightComponent lightcolor="252,230,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
-        <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="0.035,-4.74" alpha="1.0" />
-        <IsActiveConditional targetitemcomponent="ItemContainer" ContainedNonBrokenItemCount="gt 5" />
-      </LightComponent>
-      <LightComponent lightcolor="185,214,0,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
-        <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="-0.515,-4.74" alpha="1.0" />
-        <IsActiveConditional targetitemcomponent="ItemContainer" ContainedNonBrokenItemCount="gt 7" />
-      </LightComponent>
-      <LightComponent lightcolor="79,184,0,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
-        <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="-1.065,-4.74" alpha="1.0" />
-        <IsActiveConditional targetitemcomponent="ItemContainer" ContainedNonBrokenItemCount="gte 10" />
+      <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="1.685,-4.74" alpha="1.0" />
+      <IsActiveConditional targetcontaineditem="true" conditionpercentage="gt 0"/>
+    </LightComponent>
+    <LightComponent lightcolor="255,170,1,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
+      <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="1.135,-4.74" alpha="1.0" />
+      <IsActiveConditional targetcontaineditem="true" conditionpercentage="gt 20"/>
+    </LightComponent>
+    <LightComponent lightcolor="246,210,2,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
+      <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="0.585,-4.74" alpha="1.0" />
+      <IsActiveConditional targetcontaineditem="true" conditionpercentage="gt 40"/>
+    </LightComponent>
+    <LightComponent lightcolor="252,230,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
+      <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="0.035,-4.74" alpha="1.0" />
+      <IsActiveConditional targetcontaineditem="true" conditionpercentage="gt 60"/>
+    </LightComponent>
+    <LightComponent lightcolor="185,214,0,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
+      <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="-0.515,-4.74" alpha="1.0" />
+      <IsActiveConditional targetcontaineditem="true" conditionpercentage="gt 80"/>
+    </LightComponent>
+    <LightComponent lightcolor="79,184,0,150" castshadows="false" range="0.0" IsOn="true" powerconsumption="0" alphablend="true" allowingameediting="false">
+      <sprite texture="Content/Items/Weapons/Loaders.png" sourcerect="348,921,25,27" origin="-1.065,-4.74" alpha="1.0" />
+      <IsActiveConditional targetcontaineditem="true" conditionpercentage="gte 100"/>
       </LightComponent>
     </Item>
     <Item name="Flak shell" identifier="flakbolt" category="Weapon" scale="0.5" sonarsize="2" impactsoundtag="impact_metal_heavy" tags="flakcannonequipment,flakcannonammo,ammobox" maxstacksize="10">

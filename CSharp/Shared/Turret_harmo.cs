@@ -21,7 +21,7 @@ using System.Reflection;
 
 namespace BarotraumaDieHard
 {
-    class TurretDieHard : IAssemblyPlugin
+    partial class TurretDieHard : IAssemblyPlugin
     {
 
 
@@ -45,6 +45,11 @@ namespace BarotraumaDieHard
             var originalLaunch = typeof(Turret).GetMethod("Launch", BindingFlags.NonPublic | BindingFlags.Instance);
             var postfixLaunch = new HarmonyMethod(typeof(TurretDieHard).GetMethod(nameof(LaunchPostfix), BindingFlags.Public | BindingFlags.Static));
             harmony.Patch(originalLaunch, postfixLaunch, null);
+#if CLIENT
+var originalDrawHUD = typeof(Turret).GetMethod("DrawHUD", BindingFlags.Public | BindingFlags.Instance);
+            var postfixDrawHUD = new HarmonyMethod(typeof(TurretDieHard).GetMethod(nameof(DrawHUDPostfix)));
+            harmony.Patch(originalDrawHUD, postfixDrawHUD);
+#endif
         }
 
 		public void OnLoadCompleted() { }
@@ -80,92 +85,101 @@ namespace BarotraumaDieHard
 		
 
 		public static void UpdatePostfix(float deltaTime, Camera cam, Turret __instance)
-{
-    // Access the turret instance
-    Turret _ = __instance;
-
-    // Ensure user is valid
-    if (_.user != null)
-    {
-        // Get the associated ItemComponent (assuming Turret is the correct type)
-        ItemComponent itemComponent = _.Item.GetComponent<Turret>();  // Adjust if necessary
-
-        // Proceed only if itemComponent is valid
-        if (itemComponent != null)
         {
-            // Call DegreeOfSuccess to get the success degree
-            float successDegree = itemComponent.DegreeOfSuccess(_.user);
+            // Access the turret instance
+            Turret _ = __instance;
 
-            // Access the RequiredSkills directly from the ItemComponent
-            var requiredSkills = itemComponent.RequiredSkills;
-
-            // Debug message for the degree of success
-            //DebugConsole.NewMessage($"Degree of success: {successDegree}", Color.Green);
-
-            // Variable to hold the user's skill level related to the required skills
-            float totalUserSkillLevel = 0.0f;
-            int matchingSkillCount = 0;
-
-            // Iterate over the required skills to get the user's corresponding skill level
-            foreach (var skill in requiredSkills)
+            // Ensure user is valid
+            if (_.user != null)
             {
-                float skillLevel = _.user.GetSkillLevel(skill.Identifier); // Get skill level using skill's identifier
+                // Get the associated ItemComponent (assuming Turret is the correct type)
+                ItemComponent itemComponent = _.Item.GetComponent<Turret>();  // Adjust if necessary
 
-                // Only include skills that match required skills
-                if (skillLevel > 0) // Check if the user has any level in the required skill
+                // Proceed only if itemComponent is valid
+                if (itemComponent != null)
                 {
-                    totalUserSkillLevel += skillLevel;
-                    matchingSkillCount++;
+                    
+                    
+                    
+                    // Call DegreeOfSuccess to get the success degree
+                    float successDegree = itemComponent.DegreeOfSuccess(_.user);
 
-                    // Debug message for required skill
-                    //DebugConsole.NewMessage($"Required skill: {skill.Identifier}, User skill level: {skillLevel}", Color.Yellow);
+                    // Access the RequiredSkills directly from the ItemComponent
+                    var requiredSkills = itemComponent.RequiredSkills;
+                    // --- 新增安全检查 1: 检查 RequiredSkills 是否为空或没有条目 ---
+                    if (requiredSkills == null || requiredSkills.Count == 0) 
+                    {
+                        // 如果是探照灯这种不需要技能的，直接返回，不执行后续逻辑
+                        return; 
+                    }
+
+                    // Debug message for the degree of success
+                    //DebugConsole.NewMessage($"Degree of success: {successDegree}", Color.Green);
+
+                    // Variable to hold the user's skill level related to the required skills
+                    float totalUserSkillLevel = 0.0f;
+                    int matchingSkillCount = 0;
+
+                    // Iterate over the required skills to get the user's corresponding skill level
+                    foreach (var skill in requiredSkills)
+                    {
+                        float skillLevel = _.user.GetSkillLevel(skill.Identifier); // Get skill level using skill's identifier
+
+                        // Only include skills that match required skills
+                        if (skillLevel > 0) // Check if the user has any level in the required skill
+                        {
+                            totalUserSkillLevel += skillLevel;
+                            matchingSkillCount++;
+
+                            // Debug message for required skill
+                            //DebugConsole.NewMessage($"Required skill: {skill.Identifier}, User skill level: {skillLevel}", Color.Yellow);
+                        }
+                    }
+
+                    // Calculate the average skill level from matched required skills
+                    float averageSkillLevel = matchingSkillCount > 0 ? totalUserSkillLevel / matchingSkillCount : 0;
+                    //DebugConsole.NewMessage($"Average user skill: {averageSkillLevel}", Color.Yellow);
+
+                    // Calculate the average required skill level
+                    float averageRequiredSkillLevel = requiredSkills.Average(skill => skill.Level);
+                    //DebugConsole.NewMessage($"Average required skill: {averageRequiredSkillLevel}", Color.Yellow);
+                    
+                    // Get the weapon's base reload speed (you need to define how to access it)
+                    float baseReloadSpeed = GetOriginalReload(_.Item.ID);
+
+                    // Calculate skill difference
+                    float skillDiff = averageSkillLevel - averageRequiredSkillLevel;
+
+                    // Adjust the lerp factor
+                    float lerpFactor = Math.Clamp(skillDiff / averageRequiredSkillLevel, -1f, 1f); // Normalized to a 0-1 range
+
+                    // Lerp between the lower and upper bounds for reload speed
+                    float adjustedReloadSpeed = MathHelper.Lerp(baseReloadSpeed * 2.3f, baseReloadSpeed * 0.5f, lerpFactor);
+
+                    // Apply the new reload speed
+                    _.Reload = adjustedReloadSpeed;
+
+                    //DebugConsole.NewMessage($"New Reload Speed: {_.Reload}", Color.Yellow);
+
+
+                    //DebugConsole.NewMessage(_.reload.ToString());
+                    //DebugConsole.NewMessage(_.Reload.ToString());
+
+                    
+                    if (_.user?.Info != null )
+                    {
+                        _.user.Info.ApplySkillGain(
+                            TagsDieHard.OnDeckWeaponsSkill,
+                            SkillSettings.Current.SkillIncreasePerSecondWhenOperatingTurret * deltaTime);
+                    }
                 }
-            }
 
-            // Calculate the average skill level from matched required skills
-            float averageSkillLevel = matchingSkillCount > 0 ? totalUserSkillLevel / matchingSkillCount : 0;
-            //DebugConsole.NewMessage($"Average user skill: {averageSkillLevel}", Color.Yellow);
+                
+                    
+                
 
-            // Calculate the average required skill level
-            float averageRequiredSkillLevel = requiredSkills.Average(skill => skill.Level);
-            //DebugConsole.NewMessage($"Average required skill: {averageRequiredSkillLevel}", Color.Yellow);
-			
-            // Get the weapon's base reload speed (you need to define how to access it)
-            float baseReloadSpeed = GetOriginalReload(_.Item.ID);
-
-			// Calculate skill difference
-			float skillDiff = averageSkillLevel - averageRequiredSkillLevel;
-
-			// Adjust the lerp factor
-			float lerpFactor = Math.Clamp(skillDiff / averageRequiredSkillLevel, -1f, 1f); // Normalized to a 0-1 range
-
-			// Lerp between the lower and upper bounds for reload speed
-			float adjustedReloadSpeed = MathHelper.Lerp(baseReloadSpeed * 2.3f, baseReloadSpeed * 0.5f, lerpFactor);
-
-			// Apply the new reload speed
-			_.Reload = adjustedReloadSpeed;
-
-            //DebugConsole.NewMessage($"New Reload Speed: {_.Reload}", Color.Yellow);
-
-
-			//DebugConsole.NewMessage(_.reload.ToString());
-			//DebugConsole.NewMessage(_.Reload.ToString());
-
-			
-			if (_.user?.Info != null )
-            {
-                _.user.Info.ApplySkillGain(
-                    TagsDieHard.OnDeckWeaponsSkill,
-                    SkillSettings.Current.SkillIncreasePerSecondWhenOperatingTurret * deltaTime);
             }
         }
-
-        
-            
-        
-
-    }
-}
 
         public static void ClearReloadDictionary()
 		{

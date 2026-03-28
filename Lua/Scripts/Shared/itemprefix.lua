@@ -71,7 +71,7 @@ Timer.Wait(function()
 		elseif item.HasTag('windoweddoorwbuttons') or item.HasTag('doorwbuttons') then
 			local theComponent = item.GetComponentString('Door')
 			if theComponent then
-			theComponent.set_OpeningSpeed(0.8)
+			theComponent.set_OpeningSpeed(1)
 			theComponent.set_ClosingSpeed(0.8)
 			end
 

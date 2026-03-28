@@ -80,8 +80,8 @@
     <Item name="" identifier="doorwbuttons" tags="door,idcarddoor,doorwbuttons,playinteractsound,weldable" scale="0.5" health="200" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" itemdamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="10" linkable="true">
       <Sprite texture="door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
       <DecorativeSprite texture="door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
-      <DecorativeSprite texture="%ModDir%/Items/Electricity/signalcomp.png" sourcerect="413,374,69,68" depth="0.9" origin="1.2,0.86" />
-      <DecorativeSprite texture="%ModDir%/Items/Electricity/signalcomp.png" sourcerect="324,377,71,67" depth="0.9" origin="-0.25,0.86" />
+      <DecorativeSprite texture="%ModDir%/Items/Electricity/dhelectricities.png" sourcerect="360,0,75,104" depth="0.9" origin="1.15,0.86" scale="0.85"/>
+      <DecorativeSprite texture="%ModDir%/Items/Electricity/dhelectricities.png" sourcerect="501,0,79,104" depth="0.9" origin="-0.2,0.86" scale="0.85"/>
       <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
         <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
         <RequiredItem items="crowbar" type="Equipped" optional="true" />
@@ -96,7 +96,7 @@
         <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
         <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
         <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
-        <!--<sound file="%ModDir%/Items/Doors/idcardok.ogg" type="OnOpen" range="300" />-->
+        <sound file="%ModDir%/Items/Doors/idcardok.ogg" type="OnOpen" range="300" />
         <StatusEffect type="OnDamaged" target="This">
           <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
           <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
@@ -109,10 +109,10 @@
         <RequiredSkill identifier="mechanical" level="40" />
         <RequiredItem items="wrench" type="equipped" />
         <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
-          <sprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.025" sourcerect="401,470,71,67" origin="-0.22,0.86" alpha="1.0" />
+          <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="501,162,79,104"  origin="0,0.75" alpha="1.0" />
         </LightComponent>
         <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
-          <sprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.025" sourcerect="421,467,71,67" origin="1.24,0.86" alpha="1.0" />
+          <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="360,162,75,104" origin="1,0.75" alpha="1.0" />
         </LightComponent>
         <StatusEffect type="InWater" interval="2" target="This">
           <LuaHook name="WaterDoor" />
@@ -130,8 +130,8 @@
     <Item name="" identifier="windoweddoorwbuttons" tags="door,idcarddoor,windoweddoorwbuttons,playinteractsound,weldable" scale="0.5" health="150" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" itemdamagemultiplier="0.1" allowrotatingineditor="false" allowedlinks="structure,item" ondamagedthreshold="10" linkable="true">
       <Sprite texture="door.png" sourcerect="0,0,49,416" depth="0.51" origin="0.5,0.5" />
       <DecorativeSprite texture="door.png" sourcerect="49,0,49,416" depth="0.89" origin="0.5,0.5" />
-      <DecorativeSprite texture="%ModDir%/Items/Electricity/signalcomp.png" sourcerect="413,374,69,68" depth="0.9" origin="1.2,0.86" />
-      <DecorativeSprite texture="%ModDir%/Items/Electricity/signalcomp.png" sourcerect="324,377,71,67" depth="0.9" origin="-0.25,0.86" />
+      <DecorativeSprite texture="%ModDir%/Items/Electricity/dhelectricities.png" sourcerect="360,0,75,104" depth="0.9" origin="1.15,0.86" scale="0.85"/>
+      <DecorativeSprite texture="%ModDir%/Items/Electricity/dhelectricities.png" sourcerect="501,0,79,104" depth="0.9" origin="-0.2,0.86" scale="0.85"/>
       <Door window="0,0,50,227" canbepicked="true" canbeselected="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true">
         <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
         <RequiredItem items="crowbar" type="Equipped" optional="true" />
@@ -157,11 +157,11 @@
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="mechanical" level="40" />
         <RequiredItem items="wrench" type="equipped" />
-        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
-          <sprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.025" sourcerect="401,470,71,67" origin="-0.22,0.86" alpha="1.0" />
+        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" InheritParentIsActive="false">
+          <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="501,162,79,104"  origin="0,0.75" alpha="1.0" />
         </LightComponent>
         <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
-          <sprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.025" sourcerect="421,467,71,67" origin="1.24,0.86" alpha="1.0" />
+          <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="360,162,75,104" origin="1,0.75" alpha="1.0" />
         </LightComponent>
         <!--<StatusEffect type="OnBroken">
           <LuaHook name="DoorStuck" />

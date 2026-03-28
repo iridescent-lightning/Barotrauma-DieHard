@@ -605,7 +605,7 @@
       <Sprite texture="Content/Items/Medical/Medicines.png" sourcerect="0,0,1,1" depth="0.6" origin="0.5,0.5" />
       <ItemComponent capacity="1" maxstacksize="1" hideitems="true" containedstateindicatorstyle="battery">
         <StatusEffect type="always" target="This" disabledeltatime="true" duration="1" stackable="false" interval="50">
-          <Sound file="%ModDir%/Items/Doors/Entities_Station#643_lightswitch_theta_off_01.ogg" range="500" volume="0.6" />
+          <Sound file="%ModDir%/Items/Doors/Entities_Station#643_lightswitch_theta_on_02.ogg" range="500" volume="0.4" />
         </StatusEffect>
         <StatusEffect type="always" target="This" disabledeltatime="true" delay="1" stackable="false">
           <Remove />
