@@ -5,19 +5,26 @@ if not Game.IsSubEditor then return end
 
 Hook.Add("chatMessage", "forcelightson", function (message, client)
 local lightfusePrefab = ItemPrefab.GetItemPrefab("lightfuse")
-if message ~= "!lightson" then return end
+local coolant = ItemPrefab.GetItemPrefab("reactorcooline")
 	if message == "!lightson" then 
 		for _, item in pairs(Item.ItemList) do
+
 			if (item.HasTag('lamp')) then
-			Entity.Spawner.AddItemToSpawnQueue(lightfusePrefab, item.OwnInventory, nil, nil, function(item)end)
-			local theComponent = item:GetComponentString('LightComponent')
-				if theComponent then
-                theComponent.PowerConsumption = 0;
-				end
+				Entity.Spawner.AddItemToSpawnQueue(lightfusePrefab, item.OwnInventory, nil, nil, function(item)end)
 			end
+			if (item.Prefab.Identifier == "outpostreactor") then
+				Entity.Spawner.AddItemToSpawnQueue(lightfusePrefab, item.OwnInventory, nil, nil, function(item)end)
+			end
+
+			local theComponent = item:GetComponentString('LightComponent')
+			if theComponent then
+                theComponent.PowerConsumption = 0;
+			end
+			
 		end
 	end
 end)
+
 
 Hook.Add("chatMessage", "dimensions", function (message, client)
 if message == "!dimensions" then 

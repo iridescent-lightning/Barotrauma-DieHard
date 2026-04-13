@@ -42,6 +42,7 @@
         <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.5" setvalue="true" />
       </Holdable>
       <Preferredcontainer primary="reactor" amount="1" spawnprobability="1" />
+      <Preferredcontainer primary="outpostreactor" amount="1" spawnprobability="1" />
       <PreferredContainer primary="reactorcab" spawnprobability="1" notcampaign="true" />
       <PreferredContainer primary="wreckdivingsuitcontainer" spawnprobability="0.01" />
       <Price baseprice="300">

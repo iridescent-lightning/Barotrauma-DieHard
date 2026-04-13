@@ -1,0 +1,31 @@
+<Item name="" identifier="extinguisherbracket" category="Equipment" tags="extinguisherholder,playinteractsound" canflipx="false" canflipy="false" scale="0.5" pickdistance="75" damagedbyexplosions="true" damagedbyprojectiles="true">
+      <Body width="72" height="204" />
+      <Sprite texture="containers.png" depth="0.84" sourcerect="815,349,72,204" origin="0.5,0.5" />
+      <ItemContainer hideitems="false" drawinventory="true" capacity="1" maxstacksize="1" slotsperrow="1" itempos="35,-130" iteminterval="0,0" itemrotation="0" canbeselected="true" msg="ItemMsgInteractSelect" autointeractwithcontained="true">
+        <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
+        <Containable items="extinguisher" />
+        <StatusEffect type="OnBroken" target="Contained">
+          <Conditional hastag="eq fireextinguisher" />
+          <Remove />
+          <sound file="Content/Items/Weapons/ExplosionSmall1.ogg" range="5000" />
+          <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" range="5000" />
+          <Explosion range="150.0" force="3">
+            <Affliction identifier="burn" strength="25" />
+            <Affliction identifier="stun" strength="5" />
+          </Explosion>
+          <SpawnItem identifier="extinguisher" spawnposition="This" condition="0" setvalue="ture" aimspread="10" rotationtype="Random" />
+        </StatusEffect>
+      </ItemContainer>
+      <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
+        <requireditem identifier="wrench" type="Equipped" />
+      </Holdable>
+      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="0" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="electrical" level="55" />
+        <RequiredItem items="wrench" type="equipped" />
+        <StatusEffect type="OnFire" target="This" Condition="-2" />
+      </Repairable>
+      <Upgrade gameversion="1.1.0.0" maxstacksize="64">
+        <ItemContainer maxstacksize="64" />
+      </Upgrade>
+    </Item>
