@@ -787,4 +787,14 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <lowreactorcoolantwarning>There are fewer than two full-condition coolant for submarine reactor. Insufficient coolant may result in reactor meltdown.</lowreactorcoolantwarning>
   <lowrepairconsumableheader>Low on repairable parts</lowrepairconsumableheader>
   <lowrepairconsumablewarning>You have less than 15 units of reairable consumables in total (Mechanical Parts and Electrical Parts). Without adequate spare parts submarine equipments cannot be fixed.</lowrepairconsumablewarning>
+
+    <!-- Item HUDs -->
+  <VerticalEngineForce>VerticalEngineForce</VerticalEngineForce>
+  <EngineUpwards>Upwards</EngineUpwards>
+  <EngineDownwards>Downwards</EngineDownwards>
+  <KeepDepth>KeepDepth</KeepDepth>
+  <AutomaticControlled>Automatic
+  Controlled</AutomaticControlled>
+  <Upgradename.enginecangovertical>Vectored Thruster</Upgradename.enginecangovertical>
+  <Upgradedescription.enginecangovertical>Upgrade engine to make the propeller can adjust its angle and generate vertical force for submarine.</Upgradedescription.enginecangovertical>
 </infotexts>

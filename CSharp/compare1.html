@@ -1,0 +1,63 @@
+<Item name="" identifier="shuttleoxygenerator" tags="oxygengenerator,oxygentankrefiller,oxygengenerator_submarine" category="Machine" linkable="true" allowedlinks="vent" scale="0.5">
+      <Upgrade gameversion="0.10.0.0" scale="*0.5" />
+      <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="384,960,64,64" origin="0.5,0.45" />
+      <Sprite texture="oxygengenerator.png" depth="0.8" sourcerect="0,784,336,240" />
+      <BrokenSprite texture="oxygengenerator.png" sourcerect="336,784,336,240" depth="0.8" maxcondition="40" fadein="true" />
+      <BrokenSprite texture="oxygengenerator.png" sourcerect="672,784,336,240" depth="0.8" maxcondition="0" />
+      <CustomOxygenGenerator powerconsumption="1000.0" minvoltage="0.5" canbeselected="true" msg="ItemMsgInteractSelect">
+        <GuiFrame relativesize="0.25,0.2" minsize="420,220" anchor="Center" style="ItemUI" />
+        <poweronsound file="Content/Items/PowerOnLight1.ogg" range="1000" loop="false" />
+        <sound file="Content/Items/OxygenGenerator/OxygenGenerator.ogg" type="OnActive" range="1000.0" volumeproperty="CurrFlow" volume="0.001" loop="true" />
+        <StatusEffect type="OnFire" target="This" Condition="-0.5" tags="onfire" duration="1" stackable="false" />
+        <StatusEffect type="OnBroken" targettype="This" disabledeltatime="true">
+          <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" range="3000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium2.ogg" range="3000" />
+          <sound file="Content/Items/Weapons/ExplosionMedium3.ogg" range="3000" />
+          <Explosion range="50" stun="0" force="3.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <sound file="Content/Items/Weapons/ExplosionDebris3.ogg" range="2000" />
+        </StatusEffect>
+      </CustomOxygenGenerator>
+      <trigger/>
+      <ItemContainer capacity="5" maxstacksize="1" canbeselected="true" msg="ItemMsgOxygenRefill">
+        <GuiFrame relativesize="0.25,0.2" anchor="Center" style="ItemUI" relativeoffset="0, 0.2"/>
+        <Containable items="oxygensource,weldingfuel" excludebroken="false" excludefullcondition="true">
+        </Containable>
+      </ItemContainer>
+      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true">
+        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.01,0.0" uilabel="oxygencandle" />
+        <Containable items="oxygencandle" excludebroken="false" />
+      </ItemContainer>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredSkill identifier="electrical" level="55" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+        <RequiredItem items="screwdriver" type="Equipped"/>
+        <input name="power_in" displayname="connection.powerin"/>
+        <output name="condition_out" displayname="connection.conditionout" />
+      </ConnectionPanel>
+      <Repairable selectkey="Action" header="mechanicalrepairsheader" deteriorationspeed="0.05" mindeteriorationdelay="120" maxdeteriorationdelay="750" mindeteriorationcondition="0" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="mechanical" level="55" />
+        <RequiredItem items="wrench" type="equipped" />
+        <RequiredItem items="mechanicalparts" type="Picked" msg="itemmsg.repair.wrench_mechanicalparts"/><!--Can't use wire because bots will just rip any wire that is near them-->
+        <ParticleEmitter particle="damagebubbles" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemax="360" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+      <ParticleEmitter particle="smoke" particlespersecond="2" scalemin="1" scalemax="2.5" anglemax="360" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+      <ParticleEmitter particle="heavysmoke" particlespersecond="2" scalemin="1.0" scalemax="2.5" anglemax="360" distancemax="60" mincondition="0.0" maxcondition="15.0" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Items/MechanicalRepairFail.ogg" range="1000" />
+          <Affliction identifier="lacerations" strength="5" />
+          <Affliction identifier="stun" strength="4" />
+        </StatusEffect>
+        <StatusEffect type="InWater" target="This" interval="180">
+          <Conditional voltage="gt 0.1" />
+          <LuaHook name="randomwaterdamage" />
+        </StatusEffect>
+      </Repairable>
+</Item>
