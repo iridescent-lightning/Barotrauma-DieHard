@@ -52,7 +52,6 @@ namespace BarotraumaDieHard
             if (type == null)
             {
                 // 在你的命名空间中查找
-                DebugConsole.NewMessage("Try finding");
                 type = Type.GetType($"BarotraumaDieHard.{name}", false, true);
                 
                 if (type == null)

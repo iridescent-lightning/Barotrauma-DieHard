@@ -59,14 +59,14 @@ namespace BarotraumaDieHard
                 LocalizedString powerLabel = TextManager.Get("VerticalEngineForce");
 
                 new GUITextBlock(new RectTransform(new Vector2(1.0f, 0.3f), sliderArea.RectTransform, Anchor.TopCenter), "", textColor: GUIStyle.TextColorNormal, font: GUIStyle.SubHeadingFont, textAlignment: Alignment.Center)
-            {
-                AutoScaleHorizontal = true,
-                TextGetter = () => 
-                { 
-                    return TextManager.AddPunctuation(':', powerLabel, 
-                        TextManager.GetWithVariable("percentageformat", "[value]", ((int)MathF.Round(targetVerticalForce)).ToString())); 
-                }
-            };
+                {
+                    AutoScaleHorizontal = true,
+                    TextGetter = () => 
+                    { 
+                        return TextManager.AddPunctuation(':', powerLabel, 
+                            TextManager.GetWithVariable("percentageformat", "[value]", ((int)MathF.Round(targetVerticalForce)).ToString())); 
+                    }
+                };
 
                 verticalForceSlider = new GUIScrollBar(new RectTransform(new Vector2(0.95f, 0.45f), sliderArea.RectTransform, Anchor.Center), barSize: 0.1f, style: "DeviceSlider")
                 {
@@ -114,14 +114,14 @@ namespace BarotraumaDieHard
             CanBeFocused = false
         };
         
-        // 左侧：指示灯旁边的标签
-        var indicatorLabel = new GUITextBlock(new RectTransform(new Vector2(0.2f, 0.6f), indicatorLight.RectTransform, Anchor.CenterRight)
-        {
-            RelativeOffset = new Vector2(-1.15f, 0)
-        }, TextManager.Get("AutomaticControlled"), font: GUIStyle.SubHeadingFont)
-        {
-            TextColor = GUIStyle.TextColorNormal
-        };
+            // 左侧：指示灯旁边的标签
+            var indicatorLabel = new GUITextBlock(new RectTransform(new Vector2(0.2f, 0.6f), indicatorLight.RectTransform, Anchor.CenterRight)
+            {
+                RelativeOffset = new Vector2(-1.15f, 0)
+            }, TextManager.Get("AutomaticControlled"), font: GUIStyle.SubHeadingFont)
+            {
+                TextColor = GUIStyle.TextColorNormal
+            };
 
 
             var maintainDepthTick = new GUITickBox(new RectTransform(new Vector2(1, 0.2f), paddedFrame.RectTransform, Anchor.TopRight)

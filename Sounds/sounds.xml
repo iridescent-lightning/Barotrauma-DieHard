@@ -220,5 +220,7 @@
     <interactive_rifle_equip file="%ModDir%/Sounds/InteractiveSounds/ak12_draw.ogg" volume="0.7" range="500" />
     <use_lubricate file="%ModDir%/Items/Tools/LubricatingOil.ogg" range="500" />
     <Electrocution1 file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+    <rope_slide file="%ModDir%/Sounds/Item/rope_silde.ogg" volume="2" range="1000" />
+    <rope_cut file="%ModDir%/Sounds/Item/rope_cut.ogg" volume="2" range="500" />
   </sounds>
 </Override>

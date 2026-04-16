@@ -27,23 +27,18 @@ namespace BarotraumaDieHard
 		
         public override void Update(float deltaTime, Camera cam)
         {
-           if (!item.InPlayerSubmarine || item == null || item.CurrentHull == null) {return;}
-               
-                brokenbatteryUpdateTimer -= deltaTime;
-                
-                if (brokenbatteryUpdateTimer < 0.0f)
-                {
+            if (item == null || item.Removed || item.CurrentHull == null) return;
+            if (!item.InPlayerSubmarine) return;
+           
                     
                     if(item.Condition < 20f)
                     {
                         
                         HullMod.AddGas(item.CurrentHull, "Chlorine", 30f, deltaTime);
-                        //DebugConsole.NewMessage("Chlorine added");
+                        
                     }
-                    brokenbatteryUpdateTimer = BrokenbatteryUpdateInterval;
-                }
-            
         }
+            
 
         public override void UpdateBroken(float deltaTime, Camera cam)
         {

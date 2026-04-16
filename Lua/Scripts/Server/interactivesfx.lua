@@ -184,27 +184,38 @@ Hook.Add("PullSourceUser", "PullSourceUser", function(effect, deltaTime, item, t
     local position = item.WorldPosition
     local value = effect.user
     
-    if value.IsKeyDown(9) then -- key code for ‘9’ is used to set pull mode to ‘1’
+	--IsKeyDown(8) means shift key. Now used up and down key.
+    if value.IsKeyDown(InputType.Down) then
+		-- key code for ‘9’ is used to set pull mode to ‘1’ 
         setPullMode(item, 1)
-    elseif value.IsKeyDown(8) then -- key code for ‘8’ is used to set pull mode to ‘0’
+    elseif value.IsKeyDown(InputType.Up) then
+		-- key code for ‘8’ is used to set pull mode to ‘0’ 
         setPullMode(item, 0)
     end
     
     local pullModeItem = getPullMode(item) -- get the pull mode for this item
+
+	if not rope.Snapped and projectile.IsStuckToTarget and value.IsKeyDown(InputType.Crouch) then
+
+			print("snapped")
+        	rope.Snapped = true
+			SoundPlayer.PlaySound("rope_cut", value.WorldPosition)
+
+	end
     
     if not rope.Snapped and projectile.IsStuckToTarget and value.IsRagdolled then
         local direction = Vector2.Normalize(position - value.WorldPosition)
         
         if pullModeItem == 1 then -- if the pull mode for this item is ‘1’
 			--value.AnimController.Collider.FarseerBody.IgnoreGravity = true;
-            value.AnimController.MainLimb.body.ApplyTorque(50)
-            value.AnimController.MainLimb.body.ApplyLinearImpulse(direction * 3,2)
-			
-            --print('l')
+            --value.AnimController.MainLimb.body.ApplyTorque(50) This is obsolete because the lastest patch fixed the motion issue.
+            value.AnimController.MainLimb.body.ApplyLinearImpulse(direction * 1.5,1)
+			SoundPlayer.PlaySound("rope_slide", value.WorldPosition)
+
         else -- otherwise, the pull mode is ‘0’
-            value.AnimController.MainLimb.body.ApplyTorque(50)
             value.AnimController.MainLimb.body.ApplyLinearImpulse(direction * 550,5)
-            --print('n')
+			SoundPlayer.PlaySound("rope_slide", value.WorldPosition)
+            
         end
     end
 end)

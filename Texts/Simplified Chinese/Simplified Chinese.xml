@@ -2,11 +2,17 @@
 <infotexts language="Simplified Chinese" nowhitespace="true" translatedname="中文(简体)">
   <Affliction.fatigue.description>奔跑会消耗你的体力。如果累了就停下来休息一下。</Affliction.fatigue.description>
   <coldwater>寒冷在慢慢地吞噬你。找到温暖的地方来回复你的体温。</coldwater>
+  <afflictiondescription.sonardamage>声呐可能造成严重的内伤</afflictiondescription.sonardamage>
+  <afflictionname.sonardamage>声呐伤害</afflictionname.sonardamage>
+  <coldwater>寒冷会慢慢侵蚀你。找到船体来恢复体温。</coldwater>
   <coldwater1>长时间呆在寒冷中是很危险的。</coldwater1>
   <dh_hypothermia>你快要被冻僵了！</dh_hypothermia>
   <brainshot>人被杀，就会死。但是至少对于被枪击者来说不必再遭受痛苦了。</brainshot>
   <pain>使用吗啡来止疼</pain>
-  <bodyarmorI>[防弹乘数：40%]</bodyarmorI>
+  <afflictionname.pressurizedhull>加压舱体</afflictionname.pressurizedhull>
+  <afflictiondescription.pressurizedhull>你所在的舱体已加压！</afflictiondescription.pressurizedhull>
+  <afflictioncauseofdeath.pressurizedhull>死于内伤。</afflictioncauseofdeath.pressurizedhull>
+  <afflictioncauseofdeathself.pressurizedhull>你被空气压碎了。</afflictioncauseofdeathself.pressurizedhull>
   <eventtext.clownbomb.c>一个小丑的笑声飘入了你的耳中。</eventtext.clownbomb.c>
   <eventtext.clownbomb.c1>“多么漂亮的一艘潜艇啊。”小丑笑得更大声了。</eventtext.clownbomb.c1>
   <eventtext.clownbomb.c2>“所以我放了一点小礼物在你的船上。希望你会喜欢它。”</eventtext.clownbomb.c2>
@@ -443,6 +449,14 @@
   <missiondescription.story_nocargo_beacon>位于[location1]和[location2]两地之间的信标站因故障离线，维修使其重新上线并发射主动声纳。</missiondescription.story_nocargo_beacon>
   <missionsuccess.story_nocargo_beacon>信标站已重新上线。</missionsuccess.story_nocargo_beacon>
   <missionmessage0.story_nocargo_beacon>[location1]与联盟的链接已因故障下线。确保它能够正常发信，并驾驶潜艇前往[location2]去会见你的联系人。</missionmessage0.story_nocargo_beacon>
+  <entityname.dhwaterpump>水泵</entityname.dhwaterpump>
+  <entitydescription.dhwaterpump>通过电线将水泵连接到喷嘴，使水从喷嘴喷出。</entitydescription.dhwaterpump>
+  <entityname.attachablepumpnozzle>水泵喷嘴</entityname.attachablepumpnozzle>
+  <entitydescription.attachablepumpnozzle>连接喷嘴后，水即可流出。</entitydescription.attachablepumpnozzle>
+  <entityname.radiationsuit>辐射防护服</entityname.radiationsuit>
+  <entitydescription.radiationsuit>铅制防护服可以抵御辐射或其他危害。</entitydescription.radiationsuit>
+  <entityname.fuelrodholder>燃料棒钳</entityname.fuelrodholder>
+  <entitydescription.fuelrodholder>用于在需要时固定夹取高温燃料棒</entitydescription.fuelrodholder>
   <entityname.hullscanner>船体扫描器</entityname.hullscanner>
   <entitydescription.hullscanner>用于探明目标船体的具体情况。\n作用范围：5米。</entitydescription.hullscanner>
   <entityname.fuelrodcase>燃料棒储运箱</entityname.fuelrodcase>
@@ -535,9 +549,92 @@
   <entitydescription.subdoc>一种经特殊加密处理的电子数据存储密匙，登记了船只的归属与各项性能。是一种用于采购燃料棒的重要凭证。</entitydescription.subdoc>
   <entityname.weaponrepairkit>枪械维修工具</entityname.weaponrepairkit>
   <entitydescription.weaponrepairkit>一套专门用于维修枪械的工具</entitydescription.weaponrepairkit>
-  <cursorhover.repair.heavywrench>[[use]] 维修 (大扳手)</cursorhover.repair.heavywrench>
-  <cursorhover.repair.guns>[[use]] 维修 (枪械维修工具)</cursorhover.repair.guns>
-  <Terminal.reactormanual>特别注意事项——反应堆守则：反应堆必须使用冷却剂以防止过热。\n如果反应堆的耐久跌落到一定程度，关闭反应堆以防止发生更大的事故。\n反应堆的裂变速率应当低于5，以确保船只的安全。当反应堆离线时，启用备用电源来维持潜艇的正常运行。\n严禁把未用完的燃料棒从反应堆中拿出，未充分反应完毕的燃料棒会持续释放出致命性的辐射。如果你坚持这么做，一定要准备好相对应的收容器。\n联盟第101号电路工程指导手册</Terminal.reactormanual>
+    <entityname.dhheavywrench>重型扳手</entityname.dhheavywrench>
+  <entitydescription.dhheavywrench>一把又大又重的钛合金扳手。用于修理潜艇外部设备。</entitydescription.dhheavywrench>
+  <entityname.weaponparts>武器零件</entityname.weaponparts>
+  <entitydescription.weaponparts>用于修理各种武器的零件。</entitydescription.weaponparts>
+  <entityname.containerkey>钥匙</entityname.containerkey>
+  <entitydescription.containerkey>可以锁定或解锁柜子</entitydescription.containerkey>
+  <entityname.keymaster>万能钥匙</entityname.keymaster>
+  <entitydescription.keymaster>万能钥匙可以打开所有柜子</entitydescription.keymaster>
+  <entityname.keyorganzier>钥匙收纳盒</entityname.keyorganzier>
+  <entitydescription.keyorganzier>用来收集所有钥匙的盒子</entitydescription.keyorganzier>
+  <entityname.flamethrowerfueltank>火焰喷射器燃料罐</entityname.flamethrowerfueltank>
+  <entitydescription.flamethrowerfueltank>装有火焰喷射器燃料的重型罐子</entitydescription.flamethrowerfueltank>
+  <entityname.flamethrower>火焰喷射器</entityname.flamethrower>
+  <entitydescription.flamethrower>一种致命的武器，能使你遇到的任何敌人丧失行动能力</entitydescription.flamethrower>
+  <entityname.bodyarmorI>护甲-I</entityname.bodyarmorI>
+  <entitydescription.bodyarmorI>[穿透率系数: 40%]</entitydescription.bodyarmorI>
+  <entityname.bodyarmorII>护甲-II</entityname.bodyarmorII>
+  <entitydescription.bodyarmorII>[穿透率系数: 25%]</entitydescription.bodyarmorII>
+  <entityname.bodyarmorIII>护甲-III</entityname.bodyarmorIII>
+  <entitydescription.bodyarmorIII>[穿透率系数: 10%]</entitydescription.bodyarmorIII>
+  <entityname.mechanicalparts>机械零件</entityname.mechanicalparts>
+  <entitydescription.mechanicalparts>用于各种机械修理的零件。</entitydescription.mechanicalparts>
+  <entityname.ElectricalParts>电气零件</entityname.ElectricalParts>
+  <entitydescription.ElectricalParts>用于各种电气修理的零件。</entitydescription.ElectricalParts>
+  <entityname.divingwatch>潜水手表</entityname.divingwatch>
+  <entitydescription.divingwatch>潜水员用来计时。</entitydescription.divingwatch>
+  <entityname.hypothalamusstimulator>下丘脑刺激药丸</entityname.hypothalamusstimulator>
+  <entitydescription.hypothalamusstimulator>这种药丸刺激下丘脑，导致危险的体内过热。</entitydescription.hypothalamusstimulator>
+  <entityname.diversbackpack>潜水员背包</entityname.diversbackpack>
+  <entitydescription.diversbackpack>用于搬运物资的坚固背包。会降低穿着者的速度。</entitydescription.diversbackpack>
+  <entityname.rebreather>循环呼吸器</entityname.rebreather>
+  <entitydescription.rebreather>循环呼吸器可以循环空气并去除使用者呼出的二氧化碳，使氧气罐的效率提高一倍。检测到装备潜水服时自动启动。它还可以为连接的潜水服中的氧气罐补充氧气。</entitydescription.rebreather>
+  <entityname.rebreathertank>循环呼吸器气罐</entityname.rebreathertank>
+  <entitydescription.rebreathertank>一个沉重的氧气罐，允许循环呼吸器为连接的潜水服中的氧气罐补充氧气。</entitydescription.rebreathertank>
+  <entityname.grapplegun>抓钩枪</entityname.grapplegun>
+  <entitydescription.grapplegun>用于越过复杂地形。\n连接缆绳后\n按[上]设置为牵引模式\n按[下]设置为下降模式\n按[蹲下]抓住绳索。</entitydescription.grapplegun>
+  <entityname.grapplesmall>抓钩</entityname.grapplesmall>
+  <entitydescription.grapplesmall>抓钩枪弹药</entitydescription.grapplesmall>
+  <entityname.gastank>气罐</entityname.gastank>
+  <entitydescription.gastank>抓钩枪用的气罐</entitydescription.gastank>
+  <entityname.CaveLamp1>洞穴灯</entityname.CaveLamp1>
+  <entityname.CaveLamp2>洞穴灯</entityname.CaveLamp2>
+  <entityname.bloodlantern>血灯笼</entityname.bloodlantern>
+  <entitydescription.bloodlantern>燃烧异星血液，发出暗红色的光</entitydescription.bloodlantern>
+  <entityname.reinforceddoor>加固门</entityname.reinforceddoor>
+  <entityname.lifttopstop>电梯上限位器</entityname.lifttopstop>
+  <entityname.liftbottomstop>电梯下限位器</entityname.liftbottomstop>
+  <entityname.lift>电梯</entityname.lift>
+  <entityname.buttonchangedirection>改变方向</entityname.buttonchangedirection>
+  <entitydescription.buttonchangedirection>按下它来启动潜艇改变方向的程序。</entitydescription.buttonchangedirection>
+  <entityname.airmonitor>空气监测器</entityname.airmonitor>
+  <entitydescription.airmonitor>一种手持设备，用于监测空气状况</entitydescription.airmonitor>
+  <entityname.APIshell>穿甲燃烧弹</entityname.APIshell>
+  <entitydescription.APIshell>一种能穿透多层船体的炮弹。撞击后会短暂延迟，然后剧烈燃烧。</entitydescription.APIshell>
+  <entityname.torpedo>鱼雷</entityname.torpedo>
+  <entitydescription.torpedo>可以从鱼雷管发射的鱼雷</entitydescription.torpedo>
+  <entityname.firecontrolsonar>火控声呐</entityname.firecontrolsonar>
+  <entitydescription.firecontrolsonar>引导鱼雷方向</entitydescription.firecontrolsonar>
+  <entityname.lubricationoil>润滑油</entityname.lubricationoil>
+  <entitydescription.lubricationoil>用于润滑发动机。右键点击直接使用在发动机上。</entitydescription.lubricationoil>
+  <entityname.jbslot>接线盒插槽</entityname.jbslot>
+  <entityname.pressurizedgastank>加压气罐</entityname.pressurizedgastank>
+  <entitydescription.pressurizedgastank>为压载舱水泵储存高压气体。</entitydescription.pressurizedgastank>
+
+
+
+  <connection.moveup>向上移动</connection.moveup>
+  <connection.movedown>向下移动</connection.movedown>
+  <connection.Dock_State>停泊状态</connection.Dock_State>
+  <connection.vertical_engine_power_out>垂直引擎功率输出</connection.vertical_engine_power_out>
+  <connection.powerconsumptionout>功率消耗输出</connection.powerconsumptionout>
+  <uilabel.reactorcooline>冷却剂</uilabel.reactorcooline>
+  <uilabel.oxygencandle>氧烛插槽</uilabel.oxygencandle>
+  <uilabel.lock>锁定</uilabel.lock>
+  <displayname.divingwatch>潜水手表</displayname.divingwatch>
+  <cursorhover.changedirection>[[选择]] 按下它来启动潜艇改变方向的程序。</cursorhover.changedirection>
+  <cursorhover.repair.heavywrench>[[使用]] 修理 (重型扳手)</cursorhover.repair.heavywrench>
+  <cursorhover.repair.guns>[[使用]] 修理 (武器修理包)</cursorhover.repair.guns>
+  <Terminal.reactormanual>非常重要----反应堆操作：反应堆在工作状态下需要冷却剂以防止损坏。如果反应堆损坏到临界状态。关闭反应堆以防止进一步的灾难。\n裂变率应低于5以确保整个潜艇的安全。如果反应堆停机，请打开潜艇上的备用电源！\n请勿从反应堆中取出未耗尽的燃料棒。辐射可能是致命的。如果你坚持要取出，请找到合适的容器！\n联盟工程指南101</Terminal.reactormanual>
+  <Terminal.helermanualstart>欢迎使用助手。选择相应的数字查看内容。\n1 反应堆\n2 水泵\n3 炮塔与潜艇战\n4 室内战斗\n首页</Terminal.helermanualstart>
+  <Terminal.subdocstart>潜艇信息\n选择相应的数字查看信息。\n1 船舶载荷状况\n2 船舶设计与效率\n3 注册编号\n4 基本资产\n首页</Terminal.subdocstart>
+  <afflictionname.coldwater>低温</afflictionname.coldwater>
+  <afflictionname.coldwaterresistance>身体过热</afflictionname.coldwaterresistance>
+  <afflictiondescription.coldwaterresistance>这种药丸刺激下丘脑，导致危险的体内过热。</afflictiondescription.coldwaterresistance>
+  <afflictiondename.chlorine_poisoning>氯气中毒</afflictiondename.chlorine_poisoning>
+  <afflictiondescription.chlorine_poisoning>破损的电池释放有毒化学物质</afflictiondescription.chlorine_poisoning>
   <!--location-->
   <locationname.EuropanRidge_Outpost>欧罗巴海脊的居住前哨站</locationname.EuropanRidge_Outpost>
   <locationnameformat.EuropanRidge_Outpost>[name]居住前哨站</locationnameformat.EuropanRidge_Outpost>
@@ -579,4 +676,97 @@
   <Botai_getdivingmask>“水进来了！”</Botai_getdivingmask>
   <Botai_getdivingmask>“寻找潜水面罩！”</Botai_getdivingmask>
   <Botai_getdivingmask>“船体损坏！船体缺失！”</Botai_getdivingmask>
+    <LockDirectionalSonar>锁定声呐方向</LockDirectionalSonar>
+  <Arm>解除保险</Arm>  <!--开关标签-->
+  <TorpedoDisarm>解除待发</TorpedoDisarm>  <!--信号输出-->
+  <TorpedoArm>待发</TorpedoArm>
+  <TorpedoTubeEmpty>发射管空</TorpedoTubeEmpty>
+  <LaunchTorpedo>发射鱼雷</LaunchTorpedo>
+  <hertz>千赫兹</hertz>
+  <EngineStatus>引擎状态</EngineStatus>
+  <EnginePowerConsumption>功率消耗</EnginePowerConsumption>
+  <KW>千瓦</KW>
+  <O2>氧气</O2>
+  <oxygeneratornui.powerslidertext>空气循环率</oxygeneratornui.powerslidertext>
+  <oxygeneratornui.refill>补充</oxygeneratornui.refill>
+  <prograssbar.Lubricating>润滑中</prograssbar.Lubricating>
+  <turbineoutput>涡轮输出</turbineoutput>
+  <TurbineRateSliderText>涡轮速率</TurbineRateSliderText>
+  <dialogcheckfirearms>“这里不允许携带这种武器！”</dialogcheckfirearms>
+  <dialogcheckfirearms.Drop>“放下你的武器！”</dialogcheckfirearms.Drop>
+  <MiniMapCO2>二氧化碳浓度</MiniMapCO2>
+  <MiniMapCO>一氧化碳浓度</MiniMapCO>
+  <MiniMapChlorine>氯气浓度</MiniMapChlorine>
+  <MiniMapLockRoomHit>点击锁定房间。按住Ctrl并点击解锁房间。</MiniMapLockRoomHit>
+  <MiniMapTemperature>温度</MiniMapTemperature>
+
+  <!--职业-->
+  <jobname.navigator>导航员</jobname.navigator>
+  <jobdescription.navigator>船上海员。在最艰难的地形中导航。</jobdescription.navigator>
+  <jobname.gunner>炮手</jobname.gunner>
+  <jobdescription.gunner>擅长使用甲板上的重型武器。</jobdescription.gunner>
+
+  <!--我添加了重复的对话，让游戏更倾向于选择这些对话。因为机器人现在不会再在内部找到潜水装备了。我不想为了只修复一个对话而修补Act方法。-->
+  <dialoggetdivinggear>需要找到潜水装备！</dialoggetdivinggear>
+  <dialoggetdivinggear>需要找到潜水装备！</dialoggetdivinggear>
+  <dialoggetdivinggear>需要找到潜水装备！</dialoggetdivinggear>
+  <dialoggetdivinggear>需要找到潜水装备！</dialoggetdivinggear>
+  <dialoggetdivinggear>需要找到潜水装备！</dialoggetdivinggear>
+
+  <dialogclimbladderwithfullhanditem>我需要空出手来攀爬。</dialogclimbladderwithfullhanditem>
+
+  <dialog.bots.dangerousfuelrod>我靠！这里有根燃烧的燃料棒！</dialog.bots.dangerousfuelrod>
+  <dialog.bots.dangerousfuelrod>燃料棒未屏蔽！</dialog.bots.dangerousfuelrod>
+  <dialog.bots.dangerousfuelrod>我们这里有根炽热的燃料棒！</dialog.bots.dangerousfuelrod>
+  <dialog.bots.dangerousfuelrod>什么鬼！一根放射性燃料棒！</dialog.bots.dangerousfuelrod>
+
+
+  
+  <dialog.bots.cannotrepairpoweredreactor>我无法修理这个，反应堆仍在通电！</dialog.bots.cannotrepairpoweredreactor>
+
+  <dialog.bots.findradiationsuit>我需要找到一套防辐射服！</dialog.bots.findradiationsuit>
+  <dialog.bots.findradiationsuit.failure>我找不到防辐射服。</dialog.bots.findradiationsuit.failure>
+
+  <dialog.bots.cannotaccesswetroomdoor>我无法打开压载舱舱口，因为舱室是加压的！</dialog.bots.cannotaccesswetroomdoor>
+
+  <!--技能-->
+  <skillname.ondeckweapon>甲板武器</skillname.ondeckweapon>
+
+  <!--物品消息-->
+  <itemmsg.repair.screwdriver_mechanicalparts>[[使用]] 修理 (螺丝刀 + 机械零件)</itemmsg.repair.screwdriver_mechanicalparts>
+  <itemmsg.repair.wrench_mechanicalparts>[[使用]] 修理 (扳手 + 机械零件)</itemmsg.repair.wrench_mechanicalparts>
+  <itemmsg.repair.screwdriver_electricalparts>[[使用]] 修理 (螺丝刀 + 电气零件)</itemmsg.repair.screwdriver_electricalparts>
+
+
+  <ordername.findandequipradiationsuit>找到并装备防辐射服</ordername.findandequipradiationsuit>
+  <orderdialog.findandequipradiationsuit>[name]，找到并装备防辐射服！</orderdialog.findandequipradiationsuit>
+  <orderdialogself.findandequipradiationsuit>我需要一件防辐射服。</orderdialogself.findandequipradiationsuit>
+
+
+  <hint.electricalrepair>确保切断电源以保证安全修理。</hint.electricalrepair>
+  <hint.bugvent>一只耗电的虫子从你的一个通风口爬出。杀死它以恢复电力。</hint.bugvent>
+  <hint.qteinsufficientskilllevel>你的技能等级未达到快速反应事件的要求。</hint.qteinsufficientskilllevel>
+  <VerticalEngineDisplayTip>垂直推进器的推力比率。</VerticalEngineDisplayTip>
+  <SonarHertzTip>声呐的赫兹数。赫兹越高，探测范围越大但探测半径越小。高能量声呐对人类也更危险。</SonarHertzTip>
+  
+
+  <lowoxygencandleheader>氧烛不足</lowoxygencandleheader>
+  <lowoxygencandlewarning>潜艇上状态完好的氧烛少于两根。在氧烛不足的情况下继续前进可能导致氧气发生器无法工作。</lowoxygencandlewarning>
+  <lowreactorcoolantheader>反应堆冷却剂不足</lowreactorcoolantheader>
+  <lowreactorcoolantwarning>潜艇反应堆状态完好的冷却剂少于两份。冷却剂不足可能导致反应堆熔毁。</lowreactorcoolantwarning>
+  <lowrepairconsumableheader>可修理零件不足</lowrepairconsumableheader>
+  <lowrepairconsumablewarning>你的可修理消耗品（机械零件和电气零件）总数少于15个。没有足够的备件，潜艇设备将无法修复。</lowrepairconsumablewarning>
+
+    <!--物品HUD-->
+  <VerticalEngineForce>垂直引擎推力</VerticalEngineForce>
+  <EngineUpwards>向上</EngineUpwards>
+  <EngineDownwards>向下</EngineDownwards>
+  <KeepDepth>保持深度</KeepDepth>
+  <AutomaticControlled>自动
+  <TurrentUIWeaponSkill>武器技能：</TurrentUIWeaponSkill>
+  <FirerateBonus>射速加成：</FirerateBonus>
+  <FireratePenalty>射速惩罚：</FireratePenalty>
+  控制</AutomaticControlled>
+  <Upgradename.enginecangovertical>矢量推进器</Upgradename.enginecangovertical>
+  <Upgradedescription.enginecangovertical>升级引擎，使螺旋桨能够调整角度，为潜艇产生垂直方向的推力。</Upgradedescription.enginecangovertical>
 </infotexts>

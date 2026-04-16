@@ -1140,19 +1140,19 @@ end)--]]
 
 Hook.Add("layerII","layerII",function(effect, deltaTime, item, targets, worldPosition)
 	local projectileProperty = item.GetComponentString('Projectile')
-	projectileProperty.MaxTargetsToHit = 2
+	projectileProperty.MaxTargetsToHit = 3
 end)
 Hook.Add("layerIII","layerIII",function(effect, deltaTime, item, targets, worldPosition)
 	local projectileProperty = item.GetComponentString('Projectile')
-	projectileProperty.MaxTargetsToHit = 3
+	projectileProperty.MaxTargetsToHit = 4
 end)
 Hook.Add("layerVI","layerVI",function(effect, deltaTime, item, targets, worldPosition)
 	local projectileProperty = item.GetComponentString('Projectile')
-	projectileProperty.MaxTargetsToHit = 4
+	projectileProperty.MaxTargetsToHit = 5
 end)
 Hook.Add("layerV","layerV",function(effect, deltaTime, item, targets, worldPosition)
 	local projectileProperty = item.GetComponentString('Projectile')
-	projectileProperty.MaxTargetsToHit = 5
+	projectileProperty.MaxTargetsToHit = 6
 end)
 
 

@@ -612,7 +612,7 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entityname.rebreathertank>Rebreather Tank</entityname.rebreathertank>
   <entitydescription.rebreathertank>A heavy oxygen tank allows the rebreather to refill oxygen tank in the connected diving suit.</entitydescription.rebreathertank>
   <entityname.grapplegun>Grapple Gun</entityname.grapplegun>
-  <entitydescription.grapplegun>Used to go over difficult terrain.\nAfter the cable is connected\nPress[LShift]to set Pulling mode\nPress [LCtrl] to set lowering mode.</entitydescription.grapplegun>
+  <entitydescription.grapplegun>Used to go over difficult terrain.\nAfter the cable is connected\nPress[UP]to set Pulling mode\nPress [DOWN] to set lowering mode\nPress [Crouch] to snap the rope. </entitydescription.grapplegun>
   <entityname.grapplesmall>Grapple Hook</entityname.grapplesmall>
   <entitydescription.grapplesmall>Grapple gun ammo</entitydescription.grapplesmall>
   <entityname.gastank>Gas Tank</entityname.gastank>
@@ -794,6 +794,9 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <EngineDownwards>Downwards</EngineDownwards>
   <KeepDepth>KeepDepth</KeepDepth>
   <AutomaticControlled>Automatic
+  <TurrentUIWeaponSkill>Weapon Skill: </TurrentUIWeaponSkill>
+  <FirerateBonus>Firerate Bonus: </FirerateBonus>
+  <FireratePenalty>Firerate Penalty: </FireratePenalty>
   Controlled</AutomaticControlled>
   <Upgradename.enginecangovertical>Vectored Thruster</Upgradename.enginecangovertical>
   <Upgradedescription.enginecangovertical>Upgrade engine to make the propeller can adjust its angle and generate vertical force for submarine.</Upgradedescription.enginecangovertical>

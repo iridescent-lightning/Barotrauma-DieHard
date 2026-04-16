@@ -1507,7 +1507,7 @@
       <PreferredContainer primary="secarmcab" secondary="armcab,weaponholder" />
       <Price baseprice="150" minavailable="1">
         <Price storeidentifier="merchantoutpost" multiplier="1.5" />
-        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" sold="false" />
+        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="2" />
         <Price storeidentifier="merchantresearch" multiplier="1.25" />
         <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="3" />
         <Price storeidentifier="merchantmine" multiplier="1.25" minavailable="2" />
@@ -1585,7 +1585,7 @@
       <ContainedSprite allowedcontainertags="grapplegun" texture="%ModDir%/Items/Tools/DHtools2.png" sourcerect="178,761,99,50" depth="0.56" origin="0.5,0.5" />
       <Body width="46" height="49" density="30" />
       <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
-      <Rope sourcepullforce="300" targetpullforce="100" projectilepullforce="5" maxlength="4000" snaponcollision="false" spritewidth="4" tile="true" origin="0.05,0.5" targetminmass="30" lerpforces="true" snapanimduration="0.5" SnapWhenNotAimed="False">
+      <Rope sourcepullforce="300" targetpullforce="100" projectilepullforce="5" maxlength="4000" snaponcollision="false" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="30" lerpforces="true" snapanimduration="0.5" SnapWhenNotAimed="False">
         <Sprite texture="%ModDir%/Items/Subweapons/weapons_new.png" sourcerect="32,40,108,19" depth="0.57" origin="0.5,0.5" />
         <!-- Snap after 1 seconds if not stuck to anything -->
         <StatusEffect type="OnUse" target="This" Snapped="true" delay="5" checkconditionalalways="true">

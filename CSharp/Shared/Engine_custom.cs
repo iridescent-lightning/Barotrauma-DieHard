@@ -31,8 +31,7 @@ namespace BarotraumaDieHard
         [Editable, Serialize(false, IsPropertySaveable.Yes)]
         public bool VectoredThruster
         {
-            get {DebugConsole.NewMessage($"{hasVerticalThruster}"); 
-                return hasVerticalThruster; }
+            get {return hasVerticalThruster; }
             set { hasVerticalThruster = value; }
         }
         public CustomEngine(Item item, ContentXElement element) : base(item, element) 
@@ -58,7 +57,6 @@ namespace BarotraumaDieHard
             // 如果 UI 容器准备好了但还没构建我们的自定义部分
             if (!uiCreated && GuiFrame != null)
             {
-                DebugConsole.NewMessage("testing");
                 CreateGUI();
                 uiCreated = true;
             }

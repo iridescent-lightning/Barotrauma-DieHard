@@ -101,7 +101,8 @@ end)
 
 for key, value in pairs(Item.ItemList) do
     if (item.HasTag('collidable')) then
-    MakeItemCollide(value)
+    MakeItemCollide(item)
+    --original was MakeItemCollide(value). But it looked like an error. Now changed to 'item'
 	end
 end
 
