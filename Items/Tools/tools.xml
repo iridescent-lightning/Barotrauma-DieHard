@@ -1674,8 +1674,8 @@
         <Item identifier="copper" />
         <Item identifier="steel" />
       </Deconstruct>
-      <Sprite texture="%ModDir%/Items/Tools/DHtools2.png" sourcerect="817,2,179,91" depth="0.5" />
-      <Body width="181" height="132" density="55" />
+      <Sprite texture="%ModDir%/Items/Tools/DHtools2.png" sourcerect="596,533,276,157" depth="0.5" />
+      <Body width="276" height="157" density="80" />
       <Holdable slots="RightHand+LeftHand" holdpos="0,0" handle1="0,0" attachable="true" aimable="true" PickingTime="0.1" pickkey="Use">
         <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.7" setvalue="true" />
       </Holdable>
@@ -1707,7 +1707,7 @@
         </StatusEffect>
         <requireditem items="Screwdriver" type="Equipped" />
         <input name="power_in" displayname="connection.powerin" />
-        <output name="signal_out" displayname="connection.Vent" />
+        <output name="mechanical" displayname="connection.Vent" />
       </ConnectionPanel>
     </Item>
     <Item name="" identifier="attachablepumpnozzle" tags="smallitem,donttakeitems,attachablepumpb" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowasextracargo="true" impactsoundtag="impact_metal_heavy" isshootable="true" maxstacksize="4">
@@ -1741,7 +1741,7 @@
           <Affliction identifier="stun" strength="1" />
         </StatusEffect>
         <RequiredItem items="Screwdriver" type="Equipped" />
-        <output name="signal_in" displayname="Vent" />
+        <output name="mechanical" displayname="Vent" />
       </ConnectionPanel>
       <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" PickingTime="20.0" aimpos="65,-10" handle1="0,0" attachable="true" aimable="true">
         <requireditem items="wrench" type="Equipped" />

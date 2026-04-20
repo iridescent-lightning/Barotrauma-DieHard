@@ -1,13 +1,20 @@
-<Item name="" identifier="extinguisherbracket" category="Equipment" tags="extinguisherholder" canflipx="false" canflipy="false" scale="0.5" pickdistance="75">
-    <Sprite texture="containers.png" depth="0.84" sourcerect="815,349,72,204" origin="0.5,0.5" />
-    <ItemContainer hideitems="false" drawinventory="true" capacity="1" AutoInteractWithContained="true" maxstacksize="1" slotsperrow="1" itempos="35,-130" iteminterval="0,0" itemrotation="0" canbeselected="true" msg="ItemMsgInteractSelect">
-      <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
-      <Containable items="extinguisher" />
-    </ItemContainer>
-    <Upgrade gameversion="0.10.0.0" scale="*0.5" itempos="35,-130" />
-    <!-- the item used to have the (default) 64 max stack size, i.e. stack size was only limited by the max stack size of the contained items -->
-    <!-- set the stack size back in old saves/subs to prevent items from dropping from containers -->
-    <Upgrade gameversion="1.1.0.0" maxstacksize="64">
-      <ItemContainer maxstacksize="64" />
-    </Upgrade>
+<Item name="" identifier="redwire" category="Electrical" Tags="smallitem,wire,electricalwire" maxstacksize="32" maxstacksizecharacterinventory="8" spritecolor="255,0,0,255" InventoryIconColor="210,215,218,255" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" variantof="wire">
+    <Price baseprice="10">
+      <Price storeidentifier="merchantoutpost" />
+      <Price storeidentifier="merchantcity" sold="false"/>
+      <Price storeidentifier="merchantresearch" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" />
+      <Price storeidentifier="merchantmine" />
+      <Price storeidentifier="merchantengineering" multiplier="0.9" />
+    </Price>
+    <PreferredContainer primary="engcab" />
+    <PreferredContainer secondary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1" />
+    <Deconstruct time="1"/>
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
+    <Sprite texture="signalcomp.png" depth="0.8" sourcerect="169,224,84,32" origin="0.5,0.5" />
+    <Body radius="14" width="60" density="15" />
+    <Holdable slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
+    <Wire >
+      <WireSprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.855" sourcerect="968,118,16,16" origin="0.5,0.5" />
+    </Wire>
   </Item>

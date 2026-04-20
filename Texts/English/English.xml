@@ -793,11 +793,11 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <EngineUpwards>Upwards</EngineUpwards>
   <EngineDownwards>Downwards</EngineDownwards>
   <KeepDepth>KeepDepth</KeepDepth>
-  <AutomaticControlled>Automatic
+  <AutomaticControlled>Automatic\nControlled</AutomaticControlled>
   <TurrentUIWeaponSkill>Weapon Skill: </TurrentUIWeaponSkill>
   <FirerateBonus>Firerate Bonus: </FirerateBonus>
   <FireratePenalty>Firerate Penalty: </FireratePenalty>
-  Controlled</AutomaticControlled>
   <Upgradename.enginecangovertical>Vectored Thruster</Upgradename.enginecangovertical>
   <Upgradedescription.enginecangovertical>Upgrade engine to make the propeller can adjust its angle and generate vertical force for submarine.</Upgradedescription.enginecangovertical>
+  <CustomJunctionBoxSwitchTip>Click to switch junctionbox on/off status</CustomJunctionBoxSwitchTip>
 </infotexts>

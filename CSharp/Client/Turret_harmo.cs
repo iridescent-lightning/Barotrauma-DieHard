@@ -36,10 +36,10 @@ namespace BarotraumaDieHard
             float bonusPercent = (speedMult - 1.0f) * 100f;
 
             // 2. 准备文本 (使用 .ToLocalizedString() 以匹配参数要求)
-            skillText =$"On Deck Weapon SKill: {character.GetSkillLevel("ondeckweapon"):F0}";
+            skillText = TextManager.Get("TurrentUIWeaponSkill") + $": {character.GetSkillLevel("ondeckweapon"):F0}";
             statText = (bonusPercent >= 0 
-                ? $"Firerate Bonus: {bonusPercent:F0}%" 
-                : $"Firerate Penalty: {bonusPercent:F0}%");
+                ? TextManager.Get("FirerateBonus") + $": {bonusPercent:F0}%" 
+                : TextManager.Get("FireratePenalty") + $": {bonusPercent:F0}%");
 
             // 3. 设置坐标 (右下角参考位置)
             Vector2 position = new Vector2(GameMain.GraphicsWidth - 300, GameMain.GraphicsHeight - 150);

@@ -26,6 +26,7 @@ namespace BarotraumaDieHard
             JBModeSwitch = new GUIButton(new RectTransform(new Vector2(0.6f, 0.6f), paddedFrame.RectTransform, Anchor.Center){ RelativeOffset = new Vector2(0,0) }, string.Empty, style: "SwitchDieHardJBButton")
             {
                 //UserData = UIHighlightAction.ElementId.torpedoModeSwitch,
+                ToolTip = TextManager.Get("CustomJunctionBoxSwitchTip"),
                 Selected = false,
                 Enabled = true,
                 ClickSound = GUISoundType.UISwitch,

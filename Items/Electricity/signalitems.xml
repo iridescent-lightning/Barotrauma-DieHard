@@ -25,7 +25,7 @@
       <WireSprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.855" sourcerect="968,118,16,16" origin="0.5,0.5" />
     </Wire>
   </Item>
-  <Item name="" identifier="redwire" category="Electrical" Tags="smallitem,wire,electricalwire" maxstacksize="32" maxstacksizecharacterinventory="8" spritecolor="255,0,0,255" InventoryIconColor="210,215,218,255" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" variantof="wire">
+  <Item name="" identifier="redwire" category="Electrical" Tags="smallitem,wire,electricalwire" maxstacksize="32" maxstacksizecharacterinventory="8" spritecolor="254,23,17,255" InventoryIconColor="254,23,17,255" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" variantof="wire">
     <Price baseprice="10">
       <Price storeidentifier="merchantoutpost" />
       <Price storeidentifier="merchantcity" sold="false"/>
@@ -34,9 +34,13 @@
       <Price storeidentifier="merchantmine" />
       <Price storeidentifier="merchantengineering" multiplier="0.9" />
     </Price>
-    <PreferredContainer primary="engcab" />
-    <PreferredContainer secondary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1" />
+    <PreferredContainer primary="engcab" amount="1" notcampaign="true" />
+    <PreferredContainer secondary="wreckengcab,abandonedengcab,pirateengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1" />
     <Deconstruct time="1"/>
+    <Fabricate suitablefabricators="fabricator" requiredtime="5" amount="5">
+      <RequiredItem identifier="copper" />
+      <RequiredItem identifier="rubber" />
+    </Fabricate>
     <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
     <Sprite texture="signalcomp.png" depth="0.8" sourcerect="169,224,84,32" origin="0.5,0.5" />
     <Body radius="14" width="60" density="15" />
@@ -160,7 +164,7 @@
       <WireSprite texture="%ModDir%/Items/Electricity/signalcomp.png" depth="0.855" sourcerect="968,118,16,16" origin="0.5,0.5" />
     </Wire>
   </Item>
-  <Item name="pipe" identifier="pipe" category="Electrical" Tags="smallitem,wire,electricalwire" maxstacksize="32" maxstacksizecharacterinventory="8" spritecolor="255,255,255,255" InventoryIconColor="210,215,218,255" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+  <Item name="pipe" identifier="pipe" category="Electrical" Tags="smallitem,wire,electricalwire" maxstacksize="32" maxstacksizecharacterinventory="8" spritecolor="255,255,255,255" InventoryIconColor="210,215,218,255" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.25" impactsoundtag="impact_metal_light">
     <Price baseprice="10">
       <Price storeidentifier="merchantoutpost" />
       <Price storeidentifier="merchantcity" sold="false"/>
@@ -172,12 +176,12 @@
     <PreferredContainer primary="engcab" />
     <PreferredContainer secondary="wreckengcab,abandonedengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1" />
     <Deconstruct time="1"/>
-    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
-    <Sprite texture="signalcomp.png" depth="0.8" sourcerect="169,224,84,32" origin="0.5,0.5" />
+    
+    <Sprite texture="%ModDir%/UI/ButtonUI.png" depth="0.8" sourcerect="4, 624, 187, 69" origin="0.5,0.5" />
     <Body radius="14" width="60" density="15" />
     <Holdable slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
     <Wire >
-      <WireSprite texture="%ModDir%/Items/Engines/matte.png" sourcerect="0,54,1344,48" depth="0.855" origin="0.5,0.5"/>
+      <WireSprite texture="%ModDir%/UI/ButtonUI.png" sourcerect="4, 624, 187, 69" depth="0.855" origin="0.5,0.5"/>
     </Wire>
   </Item>
     <Item name="Keypad" identifier="dhkeypad" category="Electrical" Tags="smallitem,logic" maxstacksize="1" linkable="false" cargocontaineridentifier="metalcrate" scale="0.4" impactsoundtag="impact_metal_light" isshootable="true">

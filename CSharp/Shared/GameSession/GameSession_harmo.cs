@@ -100,6 +100,9 @@ namespace BarotraumaDieHard
             AddTextureToSpriteList("battery_open_nodamage", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(0, 194, 158, 184), originPercentage: new Vector2(0.37f, 0.43f));
             AddTextureToSpriteList("battery_open_damage", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(196, 193, 158, 184), originPercentage: new Vector2(0.353f, 0.441f));
             AddTextureToSpriteList("battery_open_broken", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(389, 194, 159, 184), originPercentage: new Vector2(0.353f, 0.441f));
+            AddTextureToSpriteList("mechanical_slot", "%ModDir%/UI/ButtonUI.png", new Rectangle(93, 335, 56, 53), originPercentage: new Vector2(0.353f, 0.441f));
+            AddTextureToSpriteList("mechanical_slot_glow", "%ModDir%/UI/ButtonUI.png", new Rectangle(56, 436, 131, 121), originPercentage: new Vector2(0.353f, 0.441f));
+            AddTextureToSpriteList("water_pipe", "%ModDir%/UI/ButtonUI.png", new Rectangle(4, 624, 187, 69), originPercentage: new Vector2(0.353f, 0.441f));
 
 #endif
 

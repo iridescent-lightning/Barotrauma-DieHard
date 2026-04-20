@@ -762,11 +762,11 @@
   <EngineUpwards>向上</EngineUpwards>
   <EngineDownwards>向下</EngineDownwards>
   <KeepDepth>保持深度</KeepDepth>
-  <AutomaticControlled>自动
+  <AutomaticControlled>自动控制</AutomaticControlled>
   <TurrentUIWeaponSkill>武器技能：</TurrentUIWeaponSkill>
   <FirerateBonus>射速加成：</FirerateBonus>
   <FireratePenalty>射速惩罚：</FireratePenalty>
-  控制</AutomaticControlled>
   <Upgradename.enginecangovertical>矢量推进器</Upgradename.enginecangovertical>
   <Upgradedescription.enginecangovertical>升级引擎，使螺旋桨能够调整角度，为潜艇产生垂直方向的推力。</Upgradedescription.enginecangovertical>
+  <CustomJunctionBoxSwitchTip>点击切换接线盒 开/关 状态</CustomJunctionBoxSwitchTip>
 </infotexts>
