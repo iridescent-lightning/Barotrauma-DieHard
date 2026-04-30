@@ -103,6 +103,8 @@ namespace BarotraumaDieHard
             AddTextureToSpriteList("mechanical_slot", "%ModDir%/UI/ButtonUI.png", new Rectangle(93, 335, 56, 53), originPercentage: new Vector2(0.353f, 0.441f));
             AddTextureToSpriteList("mechanical_slot_glow", "%ModDir%/UI/ButtonUI.png", new Rectangle(56, 436, 131, 121), originPercentage: new Vector2(0.353f, 0.441f));
             AddTextureToSpriteList("water_pipe", "%ModDir%/UI/ButtonUI.png", new Rectangle(4, 624, 187, 69), originPercentage: new Vector2(0.353f, 0.441f));
+            AddTextureToSpriteList("door_open", "Content/UI/MainIconsAtlas.png", new Rectangle(128, 128, 128, 128), originPercentage: new Vector2(0.353f, 0.441f));
+            AddTextureToSpriteList("wire_realism", "%ModDir%/Items/Electricity/signalcomp.png", new Rectangle(968, 118, 16, 16), originPercentage: new Vector2(0.353f, 0.441f));
 
 #endif
 

@@ -36,7 +36,7 @@ namespace BarotraumaDieHard
 
 
 // killed npc still has items on them.
-/*
+
         public static bool SpawnNPCsPrefix(Location location, Submarine outpost)
 {
     if (outpost?.Info?.OutpostGenerationParams == null) { return false; }
@@ -105,10 +105,10 @@ namespace BarotraumaDieHard
 
     return false; // Prevents the original method from running
 }
-*/
 
 
-        public static bool SpawnNPCsPrefix(Location location, Submarine outpost)
+
+        /*public static bool SpawnNPCsPrefix(Location location, Submarine outpost)
         {
             if (outpost?.Info?.OutpostGenerationParams == null) { return false; }
 
@@ -175,7 +175,7 @@ namespace BarotraumaDieHard
             }
 
             return false; // Prevents the original method from running
-        }
+        }*/
 
 
     }

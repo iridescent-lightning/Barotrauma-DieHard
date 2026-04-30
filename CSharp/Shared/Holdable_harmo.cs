@@ -51,7 +51,13 @@ namespace BarotraumaDieHard
 			Holdable _ = __instance;
 			
 #if CLIENT
-	 	if (_.item.HasTag("gun"))
+
+		if (_.item.Prefab.Identifier == "revolver")
+		{
+			
+			SoundPlayer.PlaySound("interactive_revolver_equip", _.item.WorldPosition, hullGuess: _.item.CurrentHull);	
+		}
+	 	else if (_.item.HasTag("gun"))
 		{
 			SoundPlayer.PlaySound("interactive_rifle_equip", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
 		}

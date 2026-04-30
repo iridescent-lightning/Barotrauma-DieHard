@@ -48,7 +48,7 @@ namespace LimbModNamespace//todo make a structural namespace DieHard.Item.Compon
         public static bool CanBeSeveredAlivePostfix(ref bool __result, Limb __instance)
         {
             
-            DebugConsole.NewMessage("LimbMod CanBeSeveredAlivePostfix");
+            //DebugConsole.NewMessage("LimbMod CanBeSeveredAlivePostfix");
             
                 __result = true;
             return false;

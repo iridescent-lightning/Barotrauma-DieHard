@@ -218,6 +218,9 @@
     <interactive_med_container_open file="%ModDir%/Sounds/InteractiveSounds/Entities_Station#279_bin_close_med_03.ogg" volume="0.7" range="500" />
     <interactive_cloth_equip file="%ModDir%/Sounds/InteractiveSounds/wearcloth.ogg" volume="0.7" range="500" />
     <interactive_rifle_equip file="%ModDir%/Sounds/InteractiveSounds/ak12_draw.ogg" volume="0.7" range="500" />
+    <interactive_revolver_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_revolver.ogg" volume="20" range="500" />
+    <interactive_AK_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_AK.ogg" volume="0.7" range="500" />
+    <interactive_SCAR_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_scar.ogg" volume="0.7" range="500" />
     <use_lubricate file="%ModDir%/Items/Tools/LubricatingOil.ogg" range="500" />
     <Electrocution1 file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
     <rope_slide file="%ModDir%/Sounds/Item/rope_silde.ogg" volume="2" range="1000" />

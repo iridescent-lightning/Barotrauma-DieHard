@@ -57,10 +57,20 @@ namespace BarotraumaDieHard
             Item itemInHand = _.character.Inventory.GetItemAt(HandSlotIndex);
 
             
-            if (_.useScooter && itemInBag != null && itemInBag.HasTag("scooter") && !itemInHand.HasTag("scooter"))
+            if (_.useScooter && itemInBag != null && itemInBag.HasTag("scooter"))
             {
-                _.character.Inventory.TryPutItem(itemInBag, HandSlotIndex, true, false, Character.Controlled, true, true);
+                // 检查手里拿的东西：如果手里是空的，或者拿的不是水下推进器
+                bool handIsFreeOrNotScooter = itemInHand == null || !itemInHand.HasTag("scooter");
+
+                if (handIsFreeOrNotScooter)
+                {
+                    // 建议增加一个验证：确保 itemInBag 依然在背包里且未被销毁
+                    if (itemInBag.Removed) return;
+                            
+                            _.character.Inventory.TryPutItem(itemInBag, HandSlotIndex, true, false, Character.Controlled, true, true);
+                }
             }
-        }
+    
+        }           
     }
 }
