@@ -24,54 +24,16 @@ namespace BarotraumaDieHard
         public bool IsHalfOpenTarget; // 标记该门是否处于半开目标状态
     }
 
-    partial class DoorMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Door))]
+    partial class DoorPatch
     {
-        public Harmony harmony;
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("DoorMod");
 
-
-            // 1. 拦截点击交互逻辑
-            harmony.Patch(
-                original: typeof(Door).GetMethod(nameof(Door.Select)),
-                prefix: new HarmonyMethod(typeof(DoorMod).GetMethod(nameof(Prefix_Select)))
-            );
-
-            /*harmony.Patch(
-                original: typeof(Door).GetMethod("Update"),
-                postfix: new HarmonyMethod(typeof(DoorMod).GetMethod(nameof(Update)))
-            );*/
-
-            // 2. 拦截更新逻辑，允许停留在 0.5f
-            harmony.Patch(
-                original: typeof(Door).GetMethod("Update"),
-                prefix: new HarmonyMethod(typeof(DoorMod).GetMethod(nameof(Prefix_Update)))
-            );
-
-#if CLIENT
-            // 补丁：在 Door.Draw 执行完后进行绘制
-            harmony.Patch(
-                original: typeof(Door).GetMethod(nameof(Door.Draw)),
-                postfix: new HarmonyMethod(typeof(DoorMod).GetMethod(nameof(Postfix_Draw)))
-            );
-#endif
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
 
         // 使用 ConditionalWeakTable 自动管理内存，当门被销毁时，对应的数据也会释放
         private static ConditionalWeakTable<Door, DoorData> doorStateTable = new ConditionalWeakTable<Door, DoorData>();
 
-
+        [HarmonyPatch("Select")]
+        [HarmonyPrefix]
         // 交互逻辑：通过按下不同的按键（如 Shift+点击）或循环状态来实现切换
         public static bool Prefix_Select(Character character, Door __instance, ref bool __result)
         {
@@ -96,6 +58,12 @@ namespace BarotraumaDieHard
             {
                 d.IsHalfOpenTarget = false;
             }
+            //Kind of annonying
+/*#if CLIENT   
+                 
+                        BarotraumaDieHard.CustomHintManager.DisplayHint("half_opened_door_turtorial".ToIdentifier());
+#endif*/
+
             return true;
         }
 
@@ -121,7 +89,8 @@ namespace BarotraumaDieHard
                 }
             }
         } */
-
+        [HarmonyPatch("Update")]
+        [HarmonyPrefix]
         public static bool Prefix_Update(float deltaTime, Camera cam, Door __instance)
         {
             // 1. 无论是否在半开逻辑中，我们都需要知道原始位置

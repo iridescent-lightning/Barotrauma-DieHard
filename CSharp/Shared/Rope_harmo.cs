@@ -1,4 +1,4 @@
-﻿﻿using Barotrauma.Items.Components;
+﻿﻿/*using Barotrauma.Items.Components;
 using Barotrauma.Extensions;
 using Barotrauma.Networking;
 using FarseerPhysics;
@@ -59,4 +59,4 @@ namespace BarotraumaDieHard
         
 	}
 
-}
+}*/

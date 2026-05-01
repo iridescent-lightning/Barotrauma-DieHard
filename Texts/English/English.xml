@@ -777,6 +777,7 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <hint.electricalrepair>Make sure to cut off the power to ensure the safe repairing.</hint.electricalrepair>
   <hint.bugvent>An electric consuming bug crawls out of one of your vents. Kill it to retore the power.</hint.bugvent>
   <hint.qteinsufficientskilllevel>Your skill level is below the requirement for qte quick fix.</hint.qteinsufficientskilllevel>
+  <hint.half_opened_door_turtorial>Press Cround Key to half opened the door</hint.half_opened_door_turtorial>
   <VerticalEngineDisplayTip>How much thrusting rate is the vertical thruster.</VerticalEngineDisplayTip>
   <SonarHertzTip>The hertz of the sonar. Higher hertz will grants a longer range but a smaller detection radius. Higer energy sonar is also more dangerous to humans.</SonarHertzTip>
   

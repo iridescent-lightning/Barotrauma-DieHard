@@ -8,31 +8,9 @@ using HarmonyLib;
 
 namespace BarotraumaDieHard
 {
-    class VentMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Vent))]
+    class VentMod
     {
-        public  Harmony harmony;
-		
-
-        public void Initialize()
-		{
-			harmony = new Harmony("VentMod");
-			
-			harmony.Patch(
-                original: typeof(Vent).GetMethod("Update"),
-                prefix: new HarmonyMethod(typeof(VentMod).GetMethod(nameof(Update)))
-            );
-			
-				
-			}
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
         public static float co2Flow;
 
         public static float CO2Flow
@@ -65,6 +43,9 @@ namespace BarotraumaDieHard
 
         private static float updateTimer = 0.0f;
         private static float updateInterval = 0.1f;
+
+        [HarmonyPatch("Update")]
+        [HarmonyPrefix]
         public static bool Update(float deltaTime, Camera cam, Vent __instance)
         {
             

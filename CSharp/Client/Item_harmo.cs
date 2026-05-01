@@ -24,10 +24,11 @@ using System.IO;
 
 namespace BarotraumaDieHard
 {
-    public partial class ItemDieHard : IAssemblyPlugin
+    public partial class ItemPatch
     {
-        
-
+        [HarmonyPatch("Draw")]
+        [HarmonyPatch(new Type[] { typeof(SpriteBatch), typeof(bool), typeof(bool), typeof(Color?), typeof(float?) })]
+        [HarmonyPostfix]
         public static void Draw(SpriteBatch spriteBatch, bool editing, bool back, Color? overrideColor, Item __instance)
         {           
             // sprite name, drawed item identifier, at which tag to daw

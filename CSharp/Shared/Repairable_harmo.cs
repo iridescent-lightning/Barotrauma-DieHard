@@ -15,64 +15,13 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    partial class RepairableDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(Repairable))]
+    partial class RepairableDieHard
     {
 
 
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("RepairableDieHard");
-
-            harmony.Patch(
-                original: typeof(Repairable).GetMethod("CheckCharacterSuccess"),
-                prefix: new HarmonyMethod(typeof(RepairableDieHard).GetMethod(nameof(CheckCharacterSuccessPrefix)))
-            );
-
-            harmony.Patch(
-                original: typeof(Repairable).GetMethod("Update"),
-                prefix: new HarmonyMethod(typeof(RepairableDieHard).GetMethod(nameof(UpdatePostfix)))
-            );
-
-
-            harmony.Patch(
-                original: typeof(Repairable).GetMethod("RepairBoost"),
-                postfix: new HarmonyMethod(typeof(RepairableDieHard).GetMethod(nameof(RepairBoostPostfix)))
-            );
-
-            var originalUpdateDeterioration = typeof(Repairable).GetMethod("UpdateDeterioration", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixUpdateDeterioration = new HarmonyMethod(typeof(RepairableDieHard).GetMethod(nameof(UpdateDeteriorationPrefix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUpdateDeterioration, prefixUpdateDeterioration, null);
-
-
-
-
-#if CLIENT
-            /*var originalCreateGUI = typeof(Repairable).GetMethod("CreateGUI", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixCreateGUI = typeof(RepairableDieHard).GetMethod("CreateGUI", BindingFlags.Public | BindingFlags.Static);
-            harmony.Patch(originalCreateGUI, new HarmonyMethod(postfixCreateGUI), null);
-
-            harmony.Patch
-            (
-                original: typeof(Repairable).GetMethod("DrawHUD"),
-                prefix: new HarmonyMethod(typeof(RepairableDieHard).GetMethod(nameof(DrawHUDPrefix)))
-            );*/
-#endif
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
+        [HarmonyPatch("CheckCharacterSuccess")]
+        [HarmonyPrefix]
         public static bool CheckCharacterSuccessPrefix(Character character, Item bestRepairItem, Repairable __instance, ref bool __result)
         {
             
@@ -177,7 +126,8 @@ namespace BarotraumaDieHard
             return false;
         }
 
-
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
         public static void UpdatePostfix(float deltaTime, Camera cam, Repairable __instance)
         {
             if (__instance.CurrentFixer == null) return;
@@ -195,6 +145,9 @@ namespace BarotraumaDieHard
                 }
             }
         }
+
+        [HarmonyPatch("RepairBoost")]
+        [HarmonyPostfix]
 
         public static void RepairBoostPostfix(bool qteSuccess, Repairable __instance)
         {
@@ -223,6 +176,9 @@ namespace BarotraumaDieHard
             }
         }
 
+
+        [HarmonyPatch("UpdateDeterioration")]
+        [HarmonyPrefix]
         public static bool UpdateDeteriorationPrefix(float deltaTime, Repairable __instance)
         {
             Repairable _ = __instance;

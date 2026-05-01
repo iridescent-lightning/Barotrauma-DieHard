@@ -17,9 +17,9 @@ using System.Reflection;// for bindingflags
 
 using Networking;
 
-namespace SteeringMod//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
+namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
 {
-    partial class SteeringMod : IAssemblyPlugin
+    partial class SteeringPatch
     {
         
 
@@ -34,7 +34,9 @@ namespace SteeringMod//todo make a structural namespace DieHard.Item.Components.
         
         
         
-
+        
+        [HarmonyPatch("CreateGUI")]
+        [HarmonyPostfix]
         public static void CreateGUI(Steering __instance)
         {
             if (__instance.GuiFrame == null) return;
@@ -118,6 +120,9 @@ namespace SteeringMod//todo make a structural namespace DieHard.Item.Components.
         private static float flickerTimer;
         private static readonly float flickerFrequency = 0.5f;
         private static float powerConsumptionEngine = 0f;
+
+        [HarmonyPatch("UpdateHUDComponentSpecific")]
+        [HarmonyPostfix]
         
         public static void UpdateHUDComponentSpecificPostfix(Steering __instance, float deltaTime, Camera cam)
         {

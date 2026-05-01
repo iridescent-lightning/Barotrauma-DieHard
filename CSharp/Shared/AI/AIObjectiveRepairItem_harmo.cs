@@ -15,40 +15,12 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    class AIObjectiveRepairItemDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(AIObjectiveRepairItem))]
+    class AIObjectiveRepairItemPatch
     {
 
-
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("AIObjectiveRepairItemDieHard");
-
-            var originalCheckPreviousCondition = typeof(AIObjectiveRepairItem).GetMethod("CheckPreviousCondition", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixCheckPreviousCondition = typeof(AIObjectiveRepairItemDieHard).GetMethod(nameof(CheckPreviousConditionPrefix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalCheckPreviousCondition, new HarmonyMethod(prefixCheckPreviousCondition), null);
-
-
-            var originalFindRepairTool = typeof(AIObjectiveRepairItem).GetMethod("FindRepairTool", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixFindRepairTool = typeof(AIObjectiveRepairItemDieHard).GetMethod(nameof(FindRepairToolPrefix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalFindRepairTool, new HarmonyMethod(prefixFindRepairTool), null);
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
+        [HarmonyPatch("CheckPreviousCondition")]
+        [HarmonyPrefix]
         public static bool CheckPreviousConditionPrefix(float deltaTime, AIObjectiveRepairItem __instance)
         {
             // Use this to get the localization name of the hull.
@@ -95,7 +67,8 @@ namespace BarotraumaDieHard
         }
 
 
-
+        [HarmonyPatch("FindRepairTool")]
+        [HarmonyPrefix]
         public static bool FindRepairToolPrefix(AIObjectiveRepairItem __instance)
         {
             foreach (Repairable repairable in __instance.Item.Repairables)

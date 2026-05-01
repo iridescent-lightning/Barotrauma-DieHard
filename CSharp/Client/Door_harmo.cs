@@ -16,11 +16,12 @@ using Barotrauma.Items.Components;
 namespace BarotraumaDieHard
 {
 
-    partial class DoorMod : IAssemblyPlugin
+    partial class DoorPatch
     {
         
-        
-       public static void Postfix_Draw(SpriteBatch spriteBatch, bool editing, float itemDepth, Door __instance)
+        [HarmonyPatch("Draw")]
+        [HarmonyPostfix]
+        public static void Postfix_Draw(SpriteBatch spriteBatch, bool editing, float itemDepth, Door __instance)
         {
             Character character = Character.Controlled;
             if (character == null) return;

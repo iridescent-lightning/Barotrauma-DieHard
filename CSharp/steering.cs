@@ -11,7 +11,7 @@ using SonarMod;//need to have this or GetComponent<CustomSonar>();won;t find
 using System.Globalization;
 using FarseerPhysics;
 
-namespace SteeringMod
+namespace BarotraumaDieHard
 {
     class CustomSteering : Steering
     {

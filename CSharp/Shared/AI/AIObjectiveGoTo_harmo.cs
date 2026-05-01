@@ -15,38 +15,12 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    class AIObjectiveGoToDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(AIObjectiveGoTo))]
+    class AIObjectiveGoToDieHard
     {
-
-
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("AIObjectiveGoToDieHard");
-
-            var originalGoto = typeof(AIObjectiveGoTo).GetMethod("Act", BindingFlags.NonPublic | BindingFlags.Instance);
-            var PostfixGoto = typeof(AIObjectiveGoToDieHard).GetMethod(nameof(GotoPostfix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalGoto, new HarmonyMethod(PostfixGoto), null);
-
-
-            
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
-        public static void GotoPostfix(float deltaTime, AIObjectiveGoTo __instance)
+        [HarmonyPatch("Act")]
+        [HarmonyPostfix]
+        public static void ActPostfix(float deltaTime, AIObjectiveGoTo __instance)
         {
             AIObjectiveGoTo _ = __instance;
 
@@ -67,7 +41,7 @@ namespace BarotraumaDieHard
                     // 建议增加一个验证：确保 itemInBag 依然在背包里且未被销毁
                     if (itemInBag.Removed) return;
                             
-                            _.character.Inventory.TryPutItem(itemInBag, HandSlotIndex, true, false, Character.Controlled, true, true);
+                    _.character.Inventory.TryPutItem(itemInBag, HandSlotIndex, true, false, Character.Controlled, true, true);
                 }
             }
     

@@ -18,48 +18,24 @@ using System.Reflection;// for bindingflags
 
 using Networking;
 
-namespace SteeringMod//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
+namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
 {
-    partial class SteeringMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Steering))]
+    partial class SteeringPatch
     {
-        public Harmony harmony;
 
-        
-        public void Initialize()
-		{
-			harmony = new Harmony("SteeringMod");
-#if CLIENT
-			var originalCreateGUI = typeof(Steering).GetMethod("CreateGUI", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixCreateGUI = typeof(SteeringMod).GetMethod("CreateGUI", BindingFlags.Public | BindingFlags.Static);
-            harmony.Patch(originalCreateGUI, new HarmonyMethod(postfixCreateGUI), null);
-			
-			harmony.Patch(
-                original: typeof(Steering).GetMethod("UpdateHUDComponentSpecific"),
-                postfix: new HarmonyMethod(typeof(SteeringMod).GetMethod("UpdateHUDComponentSpecificPostfix", BindingFlags.Public | BindingFlags.Static))
-            );
-#endif
-            harmony.Patch(
-                original: typeof(Steering).GetMethod("Update"),
-                postfix: new HarmonyMethod(typeof(SteeringMod).GetMethod("Update", BindingFlags.Public | BindingFlags.Static))
-            );
-        }
 
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() 
-        {
 /*#if SERVER
             NetUtil.Register(NetEvent.VERTICAL_ENGINE_POWER_CHANGE, OnReceiveVerticalEnginePowerMessage);
 #endif*/
-        }
 
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
 
 
         private static float lerpedVerticalEnginePower;
+
+        
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
         
         public static void Update(Steering __instance, float deltaTime, Camera cam)
         {

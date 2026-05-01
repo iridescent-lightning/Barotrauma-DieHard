@@ -19,11 +19,14 @@ using System.Reflection;
 
 namespace BarotraumaDieHard
 {
-    partial class TurretDieHard : IAssemblyPlugin
+    partial class TurretDieHard
     {
         public static LocalizedString skillText;
         public static LocalizedString statText;
-		
+
+        
+		[HarmonyPatch("DrawHUD")]
+        [HarmonyPostfix]
 		public static void DrawHUDPostfix(SpriteBatch spriteBatch, Character character, Turret __instance)
         {
             // 只有当前控制炮塔的玩家是自己时才显示

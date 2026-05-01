@@ -16,11 +16,13 @@ using System.Globalization;
 
 using Networking;
 
+
+
 namespace BarotraumaDieHard
 {
-    partial class SonarMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Sonar))]
+    partial class SonarMod
     {
-        public Harmony harmony;
 
         private static Dictionary<int, float>SonarRange = new Dictionary<int, float>();
 		
@@ -32,38 +34,10 @@ namespace BarotraumaDieHard
         private static float minAfflictionStrength = 0.1f;
         private static float maxAfflictionStrength = 1.0f;
 
-		public void Initialize()
-		{
-		    harmony = new Harmony("SonarMod");
+		
 
-            
-            var originalConstructor = typeof(Sonar).GetConstructor(new[] { typeof(Item), typeof(ContentXElement) });
-            var postfix = new HarmonyMethod(typeof(SonarMod).GetMethod(nameof(SonarConstructorPostfix)));
-            harmony.Patch(originalConstructor, null, postfix);
-
-
-		    harmony.Patch(
-					original: typeof(Sonar).GetMethod("Update"),
-					prefix: new HarmonyMethod(typeof(SonarMod).GetMethod("Update"))
-					);
-#if CLIENT
             //creategui has to be patched first. or game crash without error message
-        var originalCreateGUI = typeof(Sonar).GetMethod("CreateGUI", BindingFlags.NonPublic | BindingFlags.Instance);
-        var prefixCreateGUI = typeof(SonarMod).GetMethod("CreateGUI", BindingFlags.Public | BindingFlags.Static);
-        harmony.Patch(originalCreateGUI, new HarmonyMethod(prefixCreateGUI), null);
 
-        
-
-        var originalDrawSonar = typeof(Sonar).GetMethod("DrawSonar", BindingFlags.NonPublic | BindingFlags.Instance);
-		var prefixDrawSonar = typeof(SonarMod).GetMethod("DrawSonar", BindingFlags.Public | BindingFlags.Static);
-
-		harmony.Patch(originalDrawSonar, new HarmonyMethod(prefixDrawSonar), null);
-
-
-		var originalPing = typeof(Sonar).GetMethod("Ping", BindingFlags.NonPublic | BindingFlags.Instance);
-		var prefixPing = typeof(SonarMod).GetMethod("PingPrefix", BindingFlags.Public | BindingFlags.Static);
-
-		harmony.Patch(originalPing, new HarmonyMethod(prefixPing), null);
 		
 		
 
@@ -71,20 +45,7 @@ namespace BarotraumaDieHard
         /*var originalMouseInPingRing = typeof(Sonar).GetMethod("MouseInDirectionalPingRing", BindingFlags.NonPublic | BindingFlags.Instance);
         var prefixMouseInPingRing = typeof(SonarMod).GetMethod("MouseInDirectionalPingRing", BindingFlags.Public | BindingFlags.Static);
         harmony.Patch(originalMouseInPingRing, new HarmonyMethod(prefixMouseInPingRing), null);
-    */
-		var originalCheckDirectVisibili = typeof(Sonar).GetMethod("CheckBlipVisibility", BindingFlags.NonPublic | BindingFlags.Instance);
-        var prefixCheckDirectVisibili = typeof(SonarMod).GetMethod("CheckBlipVisibility", BindingFlags.Public | BindingFlags.Static);
-        harmony.Patch(originalCheckDirectVisibili, new HarmonyMethod(prefixCheckDirectVisibili), null);
-
-
-        var originalDrawDockingIndicator = typeof(Sonar).GetMethod("DrawDockingIndicator", BindingFlags.NonPublic | BindingFlags.Instance);
-        var postfixDrawDockingIndicator = typeof(SonarMod).GetMethod("DrawDockingIndicatorPostfix", BindingFlags.Public | BindingFlags.Static);
-        harmony.Patch(originalDrawDockingIndicator, new HarmonyMethod(postfixDrawDockingIndicator), null);
-#endif
-		
-		}
-
-		public void OnLoadCompleted() { }
+        */
 		public void PreInitPatching() 
         { 
 #if SERVER
@@ -92,12 +53,11 @@ namespace BarotraumaDieHard
 #endif
         }
 
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
 		
+
+        [HarmonyPatch(MethodType.Constructor)]
+        [HarmonyPatch(new Type[] { typeof(Item), typeof(ContentXElement) })]
+        [HarmonyPostfix]
         public static void SonarConstructorPostfix(Item item, ContentXElement element, Sonar __instance)
         {
             
@@ -109,7 +69,10 @@ namespace BarotraumaDieHard
             NetUtil.Register(NetEvent.SONAR_CHANGERANGE, OnReceiveChangeRangeMessage);
 #endif
         }
+        
 
+        [HarmonyPatch("Update")]
+        [HarmonyPrefix]
          public static bool Update(float deltaTime, Camera cam, Sonar __instance)
         {
             

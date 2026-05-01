@@ -746,6 +746,7 @@
   <hint.electricalrepair>确保切断电源以保证安全修理。</hint.electricalrepair>
   <hint.bugvent>一只耗电的虫子从你的一个通风口爬出。杀死它以恢复电力。</hint.bugvent>
   <hint.qteinsufficientskilllevel>你的技能等级未达到快速反应事件的要求。</hint.qteinsufficientskilllevel>
+  <hint.half_opened_door_turtorial>按住蹲下键来半开门</hint.half_opened_door_turtorial>
   <VerticalEngineDisplayTip>垂直推进器的推力比率。</VerticalEngineDisplayTip>
   <SonarHertzTip>声呐的赫兹数。赫兹越高，探测范围越大但探测半径越小。高能量声呐对人类也更危险。</SonarHertzTip>
   

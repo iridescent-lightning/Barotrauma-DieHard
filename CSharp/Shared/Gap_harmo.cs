@@ -16,52 +16,18 @@ using System.Reflection;// for bindingflags
 
 namespace BarotraumaDieHard
 {
-
-    partial class GapMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Gap))]
+    partial class GapPatch
     {
-        private Harmony harmony;
-
-    
-        public void Initialize()
-        {
-            harmony = new Harmony("GapMod");
-
-            
-
-            var originalUpdateOxygen = typeof(Gap).GetMethod("UpdateOxygen", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixUpdateOxygen = new HarmonyMethod(typeof(GapMod).GetMethod(nameof(UpdateOxygenPrefix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUpdateOxygen, prefixUpdateOxygen, null);
-
-
-            var originalUpdateRoomToOut = typeof(Gap).GetMethod("UpdateRoomToOut", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixUpdateRoomToOut = new HarmonyMethod(typeof(GapMod).GetMethod(nameof(UpdateRoomToOutPostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUpdateRoomToOut, postfixUpdateRoomToOut, null);
-
-            // For client graphic effect patch always remember to only allow patch in client side. Or desynic in multiplayer.
-#if CLIENT
-            var originalEmitParticles = typeof(Gap).GetMethod("EmitParticles", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixEmitParticles = new HarmonyMethod(typeof(GapMod).GetMethod(nameof(EmitParticlesPrefix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalEmitParticles, prefixEmitParticles, null);
-#endif
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-        
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-            
-        }
+       
         private static float updateTimer = 0.0f;
         private static float updateInterval = 1f;
         private static float TemperatureDistributionSpeed = 1f;
         private static float GasDistributionspeed = 50f;
 
         private static float PressureDistributionspeed = 1000f;
-
+        [HarmonyPatch("UpdateOxygen")]
+        [HarmonyPrefix]
         public static bool UpdateOxygenPrefix(Gap __instance, Hull hull1, Hull hull2, float deltaTime)
         {
             
@@ -93,7 +59,7 @@ namespace BarotraumaDieHard
                 float averageTemperature = totalTempreture / 2f;  // Calculate average temp
                 float deltaTempreture = averageTemperature - HullMod.GetGas(hull1, "Temperature"); // Adjust delta
 
-                deltaTempreture = MathHelper.Clamp(deltaTempreture, -GapMod.TemperatureDistributionSpeed * deltaTime, GapMod.TemperatureDistributionSpeed * deltaTime);
+                deltaTempreture = MathHelper.Clamp(deltaTempreture, -TemperatureDistributionSpeed * deltaTime, TemperatureDistributionSpeed * deltaTime);
 
                 HullMod.AddGas(hull1, "Temperature", deltaTempreture, 1f); // Old AddGas use the last parameter to time delta time. But since I did delta time here, just put 1f to keep the value.
                 HullMod.AddGas(hull2, "Temperature", -deltaTempreture, 1f);
@@ -110,7 +76,7 @@ namespace BarotraumaDieHard
             return false;
         }
 
-
+        
         public static void ExchangeGas(Hull hull1, Hull hull2, string gasType, float deltaTime)
         {
             
@@ -123,7 +89,7 @@ namespace BarotraumaDieHard
             float totalGas = gasInHull1 + gasInHull2;
 
             float deltaGas = (totalGas * hull1.Volume / totalVolume) - gasInHull1;
-            deltaGas = MathHelper.Clamp(deltaGas, -GapMod.GasDistributionspeed * deltaTime, GapMod.GasDistributionspeed * deltaTime);
+            deltaGas = MathHelper.Clamp(deltaGas, -GasDistributionspeed * deltaTime, GasDistributionspeed * deltaTime);
 
             HullMod.AddGas(hull1, gasType, deltaGas, 1f);
             HullMod.AddGas(hull2, gasType, -deltaGas, 1f);
@@ -142,14 +108,15 @@ namespace BarotraumaDieHard
             float totalGas = gasInHull1 + gasInHull2;
 
             float deltaGas = (totalGas * hull1.Volume / totalVolume) - gasInHull1;
-            deltaGas = MathHelper.Clamp(deltaGas, -GapMod.PressureDistributionspeed * deltaTime, GapMod.PressureDistributionspeed * deltaTime);
+            deltaGas = MathHelper.Clamp(deltaGas, -PressureDistributionspeed * deltaTime, PressureDistributionspeed * deltaTime);
 
             // Let us lose more concentrated air if two hulls are connected so we don't instantly pressurize all hulls.
             HullMod.AddGas(hull1, gasType, deltaGas / 10f, 1f);
             HullMod.AddGas(hull2, gasType, -deltaGas * 10f, 1f);
         }
 
-
+        [HarmonyPatch("UpdateRoomToOut")]
+        [HarmonyPostfix]
         // This part adds pressure air build up logics.
         public static void UpdateRoomToOutPostfix(float deltaTime, Hull hull1, Gap __instance)
         {

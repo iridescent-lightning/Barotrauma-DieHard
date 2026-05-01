@@ -15,39 +15,12 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    class AIObjectiveCheckStolenItemsDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(AIObjectiveCheckStolenItems))]
+    class AIObjectiveCheckStolenItemsPatch
     {
 
-
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("AIObjectiveCheckStolenItemsDieHard");
-
-            var originalInspect = typeof(AIObjectiveCheckStolenItems).GetMethod("Inspect", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixInspect = typeof(AIObjectiveCheckStolenItemsDieHard).GetMethod(nameof(InspectPostfix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalInspect, new HarmonyMethod(postfixInspect), null);
-
-            var originalWarn = typeof(AIObjectiveCheckStolenItems).GetMethod("Warn", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixWarn = typeof(AIObjectiveCheckStolenItemsDieHard).GetMethod(nameof(WarnPostfix), BindingFlags.NonPublic | BindingFlags.Static);
-
-            harmony.Patch(originalWarn, new HarmonyMethod(postfixWarn), null);
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
+        [HarmonyPatch("Inspect")]
+        [HarmonyPostfix]
         public static void InspectPostfix(float deltaTime, AIObjectiveCheckStolenItems __instance)
         {
             if (__instance.character.SelectedCharacter == null) return; // A must have or the game will crash on null
@@ -67,7 +40,8 @@ namespace BarotraumaDieHard
 
 
         }
-
+        [HarmonyPatch("Warn")]
+        [HarmonyPostfix]
         private static void WarnPostfix(float deltaTime, AIObjectiveCheckStolenItems __instance)
         {
             /*if (__instance.warnTimer > 0.0f)

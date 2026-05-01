@@ -16,45 +16,16 @@ using System.Net.NetworkInformation;
 
 namespace BarotraumaDieHard
 {
-    class ConnectionMod : IAssemblyPlugin
+	[HarmonyPatch(typeof(Connection))]
+    class ConnectionPatch
     {
-        public Harmony harmony;
-		
-        public static bool hasZoomed = false;
-
-		public void Initialize()
-		{
-		    harmony = new Harmony("ConnectionMod");
-
-			
-			
-            var originalDrawConnection = typeof(Connection).GetMethod("DrawConnection", 
-                BindingFlags.Instance | BindingFlags.NonPublic);
-
-            harmony.Patch(originalDrawConnection, prefix: new HarmonyMethod(typeof(ConnectionMod).GetMethod(nameof(DrawConnectionPrefix))));
-
-
-			var originalDrawWire = typeof(Connection).GetMethod("DrawWire",
-				BindingFlags.Static | BindingFlags.NonPublic);
-			harmony.Patch(originalDrawWire, postfix: new HarmonyMethod(typeof(ConnectionMod).GetMethod(nameof(DrawWirePostfix))));
-        }
-
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
-
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
+        
 
 		public static Sprite MyMechanicalSprite;
-		
+		[HarmonyPatch("DrawConnection")]
+		[HarmonyPrefix]
 		public static bool DrawConnectionPrefix(Connection __instance, SpriteBatch spriteBatch, ConnectionPanel panel, Vector2 position, Vector2 labelPos)
 		{
-			
-
-			
 			// 检查是否是目标接口
 			if (__instance.Name.Equals("mechanical", System.StringComparison.InvariantCultureIgnoreCase))
 			{
@@ -134,7 +105,8 @@ namespace BarotraumaDieHard
 			GUI.DrawRectangle(spriteBatch, area, Color.Green * 0.6f, isFilled: false, thickness: 2);
 		}
 
-
+		[HarmonyPatch("DrawWire")]
+		[HarmonyPostfix]
 		public static void DrawWirePostfix(SpriteBatch spriteBatch, Wire wire, Vector2 end, Vector2 start, Wire equippedWire, ConnectionPanel panel, LocalizedString label)
 		{
 			// 1. 静态方法没有 __instance，直接删掉该参数。

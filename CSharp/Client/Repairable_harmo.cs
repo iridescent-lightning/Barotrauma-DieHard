@@ -19,7 +19,7 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    partial class RepairableDieHard  : IAssemblyPlugin
+    partial class RepairableDieHard
     {
 
 

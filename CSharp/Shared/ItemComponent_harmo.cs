@@ -19,28 +19,11 @@ using Barotrauma.Sounds;
 
 namespace BarotraumaDieHard
 {
-    class ItemComponentDieHard : IAssemblyPlugin
+    [HarmonyPatch(typeof(ItemComponent))]
+    class ItemComponentDieHard
     {
-        public Harmony harmony;
-
-        public void Initialize()
-        {
-            harmony = new Harmony("ItemContainerMod");
-
-            var originalOverrideRequiredItems = typeof(ItemComponent).GetMethod("OverrideRequiredItems", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixOverrideRequiredItems = new HarmonyMethod(typeof(ItemComponentDieHard).GetMethod(nameof(OverrideRequiredItemsPrefix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalOverrideRequiredItems, prefixOverrideRequiredItems, null);
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
+        [HarmonyPatch("OverrideRequiredItems")]
+        [HarmonyPrefix]	
         public static bool OverrideRequiredItemsPrefix(ContentXElement element, ItemComponent __instance)
         {
 

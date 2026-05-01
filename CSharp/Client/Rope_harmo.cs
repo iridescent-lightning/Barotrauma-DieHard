@@ -1,4 +1,4 @@
-﻿﻿using Barotrauma.Items.Components;
+﻿﻿/*using Barotrauma.Items.Components;
 using Barotrauma.Networking;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -63,4 +63,4 @@ namespace BarotraumaDieHard
         
 	}
 
-}
+}*/

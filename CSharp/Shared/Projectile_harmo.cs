@@ -20,34 +20,16 @@ using HarmonyLib;
 
 namespace BarotraumaDieHard
 {
-    public class ProjectileMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Projectile))]
+    public class ProjectilePatch
     {
-        public  Harmony harmony;
-        public void Initialize()
-		{
-			harmony = new Harmony("ProjectileMod");
-			
-			 var originalMethod = typeof(Projectile).GetMethod("Update", 
-                    BindingFlags.Public | BindingFlags.Instance);
-            var postfixMethod = typeof(ProjectileMod).GetMethod("UpdatePostfix", 
-                    BindingFlags.Public | BindingFlags.Static);
-            harmony.Patch(originalMethod, new HarmonyMethod(postfixMethod));
 
 
-            
-		}
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
         public static void UpdatePostfix(float deltaTime, Camera cam, Projectile __instance)
         {
+            
             
             // less effective than statuseffect
         /*float range = 25f; // 对应 XML 中的 Range

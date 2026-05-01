@@ -19,37 +19,13 @@ using System.Reflection;
 
 namespace BarotraumaDieHard
 {
-    class WearableMod : IAssemblyPlugin
+	[HarmonyPatch(typeof(Wearable))]
+    class WearablePatch
     {
-        public Harmony harmony;
+        
 		
-
-
-		public void Initialize()
-		{
-		    harmony = new Harmony("WearableMod");
-
-			
-			
-            var originalEquip = typeof(Wearable).GetMethod("Equip", BindingFlags.Public | BindingFlags.Instance);
-            var postfixEquip = new HarmonyMethod(typeof(WearableMod).GetMethod(nameof(EquipPostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalEquip, postfixEquip, null);
-
-            /*var originalUnEquip = typeof(Wearable).GetMethod("Unequip", BindingFlags.Public | BindingFlags.Instance);
-            var postfixUnEquip = new HarmonyMethod(typeof(WearableMod).GetMethod(nameof(UnequipPostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUnEquip, postfixUnEquip, null);		*/	
-
-        }
-
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
-
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
-		
+        [HarmonyPatch("Equip")]
+        [HarmonyPostfix]
 		public static void EquipPostfix(Character character, Wearable __instance)
 		{
 			Wearable _ = __instance;

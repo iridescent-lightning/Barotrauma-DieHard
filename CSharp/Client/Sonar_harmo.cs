@@ -23,7 +23,7 @@ using System.Globalization;
 
 namespace BarotraumaDieHard
 {
-    partial class SonarMod : IAssemblyPlugin
+    partial class SonarMod
     {
         
 		public static float NewSectorAngle { get; set; } = 120.0f;
@@ -41,6 +41,9 @@ namespace BarotraumaDieHard
 
         
 
+
+        [HarmonyPatch("Ping")]
+        [HarmonyPrefix]
         // Contents 'scanned' out by sonar.
 		public static bool PingPrefix(Vector2 pingSource,  Vector2 transducerPos,  float pingRadius,  float prevPingRadius,  float displayScale,  float range,  bool passive,
              float pingStrength,  AITarget needsToBeInSector, Sonar __instance)
@@ -230,6 +233,8 @@ namespace BarotraumaDieHard
         }
 	
 
+    [HarmonyPatch("DrawSonar")]
+    [HarmonyPrefix]
     // Visual effects and markers.
 	public static bool DrawSonar(SpriteBatch spriteBatch, Rectangle rect, Sonar __instance)
 		{
@@ -542,6 +547,9 @@ namespace BarotraumaDieHard
         }*/
 
 
+        [HarmonyPatch("CheckBlipVisibility")]
+        [HarmonyPrefix]
+
         //use this to change the directional ping angle
         public static bool CheckBlipVisibility(SonarBlip blip, Vector2 transducerPos, Sonar __instance, ref bool __result)
         {
@@ -577,7 +585,8 @@ namespace BarotraumaDieHard
         
 
 
-
+        [HarmonyPatch("CreateGUI")]
+        [HarmonyPrefix]
         public static bool CreateGUI(Sonar __instance)
         {
             Sonar _ = __instance;
@@ -813,7 +822,8 @@ namespace BarotraumaDieHard
         }
 
 
-
+        [HarmonyPatch("DrawDockingIndicator")]
+        [HarmonyPostfix]
         public static void DrawDockingIndicatorPostfix(SpriteBatch spriteBatch, Steering steering, ref Vector2 transducerCenter, Sonar __instance)
         {
              // Calculate the difference between the docking target and the active docking source

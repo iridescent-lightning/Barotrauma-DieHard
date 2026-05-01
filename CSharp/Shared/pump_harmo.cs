@@ -13,35 +13,15 @@ using HarmonyLib;
 
 namespace BarotraumaDieHard
 {
-    class CustomPump : IAssemblyPlugin
+    [HarmonyPatch(typeof(Pump))]
+    class PumpPatch
     {
-        public  Harmony harmony;
+
 		private static Item motor;
         private static Item gasTank;
-
-        public void Initialize()
-		{
-			harmony = new Harmony("CustomPump");
-			
-			harmony.Patch(
-                original: typeof(Pump).GetMethod("Update"),
-                prefix: new HarmonyMethod(typeof(CustomPump).GetMethod(nameof(Update)))
-            );
-			
-				
-			}
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
         
-
+        [HarmonyPatch("Update")]
+        [HarmonyPrefix]
         public static bool Update(float deltaTime, Camera cam, Pump __instance)
         {
             Pump _ = __instance;

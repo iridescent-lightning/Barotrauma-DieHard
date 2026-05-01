@@ -12,50 +12,39 @@ using Barotrauma.Sounds;
 
 namespace BarotraumaDieHard
 {
-    partial class PoweredMod  : IAssemblyPlugin
+    [HarmonyPatch(typeof(Powered))]
+public static class PoweredPatch
+{
+    [HarmonyPatch("ValidPowerConnection")]
+    [HarmonyPrefix]
+    public static bool ValidPowerConnection(Connection conn1, Connection conn2, ref bool __result)
     {
-        public Harmony harmony;
-        public void Initialize()
+        // 1. 处理蒸汽逻辑
+        if (conn1.Name.StartsWith("steam") || conn2.Name.StartsWith("steam")) 
         {
-            harmony = new Harmony("PowerConnection");
-
-            harmony.Patch(
-                original: typeof(Powered).GetMethod("ValidPowerConnection"),
-                prefix: new HarmonyMethod(typeof(PoweredMod).GetMethod(nameof(ValidPowerConnection)))
+            __result = conn1.Name.StartsWith("steam") && conn2.Name.StartsWith("steam") && (
+                conn1.IsOutput != conn2.IsOutput || conn1.Name == "steam" || conn2.Name == "steam" 
             );
-            
+            return false; // 拦截，不再执行原版逻辑
         }
 
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
+        // 2. 处理保险丝与设备状态
+        CustomJunctionBox device = conn1.Item.GetComponent<CustomJunctionBox>();
+        if (device != null && device.BrokenFuse)
         {
-            harmony.UnpatchSelf();
-            harmony = null;
+            __result = false;
+            return false; // 保险丝断了，直接判定连接无效
         }
 
-
-        public static bool ValidPowerConnection(Connection conn1, Connection conn2)
+        if (conn1.Item.Condition <= 0.0f || conn2.Item.Condition <= 0.0f)
         {
-            if (conn1.Name.StartsWith("steam") || conn2.Name.StartsWith("steam")) 
-            {
-                    return conn1.Name.StartsWith("steam") && conn2.Name.StartsWith("steam") && (
-                        conn1.IsOutput != conn2.IsOutput || 
-                        conn1.Name == "steam" || 
-                        conn2.Name == "steam" 
-                    );
-            }
-            CustomJunctionBox device = conn1.Item.GetComponent<CustomJunctionBox>();
-            return 
-                conn1.IsPower && conn2.IsPower && 
-                conn1.Item.Condition > 0.0f && conn2.Item.Condition > 0.0f &&
-                (conn1.Item.HasTag(Tags.JunctionBox) || conn2.Item.HasTag(Tags.JunctionBox) || conn1.Item.HasTag(Tags.DockingPort) || conn2.Item.HasTag(Tags.DockingPort) || conn1.IsOutput != conn2.IsOutput)
-                && (device == null || !device.BrokenFuse);
+            __result = false;
+            return false; // 设备坏了，断电
         }
 
-
+        return true; // 其他情况交给原版逻辑处理，保证兼容性
     }
+}
     
 
 }

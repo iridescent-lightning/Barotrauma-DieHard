@@ -27,49 +27,29 @@ using Barotrauma.Items.Components;
 
 namespace BarotraumaDieHard
 {
-    class GameSessionDieHard : IAssemblyPlugin
+    [HarmonyPatch(typeof(GameSession))]
+    public class GameSessionDieHard
     {
-        public Harmony harmony;
         
-        public void Initialize()
-        {
-            harmony = new Harmony("GameSessionDieHard");
-
-            harmony.Patch(
-                original: typeof(GameSession).GetMethod("EndRound"),
-                postfix: new HarmonyMethod(typeof(GameSessionDieHard).GetMethod(nameof(EndRound)))
-            );
-
-            // ambigous solution
-            var originalStartRound = typeof(GameSession).GetMethod("StartRound", BindingFlags.Public | BindingFlags.Instance, null, 
-                new Type[] { typeof(LevelData), typeof(bool), typeof(SubmarineInfo), typeof(SubmarineInfo) }, null);
-
-            var postfixStartRound = new HarmonyMethod(typeof(GameSessionDieHard).GetMethod(nameof(StartRound), BindingFlags.Public | BindingFlags.Static));
-            
-            harmony.Patch(originalStartRound, null, postfixStartRound);
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-#if CLIENT
-        
+#if CLIENT 
 
         public static Dictionary<string, Sprite> customSprites = new Dictionary<string, Sprite>();
-
 
         private static ContentPackage modPackage = ContentPackageManager.AllPackages.FirstOrDefault(p => p.Name == "Barotrauma Die Hard");
 #endif
 
+        public static AfflictionPrefab pressurizedhullPrefab;
+
+
+        // 使用参数类型数组解决 "ambiguous" (歧义) 问题
+        [HarmonyPatch("StartRound")]
+        [HarmonyPatch(new Type[] { typeof(LevelData), typeof(bool), typeof(SubmarineInfo), typeof(SubmarineInfo) })]
+        [HarmonyPostfix]
         public static void StartRound(LevelData levelData, bool mirrorLevel, SubmarineInfo startOutpost, SubmarineInfo endOutpost)
         {
-                //DebugConsole.NewMessage(Level.Loaded.StartLocation?.Type.ToString());
+            //DebugConsole.NewMessage(Level.Loaded.StartLocation?.Type.ToString());
+            pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
+            
 
             foreach (Item preactor in Item.ItemList)
             {
@@ -111,6 +91,8 @@ namespace BarotraumaDieHard
         }
 
         
+        [HarmonyPatch("EndRound")]
+        [HarmonyPostfix]
         public static void EndRound(string endMessage, CampaignMode.TransitionType transitionType, TraitorManager.TraitorResults? traitorResults)
         {
 
@@ -123,7 +105,7 @@ namespace BarotraumaDieHard
 
             ReactorDieHard.ClearRactorySecondContainerDictionary();
 
-            CharacterMod.ClearPressureTimerDictionary();
+            CharacterPatch.ClearPressureTimerDictionary();
 
             ConvertLocationToDestroyed();
             

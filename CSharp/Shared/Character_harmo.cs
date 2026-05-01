@@ -25,48 +25,12 @@ using System.Reflection;
 
 namespace BarotraumaDieHard
 {
-    class CharacterMod : IAssemblyPlugin
+	[HarmonyPatch(typeof(Character))]
+    class CharacterPatch
     {
-        public Harmony harmony;
+		//Moved to GameSession
+		//public static AfflictionPrefab pressurizedhullPrefab;
 		
-        public static bool hasZoomed = false;
-		public static AfflictionPrefab pressurizedhullPrefab;
-		public void Initialize()
-		{
-		    harmony = new Harmony("CharacterMod");
-
-			
-			
-            var originalUpdateOxygen = typeof(Character).GetMethod("UpdateOxygen", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixUpdateOxygen = new HarmonyMethod(typeof(CharacterMod).GetMethod(nameof(UpdateOxygenPostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUpdateOxygen, postfixUpdateOxygen, null);
-
-			var originalUpdate = typeof(Character).GetMethod("Update", BindingFlags.Public | BindingFlags.Instance);
-            var postfixUpdate = new HarmonyMethod(typeof(CharacterMod).GetMethod(nameof(UpdatePostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUpdate, postfixUpdate, null);
-
-
-			var originalConstructor = typeof(Character).GetConstructor(
-			BindingFlags.Instance | BindingFlags.NonPublic, 
-			null, 
-			new[] { typeof(CharacterPrefab), typeof(Vector2), typeof(string), typeof(CharacterInfo), typeof(ushort), typeof(bool), typeof(RagdollParams), typeof(bool) }, 
-			null);
-
-            var postfix = new HarmonyMethod(typeof(CharacterMod).GetMethod(nameof(CharacteConstructorPostfix)));
-            harmony.Patch(originalConstructor, null, postfix);
-
-			pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
-			
-        }
-
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
-
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
 		
 		private static float escapedTime;
         private static float updateTimer = 1.0f;
@@ -76,9 +40,17 @@ namespace BarotraumaDieHard
 		// Declare the dictionary at the class level
 		private static Dictionary<Character, float> customPressureTimers = new Dictionary<Character, float>();
 
-
+		[HarmonyPatch(MethodType.Constructor)]
+        [HarmonyPatch(new Type[] { 
+            typeof(CharacterPrefab), typeof(Vector2), typeof(string), 
+            typeof(CharacterInfo), typeof(ushort), typeof(bool), 
+            typeof(RagdollParams), typeof(bool) 
+        })]
+        [HarmonyPostfix]
 		public static void CharacteConstructorPostfix(CharacterPrefab prefab, Vector2 position, string seed, CharacterInfo characterInfo, ushort id, bool isRemotePlayer, RagdollParams ragdollParams, bool spawnInitialItems, Character __instance)
 		{
+			//Moved to GameSession- RoundStart
+			//pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
 			
 			// Ensure the dictionary has an entry for the character
 			if (!customPressureTimers.ContainsKey(__instance))
@@ -86,7 +58,8 @@ namespace BarotraumaDieHard
 				customPressureTimers[__instance] = 0.0f;
 			}
 		}
-		
+		[HarmonyPatch("UpdateOxygen")]
+        [HarmonyPostfix]
 		public static void UpdateOxygenPostfix(Character __instance, float deltaTime)
 		{
 			
@@ -141,7 +114,7 @@ namespace BarotraumaDieHard
 			{
 				_.CharacterHealth.ApplyAffliction(
 					targetLimb: _.AnimController.MainLimb, 
-					new Affliction(pressurizedhullPrefab, 1f * deltaTime)); // 造成压力感官效果
+					new Affliction(GameSessionDieHard.pressurizedhullPrefab, 1f * deltaTime)); // 造成压力感官效果
 			}
 
 			// 2. 致命伤害阶段 (高压危险)
@@ -153,7 +126,7 @@ namespace BarotraumaDieHard
 				// 加重视觉/听觉压力效果
 				_.CharacterHealth.ApplyAffliction(
 						targetLimb: _.AnimController.MainLimb, 
-						new Affliction(pressurizedhullPrefab, 3f * deltaTime));
+						new Affliction(GameSessionDieHard.pressurizedhullPrefab, 3f * deltaTime));
 				
 				// 增加角色的压力计时器
 				customPressureTimers[__instance] += 1 * deltaTime;
@@ -190,7 +163,8 @@ namespace BarotraumaDieHard
 		}
 
 
-
+		[HarmonyPatch("Update")]
+        [HarmonyPostfix]
 		public static void UpdatePostfix(float deltaTime, Character __instance)
 		{
 			Character _ = __instance;

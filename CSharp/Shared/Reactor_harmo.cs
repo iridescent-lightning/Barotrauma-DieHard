@@ -9,41 +9,24 @@ using System.Linq;
 
 namespace BarotraumaDieHard
 {
-    class ReactorDieHard : IAssemblyPlugin
+    [HarmonyPatch(typeof(Reactor))]
+    class ReactorDieHard
     {
-        public Harmony harmony;
         
         
         public static Dictionary<int, ItemContainer> SecondItemContainerReactors = new Dictionary<int, ItemContainer>();
         
-        public void Initialize()
-        {
-            harmony = new Harmony("ReactorDieHard");
-
-            harmony.Patch(
-                original: typeof(Reactor).GetMethod("Update"),
-                postfix: new HarmonyMethod(typeof(ReactorDieHard).GetMethod(nameof(UpdatePostfix)))
-            );
-            harmony.Patch(
-                original: typeof(Reactor).GetMethod("OnMapLoaded"),
-                postfix: new HarmonyMethod(typeof(ReactorDieHard).GetMethod(nameof(OnMapLoadedPostfix)))
-            );
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
 
         private static Item coolant;
+        private static bool inEditor;
+
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
 
         public static void UpdatePostfix(float deltaTime, Camera cam, Reactor __instance)
         {
-
+            
+            if(inEditor && !__instance.Item.InPlayerSubmarine) return;
             if (SecondItemContainerReactors.TryGetValue(__instance.item.ID, out ItemContainer itemContainer))
             {
                 coolant = itemContainer.Inventory.GetItemAt(0);
@@ -74,15 +57,20 @@ namespace BarotraumaDieHard
                 
         }
 
-
-            public static void OnMapLoadedPostfix(Reactor __instance)
-            {
-                
-
-                    
-
-                
-            }
+        [HarmonyPatch("OnMapLoaded")]
+        [HarmonyPostfix]
+        public static void OnMapLoadedPostfix(Reactor __instance)
+        {
+            
+            foreach (Submarine sub in Submarine.Loaded)
+                        {
+                            if (sub?.Info?.OutpostGenerationParams != null)
+                            {
+                                inEditor = true;
+                                DebugConsole.NewMessage("d");
+                            }
+                        }
+        }
 
             public static void ClearRactorySecondContainerDictionary()
 		    {

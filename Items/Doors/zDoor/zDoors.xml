@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Items>
-  <Item name="Enterable Door" identifier="enterable_doora" category="Electrical" tags="smallitem,button,mediumdelay" linkable="true" scale="0.6" allowedlinks="structure,item,teleportladder" >
+  <Item name="Enterable Door" identifier="enterable_doora" category="Electrical" tags="smallitem,button,mediumdelay,zdoor" linkable="true" scale="0.6" allowedlinks="structure,item,teleportladder" >
     <Sprite texture="%ModDir%/Items/Doors/zDoor/Doors.png" sourcerect="0,0,159,319" depth="0.8" origin="0.5,0.5" />
     <Upgrade gameversion="100.0.0.0" allowingameediting="false" />
     <Controller UserPos="0,-300" direction="Right" hidehud="false" canbeselected="true" drawuserbehind="true">
       <RequiredItem identifier="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" />
       <StatusEffect type="OnPicked" target="Character">
         <Sound file="%ModDir%/Items/Doors/zDoor/doorenter1.ogg" range="1000" volume="5" />
-        <Affliction identifier="enteringdoor" amount="10" />
+        <!--<Affliction identifier="enteringdoor" amount="10" /> Not used because now the camera pan is instant-->
       </StatusEffect>
     </Controller>
     <Door canbeselected="true" canbepicked="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="0.7,1" hasintegratedbuttons="true"  OpeningSpeed="999" ClosingSpeed="999" ToggleCoolDown="1">
@@ -23,13 +23,12 @@
       <output name="signal_in" displayname="connection.signalin" />
     </ConnectionPanel>
   </Item>
-  <Item name="Enterable Jail Door" identifier="enterable_doorb" category="Electrical" tags="smallitem,button" allowedlinks="door" linkable="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" maxstacksize="8">
+  <Item name="Enterable Jail Door" identifier="enterable_doorb" category="Electrical" tags="smallitem,button,zdoor" allowedlinks="door,item" linkable="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" maxstacksize="8">
     <Sprite texture="%ModDir%/Items/Doors/zDoor/Doors.png" sourcerect="199,0,209,419" depth="0.8" origin="0.5,0.5" />
     <Controller direction="None" canbepicked="true" msg="ItemMsgPressSelect">
       <RequiredItem identifier="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" />
       <sound file="%ModDir%/Items/Doors/zDoor/doorenter2.ogg" type="OnUse" range="1000.0" volume="5" />
       <StatusEffect type="OnPicked" target="Character">
-        <Affliction identifier="enteringdoor" amount="10" />
       </StatusEffect>
     </Controller>
     <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10" canbepicked="false">
@@ -39,11 +38,10 @@
       <output name="signal_in" displayname="connection.signalin" />
     </ConnectionPanel>
   </Item>
-  <Item name="Enterable Cave Entrance" identifier="enterable_doorc" category="Electrical" tags="smallitem,button" allowedlinks="door" linkable="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" maxstacksize="8">
+  <Item name="Enterable Cave Entrance" identifier="enterable_doorc" category="Electrical" tags="smallitem,button,zdoor" allowedlinks="door,item" linkable="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true" maxstacksize="8">
     <Sprite texture="%ModDir%/Items/Doors/zDoor/Doors.png" sourcerect="445,7,557,554" depth="0.8" origin="0.5,0.5" />
     <Controller direction="None" canbepicked="true" msg="ItemMsgPressSelect">
       <StatusEffect type="OnPicked" target="Character">
-        <Affliction identifier="enteringdoor" amount="10" />
       </StatusEffect>
     </Controller>
     <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10" canbepicked="false">

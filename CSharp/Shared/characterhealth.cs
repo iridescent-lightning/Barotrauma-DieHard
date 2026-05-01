@@ -17,41 +17,11 @@ using System.Xml.Linq;
 
 namespace BarotraumaDieHard
 {
-  partial class CharacterHealthMod : IAssemblyPlugin
+	[HarmonyPatch(typeof(CharacterHealth))]
+  public class CharacterHealthMod
   {
-    public Harmony harmony;
-	public AfflictionPrefab hypothermiaPrefab;
-	public Item armor;
-	
-    public void Initialize()
-    {
-      	harmony = new Harmony("CharacterHealth");
-
-		harmony.Patch(
-					original: typeof(CharacterHealth).GetMethod("ApplyDamage"),
-					postfix: new HarmonyMethod(typeof(CharacterHealthMod).GetMethod("ApplyDamage"))
-				);
-
-		harmony.Patch(
-			original: typeof(CharacterHealth).GetMethod("Update"),
-			prefix: new HarmonyMethod(typeof(CharacterHealthMod).GetMethod("Update"))
-		);		
-	
-	hypothermiaPrefab = AfflictionPrefab.Prefabs["coldwater"];
-	
-    }
-    public void OnLoadCompleted() { }
-    public void PreInitPatching() { }
-
-    public void Dispose()
-    {
-      harmony.UnpatchSelf();
-      harmony = null;
-    }
-	//leftHand = characterHealth.Character.Inventory.GetItemInLimbSlot(InvSlotType.LeftHand);
-	
-	
-	
+	[HarmonyPatch("ApplyDamage")]
+	[HarmonyPostfix]
     public static void ApplyDamage(Limb hitLimb, AttackResult attackResult, bool allowStacking, CharacterHealth __instance)
     {
 
@@ -85,10 +55,7 @@ namespace BarotraumaDieHard
 					}
 				}
 			}
-		
       }
-
-
 		// Sever legs or waist effect
 	  if (_.Character.AnimController is HumanoidAnimController humanAnimController) // cast type
 		{
@@ -113,21 +80,14 @@ namespace BarotraumaDieHard
 				}
 			}
 		}
-	  
-      
     }
 	
-	
-
-
-
-	
+	[HarmonyPatch("Update")]
+	[HarmonyPostfix]
 	public static void Update(CharacterHealth __instance, float deltaTime)
         {
 			CharacterHealth _ = __instance;
 
-
-        
 			// Defualt Character Status Effect Attributes
 			if (_.Character.IsHuman && _.Character.InWater)
 			{
@@ -141,13 +101,7 @@ namespace BarotraumaDieHard
 			if (_.Character.IsHuman && !_.Character.IsDead && _.Character.CurrentHull != null)
 			{
 				_.Character.PressureProtection= 4500.0f;
-				
 			}
-
-			
-			
-		
 		}
-
   	}
 }

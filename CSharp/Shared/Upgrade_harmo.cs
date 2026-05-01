@@ -17,69 +17,47 @@ using HarmonyLib;
 
 namespace BarotraumaDieHard
 {
-    public class UpgradePatch : IAssemblyPlugin
+    [HarmonyPatch(typeof(Upgrade))]
+    public class UpgradePatch
     {
-        public  Harmony harmony;
-        public void Initialize()
-		{
-			harmony = new Harmony("UpgradePatch");
-			
-			 var originalMethod = typeof(Upgrade).GetMethod("FindItemComponent", 
-                    BindingFlags.NonPublic | BindingFlags.Static);
-            var prefixMethod = typeof(UpgradePatch).GetMethod("FindItemComponentPrefix", 
-                    BindingFlags.Public | BindingFlags.Static);
-            harmony.Patch(originalMethod, new HarmonyMethod(prefixMethod));
-
-
-            
-		}
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
+        [HarmonyPatch("FindItemComponent")]
+        [HarmonyPrefix]
         public static bool FindItemComponentPrefix(Item item, string name, ref ISerializableEntity[] __result)
         {
-            
-            // 先尝试原版查找
-            Type? type = Type.GetType($"Barotrauma.Items.Components.{name.ToLowerInvariant()}", false, true);
-            
+            // 1. 尝试从原版潜渊症命名空间获取类型
+            Type? type = Type.GetType($"Barotrauma.Items.Components.{name}", false, true);
+
+            // 2. 如果原版没有，则专门在你自己的 Mod 程序集中查找
             if (type == null)
             {
-                // 在你的命名空间中查找
-                type = Type.GetType($"BarotraumaDieHard.{name}", false, true);
+                // 获取当前正在执行代码的程序集，即你的 BarotraumaDieHard.dll
+                Assembly myAssembly = Assembly.GetExecutingAssembly();
                 
+                // 尝试在你指定的命名空间下查找
+                type = myAssembly.GetType($"BarotraumaDieHard.{name}", false, true);
+                
+                // 如果你的组件没有放在该命名空间根目录，可以进行受限的本地扫描
                 if (type == null)
                 {
-                    // 尝试在所有程序集中查找匹配名称的类型
-                    foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                    {
-                        type = assembly.GetType($"BarotraumaDieHard.{name}");
-                        if (type != null) break;
-                        
-                        type = assembly.GetTypes().FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase) 
-                            && typeof(ItemComponent).IsAssignableFrom(t));
-                        if (type != null) break;
-                    }
+                    type = myAssembly.GetTypes().FirstOrDefault(t => 
+                        t.Name.Equals(name, StringComparison.OrdinalIgnoreCase) && 
+                        typeof(ItemComponent).IsAssignableFrom(t));
                 }
             }
-            
+
+            // 3. 执行逻辑
             if (type != null && typeof(ItemComponent).IsAssignableFrom(type))
             {
                 var components = item.Components.Where(ic => ic.GetType() == type);
                 if (components.Any())
                 {
                     __result = components.Cast<ISerializableEntity>().ToArray();
-                    return false; // 跳过原方法
+                    return false; // 找到匹配项，拦截原方法
                 }
             }
-            
-            return false; // 继续原方法
+
+            // 重要：如果找不到匹配的组件，一定要返回 true，否则游戏原版的升级逻辑会被彻底掐断
+            return true; 
         }
     }
 }

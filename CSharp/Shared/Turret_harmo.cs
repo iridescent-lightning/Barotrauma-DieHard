@@ -21,69 +21,39 @@ using System.Reflection;
 
 namespace BarotraumaDieHard
 {
-    partial class TurretDieHard : IAssemblyPlugin
+    [HarmonyPatch(typeof(Turret))]
+    partial class TurretDieHard
     {
 
-
-        public Harmony harmony;
-		
         private static Dictionary<int, float> turretReloadValues = new Dictionary<int, float>();
 
-		public void Initialize()
-		{
-		    harmony = new Harmony("TurretDieHard");
-
-			harmony.Patch(
-                original: typeof(Turret).GetMethod("OnMapLoaded"),
-                postfix: new HarmonyMethod(typeof(TurretDieHard).GetMethod(nameof(OnMapLoaded)))
-            );
-			
-            var originalUpdate = typeof(Turret).GetMethod("Update", BindingFlags.Public | BindingFlags.Instance);
-            var postfixUpdate = new HarmonyMethod(typeof(TurretDieHard).GetMethod(nameof(UpdatePostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalUpdate, postfixUpdate, null);
-
-            var originalLaunch = typeof(Turret).GetMethod("Launch", BindingFlags.NonPublic | BindingFlags.Instance);
-            var postfixLaunch = new HarmonyMethod(typeof(TurretDieHard).GetMethod(nameof(LaunchPostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalLaunch, postfixLaunch, null);
-#if CLIENT
-var originalDrawHUD = typeof(Turret).GetMethod("DrawHUD", BindingFlags.Public | BindingFlags.Instance);
-            var postfixDrawHUD = new HarmonyMethod(typeof(TurretDieHard).GetMethod(nameof(DrawHUDPostfix)));
-            harmony.Patch(originalDrawHUD, postfixDrawHUD);
-#endif
-        }
-
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
-
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
 		
+		[HarmonyPatch("OnMapLoaded")]
+        [HarmonyPostfix]
 		public static void OnMapLoaded(Turret __instance)
-    {
-		
-        // Check if the item has a Turret component before storing the reload value
-        if (__instance.Item.GetComponent<Turret>() != null)
         {
-			
-            // Store the reload value using the item ID as the key
-            turretReloadValues[__instance.Item.ID] = __instance.Reload; // Store original reload value
+            
+            // Check if the item has a Turret component before storing the reload value
+            if (__instance.Item.GetComponent<Turret>() != null)
+            {
+                
+                // Store the reload value using the item ID as the key
+                turretReloadValues[__instance.Item.ID] = __instance.Reload; // Store original reload value
+            }
+            else
+            {
+                DebugConsole.NewMessage("No turret found.");
+            }
         }
-		else
-		{
-			DebugConsole.NewMessage("No turret found.");
-		}
-    }
 
-	public static float GetOriginalReload(int itemID)
-    {
-        // Retrieve the stored reload value for a specific turret item
-        return turretReloadValues.TryGetValue(itemID, out var reloadValue) ? reloadValue : 1f; // Default to 1 if not found
-    }
+        public static float GetOriginalReload(int itemID)
+        {
+            // Retrieve the stored reload value for a specific turret item
+            return turretReloadValues.TryGetValue(itemID, out var reloadValue) ? reloadValue : 1f; // Default to 1 if not found
+        }
 		
-
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
 		public static void UpdatePostfix(float deltaTime, Camera cam, Turret __instance)
         {
             // Access the turret instance

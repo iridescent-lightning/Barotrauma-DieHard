@@ -15,9 +15,10 @@ using System.Reflection;// for bindingflags
 namespace BarotraumaDieHard
 {
 
-    partial class GapMod : IAssemblyPlugin
+    partial class GapPatch
     {
-
+        [HarmonyPatch("EmitParticles")]
+        [HarmonyPrefix]
         public static bool EmitParticlesPrefix(float deltaTime, Gap __instance)
         {
             Gap _ = __instance;

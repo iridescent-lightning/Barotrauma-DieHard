@@ -114,7 +114,7 @@
     <sprite sourcerect="955,39,70,157" origin="0.5,0.5" depth="0" texture="" color="255,255,255,255" deadcolor="255,255,255,255" deadcolortime="0" />
     <attack targettype="Structure" priority="1" range="200" damagerange="200" cooldown="7" secondarycooldown="0" afterattack="FallBack" structuredamage="75" force="10" targetimpulse="500" structuresoundtype="StructureBlunt" applyforceonlimbs="0, 3" context="Any" hitdetectiontype="Distance" itemdamage="60" stun="0" onlyhumans="False" torque="0" applyforcesonlyonce="False" targetimpulseworld="0,0" targetforce="0" targetforceworld="0,0" severlimbsprobability="0" stickchance="0" duration="0.25" cooldownrandomfactor="0.1" reverse="False" targetlimbtype="None" afterattackdelay="0" retreat="False" rootforceworldstart="0,0" rootforceworldmiddle="0,0" rootforceworldend="0,0" roottransitioneasing="Linear" fullspeedafterattack="False" levelwalldamage="60" ranged="False" avoidfriendlyfire="False" requiredangle="20" submarineimpactmultiplier="3">
       <StatusEffect type="OnUse" target="this">
-        <Explosion ignorecover="true" onlyinside="true" range="300" force="1" flames="false" shockwave="true" sparks="false" flash="false" underwaterbubble="false" camerashake="0" playtinnitus="false" structuredamage="150" applyFireEffects="false" smoke="false">
+        <Explosion ignorecover="true" onlyinside="true" range="300" force="1" flames="false" shockwave="true" sparks="false" flash="false" underwaterbubble="false" camerashake="0" playtinnitus="false" structuredamage="150" applyFireEffects="false" smoke="false" itemdamage="40">
           <Affliction identifier="stun" strength="3" probability="1" />
         </Explosion>
       </StatusEffect>

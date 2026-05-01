@@ -50,7 +50,7 @@
         <poweronsound file="Content/Items/PowerOnLight1.ogg" range="1000" loop="false" />
         <MaintainPosIndicator texture="Content/Items/Command/NavUI.png" sourcerect="50,0,60,61" />
         <MaintainPosOriginIndicator texture="Content/Items/Command/NavUI.png" sourcerect="0,0,50,54" />
-        <SteeringIndicator texture="%ModDir%/Items/Commands/NavUI_arrow.png" sourcerect="0,0,70,39" origin="0,0.5" />
+        <SteeringIndicator texture="Content/Items/Command/NavUI.png" sourcerect="0,135,362,16" origin="0,0.5"/>
         <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="5" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
           <Upgrade gameversion="0.9.600.0" lightcolor="255,255,255,0" />
           <sprite texture="Content/Items/Command/navigatorLights.png" depth="0.025" sourcerect="0,0,384,304" origin="0.5,0.5" alpha="1.0" />

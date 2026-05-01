@@ -17,35 +17,20 @@ using Barotrauma;
 using HarmonyLib;
 
 
-namespace LimbModNamespace//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
+namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
 {
-    class LimbMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Limb))]
+    class LimbPatch
     {
-        public  Harmony harmony;
-
-
-        public void Initialize()
-		{
-			harmony = new Harmony("LimbMod");
-			
-			var original = AccessTools.PropertyGetter(typeof(Limb), "CanBeSeveredAlive");
-            var prefix = new HarmonyMethod(typeof(LimbMod).GetMethod(nameof(CanBeSeveredAlivePostfix)));
-
-            harmony.Patch(original, prefix: prefix);
-			
-				
-			}
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-        public static bool CanBeSeveredAlivePostfix(ref bool __result, Limb __instance)
+        //你尝试补丁的是一个“属性（Property）”，但在 Harmony 特性中没有指定补丁的目标是属性的 Getter 方法。
+        /*在 C# 中，属性 CanBeSeveredAlive 实际上是由一个名为 get_CanBeSeveredAlive 
+        的方法实现的。如果你只写 [HarmonyPatch("CanBeSeveredAlive")]，Harmony 会去寻找一个同名的普通方法，
+        找不到自然会报 Undefined target method（未定义目标方法）。
+        */
+        // 关键修正：指定 MethodType 为 Getter
+        [HarmonyPatch("CanBeSeveredAlive", MethodType.Getter)]
+        [HarmonyPrefix]
+        public static bool CanBeSeveredAlivePrefix(ref bool __result, Limb __instance)
         {
             
             //DebugConsole.NewMessage("LimbMod CanBeSeveredAlivePostfix");

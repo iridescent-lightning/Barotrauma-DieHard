@@ -15,37 +15,12 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    class AIObjectiveFixLeakDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(AIObjectiveFixLeak))]
+    class AIObjectiveFixLeakPatch
     {
 
-
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("AIObjectiveFixLeakDieHard");
-
-            var originalAct = typeof(AIObjectiveFixLeak).GetMethod("Act", BindingFlags.NonPublic | BindingFlags.Instance);
-            var PostfixAct = typeof(AIObjectiveFixLeakDieHard).GetMethod(nameof(ActPostfix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalAct, new HarmonyMethod(PostfixAct), null);
-
-
-            
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
+        [HarmonyPatch("Act")]
+        [HarmonyPostfix]
         public static void ActPostfix(float deltaTime, AIObjectiveFixLeak __instance)
         {
             AIObjectiveFixLeak _ = __instance;

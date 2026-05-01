@@ -15,34 +15,13 @@ using BarotraumaDieHard;
 
 namespace BarotraumaDieHard.AI
 {
-    class IndoorsSteeringManagerDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(IndoorsSteeringManager))]
+    class IndoorsSteeringManagerDieHard
     {
 
 
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("IndoorsSteeringManagerDieHard");
-
-            var originalCanAccessDoor = typeof(IndoorsSteeringManager).GetMethod("CanAccessDoor", BindingFlags.Public | BindingFlags.Instance);
-            var prefixCanAccessDoor = typeof(IndoorsSteeringManagerDieHard).GetMethod(nameof(CanAccessDoorPrefix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalCanAccessDoor, new HarmonyMethod(prefixCanAccessDoor), null);
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
+        [HarmonyPatch("CanAccessDoor")]
+        [HarmonyPrefix]
         public static bool CanAccessDoorPrefix(Door door, Func<Controller, bool> buttonFilter, IndoorsSteeringManager __instance, ref bool __result)
         {
             // 获取门所在的房间
