@@ -67,7 +67,7 @@ namespace BarotraumaDieHard
                             if (sub?.Info?.OutpostGenerationParams != null)
                             {
                                 inEditor = true;
-                                DebugConsole.NewMessage("d");
+                                
                             }
                         }
         }

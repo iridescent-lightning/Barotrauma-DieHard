@@ -18,7 +18,7 @@ using System.Xml.Linq;
 namespace BarotraumaDieHard
 {
 	[HarmonyPatch(typeof(CharacterHealth))]
-  public class CharacterHealthMod
+  public partial class CharacterHealthPatch
   {
 	[HarmonyPatch("ApplyDamage")]
 	[HarmonyPostfix]

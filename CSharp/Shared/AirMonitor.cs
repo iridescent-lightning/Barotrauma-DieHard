@@ -12,7 +12,7 @@ using Barotrauma;
 using Microsoft.Xna.Framework.Graphics;
 #endif
 
-namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
+namespace BarotraumaDieHard
 {
     class AirMonitor : ItemComponent
     {

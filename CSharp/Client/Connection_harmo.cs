@@ -27,7 +27,7 @@ namespace BarotraumaDieHard
 		public static bool DrawConnectionPrefix(Connection __instance, SpriteBatch spriteBatch, ConnectionPanel panel, Vector2 position, Vector2 labelPos)
 		{
 			// 检查是否是目标接口
-			if (__instance.Name.Equals("mechanical", System.StringComparison.InvariantCultureIgnoreCase))
+			if (__instance.Name.Contains("mechanical", System.StringComparison.InvariantCultureIgnoreCase))
 			{
 				
 				string text = __instance.DisplayName.Value.ToUpperInvariant();
@@ -118,7 +118,7 @@ namespace BarotraumaDieHard
 			var connection = wire.Connections.FirstOrDefault(c => c != null && c.Item == panel.Item);
 
 			// 4. 判断该接口是否为机械接口
-			if (connection != null && connection.Name.Equals("mechanical", StringComparison.InvariantCultureIgnoreCase))
+			if (connection != null && connection.Name.Contains("mechanical", StringComparison.InvariantCultureIgnoreCase))
 			{
 				if (GameSessionDieHard.customSprites.TryGetValue("water_pipe", out Sprite customWireSprite))
 				{

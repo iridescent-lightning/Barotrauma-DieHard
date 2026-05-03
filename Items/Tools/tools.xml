@@ -1179,7 +1179,7 @@
       <QualityStat stattype="Condition" value="0.1"/>
     </Quality>
   </Item>-->
-    <Item name="" identifier="fuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="8" cargocontaineridentifier="metalcrate" scale="0.5" health="1200" impactsoundtag="impact_porcelain_statue_small" >
+    <Item name="" identifier="fuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="8" health="1200" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_porcelain_statue_small" >
       <PreferredContainer primary="fuelrodcase" secondary="reactorcab" />
       <PreferredContainer secondary="nucleargun" minamount="1" maxamount="1" spawnprobability="1" />
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" minamount="1" maxamount="1" spawnprobability="0.01" />
@@ -1192,7 +1192,7 @@
       <LightComponent LightColor="155,155,155,255" Flicker="0.0" range="25" IsOn="false" castshadows="false" allowingameediting="false">
         <sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="365,0,57,75" alpha="1.0" origin="0.5,0.5" depth="0.55" />
         <StatusEffect type="Always" targettype="This" IsOn="true" interval="0.1">
-          <Conditional condition="lt 300" />
+          <Conditional condition="lt 1200" />
         </StatusEffect>
         <StatusEffect type="OnBroken" targettype="This" IsOn="false" />
       </LightComponent>
@@ -1234,7 +1234,7 @@
       </ItemContainer>
       <RadioactiveFuelRod/>
     </Item>
-    <Item name="" identifier="thoriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="1" cargocontaineridentifier="metalcrate" health="600" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
+    <Item name="" identifier="thoriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="1" cargocontaineridentifier="metalcrate" health="2000" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
       <PreferredContainer primary="fuelrodcase" secondary="reactorcab" />
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" amount="1" spawnprobability="0.01" />
       <PreferredContainer secondary="beaconengcab" amount="1" spawnprobability="0.02" />
@@ -1261,7 +1261,7 @@
       <LightComponent LightColor="155,155,155,255" Flicker="0.0" range="25" IsOn="false" castshadows="false" allowingameediting="false">
         <sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="366,81,57,82" alpha="1.0" origin="0.5,0.5" depth="0.55" />
         <StatusEffect type="Always" targettype="This" IsOn="true" interval="0.1">
-          <Conditional condition="lt 600" />
+          <Conditional condition="lt 2000" />
         </StatusEffect>
         <StatusEffect type="OnBroken" targettype="This" IsOn="false" />
       </LightComponent>
@@ -1281,7 +1281,7 @@
       </ItemContainer>
       <RadioactiveFuelRod/>
     </Item>
-    <Item name="" identifier="radiationsuit" category="Equipment" tags="mediumitem,radiationsuit" allowasextracargo="true" scale="0.5" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" botpriority="5" cargocontaineridentifier="">
+    <Item name="" identifier="radiationsuit" category="Equipment" tags="mediumitem,radiationsuit,collidable_always" allowasextracargo="true" scale="0.12" fireproof="true" description="" allowdroppingonswapwith="diving" impactsoundtag="impact_metal_heavy" botpriority="5" cargocontaineridentifier="">
     <PreferredContainer primary="engcab" amount="1" />    
     <Price baseprice="450" sold="false">
       <Price storeidentifier="merchantoutpost" />
@@ -1307,27 +1307,27 @@
       <RequiredItem identifier="lead" />
       <RequiredItem identifier="physicorium" />
     </Fabricate>
-    <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="384,704,128,128" origin="0.5,0.5" />
-    <Sprite name="PUCS Item" texture="%ModDir%/Items/Jobgear/Engineer/PUCS_Items.png" sourcerect="0,0,154,134" depth="0.55" origin="0.5,0.5" />
+    <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="64,320,64,64" origin="0.5,0.5" />
+    <Sprite name="PUCS Item" texture="%ModDir%/Items/Jobgear/Engineer/radiation_suit_full_upper.png" sourcerect="52,874,732,327" depth="0.55" origin="0.5,0.5"/>
     <ContainedSprite name="PUCS In Vertical Locker" allowedcontainertags="divingsuitcontainervertical" texture="%ModDir%/Items/Jobgear/Engineer/PUCS_Items.png" sourcerect="164,0,87,190" depth="0.55" origin="0.5,0.5" />
     <ContainedSprite name="PUCS Behind Window" allowedcontainertags="divingsuitcontainerwindow" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" sourcerect="430,0,80,207" depth="0.55" origin="-0.12,-0.14" />
     <ContainedSprite name="PUCS In Horizontal Locker" allowedcontainertags="divingsuitcontainerhorizontal" texture="%ModDir%/Items/Jobgear/Engineer/PUCS_Items.png" sourcerect="0,191,225,66" depth="0.55" origin="0.6,0.5" />
-    <Body radius="45" width="34" density="20" />
+    <Body radius="180" width="180" density="220" />
     <Wearable slots="OuterClothes" msg="ItemMsgEquipSelect" displaycontainedstatus="true" canbeselected="false" canbepicked="true" pickkey="Select">
-      <sprite name="PUCS Helmet Wearable" texture="%ModDir%/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidelimb="false" alphaclipotherwearables="true" sourcerect="103,409,95,97" origin="0.57,0.38">
+      <sprite name="PUCS Helmet Wearable" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.3" hidelimb="true" alphaclipotherwearables="true" sourcerect="611,47,276,257" origin="0.48,0.36" >
       </sprite>
-      <sprite name="pucs Torso" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="Torso" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="pucs Torso" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="Torso" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="false" inheritsourcerect="false" sourcerect="36,53,436,602" scale="0.25" origin="0.55,0.5"/>
       <sprite name="pucs Right Hand" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="RightHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
       <sprite name="pucs Left Hand" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="LeftHand" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
       <sprite name="pucs Right Upper Arm" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="RightArm" depthlimb="RightForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
       <sprite name="pucs Left Upper Arm" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="LeftArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
-      <sprite name="pucs Right Lower Arm" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="RightForearm" depthlimb="RightArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
-      <sprite name="pucs Left Lower Arm" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="LeftForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="pucs Right Lower Arm" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="RightForearm" depthlimb="RightArm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" sourcerect="87,709,157,347" scale="0.25" origin="0.55,0.5"/>
+      <sprite name="pucs Left Lower Arm" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="LeftForearm" hidelimb="true" inherittexturescale="true" hideotherwearables="true" sourcerect="87,709,157,347" scale="0.25" origin="0.55,0.5"/>
       <sprite name="pucs Waist" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="Waist" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
-      <sprite name="pucs Right Thigh" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="RightThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
-      <sprite name="pucs Left Thigh" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="LeftThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
-      <sprite name="pucs Right Leg" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="RightLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
-      <sprite name="pucs Left Leg" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
+      <sprite name="pucs Right Thigh" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="RightThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" sourcerect="687,772,195,293" scale="0.35" origin="0.45,0.5" />
+      <sprite name="pucs Left Thigh" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="LeftThigh" hidelimb="true" inherittexturescale="true" hideotherwearables="true" sourcerect="687,772,195,293" scale="0.35" origin="0.45,0.5" />
+      <sprite name="pucs Right Leg" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="RightLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" sourcerect="521,1058,158,267" scale="0.35" origin="0.55,0.6" />
+      <sprite name="pucs Left Leg" texture="%ModDir%\Items\Jobgear\Engineer\test.png" limb="LeftLeg" hidelimb="true" inherittexturescale="true" hideotherwearables="true" sourcerect="521,1058,158,267" scale="0.35" origin="0.55,0.6" />
       <sprite name="pucs Left Shoe" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="LeftFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
       <sprite name="pucs Right Shoe" texture="%ModDir%\Items\Jobgear\Engineer\pucs.png" limb="RightFoot" sound="footstep_armor_heavy" hidelimb="true" inherittexturescale="true" hideotherwearables="true" inheritorigin="true" inheritsourcerect="true" />
       <StatusEffect type="OnWearing" target="Character" UseHullOxygen="true" SpeedMultiplier="0.6" LowPassMultiplier="0.2" setvalue="true" disabledeltatime="true">
@@ -1674,25 +1674,27 @@
         <Item identifier="copper" />
         <Item identifier="steel" />
       </Deconstruct>
+      
       <Sprite texture="%ModDir%/Items/Tools/DHtools2.png" sourcerect="596,533,276,157" depth="0.5" />
       <Body width="276" height="157" density="80" />
-      <Holdable slots="RightHand+LeftHand" holdpos="0,0" handle1="0,0" attachable="true" aimable="true" PickingTime="0.1" pickkey="Use">
+      <Holdable slots="RightHand+LeftHand" holdpos="0,0" handle1="0,0" attachable="true" aimable="true" PickingTime="1" pickkey="Use" attachedbydefault="true">
         <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.7" setvalue="true" />
+        <requireditem identifier="wrench" type="Equipped" />
       </Holdable>
+      <MechanicalPump 
+        MaxFlow="9000" 
+        PowerConsumption="500" 
+        MinVoltage="0.5" 
+        IsOn="false" />
       <Controller direction="None" canbepicked="true" istoggle="true" msg="ItemMsgPressSelect" allowingameediting="false">
         <sound file="Content/Items/Button/Switch1.ogg" type="OnUse" range="250.0" />
         <sound file="Content/Items/Button/Switch2.ogg" type="OnUse" range="250.0" />
-        <!--<StatusEffect type="Always" target="This">
-		<Conditional targetitemcomponent="Controller" State="eq True" />
-		<SpawnItem identifiers="scrap" spawnposition="This" />激光炮
-		
-	  </StatusEffect>-->
       </Controller>
-      <LightComponent range="10.0" lightcolor="50,255,50,0" powerconsumption="1000" IsOn="true" castshadows="false" allowingameediting="false">
+      <LightComponent range="10.0" lightcolor="50,255,50,0" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
         <sprite texture="Content/Items/Button/button.png" sourcerect="4,9,22,40" depth="0.1" origin="-0.6,0.3" alpha="1.0" />
         <IsActive targetitemcomponent="Controller" State="eq True" />
       </LightComponent>
-      <LightComponent range="10.0" lightcolor="255,50,50,0" powerconsumption="5" IsOn="true" castshadows="false" allowingameediting="false">
+      <LightComponent range="10.0" lightcolor="255,50,50,0" powerconsumption="0" IsOn="true" castshadows="false" allowingameediting="false">
         <sprite texture="Content/Items/Button/button.png" sourcerect="4,89,22,40" depth="0.1" origin="-0.6,0.3" alpha="1.0" />
         <IsActive targetitemcomponent="Controller" State="eq False" />
       </LightComponent>
@@ -1707,7 +1709,10 @@
         </StatusEffect>
         <requireditem items="Screwdriver" type="Equipped" />
         <input name="power_in" displayname="connection.powerin" />
-        <output name="mechanical" displayname="connection.Vent" />
+        <input name="set_speed" displayname="connection.setpumpspeed" /> <!-- 关键：控制方向和速度 -->
+        <input name="set_state" displayname="connection.setstate" />
+        <output name="mechanical_in" displayname="connection.VentIn" />
+        <output name="mechanical_out" displayname="connection.VentOut" />
       </ConnectionPanel>
     </Item>
     <Item name="" identifier="attachablepumpnozzle" tags="smallitem,donttakeitems,attachablepumpb" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowasextracargo="true" impactsoundtag="impact_metal_heavy" isshootable="true" maxstacksize="4">
@@ -1743,7 +1748,7 @@
         <RequiredItem items="Screwdriver" type="Equipped" />
         <output name="mechanical" displayname="Vent" />
       </ConnectionPanel>
-      <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" PickingTime="20.0" aimpos="65,-10" handle1="0,0" attachable="true" aimable="true">
+      <Holdable selectkey="Select" pickkey="Use" slots="Any,RightHand,LeftHand" msg="ItemMsgDetachWrench" PickingTime="1" aimpos="65,-10" handle1="0,0" attachable="true" aimable="true">
         <requireditem items="wrench" type="Equipped" />
       </Holdable>
     </Item>

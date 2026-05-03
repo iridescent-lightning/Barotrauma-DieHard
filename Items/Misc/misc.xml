@@ -770,6 +770,52 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
+    <WallShrapnelProjectile name="" identifier="wallshrapnelprojectile" scale="0.5" category="Decorative" tags="collidable_always,hardsurface" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_glasscontainer" health="500">
+      <Body width="33" height="81" density="15" />
+      <Sprite name="bottle" texture="%ModDir%/Items/Misc/DHMisc.png" depth="0.6" sourcerect="0,0,33,81" origin="0.5,0.5" />
+      <ItemComponent>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove />
+          <Sound file="Content/Sounds/Damage/GlassBreak1.ogg" range="1000" volume="1" selectmode="Random" />
+          <Sound file="Content/Sounds/Damage/GlassBreak2.ogg" range="1000" volume="1" />
+          <Sound file="Content/Sounds/Damage/GlassBreak3.ogg" range="1000" volume="1" />
+          <Sound file="Content/Sounds/Damage/GlassBreak4.ogg" range="1000" volume="1" />
+          <particleemitter particle="shrapnel" anglemin="0" anglemax="360" particleamount="100" velocitymin="100" velocitymax="500" scalemin="0.1" scalemax="0.3" />
+        </StatusEffect>
+      </ItemComponent>
+      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="30.0">
+        <StatusEffect type="OnActive" target="NearbyItems" targettags="damage_by_passing_bullet" range="25" condition="-100">
+          <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+          <Sound file="%ModDir%/Items/Weapons/bullethit.ogg" type="OnImpact" volumenum="2" Range="1000" selectionmode="Random" />
+          <Sound file="%ModDir%/Items/Weapons/bullethit1.ogg" type="OnImpact" volumenum="2" Range="1000" />
+          <Sound file="%ModDir%/Items/Weapons/bullethit2.ogg" type="OnImpact" volumenum="2" Range="1000" />
+          <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
+          <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
+        </StatusEffect>
+        <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
+        <Attack structuredamage="10" targetforce="10" itemdamage="20" severlimbsprobability="0.2" penetration="0.6">
+          <Affliction identifier="bleeding" strength="3" />
+        </Attack>
+        <StatusEffect type="OnImpact" target="UseTarget">
+          <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
+        </StatusEffect>
+        <!--<StatusEffect type="OnImpact" target="UseTarget" >
+			<LuaHook name="goToPrision"/>
+        </StatusEffect>-->
+        <StatusEffect type="OnImpact" target="UseTarget">
+          <Conditional entitytype="eq Structure" />
+          <Conditional hastag="eq door" />
+          <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <!--This makes bullet has bubble effect in water-->
+        <StatusEffect type="OnActive" target="This" delay="0.05">
+          <Conditional InWater="true" />
+          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <Remove />
+        </StatusEffect>
+        </Projectile>
+    </WallShrapnelProjectile>
     <Item name="" identifier="helperlogbook" category="Misc" Tags="smallitem,logic" cargocontaineridentifier="metalcrate" scale="0.25" impactsoundtag="impact_metal_light" isshootable="true">
       <Upgrade gameversion="0.9.9000.0" scale="0.25" />
       <Price baseprice="100" sold="false" />

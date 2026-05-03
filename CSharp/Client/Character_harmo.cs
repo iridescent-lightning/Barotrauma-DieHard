@@ -19,35 +19,16 @@ using System.Reflection;
 
 
 
-namespace CharacterMod
+namespace BarotraumaDieHard
 {
-    class CharacterMod : IAssemblyPlugin
+	[HarmonyPatch(typeof(Character))]
+    partial class CharacterPatch
     {
-        public Harmony harmony;
 		
         public static bool hasZoomed = false;
 
-		public void Initialize()
-		{
-		    harmony = new Harmony("CharacterModClient");
-
-			
-			
-            harmony.Patch(
-                original: typeof(Character).GetMethod("ControlLocalPlayer"),
-                postfix: new HarmonyMethod(typeof(CharacterMod).GetMethod(nameof(ControlLocalPlayer))));
-        }
-
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
-
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
-		
-
+		[HarmonyPatch("ControlLocalPlayer")]
+		[HarmonyPostfix]
 		public static void ControlLocalPlayer(float deltaTime, Camera cam, bool moveCam, Character __instance)
 		{
 			if (!Character.DisableControls && Character.Controlled != null)
@@ -118,14 +99,6 @@ namespace CharacterMod
 					}
 				}
 			}
-		}
-            
-
-        
+		}        
 	}
-
-    
-
-
-    
 }

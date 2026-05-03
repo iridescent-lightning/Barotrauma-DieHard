@@ -71,7 +71,7 @@
       <Holdable selectkey="Select" pickkey="Use" slots="RightHand+LeftHand" msg="ItemMsgDetachWrench" PickingTime="10.0" aimpos="35,-10" handle1="0,0" attachable="true" attachedbydefault="true" aimable="true">
         <requireditem identifier="wrench" type="Equipped" />
       </Holdable>
-      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="0" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
+      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="electrical" level="55" />
         <RequiredItem items="wrench" type="equipped" />
@@ -108,12 +108,12 @@
         <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
         <Containable items="key1,keymaster" excludebroken="true" />
       </ItemContainer>
-      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="0" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
+      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
-        <RequiredSkill identifier="electrical" level="55" />
+        <RequiredSkill identifier="mechanical" level="25" />
         <RequiredItem items="wrench" type="equipped" />
         <ParticleEmitter particle="DarkSmoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="8" scalemin="1.8" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="0.0" maxcondition="50.0" />
-        <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+        
         <StatusEffect type="OnFire" target="This" Condition="-2" />
         <!--<StatusEffect type="OnBroken" >
 		<LuaHook name="ContainerBrokenLock"/>
@@ -144,11 +144,11 @@
         <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
         <Containable items="key1,keymaster" excludebroken="true" />
       </ItemContainer>
-      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="0" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
+      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
-        <RequiredSkill identifier="electrical" level="55" />
+        <RequiredSkill identifier="mechanical" level="25" />
         <RequiredItem items="wrench" type="equipped" />
-        <ParticleEmitter particle="DarkSmoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="8" scalemin="1.8" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="0.0" maxcondition="50.0" />
+        
         <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
         <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
@@ -177,12 +177,12 @@
         <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
         <Containable items="key2,keymaster" excludebroken="true" />
       </ItemContainer>
-      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="0" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
+      <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
-        <RequiredSkill identifier="electrical" level="55" />
+        <RequiredSkill identifier="mechanical" level="25" />
         <RequiredItem items="wrench" type="equipped" />
         <ParticleEmitter particle="DarkSmoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="8" scalemin="1.8" scalemax="2.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="0.0" maxcondition="50.0" />
-        <ParticleEmitter particle="heavysmoke" particleburstinterval="0.25" particlespersecond="2" scalemin="2.5" scalemax="5.0" mincondition="0.0" maxcondition="15.0" />
+        
         <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
     </Item>

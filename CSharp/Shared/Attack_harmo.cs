@@ -27,7 +27,7 @@ namespace BarotraumaDieHard
             Attack __instance, 
             ref AttackResult __result) 
         {
-            DebugConsole.NewMessage("AttackPatch: DoDamageToLimb triggered!");
+            //DebugConsole.NewMessage("AttackPatch: DoDamageToLimb triggered!");
             
             if (targetLimb?.character?.Inventory == null) return;
 

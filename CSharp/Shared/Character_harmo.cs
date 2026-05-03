@@ -16,6 +16,10 @@ using System.Diagnostics;
 using System.Text;
 #endif
 
+#if CLIENT
+using Microsoft.Xna.Framework.Graphics;
+#endif
+
 
 using Barotrauma;
 using HarmonyLib;
@@ -26,7 +30,7 @@ using System.Reflection;
 namespace BarotraumaDieHard
 {
 	[HarmonyPatch(typeof(Character))]
-    class CharacterPatch
+    partial class CharacterPatch
     {
 		//Moved to GameSession
 		//public static AfflictionPrefab pressurizedhullPrefab;
@@ -156,11 +160,9 @@ namespace BarotraumaDieHard
 					customPressureTimers[__instance] = 0.0f;
 				}
 			}
-
-			
-			
-			
 		}
+
+
 
 
 		[HarmonyPatch("Update")]
@@ -263,11 +265,112 @@ namespace BarotraumaDieHard
 		}
 
 
+// Cutting loot logic
 		public static void ClearPressureTimerDictionary()
 		    {
 			    customPressureTimers.Clear();
 		    }
 
+
+		// 存储怪物实体的切割进度 (0.0f - 100.0f)
+        public static Dictionary<Character, float> CutProgress = new Dictionary<Character, float>();
+        // 标记已经完成收集的怪物
+        public static HashSet<Character> CompletedCharacters = new HashSet<Character>();
+        // 1. 定义生物物种与掉落物的映射表
+        private static readonly Dictionary<string, string> DropTable = new Dictionary<string, string>
+        {
+            { "Crawler", "crawlerhead" },
+            { "Crawler_large", "lcrawlerhead" },
+            { "Crawlerhusk", "hcrawlerhead" },
+            { "Crawlerbroodmother_m", "broodmothereye" },
+            { "Crawlerbroodmother", "broodmothereye" },
+			{ "Hammerhead", "hammerheadfin" },
+            { "Hammerheadmatriarch", "matriarchfin" },
+            { "Hammerhead_m", "hammerheadfin" },
+            { "Hammerhead_mNamed", "hammerheadfin" },
+            { "Hammerheadgold_m", "ghammerheadfin" },
+            { "Hammerheadgold", "ghammerheadfin" },
+            { "Spineling_giant", "spineling_giant_spike" },
+            { "Spineling", "smallspinelingspike" },
+            { "Tigerthresher", "tigerthresherteeth" },
+            { "Bonethresher", "bonethresherhead" },
+            { "Charybdis", "Charybdistooth" },
+            { "Mudraptor", "DHmudraptorshell" },
+            { "Mudraptor_veteran", "vmudraptorshell" },
+            { "Latcher", "latchereye" },
+            { "Moloch_m", "molochfragment" },
+            { "Moloch", "molochfragment" },
+            { "Molochblack_m", "blackmolochfragment" },
+            { "Molochblack", "blackmolochfragment" },
+            { "Doomworm", "wormfang" },
+            { "Endworm", "wormfang" },
+            { "Watcher", "watcherspike" }
+        };
+		[HarmonyPatch("ApplyAttack")]
+		[HarmonyPostfix]
+		public static void Postfix(Character __instance, Character attacker, Attack attack)
+            {
+                // 基础校验：必须已死、有攻击者、未完成收集[cite: 2]
+                if (attacker == null || !__instance.IsDead || CompletedCharacters.Contains(__instance)) return;
+
+                // 检查是否持刀或者斧子
+                var heldItem = attacker.HeldItems.FirstOrDefault(it => 
+            it.Prefab.Identifier == "divingknife" || 
+            it.Prefab.Identifier == "boardingaxe");
+                if (heldItem == null) return;
+
+                // 初始化或增加进度
+                if (!CutProgress.ContainsKey(__instance)) CutProgress[__instance] = 0f;
+                
+                // 每次点击增加 20 进度 (5次切满)
+                CutProgress[__instance] += 20f;
+#if CLIENT
+				float progressState = CutProgress[__instance] / 100f;
+
+                // --- 关键部分：模仿 RepairTool 的原生进度条调用 ---
+                // 参数说明：唯一ID, 位置, 进度(0-1), 起始颜色, 结束颜色, (可选)文本标签
+                var progressBar = attacker.UpdateHUDProgressBar(
+                    __instance.ID, 
+                    __instance.DrawPosition, 
+                    progressState, 
+                    GUIStyle.Red, 
+                    GUIStyle.Green,
+                    "progressbar.cutting"); // 使用切割专用的内置文本
+
+                if (progressBar != null) 
+                { 
+                    progressBar.Size = new Vector2(60.0f, 20.0f); // 匹配 RepairTool 的尺寸
+                }
+                // -------------------------------------------------------
+#endif
+                // 检查是否触发掉落
+                if (CutProgress[__instance] >= 100f)
+                {
+                    string speciesName = __instance.SpeciesName.Value;
+                    if (DropTable.TryGetValue(speciesName, out string dropIdentifier))
+                    {
+                        // 执行掉落逻辑[cite: 2]
+                        Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.Prefabs[dropIdentifier], __instance.WorldPosition);
+#if CLIENT
+                        GameMain.ParticleManager.CreateParticle("organeruption", __instance.WorldPosition, Vector2.Zero);
+                        GameMain.ParticleManager.CreateParticle("heavygib", __instance.WorldPosition, Vector2.Zero);
+#endif                        
+                        // 标记完成并清理进度
+                        CompletedCharacters.Add(__instance);
+                        CutProgress.Remove(__instance);
+                    }
+                }
+            }
+
+			//每当角色被移除时，从字典中删除，防止内存泄漏
+			[HarmonyPatch("Despawn")]
+			[HarmonyPrefix]
+            public static void Prefix(Character __instance)
+            {
+                // 当角色消失时，清理内存
+                CutProgress.Remove(__instance);
+                CompletedCharacters.Remove(__instance);
+            }
         
 	}
     

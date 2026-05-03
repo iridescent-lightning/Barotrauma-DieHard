@@ -648,6 +648,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <connection.Dock_State>Dock State</connection.Dock_State>
   <connection.vertical_engine_power_out>vertical_engine_power_out</connection.vertical_engine_power_out>
   <connection.powerconsumptionout>Power Consumption Out</connection.powerconsumptionout>
+  <connection.VentIn>Vent In</connection.VentIn>
+  <connection.VentOut>Vent Out</connection.VentOut>
   <uilabel.reactorcooline>Cooline</uilabel.reactorcooline>
   <uilabel.oxygencandle>Oxygen Candle Slot</uilabel.oxygencandle>
   <uilabel.lock>Lock</uilabel.lock>
