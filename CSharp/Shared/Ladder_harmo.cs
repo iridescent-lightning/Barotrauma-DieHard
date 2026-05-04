@@ -1,5 +1,5 @@
 ﻿﻿// This class force character to climb with double hands
-/*using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Barotrauma.IO;
@@ -20,34 +20,12 @@ using System.Reflection;
 
 namespace BarotraumaDieHard
 {
-    class LadderMod : IAssemblyPlugin
+	[HarmonyPatch(typeof(Ladder))]
+    class LadderPatch
     {
-        public Harmony harmony;
-		
-
-
-		public void Initialize()
-		{
-		    harmony = new Harmony("LadderMod");
-
-			
-			
-            var originalEquip = typeof(Ladder).GetMethod("Select", BindingFlags.Public | BindingFlags.Instance);
-            var postfixEquip = new HarmonyMethod(typeof(LadderMod).GetMethod(nameof(SelectPostfix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalEquip, postfixEquip, null);
-
-        }
-
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
-
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
 		
 		//None = 0, Any = 1, RightHand = 2, LeftHand = 4, Head = 8, InnerClothes = 16, OuterClothes = 32, Headset = 64, Card = 128, Bag = 256, HealthInterface = 512
+		/*
 		public static bool SelectPostfix(Character character, Ladder __instance)
 		{
 			
@@ -79,6 +57,19 @@ namespace BarotraumaDieHard
 			
 			
 			return true;
+		}*/
+		//Disallow climbing if the ladder is a teleporting door so we won't accidently climb the door if the door was placed too close with a real ladder.
+		[HarmonyPatch("Select")]
+		[HarmonyPrefix]
+		public static bool Select(Ladder __instance, Character character, ref bool __result)
+		{
+			if (character == null || character.LockHands || character.Removed ) { return false; }
+            if (!character.CanClimb) { return false; }
+			if (__instance.Item.HasTag("zdoor"))
+			{
+				return false;
+			}
+				return true;
 		}
 
 		
@@ -86,4 +77,4 @@ namespace BarotraumaDieHard
         
 	}
     
-}*/
+}

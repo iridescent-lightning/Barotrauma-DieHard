@@ -34,20 +34,33 @@ namespace BarotraumaDieHard
             {
                 
                 Vector2 destination = targetGate.WorldPosition;
-
-                // 2. 执行传送
-                user.TeleportTo(destination);
-
-                // 3. 善后工作：解决摄像机穿帮
-                // 只有当传送的是玩家控制的角色时才处理相机
-                if (Character.Controlled == user)
+                //延迟一帧执行，不如AI在计算GetDiffAndAdvance时会导致游戏崩溃
+                CoroutineManager.Invoke(() =>
                 {
-                    var cam = GameMain.GameScreen.Cam;
-                    cam.Position = destination;
-                    // 强制同步上一帧坐标，跳过平滑插值
-                    // 在 C# 中某些字段可能是私有的，可以用反射或者 UpdateTransform(false)
-                    cam.UpdateTransform(interpolate: false);
-                }
+                    if (user == null || user.Removed) return;
+
+                    user.TeleportTo(destination);
+
+                    if (user.AIController is HumanAIController ai)
+                    {
+                        if (ai?.SteeringManager != null)
+                        {
+                            //ai.ClearObjectives();   
+                            ai.SteeringManager.Reset();
+                        }
+                    }
+
+                    if (Character.Controlled == user)
+                    {
+                        var cam = GameMain.GameScreen?.Cam;
+                        if (cam != null)
+                        {
+                            cam.Position = destination;
+                            cam.UpdateTransform(interpolate: false);
+                        }
+                    }
+
+                }, 0.0f);
 
                 // 4. 播放声音（可选）
                 // 也可以直接在 XML 的 StatusEffect 里写 Sound 节点

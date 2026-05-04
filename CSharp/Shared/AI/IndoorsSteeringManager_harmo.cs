@@ -18,8 +18,6 @@ namespace BarotraumaDieHard.AI
     [HarmonyPatch(typeof(IndoorsSteeringManager))]
     class IndoorsSteeringManagerDieHard
     {
-
-
         [HarmonyPatch("CanAccessDoor")]
         [HarmonyPrefix]
         public static bool CanAccessDoorPrefix(Door door, Func<Controller, bool> buttonFilter, IndoorsSteeringManager __instance, ref bool __result)

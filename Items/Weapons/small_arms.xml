@@ -15,7 +15,7 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
-    <Revolver name="" identifier="revolver" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,pistolitem,gunsmith,mountableweapon,collidable,zoom" Scale="0.35" impactsoundtag="impact_handguns" description="" subcategory="small arms" nameidentifier="revolvernew">
+    <Revolver name="" identifier="revolver" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,pistolitem,gunsmith,mountableweapon,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" description="" subcategory="small arms" nameidentifier="revolvernew">
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
       <PreferredContainer primary="secarmcab" secondary="armcab,weaponholder" />
@@ -129,7 +129,7 @@
         </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Revolverround>
-    <Item name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms">
+    <Item name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -195,6 +195,7 @@
           <Use />
         </StatusEffect>
       </ItemContainer>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </Item>
     <Item name="" identifier="57mag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -232,7 +233,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.2" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -327,6 +328,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
     </Item>
     <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -470,7 +472,7 @@
       <Body width="131" height="83" density="50" />
       <Holdable slots="RightHand, LeftHand" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </M16Stock>
-    <M16 name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <M16 name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -576,6 +578,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </M16>
     <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -653,7 +656,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -748,6 +751,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
     </Item>
     <Item name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -825,7 +829,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="MP9" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="MP9" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.01" />
@@ -916,6 +920,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
     </Item>
     <Item name="" identifier="mp9mag" description="" maxstacksize="3" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -953,7 +958,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="P90" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="P90" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.01" />
@@ -1054,6 +1059,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </Item>
     <Item name="" identifier="p90mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -1133,7 +1139,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="mk17" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="mk17" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1237,6 +1243,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </Item>
     <Item name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -1399,7 +1406,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.2" />
@@ -1503,6 +1510,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
     </Item>
     <Item name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
       <PreferredContainer primary="ak47" amount="1" notcampaign="True" />
@@ -1619,7 +1627,7 @@
       <Body width="224" height="51" density="50" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </AK47Barrel>
-    <Item name="" identifier="pkm" aliases="pkm" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="pkm" aliases="pkm" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" notcampaign="true" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.2" notcampaign="true" />
@@ -1712,6 +1720,7 @@
         </StatusEffect>
       </Repairable>
       <SkillRequirementHint identifier="weapons" level="90" />
+      <aitarget sightrange="2000" soundrange="8000" fadeouttime="5" />
     </Item>
     <Item name="" identifier="pkmmag" aliases="pkmmag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" health="200" subcategory="small arms">
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="703,0,64,64" origin="0.5,0.5"/>
@@ -1787,7 +1796,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1876,6 +1885,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="60" />
     </Item>
     <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -2025,6 +2035,7 @@
         </StatusEffect>
       </ItemContainer>
       <SkillRequirementHint identifier="weapons" level="55" />
+      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
     </Item>
     <Item name="" identifier="g19mag" description="17 round 9x19 magazine for Glock 19" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="G19" amount="1" notcampaign="true" />
@@ -2061,7 +2072,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="underwatergun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable" Scale="0.225" impactsoundtag="impact_metal_light" health="100" description="" subcategory="small arms">
+    <Item name="" identifier="underwatergun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.225" impactsoundtag="impact_metal_light" health="100" description="" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.2" />
       <PreferredContainer secondary="secarmcab" minamount="1" maxamount="1" spawnprobability="0.3" />

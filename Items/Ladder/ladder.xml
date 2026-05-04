@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Items>
-    <Item name="teleportladder" identifier="teleportladder" tags="ladder" resizevertical="true" scale="0.5" allowrotatingineditor="false" linkable="true" allowedlinks="enterable_doora">
+    <Item name="teleportladder" identifier="teleportladder" tags="ladder,zdoor" resizevertical="true" scale="0.5" allowrotatingineditor="false" linkable="true" allowedlinks="enterable_doora,zdoor">
       <Upgrade gameversion="0.9.700.0" spritedepth="0.51" />
       <Upgrade gameversion="0.10.0.0" rectwidth="11" scale="0.5" />
       <Sprite texture="Content/Items/Ladder/ladder.png" depth="0.51" sourcerect="34,8,22,240" />

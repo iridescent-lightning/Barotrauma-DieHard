@@ -358,7 +358,7 @@
       <Label name="checkstart" />
       <TriggerAction target1tag="weaponchecker" target2tag="visitor" radius="200" waitforinteraction="false" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
-      <CheckItemAction targettag="visitor" itemidentifiers="ak47,MPX,pkm,MCX,mk17,MP9,P90,fal,underwatergun,shotgun">
+      <CheckItemAction targettag="visitor" ItemTags="longarm">
         <Success>
           <ConversationAction targettag="visitor" text="EventText.checkweapon.c" eventsprite="Stuckinthemiddle1" />
           <ConversationAction targettag="visitor" text="EventText.checkweapon.c1" />
@@ -423,7 +423,7 @@
       <Label name="checkstart2" />
       <TriggerAction target1tag="weaponchecker" target2tag="visitor" radius="200" waitforinteraction="false" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
-      <CheckItemAction targettag="visitor" itemidentifiers="ak47,MPX,pkm,MCX,mk17,MP9,P90">
+      <CheckItemAction targettag="visitor" ItemTags="longarm">
         <Success>
           <ConversationAction targettag="visitor" text="EventText.checkweapon2.c" eventsprite="Stuckinthemiddle1">
             <Option text="EventText.checkweapon2.c.o1" endconversation="true">
@@ -460,7 +460,7 @@
       <Label name="checkstart" />
       <TriggerAction target1tag="weaponchecker" target2tag="visitor" radius="200" waitforinteraction="false" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
-      <CheckItemAction targettag="visitor" itemidentifiers="ak47,MPX,pkm,MCX,mk17,MP9,P90,fal,underwatergun,shotgun">
+      <CheckItemAction targettag="visitor" ItemTags="longarm">
         <Success>
           <ConversationAction targettag="visitor" text="EventText.checkweapon.c" eventsprite="Stuckinthemiddle1" />
           <ConversationAction targettag="visitor" text="EventText.checkweapon.c1" />
@@ -525,7 +525,7 @@
       <Label name="checkstart2" />
       <TriggerAction target1tag="weaponchecker" target2tag="visitor" radius="200" waitforinteraction="false" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
-      <CheckItemAction targettag="visitor" itemidentifiers="ak47,MPX,pkm,MCX,mk17,MP9,P90">
+      <CheckItemAction targettag="visitor" ItemTags="longarm">
         <Success>
           <ConversationAction targettag="visitor" text="EventText.checkweapon2.c" eventsprite="Stuckinthemiddle1">
             <Option text="EventText.checkweapon2.c.o1" endconversation="true">
