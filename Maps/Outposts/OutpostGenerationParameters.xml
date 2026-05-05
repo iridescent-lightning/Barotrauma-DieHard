@@ -638,7 +638,9 @@
     
     <OutpostConfig
     identifier="abandonedoutpost"
-    totalmodulecount="6" minhallwaylength="0"
+    totalmodulecount="6" 
+    minhallwaylength="200"
+    alwaysgeneratehallways="false"
     allowedlocationtypes="Abandoned"
     spawncrewinsideoutpost="false"
     alwaysdestructible="true"

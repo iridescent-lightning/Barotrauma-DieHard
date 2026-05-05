@@ -68,7 +68,7 @@
     2. Swapping vanilla sprite with code-draw line. So we can adjust the visual effect's width based on sonar width. Also deleting original full circule. We don't have omni sonar.
     3. Updating bandit_heavy and bandit_elite from the latest update.
     4. Turned down the fusedamage for junction box. from 35-165 to 10-50
-    5. Changing bandit weapon "57" to "Five-seven" for better readability.
+    5. Changing bandit weapon "57" to "FNFive-seven" for better readability.
     6. Fixing lua bug using repair collision which was deleted in the source code.
     7. Adding a force mission happen feature. To be implemented.
 63.

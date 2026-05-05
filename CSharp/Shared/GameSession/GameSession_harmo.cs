@@ -144,7 +144,7 @@ namespace BarotraumaDieHard
 #endif
 
 
-
+        //This causes the togglecampaignteleport can't view the normal abandoned outposts if teleported directly to that location. Bucause it will always convert to destroyed type.
         public static void ConvertLocationToDestroyed()
         {
             if (GameMain.GameSession?.Campaign == null) return;

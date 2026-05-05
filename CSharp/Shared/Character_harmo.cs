@@ -372,6 +372,15 @@ namespace BarotraumaDieHard
                 CompletedCharacters.Remove(__instance);
             }
         
+
+		// Make AI can see through Windowed doors.
+		// In Door harmony we adjusted the raycast logic to make the ray always passthrough the door
+		[HarmonyPatch("CanSeeTarget")]
+		[HarmonyPrefix]
+		static void Prefix(ref bool seeThroughWindows)
+		{
+			seeThroughWindows = true;
+		}
 	}
     
 }

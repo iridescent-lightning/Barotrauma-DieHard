@@ -18,36 +18,11 @@ using BarotraumaDieHard.Items;
 
 namespace BarotraumaDieHard.AI
 {
-    class HumanAIControllerDieHard  : IAssemblyPlugin
+    [HarmonyPatch(typeof(HumanAIController))]
+    class HumanAIControllerPatch
     {
-        public Harmony harmony;
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("HumanAIControllerDieHard");
-
-            // For this normal public direct patch
-            harmony.Patch(
-		    original: typeof(HumanAIController).GetMethod("NeedsDivingGear"),
-		    prefix: new HarmonyMethod(typeof(HumanAIControllerDieHard).GetMethod("NeedsDivingGearPrefix"))
-            );
-
-            var originalCalculateHullSafety = typeof(HumanAIController).GetMethod("CalculateHullSafety", BindingFlags.NonPublic | BindingFlags.Static);
-            var postfixCalculateHullSafety = typeof(HumanAIControllerDieHard).GetMethod(nameof(CalculateHullSafetyPrefix), BindingFlags.Public | BindingFlags.Static);
-
-            harmony.Patch(originalCalculateHullSafety, new HarmonyMethod(postfixCalculateHullSafety), null);
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
+        [HarmonyPatch("NeedsDivingGear")]
+        [HarmonyPrefix]
         // Let us make bots just use diving mask when are inside.
         public static bool NeedsDivingGearPrefix(Hull hull, out bool needsSuit, HumanAIController __instance, ref bool __result)
         {
@@ -82,6 +57,18 @@ namespace BarotraumaDieHard.AI
             return false;
         }
 
+        [HarmonyPatch("CalculateHullSafety")]
+        [HarmonyPatch(new Type[] { 
+            typeof(Hull), 
+            typeof(IEnumerable<Hull>), 
+            typeof(Character), 
+            typeof(bool), // ignoreWater
+            typeof(bool), // ignoreOxygen
+            typeof(bool), // ignoreFire
+            typeof(bool), // ignoreEnemies
+            typeof(bool)  // ignorePressureProtection
+            })]
+        [HarmonyPrefix]
         // A small change to include an additional radiation factor for hull safety check.
        public static bool CalculateHullSafetyPrefix(Hull hull, Character character, IEnumerable<Hull> visibleHulls,  bool ignoreWater, bool ignoreOxygen, bool ignoreFire, bool ignoreEnemies, HumanAIController __instance, ref float __result)
         {
@@ -177,44 +164,44 @@ namespace BarotraumaDieHard.AI
         }
 
 
-// Method to handle equipping a radiation suit
-protected static void EquipRadiationSuit(Character character, HumanAIController humanAIController)
-{
-    // Try to find the radiation suit in the bot's inventory first
-    Item radiationSuit = character.Inventory.FindItem(it => it.HasTag("radiationsuit"), recursive: true);
+        // Method to handle equipping a radiation suit
+        protected static void EquipRadiationSuit(Character character, HumanAIController humanAIController)
+        {
+            // Try to find the radiation suit in the bot's inventory first
+            Item radiationSuit = character.Inventory.FindItem(it => it.HasTag("radiationsuit"), recursive: true);
 
-    // If no radiation suit is found in inventory, search for one
-    if (radiationSuit == null)
-    {
-        // Set up the gear tag for radiation suit
-        Identifier gearTag = "radiationsuit".ToIdentifier();
-        
-        // Create the objective to get the item
-        var getItemObjective = new AIObjectiveGetItem(character, gearTag, humanAIController.ObjectiveManager, equip: true)
-        {
-            AllowStealing = false, // No stealing logic
-            EquipSlotType = InvSlotType.OuterClothes, // Equip in outer clothing slot
-            Wear = true
-        };
-        
-        // Add this objective to the human AI controller
-        humanAIController.ObjectiveManager.AddObjective(getItemObjective);
-        character.Speak(TextManager.Get("dialog.bots.searchingforradiationsuit").Value, null, 0.0f, "dialog.bots.searchingforradiationsuit".ToIdentifier(), 10.0f);
-    }
-    else
-    {
-        // If the suit was found in the inventory, try equipping it
-        bool success = character.Inventory.TryPutItem(radiationSuit, character, createNetworkEvent: true, ignoreCondition: true);
-        if (success)
-        {
-            character.Speak(TextManager.Get("dialog.bots.equipradiationsuit").Value, null, 0.0f, "dialog.bots.equipradiationsuit".ToIdentifier(), 10.0f);
+            // If no radiation suit is found in inventory, search for one
+            if (radiationSuit == null)
+            {
+                // Set up the gear tag for radiation suit
+                Identifier gearTag = "radiationsuit".ToIdentifier();
+                
+                // Create the objective to get the item
+                var getItemObjective = new AIObjectiveGetItem(character, gearTag, humanAIController.ObjectiveManager, equip: true)
+                {
+                    AllowStealing = false, // No stealing logic
+                    EquipSlotType = InvSlotType.OuterClothes, // Equip in outer clothing slot
+                    Wear = true
+                };
+                
+                // Add this objective to the human AI controller
+                humanAIController.ObjectiveManager.AddObjective(getItemObjective);
+                character.Speak(TextManager.Get("dialog.bots.searchingforradiationsuit").Value, null, 0.0f, "dialog.bots.searchingforradiationsuit".ToIdentifier(), 10.0f);
+            }
+            else
+            {
+                // If the suit was found in the inventory, try equipping it
+                bool success = character.Inventory.TryPutItem(radiationSuit, character, createNetworkEvent: true, ignoreCondition: true);
+                if (success)
+                {
+                    character.Speak(TextManager.Get("dialog.bots.equipradiationsuit").Value, null, 0.0f, "dialog.bots.equipradiationsuit".ToIdentifier(), 10.0f);
+                }
+                else
+                {
+                    character.Speak(TextManager.Get("dialog.bots.cantfindsuit").Value, null, 0.0f, "dialog.bots.cantfindsuit".ToIdentifier(), 10.0f);
+                }
+            }
         }
-        else
-        {
-            character.Speak(TextManager.Get("dialog.bots.cantfindsuit").Value, null, 0.0f, "dialog.bots.cantfindsuit".ToIdentifier(), 10.0f);
-        }
-    }
-}
 
 
         public static bool HasRadiationSuit(Character character)
@@ -241,13 +228,67 @@ protected static void EquipRadiationSuit(Character character, HumanAIController 
             return false;
         }
 
+        // Move the windowed door logic in AIObjectiveCombat
+        /*[HarmonyPatch("SpotEnemies")]
+        [HarmonyPostfix]
+        public static void Postfix(HumanAIController __instance)
+        {
+            // 如果没有进入战斗状态，说明没发现敌人
+            if (!__instance.ObjectiveManager.HasActiveObjective<AIObjectiveCombat>()) return;
 
+            Character aiChar = __instance.Character;
+            // 获取当前战斗目标
 
+            // 使用 CurrentObjective 获取基类，再进行类型转换
+            if (__instance.ObjectiveManager.CurrentObjective is AIObjectiveCombat combatObjective)
+            {
+                Character target = combatObjective?.Enemy;
 
+                if (target == null) return;
 
+                // --- 关键判定：是否隔着门发现 ---
+                // 我们发射一条简单的射线，不使用透视补丁的逻辑，看看能不能直接看到
+                // 如果原版逻辑看死，但现在 AI 锁定了目标，说明是“透视”发现的
+                var obstacle = Submarine.PickBody(
+                    aiChar.SimPosition, 
+                    target.SimPosition, 
+                    collisionCategory: Physics.CollisionWall | Physics.CollisionItem);
 
+                if (obstacle != null && obstacle.UserData is Item item && item.GetComponent<Barotrauma.Items.Components.Door>() != null)
+                {
+                    
+                    // 发现目标和 AI 之间确实隔着一扇门
+                    aiChar.Speak(TextManager.Get("dialog.bots.spottedenemybehinddoor").Value, ChatMessageType.Radio, 0.0f, "dialog.bots.spottedenemybehinddoor".ToIdentifier(), 10.0f
+                    );
+                    
+                    // 既然发现了门后的敌人，强制 AI 跑过去（增加侵略性）
+                    var gotoObjective = new AIObjectiveGoTo(target, aiChar, __instance.ObjectiveManager, repeat: false);
+                    __instance.ObjectiveManager.AddObjective(gotoObjective);
+                }
+            }
+        }*/
 
+        [HarmonyPatch(typeof(HumanAIController), "Update")]
+        [HarmonyPostfix]
+        public static void UpdatePostfix(HumanAIController __instance, float deltaTime)
+        {
+            // 1. 基础状态过滤：死亡、瘫痪或已经处于战斗状态的不扫描
+            if (__instance.Character.IsDead || __instance.Character.IsIncapacitated) return;
+            
+            // 2. 战斗状态过滤：如果 AI 已经在打人了，没必要每帧再跑一次视觉雷达
+            if (__instance.ObjectiveManager.HasActiveObjective<AIObjectiveCombat>()) return;
 
+            // 3. 频率控制：每 0.2 秒左右执行一次
+            // 我们直接借用 deltaTime 进行倒计时
+            // 注意：这里我们使用了一个简单的逻辑：每 12 帧左右执行一次 (假设 60fps)
+            // 或者你可以尝试修改实例内部的 enemyCheckTimer
+            
+            // 更加稳妥的写法是手动控制一个时间步长：
+            if (Timing.TotalTime % 0.2f < deltaTime) 
+            {
+                __instance.SpotEnemies();
+            }
+        }
         
     }
 }

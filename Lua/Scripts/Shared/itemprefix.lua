@@ -42,14 +42,14 @@ Timer.Wait(function()
                 sonarComponent.HasMineralScanner=true;
 			end
 			end,100)
-		elseif item.HasTag('creature_loot') then
+		--[[elseif item.HasTag('creature_loot') then
 		Timer.Wait(function()
 			local randomDecay = math.random(1,20)
 				item.Condition = item.Condition - randomDecay
 			if item.Condition == 0 then
 				Entity.Spawner.AddEntityToRemoveQueue(item)
 			end
-			end,100)
+			end,100)--]]
 		elseif item.Prefab.Identifier == 'warrant' then
 		
 			item.Condition = item.Condition - 50

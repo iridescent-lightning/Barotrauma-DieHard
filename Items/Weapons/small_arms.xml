@@ -66,7 +66,7 @@
       <ItemContainer capacity="1" maxstacksize="6" hideitems="true" containedstateindicatorstyle="bullet">
         <Containable items="revolverammo" />
       </ItemContainer>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <SkillRequirementHint identifier="weapons" level="50" />
     </Revolver>
@@ -195,7 +195,7 @@
           <Use />
         </StatusEffect>
       </ItemContainer>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </Item>
     <Item name="" identifier="57mag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -328,7 +328,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
     </Item>
     <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -578,7 +578,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </M16>
     <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -751,7 +751,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
     </Item>
     <Item name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -920,7 +920,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
     </Item>
     <Item name="" identifier="mp9mag" description="" maxstacksize="3" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -1059,7 +1059,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </Item>
     <Item name="" identifier="p90mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -1243,7 +1243,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </Item>
     <Item name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -1510,7 +1510,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
     </Item>
     <Item name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
       <PreferredContainer primary="ak47" amount="1" notcampaign="True" />
@@ -1885,7 +1885,7 @@
           <Affliction identifier="stun" strength="0.1" />
         </StatusEffect>
       </Repairable>
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="60" />
     </Item>
     <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
@@ -2035,7 +2035,7 @@
         </StatusEffect>
       </ItemContainer>
       <SkillRequirementHint identifier="weapons" level="55" />
-      <aitarget sightrange="2000" soundrange="5000" fadeouttime="5" />
+      <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
     </Item>
     <Item name="" identifier="g19mag" description="17 round 9x19 magazine for Glock 19" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="G19" amount="1" notcampaign="true" />

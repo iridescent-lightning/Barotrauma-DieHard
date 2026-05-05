@@ -115,7 +115,7 @@
             <Item identifier="oxygentank" />
           </Item>
           <Item identifier="divingknife" equip="false" />
-          <Item identifier="57">
+          <Item identifier="FNFive-seven">
             <Item identifier="57mag" />
           </Item>
           <Item identifier="57mag" />
@@ -183,7 +183,7 @@
             <Item identifier="oxygentank" />
           </Item>
           <Item identifier="divingknife" equip="false" />
-          <Item identifier="57">
+          <Item identifier="FNFive-seven">
             <Item identifier="57mag" />
           </Item>
           <Item identifier="57mag" />
@@ -514,6 +514,85 @@
           <Item identifier="bikehorn" equip="true" />
         </ItemSet>
       </npc>
+      <npc identifier="psychoclown" commonness="0" moduleflags="none" job="killer" behavior="Passive" healthmultiplier="1.5" healthmultiplierinmultiplayer="3" aimspeed="1" aimaccuracy="1" reportrange="500" findweaponsrange="0">
+      <ItemSet commonness="99">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="clowncostume" equip="true"/>
+        <Item identifier="clownmask" equip="true"/>
+        <Item identifier="clowndivingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="oxygentank" />
+        <Item identifier="pressurestabilizer" />
+        <Item identifier="divingknife" equip="true"/>
+        <Item identifier="bikehorn" equip="true"/>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="clownsuitunique" equip="true"/>
+        <Item identifier="clownmaskunique" equip="true"/>
+        <Item identifier="clowndivingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+        <Item identifier="oxygentank" />
+        <Item identifier="pressurestabilizer" />
+        <Item identifier="divingknifeunique" equip="true"/>
+        <Item identifier="bikehorn" equip="true"/>
+      </ItemSet>
+    </npc>
+    <npc identifier="huskextremist" commonness="0" tags="huskcultist" group="husk" moduleflags="crewmodule,researchmodule" job="killer" behavior="Passive" healthmultiplier="0.5" healthmultiplierinmultiplayer="1.5" aimspeed="0.8" aimaccuracy="0.25" reportrange="500" findweaponsrange="0">
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="cultistrobes" equip="true"/>
+        <Item identifier="huskstinger" equip="false"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="cultistrobes" equip="true"/>
+        <Item identifier="huskstinger" equip="false"/>
+        <Item identifier="piratebandana" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="0.5">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="cultistrobes" equip="true"/>
+        <Item identifier="huskstinger" equip="false"/>
+        <Item identifier="piratebandana" equip="true" />
+        <Item identifier="huskeggs" equip="true" />
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    <npc identifier="huskextremist_leader" tags="huskcultist" group="husk" commonness="0" moduleflags="crewmodule,researchmodule" job="medicaldoctor" behavior="Passive" healthmultiplier="1" healthmultiplierinmultiplayer="1.3" aimspeed="0.8" aimaccuracy="0.75" reportrange="750" findweaponsrange="0">
+      <ItemSet commonness="10">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="zealotrobes" equip="true"/>
+        <Item identifier="huskstinger" equip="true"/>
+        <Item identifier="syringegun" equip="false">
+          <Item identifier="huskeggs" amount="2" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="zealotrobes" equip="true"/>
+        <Item identifier="divingknifeunique" equip="false"/>
+        <Item identifier="syringegun" equip="false">
+          <Item identifier="huskeggs" amount="2" />
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
     </npcset>
   </npcsets>
 </Override>

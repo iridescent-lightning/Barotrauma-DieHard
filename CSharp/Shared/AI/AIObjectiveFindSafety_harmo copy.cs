@@ -143,7 +143,7 @@ namespace BarotraumaDieHard.AI
             {
 
                 
-                if (needsRadiationSuit && !HumanAIControllerDieHard.HasRadiationSuit(_.character))
+                if (needsRadiationSuit && !HumanAIControllerPatch.HasRadiationSuit(_.character))
                 {
                     // Seems that cannotFindDivingGear is used to reset bots attempts. Let us just use it for convenience. 
                     if (_.cannotFindDivingGear && _.retryCounter < _.findDivingGearAttempts)

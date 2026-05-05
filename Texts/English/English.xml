@@ -762,6 +762,13 @@ The man pulled out a syringe and injected something into your arm. You felt some
 
   <dialog.bots.cannotaccesswetroomdoor>I can't open ballast tank hatch because the room is pressurized!</dialog.bots.cannotaccesswetroomdoor>
 
+
+  <dialog.bots.spottedenemybehinddoor>I see movements behind the door!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Hey! Someone behind the door!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Who's there!?</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Fuck! Behind the door!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Foe behind the door!</dialog.bots.spottedenemybehinddoor>
+
   <!--Skills-->
   <skillname.ondeckweapon>On Deck Weapon</skillname.ondeckweapon>
 

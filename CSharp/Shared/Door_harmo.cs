@@ -159,5 +159,20 @@ namespace BarotraumaDieHard
 
             return true; 
         }
+
+        
+        [HarmonyPatch("IsPositionOnWindow")]
+        [HarmonyPrefix]
+        // 强制让这个方法永远返回 true
+        // 这样只要门有窗户，不管射线打在哪，都会认为打在了窗户上
+        static bool Prefix(ref bool __result, Barotrauma.Items.Components.Door __instance)
+        {
+            if (__instance.HasWindow)
+            {
+                __result = true;
+            }
+            return false;
+        }
+        
     }
 }
