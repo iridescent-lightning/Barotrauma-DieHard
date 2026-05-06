@@ -17,50 +17,11 @@ using Barotrauma;
 
 namespace BarotraumaDieHard
 {
-    class HullMod : IAssemblyPlugin
+    [HarmonyPatch(typeof(Hull))]
+    class HullMod
     {
-        private Harmony harmony;
-
-
-        
-    
-        public void Initialize()
-        {
-            
-
-            harmony = new Harmony("HullMod");
-            var originalConstructor = typeof(Hull).GetConstructor(new[] { typeof(Rectangle), typeof(Submarine), typeof(ushort) });
-            var postfix = new HarmonyMethod(typeof(HullMod).GetMethod(nameof(HullMod.HullConstructorPostfix)));
-            harmony.Patch(originalConstructor, null, postfix);
-
-            
-
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Hull), "Update"),
-                postfix: new HarmonyMethod(typeof(HullMod).GetMethod("Update"))
-            );
-
-            harmony.Patch(
-                original: AccessTools.Method(typeof(Hull), "ApplyFlowForces"),
-                prefix: new HarmonyMethod(typeof(HullMod).GetMethod("ApplyFlowForces"))
-            );
-            
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() 
-        {
-
-        }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-            
-        }
-
+        [HarmonyPatch("ApplyFlowForces")]
+        [HarmonyPrefix]
         public static bool ApplyFlowForces(Hull __instance, float deltaTime, Item item)
         {
             if (item.body.Mass <= 0.0f)
@@ -82,7 +43,9 @@ namespace BarotraumaDieHard
         //this is used to assign gas from the GasInfo class to each hull
         public static Dictionary<Hull, GasInfo> gasMap = new Dictionary<Hull, GasInfo>();
 
-        
+        [HarmonyPatch(MethodType.Constructor)]
+        [HarmonyPatch(new Type[] { typeof(Rectangle), typeof(Submarine), typeof(ushort) })]
+        [HarmonyPostfix]
         public static void HullConstructorPostfix(Hull __instance)
     {
         
@@ -105,6 +68,8 @@ namespace BarotraumaDieHard
             gasMap[__instance] = gasInfo;
         //__instance.ToxicGasPercentage = volume <= 0.0f ? 100.0f : __instance.toxicGas / volume * 100.0f;
     }
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
         public static void Update(Hull __instance, float deltaTime, Camera cam)
         {
             Hull hull = __instance;

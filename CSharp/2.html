@@ -1,22 +1,26 @@
-<Item name="" identifier="redwire" category="Electrical" Tags="smallitem,wire,electricalwire" maxstacksize="32" maxstacksizecharacterinventory="8" spritecolor="254,23,17,255" InventoryIconColor="254,23,17,255" canbepicked="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
-    <Price baseprice="10">
-      <Price storeidentifier="merchantoutpost" />
-      <Price storeidentifier="merchantcity" sold="false"/>
-      <Price storeidentifier="merchantresearch" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" />
-      <Price storeidentifier="merchantmine" />
-      <Price storeidentifier="merchantengineering" multiplier="0.9" />
-    </Price>
-    <PreferredContainer primary="engcab" amount="1" notcampaign="true" />
-    <PreferredContainer secondary="wreckengcab,abandonedengcab,pirateengcab,outpostengcab,beaconengcab" amount="1" spawnprobability="0.1" />
-    <Deconstruct time="1"/>
-    <Fabricate suitablefabricators="fabricator" requiredtime="5" amount="5">
-      <RequiredItem identifier="copper" />
-      <RequiredItem identifier="rubber" />
-    </Fabricate>
-    <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="448,64,64,64" origin="0.5,0.5" />
-    <Sprite texture="signalcomp.png" depth="0.8" sourcerect="169,224,84,32" origin="0.5,0.5" />
-    <Body radius="14" width="60" density="15" />
-    <Holdable slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
-    <Wire />
-  </Item>
+<InternalDamage
+    name="Gunshot wound"
+    identifier="gunshotwound"
+    description="The entry site is a small, dark, bruised hole oozing a little blood. The exit wound however is a large ragged mess of exposed tissue and pouring blood."
+    type="damage"
+    causeofdeathdescription="Shot to death"
+    selfcauseofdeathdescription="You have died of gunshot wounds."
+    limbspecific="true"
+    maxstrength="200"
+    karmachangeonapplied="-1"
+    damageoverlayalpha="2"
+    WeaponsSkillGain="1.0">
+    <Description
+      textidentifier="afflictiondescription.gunshotwound.low"
+      minstrength="0"
+      maxstrength="40"/>
+    <Description
+      textidentifier="afflictiondescription.gunshotwound"
+      minstrength="40"
+      maxstrength="200"/>
+    <Effect minstrength="0" maxstrength="200" multiplybymaxvitality="true"
+      minvitalitydecrease="0"
+      maxvitalitydecrease="2"
+      dialogflag="GunshotWound"/>
+    <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="256,768,128,128" color="195,60,60,255" origin="0,0"/>
+  </InternalDamage>

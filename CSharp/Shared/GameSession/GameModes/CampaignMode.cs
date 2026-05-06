@@ -20,7 +20,7 @@ using System.Reflection.PortableExecutable;
 namespace BarotraumaDieHard
 {
     [HarmonyPatch(typeof(CampaignMode))]
-    public class CampaignModePatch
+    public partial class CampaignModePatch
     {
         // 拦截 GetLeavingSub 方法
         [HarmonyPatch("OutpostNPCAttacked")]

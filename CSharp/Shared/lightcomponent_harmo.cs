@@ -6,66 +6,66 @@ using Barotrauma.Extensions;
 using Microsoft.Xna.Framework.Graphics;
 using Barotrauma.Lights;
 #endif
-using Barotrauma;
-using Barotrauma.Items.Components;
 
-using Barotrauma.Extensions;
+using System.Runtime.CompilerServices;
+using Barotrauma.Items.Components;
 using Barotrauma;
 using HarmonyLib;
 
 namespace LampMod
 {
-	class CustomLamp : IAssemblyPlugin
+	[HarmonyPatch(typeof(LightComponent))]
+	class LightComponentPatch
 	{
-		public Harmony harmony;
-		private static float defaultFlicker;
-		private static float defaultFlickerSpeed;
-		private static double randomDouble;
-		
-		public float Flicker { get; set; }
-		public float FlickerSpeed { get; set; }
-		
-		public void Initialize()
-		{
-		  harmony = new Harmony("CustomLamp");
+		// 为每个 LightComponent 实例存储其原始值
+        private static readonly ConditionalWeakTable<LightComponent, LightData> OriginalSettings = new();
 
-		  harmony.Patch(
-			original: typeof(LightComponent).GetMethod("Update"),
-			postfix: new HarmonyMethod(typeof(CustomLamp).GetMethod("Update"))
-		  );
-		  
-		  
-		  
-			Random random = new Random();
-			defaultFlicker = Flicker;
-			defaultFlickerSpeed = FlickerSpeed;
-			randomDouble = random.NextDouble();
-		}
-		public void OnLoadCompleted() { }
-		public void PreInitPatching() { }
+        private class LightData
+        {
+            public float Flicker;
+            public float FlickerSpeed;
+            public double RandomOffset;
+        }
 
-		public void Dispose()
-		{
-		  harmony.UnpatchSelf();
-		  harmony = null;
-		}
-		
-		
-		public static void Update(float deltaTime, Camera cam, LightComponent __instance)
-		{
-			LightComponent _ = __instance;
+        // 在初始化时记录原始值
+        [HarmonyPatch("OnItemLoaded")] // 建议用 OnItemLoaded，比 OnMapLoaded 更早且更针对实例
+        [HarmonyPostfix]
+        public static void Postfix_OnItemLoaded(LightComponent __instance)
+        {
+            if (!OriginalSettings.TryGetValue(__instance, out _))
+            {
+                var rand = new Random();
+                OriginalSettings.Add(__instance, new LightData
+                {
+                    Flicker = __instance.Flicker,
+                    FlickerSpeed = __instance.FlickerSpeed,
+                    RandomOffset = rand.NextDouble()
+                });
+            }
+        }
 
-			if (_.item.Condition / _.item.MaxCondition < 0.3 &&_.item.HasTag("lamp"))
-			{
-				_.Flicker = 0.2f + (float)(randomDouble * 0.1f - 0.05f);
-				_.FlickerSpeed = 0.3f + (float)(randomDouble * 0.1f - 0.05f);
-			}
-			else
-			{
-				_.Flicker = defaultFlicker;
-				_.FlickerSpeed = defaultFlickerSpeed;
-			}
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
+        public static void Postfix_Update(float deltaTime, Camera cam, LightComponent __instance)
+        {
+            // 只处理带有 lamp 标签的物品
+            if (!__instance.item.HasTag("lamp")) return;
 
-		}
+            if (OriginalSettings.TryGetValue(__instance, out var data))
+            {
+                if (__instance.item.Condition / __instance.item.MaxCondition < 0.3f)
+                {
+                    // 使用该实例特有的随机偏移，让不同灯泡闪烁感不同
+                    __instance.Flicker = 0.2f + (float)(data.RandomOffset * 0.1 - 0.05);
+                    __instance.FlickerSpeed = 0.3f + (float)(data.RandomOffset * 0.1 - 0.05);
+                }
+                else
+                {
+                    // 恢复到该实例自己的原始值，而不是全局值
+                    __instance.Flicker = data.Flicker;
+                    __instance.FlickerSpeed = data.FlickerSpeed;
+                }
+            }
+        }
 	}
 }

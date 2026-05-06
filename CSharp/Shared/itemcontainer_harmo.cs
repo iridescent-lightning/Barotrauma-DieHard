@@ -124,8 +124,8 @@ namespace BarotraumaDieHard
 				
 				return false;
 		}
-		
-		
+		//no use leftover
+		/*
 		[HarmonyPatch("Equip")]
         [HarmonyPrefix]
 		public static bool Equip(Character character, ItemContainer  __instance)
@@ -145,6 +145,7 @@ namespace BarotraumaDieHard
 			}
 			return false;
 		}
+		*/
 		
 	}
 }

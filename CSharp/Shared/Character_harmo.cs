@@ -381,6 +381,9 @@ namespace BarotraumaDieHard
 		{
 			seeThroughWindows = true;
 		}
+
+
+
 	}
     
 }

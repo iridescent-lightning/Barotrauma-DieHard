@@ -18,35 +18,17 @@ using Barotrauma.Items.Components;
 
 namespace BarotraumaDieHard
 {
-    class CampaignModeDieHard : IAssemblyPlugin
+    [HarmonyPatch(typeof(CampaignMode))]
+    partial class CampaignModePatch
     {
-        public Harmony harmony;
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("CampaignModeDieHard");
-
-
-            var originalTryEndRoundWithFuelCheck = typeof(CampaignMode).GetMethod("TryEndRoundWithFuelCheck", BindingFlags.NonPublic | BindingFlags.Instance);
-            var prefixTryEndRoundWithFuelCheck = new HarmonyMethod(typeof(CampaignModeDieHard).GetMethod(nameof(TryEndRoundWithFuelCheckPrefix), BindingFlags.Public | BindingFlags.Static));
-            harmony.Patch(originalTryEndRoundWithFuelCheck, prefixTryEndRoundWithFuelCheck, null);
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
         private static bool lowOxygenCandles;
 
         private static bool lowCoolant;
 
         private static bool lowRepairConsumable;
 
+        [HarmonyPatch("TryEndRoundWithFuelCheck")]
+        [HarmonyPrefix]
         public static bool TryEndRoundWithFuelCheckPrefix(Action onConfirm, Action onReturnToMapScreen, CampaignMode __instance)
         {
             
