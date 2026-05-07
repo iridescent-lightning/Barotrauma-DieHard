@@ -225,5 +225,7 @@
     <Electrocution1 file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
     <rope_slide file="%ModDir%/Sounds/Item/rope_silde.ogg" volume="2" range="1000" />
     <rope_cut file="%ModDir%/Sounds/Item/rope_cut.ogg" volume="2" range="500" />
+    <character_damage_human_male File="Content/Characters/Human/male_damage1.ogg" Range="500" Volume="1" />
+    <character_damage_human_female File="Content/Characters/Human/female_damage3.ogg" Range="500" Volume="1" />
   </sounds>
 </Override>

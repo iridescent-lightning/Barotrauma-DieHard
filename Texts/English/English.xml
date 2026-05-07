@@ -782,11 +782,19 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <orderdialog.findandequipradiationsuit>[name], Find and equip a radiation suit!</orderdialog.findandequipradiationsuit>
   <orderdialogself.findandequipradiationsuit>I need a radiation protective suit.</orderdialogself.findandequipradiationsuit>
 
+  <ordername.retrievefuelrod>Retrieve Fuel Rod</ordername.retrievefuelrod>
+  <orderdialog.findandequipradiationsuit>[name], Retrieve a fuel rod from the reactor!</orderdialog.findandequipradiationsuit>
+  <dialog.bots.missingequipment>I don't have enough equipments to do this!</dialog.bots.missingequipment>
+  <dialog.bots.retrievefuelrod.failure>Can't find proper equipments. Abandon mission!</dialog.bots.retrievefuelrod.failure>
+  <dialog.bots.retrievefuelrod.nofuelrod_inreactor>No spent fuel rods found in reactor.</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
+  <dialog.bots.retrievefuelrod.colling_and_putting>Now careful. Cooling it down in the holder...</dialog.bots.retrievefuelrod.colling_and_putting>
+  <dialog.bots.retrievefuelrod.success>Secured the radioactive rod.</dialog.bots.retrievefuelrod.success>
 
   <hint.electricalrepair>Make sure to cut off the power to ensure the safe repairing.</hint.electricalrepair>
   <hint.bugvent>An electric consuming bug crawls out of one of your vents. Kill it to retore the power.</hint.bugvent>
   <hint.qteinsufficientskilllevel>Your skill level is below the requirement for qte quick fix.</hint.qteinsufficientskilllevel>
   <hint.half_opened_door_turtorial>Press Cround Key to half opened the door</hint.half_opened_door_turtorial>
+  <hint.touch_hot_fuelrod_with_bare_hands>Use fuelrod holder to move fuelrod safely!</hint.touch_hot_fuelrod_with_bare_hands>
   <VerticalEngineDisplayTip>How much thrusting rate is the vertical thruster.</VerticalEngineDisplayTip>
   <SonarHertzTip>The hertz of the sonar. Higher hertz will grants a longer range but a smaller detection radius. Higer energy sonar is also more dangerous to humans.</SonarHertzTip>
   

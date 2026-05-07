@@ -383,7 +383,6 @@ namespace BarotraumaDieHard
 		}
 
 
-
 	}
     
 }

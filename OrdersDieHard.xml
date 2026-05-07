@@ -7,4 +7,13 @@
          ignoreatoutpost="true">
     <Sprite texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="512,512,128,128"/>
   </Order>
+  <Order name="Find and Retrieve Fuel Rod" identifier="retrievefuelrod"
+         assignmentpriority="90"
+         targetitemtype="Reactor"
+         appropriatejobs="engineer"
+         appropriateskill="electrical"
+         category="operate"
+         ignoreatoutpost="true">
+    <Sprite texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="128,256,128,128"/>
+  </Order>
 </Orders>

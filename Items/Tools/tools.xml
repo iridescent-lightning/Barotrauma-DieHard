@@ -1180,7 +1180,8 @@
     </Quality>
   </Item>-->
     <Item name="" identifier="fuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="8" health="1200" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_porcelain_statue_small" >
-      <PreferredContainer primary="fuelrodcase" secondary="reactorcab" />
+      <PreferredContainer primary="reactorcab"/>
+      <PreferredContainer secondary="fuelrodcase"/>
       <PreferredContainer secondary="nucleargun" minamount="1" maxamount="1" spawnprobability="1" />
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" minamount="1" maxamount="1" spawnprobability="0.01" />
       <PreferredContainer secondary="beaconengcab" amount="1" spawnprobability="0.2" />
@@ -1199,10 +1200,7 @@
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="576,64,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="410,1,19,68" />
       <Body radius="6" height="55" density="20" />
-      <Holdable handle1="0,0" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect">
-        <StatusEffect type="Always" target="This">
-          <LuaHook name="fuelrod" />
-        </StatusEffect>
+      <Holdable handle1="0,0" slots="RightHand,LeftHand,Any" msg="ItemMsgPickUpSelect">
       </Holdable>
       <ItemContainer hideitems="true" capacity="1" itemrotation="90" drawinventory="false" canbeselected="false" SpawnWithId="nucleargunbolt" removecontaineditemsondeconstruct="true" showcontainedstateindicator="false">
         <Containable items="nucleargunbolt" />
@@ -1214,6 +1212,7 @@
     </Item>
     <Item name="" identifier="fulguriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="8" cargocontaineridentifier="metalcrate" health="2800" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
       <PreferredContainer primary="reactorcab" />
+      <PreferredContainer secondary="fuelrodcase"/>
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" />
       <PreferredContainer secondary="beaconengcab" />
       <PreferredContainer secondary="abandonedengcab,wreckengcab" />
@@ -1235,7 +1234,8 @@
       <RadioactiveFuelRod/>
     </Item>
     <Item name="" identifier="thoriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="1" cargocontaineridentifier="metalcrate" health="2000" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
-      <PreferredContainer primary="fuelrodcase" secondary="reactorcab" />
+      <PreferredContainer primary="reactorcab"/>
+      <PreferredContainer secondary="fuelrodcase"/>
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" amount="1" spawnprobability="0.01" />
       <PreferredContainer secondary="beaconengcab" amount="1" spawnprobability="0.02" />
       <PreferredContainer secondary="abandonedengcab,wreckengcab" amount="1" spawnprobability="0.01" />
@@ -1265,7 +1265,7 @@
         </StatusEffect>
         <StatusEffect type="OnBroken" targettype="This" IsOn="false" />
       </LightComponent>
-      <Holdable handle1="0,0" slots="RightHand,LeftHand" msg="ItemMsgPickUpSelect">
+      <Holdable handle1="0,0" slots="Any,RightHand,LeftHand" msg="ItemMsgPickUpSelect">
         <StatusEffect type="Always" target="This,NearbyCharacters" range="360" comparison="and" interval="1">
           <Conditional condition="lt 600" />
           <Conditional condition="gt 0" />
@@ -1343,7 +1343,8 @@
     <aitarget maxsightrange="1500" />
   </Item>
     <Item name="" identifier="fuelrodholder" category="Equipment" tags="smallitem" cargocontaineridentifier="metalcrate" showcontentsintooltip="true" Scale="0.5" fireproof="true" description="" impactsoundtag="impact_metal_light">
-      <PreferredContainer primary="engcab"  amount="1"/>
+      <PreferredContainer primary="engcab" amount="1"/>
+      <PreferredContainer secondary="storagecab" />
       <Deconstruct time="30">
         <Item identifier="iron" />
         <Item identifier="titaniumaluminiumalloy" />
@@ -1367,7 +1368,8 @@
       </ItemContainer>
     </Item>
     <Item name="" identifier="fuelrodcase" category="Equipment" tags="mediumitem,mobilecontainer,radiationshield" cargocontaineridentifier="metalcrate" showcontentsintooltip="true" Scale="0.5" fireproof="true" description="" impactsoundtag="impact_metalcrate_light">
-      <PreferredContainer primary="engcab" />
+      <PreferredContainer primary="engcab" amount="1"/>
+      <PreferredContainer secondary="storagecab" />
       <Deconstruct time="20">
         <Item identifier="lead" />
         <Item identifier="aluminium" />
@@ -1385,7 +1387,7 @@
       <InventoryIcon texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="6,134,124,102" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="6,134,124,102" depth="0.6" />
       <Body width="124" height="95" density="20" />
-      <Holdable slots="RightHand,LeftHand" holdpos="0,-70" handle1="0,45" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" allowswappingwhenpicked="false" />
+      <Holdable slots="Any,RightHand,LeftHand" holdpos="0,-70" handle1="0,45" holdangle="0" msg="ItemMsgPickUpUse" canbeselected="false" canbepicked="true" allowswappingwhenpicked="false" />
       <ItemContainer capacity="6" hideitems="true">
         <Containable items="reactorfuel" />
       </ItemContainer>

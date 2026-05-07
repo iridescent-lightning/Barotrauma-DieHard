@@ -33,6 +33,13 @@ namespace BarotraumaDieHard.AI
                 __result.IgnoreAtOutpost = order.IgnoreAtOutpost;
                 return false; // 拦截，不再跑原版代码
             }
+            else if (order?.Identifier.Value.ToLowerInvariant() == "retrievefuelrod")
+            {
+                __result = new AIObjectiveRetrieveFuelRod(__instance.character, __instance, priorityModifier);
+                __result.Identifier = order.Identifier;
+                __result.IgnoreAtOutpost = order.IgnoreAtOutpost;
+                return false; // 拦截，不再跑原版代码
+            }
 
             return true; // 其他所有情况，放行给原版代码处理
         }
