@@ -2084,14 +2084,6 @@
       <ScriptedEvent identifier="Npc.conversation8" />
       <ScriptedEvent identifier="DHNpcMission.fetchmonsters" commonness="110" />
     </EventSet>
-    <EventSet identifier="dhoutpostevents.monstercollecters" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="3">
-      <ScriptedEvent identifier="checkloot_harmmerheads" />
-      <ScriptedEvent identifier="checkloot_crawlers" />
-      <ScriptedEvent identifier="checkloot_molochs" />
-      <ScriptedEvent identifier="checkloot_raptors" />
-      <ScriptedEvent identifier="checkloot_fish" />
-      <ScriptedEvent identifier="checkloot_abyssloot" />
-    </EventSet>
     <EventSet identifier="dhoutpostevents.colation" minleveldifficulty="5" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="1">
       <ScriptedEvent identifier="coalitionmanagerwantstoseeyou" probability="0.4" faction="coalition" />
     </EventSet>

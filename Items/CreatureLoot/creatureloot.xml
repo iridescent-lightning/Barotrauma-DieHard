@@ -1,140 +1,140 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Items>
-    <Item name="Crawler Head" identifier="crawlerhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler." Tags="smallitem, creature_loot" scale="0.65" isshootable="true">
+    <Item name="Crawler Head" identifier="crawlerhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler." Tags="smallitem, creature_loot" scale="0.65" isshootable="true" lootvalue="200">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="472,197,105,82" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="472,197,105,82" depth="0.6" origin="0.5,0.5" />
       <Body width="103" height="78" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand,LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Husk Crawler Head" identifier="hcrawlerhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler." Tags="smallitem, creature_loot" scale="0.65" isshootable="true">
+    <Item name="Husk Crawler Head" identifier="hcrawlerhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler." Tags="smallitem, creature_loot" scale="0.65" isshootable="true" lootvalue="600">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="588,198,103,78" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="588,198,103,78" depth="0.6" origin="0.5,0.5" />
       <Body width="103" height="78" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand,LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Large Crawler Head" identifier="lcrawlerhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler." Tags="smallitem, creature_loot" scale="0.65" isshootable="true">
+    <Item name="Large Crawler Head" identifier="lcrawlerhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler." Tags="smallitem, creature_loot" scale="0.65" isshootable="true" lootvalue="500">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="466,323,135,106" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="466,323,135,106" depth="0.6" origin="0.5,0.5" />
       <Body width="103" height="78" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand,LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Broodmother Eye" identifier="broodmothereye" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler broodmother." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Broodmother Eye" identifier="broodmothereye" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the crawler broodmother." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="2000">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/CreatureLoot.png" sourcerect="702,95,58,43" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/CreatureLoot.png" sourcerect="702,95,58,43" depth="0.6" origin="0.5,0.5" />
       <Body width="58" height="43" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand,LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Matriarch's Fin" identifier="matriarchfin" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Hammerhead Matriarch." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" health="100">
+    <Item name="Matriarch's Fin" identifier="matriarchfin" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Hammerhead Matriarch." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" health="100" lootvalue="1900">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="0,0,327,202" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="0,0,327,202" depth="0.6" origin="0.5,0.5" />
       <Body width="327" height="202" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Spineling's Spike" identifier="spineling_giant_spike" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the huge spineling." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Spineling's Spike" identifier="spineling_giant_spike" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the huge spineling." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="1500">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="0,219,547,117" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="0,219,547,117" depth="0.6" origin="0.5,0.5" />
       <Body width="548" height="117" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Tigerthresher's teeth" identifier="tigerthresherteeth" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the tigerthresher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Tigerthresher's teeth" identifier="tigerthresherteeth" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the tigerthresher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="300">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="0,340,110,68" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="0,340,110,68" depth="0.6" origin="0.5,0.5" />
       <Body width="110" height="68" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Mudraptor's shell" identifier="DHmudraptorshell" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the mudraptor." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Mudraptor's shell" identifier="DHmudraptorshell" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the mudraptor." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="500">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="518,4,251,180" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="518,4,251,180" depth="0.6" origin="0.5,0.5" />
       <Body width="251" height="183" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Mudraptor's shell" identifier="vmudraptorshell" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the mudraptor." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Mudraptor's shell" identifier="vmudraptorshell" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the mudraptor." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="900">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="481,3,231,177" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="481,3,231,177" depth="0.6" origin="0.5,0.5" />
       <Body width="251" height="183" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Charybdis's tooth" identifier="Charybdistooth" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Charybdis." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Charybdis's tooth" identifier="Charybdistooth" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Charybdis." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="8000">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="628,243,44,47" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="628,243,44,47" depth="0.6" origin="0.5,0.5" />
       <Body width="44" height="47" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Worm's Fang" identifier="wormfang" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Worm." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Worm's Fang" identifier="wormfang" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Worm." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="8000">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="639,314,83,123" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="639,314,83,123" depth="0.6" origin="0.5,0.5" />
       <Body width="83" height="123" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Latcher's Eyeball" identifier="latchereye" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Latcher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Latcher's Eyeball" identifier="latchereye" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Latcher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="8000">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="120,347,159,156" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="120,347,159,156" depth="0.6" origin="0.5,0.5" />
       <Body width="159" height="156" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Moloch Fragment" identifier="molochfragment" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Moloch." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Moloch Fragment" identifier="molochfragment" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Moloch." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="1700">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="289,354,194,154" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="289,354,194,154" depth="0.6" origin="0.5,0.5" />
       <Body width="194" height="154" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Black Moloch Fragment" identifier="blackmolochfragment" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Black Moloch." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Black Moloch Fragment" identifier="blackmolochfragment" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Black Moloch." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="3400">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="319,0,201,168" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot.png" sourcerect="319,0,201,168" depth="0.6" origin="0.5,0.5" />
       <Body width="201" height="168" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Small Spineling Spike" identifier="smallspinelingspike" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the spineling." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Small Spineling Spike" identifier="smallspinelingspike" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the spineling." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="250">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="0,0,153,13" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="0,0,153,13" depth="0.6" origin="0.5,0.5" />
       <Body width="159" height="13" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Bone Thresher's Head" identifier="bonethresherhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Thresher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Bone Thresher's Head" identifier="bonethresherhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Thresher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="1000">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="0,30,151,114" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="0,30,151,114" depth="0.6" origin="0.5,0.5" />
       <Body width="151" height="114" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Thresher's Head" identifier="thresherhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Thresher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Thresher's Head" identifier="thresherhead" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from the Thresher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="200">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="2,162,132,85" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="2,162,132,85" depth="0.6" origin="0.5,0.5" />
       <Body width="132" height="85" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Watcher's Spike" identifier="watcherspike" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from a Watcher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Watcher's Spike" identifier="watcherspike" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from a Watcher." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="1250">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="0,315,130,183" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="0,315,130,183" depth="0.6" origin="0.5,0.5" />
       <Body width="130" height="183" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Hammerhead's Fin" identifier="hammerheadfin" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from a Hammerhead." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Hammerhead's Fin" identifier="hammerheadfin" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from a Hammerhead." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="950">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="180,1,249,185" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="180,1,249,185" depth="0.6" origin="0.5,0.5" />
       <Body width="130" height="183" density="10.1" />
       <Holdable selectkey="Select" slots="RightHand+LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
     </Item>
-    <Item name="Golden Hammerhead's Fin" identifier="ghammerheadfin" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from a Golden Hammerhead." Tags="smallitem, creature_loot" scale="0.5" isshootable="true">
+    <Item name="Golden Hammerhead's Fin" identifier="ghammerheadfin" category="Material" maxstacksize="8" cargocontaineridentifier="chemicalcrate" description="Freshly cut from a Golden Hammerhead." Tags="smallitem, creature_loot" scale="0.5" isshootable="true" lootvalue="2050">
       <PreferredContainer primary="medfabcab" secondary="storagecab" />
       <InventoryIcon texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="171,205,262,189" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/CreatureLoot/DHCreatureLoot1.png" sourcerect="171,205,262,189" depth="0.6" origin="0.5,0.5" />

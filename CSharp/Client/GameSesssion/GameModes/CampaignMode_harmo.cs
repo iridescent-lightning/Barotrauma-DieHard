@@ -145,5 +145,31 @@ namespace BarotraumaDieHard
             lowRepairConsumable = repairConsumable < 1500;
             return !lowRepairConsumable;
         }
+
+
+        [HarmonyPatch("NPCInteractProjSpecific")]
+        [HarmonyPrefix]
+        static bool Prefix(Character npc, Character interactor)
+        {
+            // 关键点：只拦截我们自己的商人
+            if (npc.JobIdentifier == "monster_merchant")
+            {
+                // 1. 打开你的自定义商店
+                BarotraumaDieHard.MonsterLootStore.CreateTestStore();
+                
+                // 2. 让 NPC 说一句欢迎词
+                //"想要处理一些恶心的怪物零件吗？我这里价格公道。"
+                npc.Speak(TextManager.Get("campaigninteractiontype.monster_merchant.onselect").Value, null,
+                        identifier: "monster_merchant_welcome".ToIdentifier());
+
+                // 3. 返回 false。
+                // 它阻止了原版代码执行 CampaignUI.SelectTab(InteractionType.Store, npc)
+                // 从而防止了那个报错：“找不到该站点的商店库存数据”
+                return false;
+            }
+            
+            // 如果是普通的哨站商人，返回 true，让他们继续走原版流程
+            return true;
+        }
     }
 }

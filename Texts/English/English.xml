@@ -818,4 +818,15 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <Upgradename.enginecangovertical>Vectored Thruster</Upgradename.enginecangovertical>
   <Upgradedescription.enginecangovertical>Upgrade engine to make the propeller can adjust its angle and generate vertical force for submarine.</Upgradedescription.enginecangovertical>
   <CustomJunctionBoxSwitchTip>Click to switch junctionbox on/off status</CustomJunctionBoxSwitchTip>
+
+  <campaigninteractiontype.monster_merchant.onselect>"Looking to get sell some disgusting monster parts? I offer reasonable prices. "</campaigninteractiontype.monster_merchant.onselect>
+  <creature_loot_store.stock>Stock: </creature_loot_store.stock>
+  <creature_loot_store.sellprice>Sell Price: </creature_loot_store.sellprice>
+  <creature_loot_store.specailoffer>Specail Price: </creature_loot_store.specailoffer>
+  <creature_loot_store.originalprice>Original Price: </creature_loot_store.originalprice>
+  <creature_loot_store.sellbuttontext>Sell</creature_loot_store.sellbuttontext>
+  <creature_loot_store.sellerpersonality>Seller Personality</creature_loot_store.sellerpersonality>
+  <creature_loot_store.sellerpersonalitypositive>Higher price because of the personality</creature_loot_store.sellerpersonalitypositive>
+  <creature_loot_store.sellerpersonalitynegative>Lower price because of the personality</creature_loot_store.sellerpersonalitynegative>
+  <creature_loot_store.sellerpersonalitynutruel>Nutruel personality</creature_loot_store.sellerpersonalitynutruel>
 </infotexts>

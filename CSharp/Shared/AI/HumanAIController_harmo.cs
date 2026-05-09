@@ -267,7 +267,8 @@ namespace BarotraumaDieHard.AI
                 }
             }
         }*/
-
+        
+        //Make bandits to scan the envoirment in all submarine. Otherwise they won't actively "see" in outpost missions.
         [HarmonyPatch(typeof(HumanAIController), "Update")]
         [HarmonyPostfix]
         public static void UpdatePostfix(HumanAIController __instance, float deltaTime)

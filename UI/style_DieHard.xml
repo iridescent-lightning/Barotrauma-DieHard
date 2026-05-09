@@ -21,4 +21,10 @@
       <Sprite name="SwitchVertical_Selected" texture="%ModDir%/UI/ButtonUI.png" state="Selected" maintainaspectratio="true" sourcerect="0,133,97,121" tile="false" origin="0.5,0.5" />
       <Sprite name="SwitchVertical_HoverSelected" texture="%ModDir%/UI/ButtonUI.png" state="HoverSelected" maintainaspectratio="true" sourcerect="0,133,97,121" tile="false" origin="0.5,0.5" />
   </SwitchDieHardClassic>
+  <CampaignInteractionBubble.StoreMonster color="66,113,189">
+    <Sprite name="CampaignInteractionBubble.StoreMonster" texture="%ModDir%/UI/CampaignUIAtlas2.png" tile="false" sourcerect="774,64,35,28" origin="0.5,0.5" maintainaspectratio="true"/>
+  </CampaignInteractionBubble.StoreMonster>
+  <CampaignInteractionIndicator.StoreMonster color="66,113,189">
+    <Sprite name="CampaignInteractionBubble.StoreMonster" texture="%ModDir%/UI/CampaignUIAtlas2.png" tile="false" sourcerect="774,64,35,17" origin="0.5,0.5" maintainaspectratio="true"/>
+  </CampaignInteractionIndicator.StoreMonster>
 </style>

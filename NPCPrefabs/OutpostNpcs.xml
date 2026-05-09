@@ -171,6 +171,89 @@
         </ItemSet>
       </npc>
     </npcset>
+
+    <npcset identifier="merchant_npc_DieHard">
+      <npc identifier="merchantoutpost" job="monster_merchant" spawnpointtags="monster_merchant" healthmultiplier="1.1" campaigninteractiontype="Store" behavior="StayInHull" ModuleFlags="CreatureLootModule">
+      <ItemSet commonness="1">
+        <Item identifier="baseballcap" equip="true"/>
+        <Item identifier="crewchiefclothes" equip="true"/>
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="wrench"/>
+        <Item identifier="screwdriver"/>
+        <Item identifier="revolver">
+          <Item identifier="revolverround" amount="6"/>
+        </Item>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    </npcset>
+
+    <!--Addtion npcs to fill other rooms-->
+    <npcset identifier="commoner_npc_diehard">
+      <npc identifier="commoner" commonness="0" moduleflags="CreatureLootModule" job="mechanic" behavior="Passive" healthmultiplier="0.75" preferredoutpostmoduletypes="CreatureLootModule,seccrewmodule,MedicalModule">
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="commonerclothes1" equip="true"/>
+        <Item identifier="screwdriver"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="commonerclothes1" equip="true"/>
+        <Item identifier="baseballcap" equip="true"/>
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="wrench"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="commonerclothes2" equip="true"/>
+        <Item identifier="crowbar"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="commonerclothes2" equip="true"/>
+        <Item identifier="divingknife" equip="false"/>
+        <Item identifier="wrench"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="commonerclothes3" equip="true"/>
+        <Item identifier="crowbar"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="commonerclothes3" equip="true"/>
+        <Item identifier="baseballcap" equip="true"/>
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="screwdriver"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+      <ItemSet commonness="1">
+        <Item identifier="idcard" equip="true"/>
+        <Item identifier="commonerclothes4" equip="true"/>
+        <Item identifier="divingknife" equip="false"/>
+        <Item identifier="divingmask">
+          <Item identifier="oxygentank" />
+        </Item>
+      </ItemSet>
+    </npc>
+    </npcset>
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!--                          Abandoned Outpost NPCs                           -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

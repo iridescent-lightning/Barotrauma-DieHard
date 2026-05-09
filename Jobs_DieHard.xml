@@ -65,4 +65,20 @@
         <Order identifier="operateweapons"/>
       </AppropriateOrders>
     </Gunner>
+    <Job identifier="monster_merchant"
+       onlyjobspecificdialog="false"
+       minnumber="0" maxnumber="0" initialcount="0" hiddenjob="true">
+      <ItemSet>
+        <Item identifier="watchmanclothes" equip="true"/>
+        <Item identifier="idcard" equip="true" showpreview="false"/>
+        <Item identifier="revolver" equip="false">
+          <Item identifier="revolverround"/>
+          <Item identifier="revolverround"/>
+          <Item identifier="revolverround"/>
+          <Item identifier="revolverround"/>
+          <Item identifier="revolverround"/>
+          <Item identifier="revolverround"/>
+        </Item>
+      </ItemSet>
+    </Job>
 </Jobs>

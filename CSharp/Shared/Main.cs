@@ -1,6 +1,10 @@
 using System.Reflection;
 using Barotrauma;
 using HarmonyLib;
+#if CLIENT
+using Microsoft.Xna.Framework.Input;
+#endif
+using Networking;
 
 namespace BarotraumaDieHard
 {
@@ -14,6 +18,28 @@ namespace BarotraumaDieHard
         {
             HarmonyInstance = new Harmony("com.iri.diehard");
             HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+#if CLIENT
+            GameMain.LuaCs.Hook.Add("think", "DieHardUpdate", (args) =>
+            {
+                // 1. 处理按键开关 UI
+                if (PlayerInput.KeyHit(Keys.M))
+                {
+                    if (MonsterLootStore.monsterstorePaddedFrame == null)
+                        MonsterLootStore.CreateTestStore();
+                    else
+                        MonsterLootStore.Close();
+                }
+
+                // 2. 核心：确保 UI 渲染
+                MonsterLootStore.Update();
+                
+                return null;
+            });
+#endif
+            #if SERVER
+    // 服务器启动时注册网络监听
+    NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
+    #endif
             
             // 使用 Barotrauma 原生日志或 LuaCsLogger 都可以
             LuaCsLogger.Log("DieHard Mod Initialized via ACsMod Constructor.");

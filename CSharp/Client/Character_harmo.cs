@@ -100,6 +100,34 @@ namespace BarotraumaDieHard
 				}
 			}
 		}
+		/*
+		[HarmonyPatch("DrawFront")]
+		[HarmonyPostfix]
+		public static void Postfix(Character __instance, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Camera cam)
+    {
+        // 只有是你的商人才处理
+        if (__instance.JobIdentifier == "monster_merchant" && !__instance.IsDead)
+        {
+            // 参考原版 DrawFront 里的坐标计算逻辑
+            Vector2 headPos = __instance.AnimController.GetLimb(LimbType.Head)?.body?.DrawPosition ?? __instance.DrawPosition;
+            Vector2 iconPos = headPos;
+            iconPos.Y = -iconPos.Y;
+
+            // 获取你的自定义图片
+            var myStyle = GUIStyle.GetComponentStyle("CrewManagementReserveBenchButtonReserve");
+            var icon = myStyle.Sprites[GUIComponent.ComponentState.None].First();
+            
+            // 模仿原版缩放
+            float iconScale = (30.0f / icon.Sprite.size.X / cam.Zoom) * GUI.Scale;
+
+            // 绘制
+            icon.Sprite.Draw(spriteBatch, iconPos + new Vector2(-35.0f, -25.0f), Color.LimeGreen, scale: iconScale);
+            
+            // 如果需要屏幕边缘箭头，则需要更复杂的坐标转换逻辑（判断坐标是否在屏幕外）
+        }
+    }*/
 
 	}
+
+	
 }
