@@ -61,7 +61,7 @@
         </LightComponent>
       </Steering>
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
-      <Sonar canbeselected="true" powerconsumption="100" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="True" detectsubmarinewalls="false" >
+      <Sonar canbeselected="true" powerconsumption="100" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="False" detectsubmarinewalls="false" >
         <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
         <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
         <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />
@@ -139,7 +139,7 @@
       <SwappableItem price="3000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot" />
       
       <aitarget sightrange="200" soundrange="12000" staticsight="true" fadeouttime="5" />
-      <Sonar canbeselected="true" Range="12000" powerconsumption="190" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="True">
+      <Sonar canbeselected="true" Range="12000" powerconsumption="190" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="False">
         <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
         <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
         <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />
@@ -183,7 +183,7 @@
       <SwappableItem price="4000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot"></SwappableItem>
       
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
-      <Sonar canbeselected="true" Range="12500" powerconsumption="190" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="True">
+      <Sonar canbeselected="true" Range="12500" powerconsumption="190" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="False">
         <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
         <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
         <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />
@@ -227,7 +227,7 @@
       <SwappableItem price="5000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot"></SwappableItem>
       
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
-      <Sonar canbeselected="true" Range="14500" powerconsumption="240" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="True">
+      <Sonar canbeselected="true" Range="14500" powerconsumption="240" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="False">
         <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
         <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
         <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />
@@ -271,7 +271,7 @@
       <SwappableItem price="7000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot"></SwappableItem>
       
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
-      <Sonar canbeselected="true" Range="16000" powerconsumption="400" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="True">
+      <Sonar canbeselected="true" Range="16000" powerconsumption="400" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2" UseTransducers="False">
         <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
         <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
         <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />

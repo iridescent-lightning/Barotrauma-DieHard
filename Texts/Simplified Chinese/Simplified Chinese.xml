@@ -419,6 +419,12 @@
   <missionsuccess.fetch_hammerhead_gold>锤头煞已被击杀。</missionsuccess.fetch_hammerhead_gold>
   <missionheader0.fetch_hammerhead_gold>任务完成</missionheader0.fetch_hammerhead_gold>
   <missionmessage0.fetch_hammerhead_gold>锤头煞死了。割下它的鳍并驾驶潜艇离开溶穴，前往殖民点以获取奖励。</missionmessage0.fetch_hammerhead_gold>
+  <missionname.drycavemudraptor>废弃的矿洞</missionname.drycavemudraptor>
+  <missiondescription.drycavemudraptor>一个废弃的矿洞，里面可能还有一些值钱的东西</missiondescription.drycavemudraptor>
+  <missionsuccess.drycavemudraptor>怪兽被消灭了</missionsuccess.drycavemudraptor>
+  <missionfailure.drycavemudraptor>你撤离了</missionfailure.drycavemudraptor>
+  <missionheader0.drycavemudraptor>巢穴被摧毁</missionheader0.drycavemudraptor>
+  <missionmessage0.drycavemudraptor>威胁解除。目前来说</missionmessage0.drycavemudraptor>
   <missionname.familytransport>紧急载客任务</missionname.familytransport>
   <missiondescription.familytransport>运载男人和他重病的妻子到下一个居住地。</missiondescription.familytransport>
   <missionheader0.familytransport>乘客死亡</missionheader0.familytransport>
@@ -499,6 +505,18 @@
   <entitydescription.mpx_magazine>[容量: 30]\n[穿甲系数: 30%]</entitydescription.mpx_magazine>
   <entityname.MCX>Sig MCX卡宾枪</entityname.MCX>
   <entitydescription.MCX>[射速: 快]\n[准确性:高]</entitydescription.MCX>
+  <entityname.M16>M16</entityname.M16>
+  <entitydescription.M16>[ROF: Fast]\n[ACC:High]</entitydescription.M16>
+  <entityname.M16Mag>M16 弹匣</entityname.M16Mag>
+  <entitydescription.M16Mag>5.56x45mm 弹匣</entitydescription.M16Mag>
+  <entityname.M16Receiver>M16 枪机</entityname.M16Receiver>
+  <entitydescription.M16Receiver>M16 枪机</entitydescription.M16Receiver>
+  <entityname.M16Barrel>M16 枪管</entityname.M16Barrel>
+  <entitydescription.M16Barrel>M16枪管</entitydescription.M16Barrel>
+  <entityname.M16Stock>M16 枪托</entityname.M16Stock>
+  <entitydescription.M16Stock>M16枪托</entitydescription.M16Stock>
+  <entityname.AK47Barrel>AK 47 枪管</entityname.AK47Barrel>
+  <entityname.AK47Receiver>AK 47 枪击</entityname.AK47Receiver>
   <entityname.mcx_magazine>.300 AAC弹匣</entityname.mcx_magazine>
   <entitydescription.mcx_magazine>[容量: 30]\n[穿甲系数: 60%]</entitydescription.mcx_magazine>
   <entityname.MP9>MP9冲锋枪</entityname.MP9>
@@ -511,7 +529,13 @@
   <entitydescription.p90mag>[容量: 50]\n[穿甲系数: 30%]</entitydescription.p90mag>
   <entityname.mk17>SCAR突击步枪</entityname.mk17>
   <entitydescription.mk17>[射速: 中]\n[准确性:高-中]</entitydescription.mk17>
-  <entityname.mk17mag>7.62x51mm SCAR突击步枪弹匣</entityname.mk17mag>
+  <entityname.MK17Barrel>Scar 枪管</entityname.MK17Barrel>
+  <entitydescription.MK17Barrel>Scar枪管</entitydescription.MK17Barrel>
+  <entityname.MK17Receiver>Scar 枪机</entityname.MK17Receiver>
+  <entityname.MK17Stock>Scar 枪托</entityname.MK17Stock>
+  <entityname.MK17Scope>Scar 瞄准镜</entityname.MK17Scope>
+  <entitydescription.MK17Scope>提高射击精度.</entitydescription.MK17Scope>
+  <entityname.mk17mag>7.62x51mm SCAR-H 弹匣</entityname.mk17mag>
   <entitydescription.mk17mag>[容量: 20]\n[穿甲系数: 70%]</entitydescription.mk17mag>
   <entityname.ak47>AK-47步枪</entityname.ak47>
   <entitydescription.ak47>[射速: 中]\n[准确性:中-低]</entitydescription.ak47>
@@ -531,6 +555,8 @@
   <entitydescription.apsmag>[容量: 26]\n[穿甲系数: 40%]</entitydescription.apsmag>
   <entityname.gasgrenade>毒气手榴弹</entityname.gasgrenade>
   <entitydescription.gasgrenade>使用它来毒晕一条线上的敌人</entitydescription.gasgrenade>
+  <entityname.reactorslot>反应堆安装槽</entityname.reactorslot>
+  <entitydescription.reactorslot>用来安装反应堆的接口</entitydescription.reactorslot>
   <entityname.reactorrs107>S107级反应堆</entityname.reactorrs107>
   <entitydescription.reactorrs107>[最大输出:5000]\n[火灾延迟:20]\n[熔毁延迟:120]\n[燃料消耗速率:0.2]\n[EMP免疫:是]</entitydescription.reactorrs107>
   <entityname.reactormrmxi>MR-MXI级反应堆</entityname.reactormrmxi>
@@ -543,8 +569,8 @@
   <entitydescription.reactorgb099>[最大输出:9500]\[火灾延迟:30]\n[熔毁延迟:150]\n[燃料消耗速率:0.6]\n[EMP免疫:是]</entitydescription.reactorgb099>
   <entityname.reactortype2053>Type2053级反应堆</entityname.reactortype2053>
   <entitydescription.reactortype2053>[最大输出:12000]\n[火灾延迟:10]\n[熔毁延迟:50]\n[燃料消耗速率:0.9]\n[EMP免疫:否]</entitydescription.reactortype2053>
-  <entityname.reactormanual>反应堆操作书</entityname.reactormanual>
-  <entitydescription.reactormanual>一本有关于如何操作反应堆的指南</entitydescription.reactormanual>
+  <entityname.helperlogbook>说明书</entityname.helperlogbook>
+  <entitydescription.helperlogbook>简易Mod说明（过时）</entitydescription.helperlogbook>
   <entityname.subdoc>潜艇资料</entityname.subdoc>
   <entitydescription.subdoc>一种经特殊加密处理的电子数据存储密匙，登记了船只的归属与各项性能。是一种用于采购燃料棒的重要凭证。</entitydescription.subdoc>
   <entityname.weaponrepairkit>枪械维修工具</entityname.weaponrepairkit>
@@ -620,6 +646,8 @@
   <connection.Dock_State>停泊状态</connection.Dock_State>
   <connection.vertical_engine_power_out>垂直引擎功率输出</connection.vertical_engine_power_out>
   <connection.powerconsumptionout>功率消耗输出</connection.powerconsumptionout>
+  <connection.VentIn>接入管道</connection.VentIn>
+  <connection.VentOut>接出管道</connection.VentOut>
   <uilabel.reactorcooline>冷却剂</uilabel.reactorcooline>
   <uilabel.oxygencandle>氧烛插槽</uilabel.oxygencandle>
   <uilabel.lock>锁定</uilabel.lock>
@@ -669,6 +697,9 @@
   <locationname.Greatsea_Research>渊洋的研究前哨站</locationname.Greatsea_Research>
   <locationnameformat.Greatsea_Research>[name]研究前哨站</locationnameformat.Greatsea_Research>
   <locationnameformat.Greatsea_Research>[name]前哨站</locationnameformat.Greatsea_Research>
+  <locationname.Cave>矿洞</locationname.Cave>
+  <locationnameformat.Cave>[name] 矿洞</locationnameformat.Cave>
+  <locationnameformat.Cave>[name] 矿洞</locationnameformat.Cave>
   <Sildeshow.DHStorybegin1>“2035年，人类于一次星际探索中首次造访欧罗巴，搜寻这颗星球存在高等生命的证据。在随后的十年中，当地逐步发展出了稳定的殖民体系，并开始为地球提供稀有矿物。”</Sildeshow.DHStorybegin1>
   <Sildeshow.DHStorybegin2>“2050年，来自巨蟹星云的强伽马射线风暴掠过这片区域，切断了欧罗巴与地球的联络。2051年，地球方面不再对欧罗巴提供星际补给。”</Sildeshow.DHStorybegin2>
   <Sildeshow.DHStorybegin3>“依凭现存的资源，殖民地仍旧能以低生活标准运转下去。鉴于关键性的资源储备不足，木卫二联盟深刻意识到，欧罗巴殖民体系终将崩溃。2053年，异星能量脉冲被一艘货运潜艇捕获、带回，自此，有关全新的外星能源的消息广泛传播开来。人类将这种能源视为重返过去生活的希望，但它的实际应用却从未被大众所知晓。实际上，连这种能源能否被人类安全无害地利用都不曾被证实过。”</Sildeshow.DHStorybegin3>
@@ -676,7 +707,7 @@
   <Botai_getdivingmask>“水进来了！”</Botai_getdivingmask>
   <Botai_getdivingmask>“寻找潜水面罩！”</Botai_getdivingmask>
   <Botai_getdivingmask>“船体损坏！船体缺失！”</Botai_getdivingmask>
-    <LockDirectionalSonar>锁定声呐方向</LockDirectionalSonar>
+  <LockDirectionalSonar>锁定声呐方向</LockDirectionalSonar>
   <Arm>解除保险</Arm>  <!--开关标签-->
   <TorpedoDisarm>解除待发</TorpedoDisarm>  <!--信号输出-->
   <TorpedoArm>待发</TorpedoArm>
@@ -729,6 +760,12 @@
 
   <dialog.bots.cannotaccesswetroomdoor>我无法打开压载舱舱口，因为舱室是加压的！</dialog.bots.cannotaccesswetroomdoor>
 
+  <dialog.bots.spottedenemybehinddoor>门后有动静!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>嗨！有人在门后!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>谁在那!?</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>操! 在门后!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>敌人在门后!</dialog.bots.spottedenemybehinddoor>
+
   <!--技能-->
   <skillname.ondeckweapon>甲板武器</skillname.ondeckweapon>
 
@@ -742,11 +779,18 @@
   <orderdialog.findandequipradiationsuit>[name]，找到并装备防辐射服！</orderdialog.findandequipradiationsuit>
   <orderdialogself.findandequipradiationsuit>我需要一件防辐射服。</orderdialogself.findandequipradiationsuit>
 
-
+  <ordername.retrievefuelrod>Retrieve Fuel Rod</ordername.retrievefuelrod>
+  <orderdialog.findandequipradiationsuit>[name], 从反应堆取出一根燃料棒!</orderdialog.findandequipradiationsuit>
+  <dialog.bots.missingequipment>我没有足够的设备取出燃料棒!</dialog.bots.missingequipment>
+  <dialog.bots.retrievefuelrod.failure>找不到装备。放弃任务!</dialog.bots.retrievefuelrod.failure>
+  <dialog.bots.retrievefuelrod.nofuelrod_inreactor>反应堆里没有需要取出的燃料棒</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
+  <dialog.bots.retrievefuelrod.colling_and_putting>现在当心，让它慢慢冷却……</dialog.bots.retrievefuelrod.colling_and_putting>
+  <dialog.bots.retrievefuelrod.success>燃料棒安全收容。</dialog.bots.retrievefuelrod.success>
   <hint.electricalrepair>确保切断电源以保证安全修理。</hint.electricalrepair>
   <hint.bugvent>一只耗电的虫子从你的一个通风口爬出。杀死它以恢复电力。</hint.bugvent>
   <hint.qteinsufficientskilllevel>你的技能等级未达到快速反应事件的要求。</hint.qteinsufficientskilllevel>
   <hint.half_opened_door_turtorial>按住蹲下键来半开门</hint.half_opened_door_turtorial>
+  <hint.touch_hot_fuelrod_with_bare_hands>用燃料棒夹子来安全转移燃料棒!</hint.touch_hot_fuelrod_with_bare_hands>
   <VerticalEngineDisplayTip>垂直推进器的推力比率。</VerticalEngineDisplayTip>
   <SonarHertzTip>声呐的赫兹数。赫兹越高，探测范围越大但探测半径越小。高能量声呐对人类也更危险。</SonarHertzTip>
   
@@ -770,4 +814,19 @@
   <Upgradename.enginecangovertical>矢量推进器</Upgradename.enginecangovertical>
   <Upgradedescription.enginecangovertical>升级引擎，使螺旋桨能够调整角度，为潜艇产生垂直方向的推力。</Upgradedescription.enginecangovertical>
   <CustomJunctionBoxSwitchTip>点击切换接线盒 开/关 状态</CustomJunctionBoxSwitchTip>
+  <campaigninteractiontype.monster_merchant.onselect>来卖一些怪兽零件吗？你可来对地方了</campaigninteractiontype.monster_merchant.onselect>
+  <creature_loot_store.stock>库存： </creature_loot_store.stock>
+  <creature_loot_store.sellprice>卖出价： </creature_loot_store.sellprice>
+  <creature_loot_store.specailoffer>特卖价： </creature_loot_store.specailoffer>
+  <creature_loot_store.originalprice>原价： </creature_loot_store.originalprice>
+  <creature_loot_store.sellbuttontext>卖出</creature_loot_store.sellbuttontext>
+  <creature_loot_store.sellerpersonality>当前卖家性格</creature_loot_store.sellerpersonality>
+  <creature_loot_store.sellerpersonalitypositive>此性格让你卖得更高</creature_loot_store.sellerpersonalitypositive>
+  <creature_loot_store.sellerpersonalitynegative>此性格让你卖得更低</creature_loot_store.sellerpersonalitynegative>
+  <creature_loot_store.sellerpersonalitynutruel>中性性格</creature_loot_store.sellerpersonalitynutruel>
+
+  <progressbar.scavenging>搜刮</progressbar.scavenging>
+  <progressbar.cutting>切割</progressbar.cutting>
+
+  <itemmsgscavengeuse>[[use]] 搜刮</itemmsgscavengeuse>
 </infotexts>

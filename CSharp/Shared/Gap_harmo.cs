@@ -145,8 +145,8 @@ namespace BarotraumaDieHard
                         
                         if (hullPressureRatio > 5.0f)
                         {
-                            DebugConsole.NewMessage($"target hull: {_.flowTargetHull.RoomName}");
-                            DebugConsole.NewMessage($"hull: {hull.RoomName}");
+                            //DebugConsole.NewMessage($"target hull: {_.flowTargetHull.RoomName}");
+                            //DebugConsole.NewMessage($"hull: {hull.RoomName}");
                             // Calculate the force based on pressurized air amount and the gap open sum
                             float forceMultiplier = hullPressureRatio * gapOpenSum * 1000f;
 
@@ -157,7 +157,7 @@ namespace BarotraumaDieHard
 
                             // Apply the calculated flow force to the hull
                             hull.WaterVolume -= Math.Min(flowForce.Length() * 10f, hull.WaterVolume); // Ensure water volume doesn't go negative
-                            DebugConsole.NewMessage($"water out: {flowForce.Length()}");
+                            //DebugConsole.NewMessage($"water out: {flowForce.Length()}");
                         }
                     }
                 }

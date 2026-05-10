@@ -212,7 +212,7 @@ namespace BarotraumaDieHard
 					// Apply force to the character.
 					if (force.LengthSquared() > 0.01f)
 					{
-						character.AnimController.Collider.FarseerBody.ApplyForce(force * 10); // Adjust this factor as needed.
+						character.AnimController.Collider.FarseerBody.ApplyForce(force * 50); // Adjust this factor as needed.
 					}
 
 					// DebugConsole.NewMessage($"Character Distance: {distance} Force Applied: {force}");
@@ -259,7 +259,7 @@ namespace BarotraumaDieHard
 						character.AnimController.Collider.FarseerBody.ApplyForce(force * 10); // Adjust this factor as needed.
 					}
 
-					DebugConsole.NewMessage($"Character Distance: {distance} Force Applied: {force}");
+					//DebugConsole.NewMessage($"Character Distance: {distance} Force Applied: {force}");
 				}
 			}
 		}
@@ -335,7 +335,7 @@ namespace BarotraumaDieHard
                     progressState, 
                     GUIStyle.Red, 
                     GUIStyle.Green,
-                    "progressbar.cutting"); // 使用切割专用的内置文本
+                    TextManager.Get("progressbar.cutting").Value); // 使用切割专用的内置文本
 
                 if (progressBar != null) 
                 { 

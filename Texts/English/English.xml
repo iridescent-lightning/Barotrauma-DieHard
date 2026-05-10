@@ -829,4 +829,10 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <creature_loot_store.sellerpersonalitypositive>Higher price because of the personality</creature_loot_store.sellerpersonalitypositive>
   <creature_loot_store.sellerpersonalitynegative>Lower price because of the personality</creature_loot_store.sellerpersonalitynegative>
   <creature_loot_store.sellerpersonalitynutruel>Nutruel personality</creature_loot_store.sellerpersonalitynutruel>
+
+
+  <progressbar.scavenging>Scavenging</progressbar.scavenging>
+  <progressbar.cutting>Cutting</progressbar.cutting>
+
+  <itemmsgscavengeuse>[[use]] Scavenge</itemmsgscavengeuse>
 </infotexts>

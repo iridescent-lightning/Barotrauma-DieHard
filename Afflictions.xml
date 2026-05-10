@@ -105,8 +105,8 @@ maxstrength="100">
       <Description textidentifier="Affliction.fatigue.description" minstrength="0" maxstrength="100" />
       <!-- no effects at this point -->
       <Effect minstrength="0" maxstrength="40" strengthchange="-4" />
-      <Effect minstrength="40" maxstrength="60" strengthchange="-3.5" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.9" maxspeedmultiplier="0.8"></Effect>
-      <Effect minstrength="60" maxstrength="90" strengthchange="-3" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.8" maxspeedmultiplier="0.5">
+      <Effect minstrength="40" maxstrength="80" strengthchange="-3.5" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.9" maxspeedmultiplier="0.7"></Effect>
+      <Effect minstrength="80" maxstrength="100" strengthchange="-3" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.7" maxspeedmultiplier="0.5">
         <StatusEffect target="Character">
           <Sound file="%ModDir%/Sounds/panting.ogg" range="500" volumenum="2" />
         </StatusEffect>

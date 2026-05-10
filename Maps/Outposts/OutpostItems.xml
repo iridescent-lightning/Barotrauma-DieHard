@@ -702,13 +702,15 @@
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1529,654,210,238" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="208" height="236" density="100" friction="30" />
     </OpDeco>
-    <OpDeco name="" identifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable">
+    <OpDeco name="" identifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="false" category="Decorative" Tags="collidable">
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1788,912,237,124" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="237" height="124" bodytype="static" />
+      <Scavengeable selectkey="Action" scavengeduration="3.0" canbeselected="true" msg="itemmsgscavengeuse"/>
     </OpDeco>
-    <OpDeco name="" identifier="opdeco_boxes2" nameidentifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable">
+    <OpDeco name="" identifier="opdeco_boxes2" nameidentifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="false" category="Decorative" Tags="collidable">
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1789,1042,208,61" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="205" height="61" bodytype="static" />
+      <Scavengeable selectkey="Action" scavengeduration="3.0" canbeselected="true" msg="itemmsgscavengeuse"/>
     </OpDeco>
     <Item name="" identifier="op_washingmachine" width="199" height="262" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable">
       <sprite texture="Content/Map/Outposts/Art/AdminResidentAssets.png" sourcerect="273,357,199,262" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />

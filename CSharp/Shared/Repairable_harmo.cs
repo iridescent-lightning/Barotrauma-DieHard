@@ -37,13 +37,17 @@ namespace BarotraumaDieHard
 
                 if (__instance.item.GetComponent<PowerContainer>() is PowerContainer powerContainer) 
                 {
-                    if (powerContainer.powerOut.Grid == null && powerContainer.powerIn.Grid == null)
+                    //bug fix.使用？防止空引用崩溃
+                    var gridOut = powerContainer?.powerOut?.Grid;
+                    var gridIn = powerContainer?.powerIn?.Grid;
+
+                    if (gridIn == null && gridOut == null)
                     {
                         __result = true;
                         return false;
                     }
                     //  || powerContainer.powerIn.Grid.Load > 0 this has to be removed to avoid supercapacitor crash the game. Now only the load is checked.
-                    if (powerContainer.powerOut.Grid.Load > 0)
+                    if (gridOut != null && gridOut.Load > 0)
                     {
                         __instance.ApplyStatusEffects(ActionType.OnFailure, 1.0f, character);
 #if CLIENT   

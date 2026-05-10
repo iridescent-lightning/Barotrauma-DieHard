@@ -733,10 +733,10 @@ namespace BarotraumaDieHard
 
         public static bool DisplayHint(Identifier hintIdentifier, bool extendTextTag = true, (Identifier Tag, LocalizedString Value)[] variables = null, Sprite icon = null, Color? iconColor = null, Action onDisplay = null, Action onUpdate = null)
         {
-            if (hintIdentifier == Identifier.Empty) { DebugConsole.NewMessage("1"); return false; }
+            /*if (hintIdentifier == Identifier.Empty) { DebugConsole.NewMessage("1"); return false; }
             if (!HintIdentifiers.Contains(hintIdentifier)) { DebugConsole.NewMessage("2"); return false; }
             if (IgnoredHints.Instance.Contains(hintIdentifier)) { DebugConsole.NewMessage("3"); return false; }
-            if (HintsIgnoredThisRound.Contains(hintIdentifier)) { DebugConsole.NewMessage("4"); return false; }
+            if (HintsIgnoredThisRound.Contains(hintIdentifier)) { DebugConsole.NewMessage("4"); return false; }*/
 
             LocalizedString text;
             Identifier textTag = extendTextTag ? $"hint.{hintIdentifier}".ToIdentifier() : hintIdentifier;

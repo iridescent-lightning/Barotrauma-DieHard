@@ -2098,7 +2098,7 @@
       
       <ScriptedEvent identifier="dhprostitute" commonness="40" />
 
-      <ScriptedEvent identifier="dhpowerissue" commonness="40" />
+      <ScriptedEvent identifier="dhpowerissue" commonness="20" />
 
       <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
 
@@ -2113,7 +2113,7 @@
 
       <ScriptedEvent identifier="dhprostitute_part2" commonness="60" />
 
-      <ScriptedEvent identifier="dhpowerissue" commonness="40" />
+      <ScriptedEvent identifier="dhpowerissue" commonness="10" />
 
       <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
 
@@ -2258,7 +2258,7 @@
       <!--dhevent-->
       <ScriptedEvent identifier="dhprostitute_part2" commonness="60" />
       <!--dhevent-->
-      <ScriptedEvent identifier="dhpowerissue" commonness="40" />
+      <ScriptedEvent identifier="dhpowerissue" commonness="10" />
       <!--dhevent-->
       <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
       <!--dhevent-->
@@ -2453,7 +2453,7 @@
       <!--dhevent-->
       <ScriptedEvent identifier="dhprostitute_part2" commonness="60" />
       <!--dhevent-->
-      <ScriptedEvent identifier="dhpowerissue" commonness="40" />
+      <ScriptedEvent identifier="dhpowerissue" commonness="10" />
       <!--dhevent-->
       <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
       <!--dhevent-->
@@ -2620,7 +2620,7 @@
       <!--dhevent-->
       <ScriptedEvent identifier="dhprostitute_part2" commonness="60" />
       <!--dhevent-->
-      <ScriptedEvent identifier="dhpowerissue" commonness="40" />
+      <ScriptedEvent identifier="dhpowerissue" commonness="10" />
       <!--dhevent-->
       <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
       <!--dhevent-->
