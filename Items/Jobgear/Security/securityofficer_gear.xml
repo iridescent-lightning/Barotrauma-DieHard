@@ -31,7 +31,7 @@
         <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.3" damagesound="LimbArmor" deflectprojectiles="true" />
         <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
         <sprite name="Security Vest Wearable" texture="Content/Items/Jobgear/Mechanic/safetyharness.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.65" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
-        <SkillModifier skillidentifier="weapons" skillvalue="-5" />
+        <SkillModifier skillidentifier="weapons" skillvalue="-1" />
       </Wearable>
     </Item>
     <Item name="" identifier="bodyarmorII" category="Equipment" tags="smallitem,clothing,bodyarmor" scale="0.35" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
@@ -66,7 +66,7 @@
         <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
         <damagemodifier afflictiontypes="crouch" armorsector="0.0,360.0" damagemultiplier="1" />
         <sprite name="Security Vest Wearable" texture="Content/Items/Jobgear/Mechanic/safetyharness.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.65" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
-        <SkillModifier skillidentifier="weapons" skillvalue="-15" />
+        <SkillModifier skillidentifier="weapons" skillvalue="-5" />
       </Wearable>
     </Item>
     <Item name="" identifier="bodyarmorIII" category="Equipment" tags="smallitem,clothing,bodyarmor" scale="0.35" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
@@ -99,7 +99,7 @@
         <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.3" damagesound="LimbArmor" deflectprojectiles="true" />
         <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
         <sprite name="Security Vest Wearable" texture="Content/Items/Jobgear/Mechanic/safetyharness.png" limb="Torso" hidelimb="false" inheritscale="true" scale="0.65" inheritorigin="false" origin="0.5,0.5" inheritsourcerect="false" sourcerect="14,45,103,180" />
-        <SkillModifier skillidentifier="weapons" skillvalue="-25" />
+        <SkillModifier skillidentifier="weapons" skillvalue="-8" />
       </Wearable>
     </Item>
     <!-- HEADGEAR START -->
@@ -131,7 +131,7 @@
         <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.3" damagesound="LimbArmor" deflectprojectiles="true" />
         <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
         <sprite name="Ballistic Helmet 1 Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidewearablesoftype="Hair" sourcerect="7,215,85,68" origin="0.5,0.7" />
-        <SkillModifier skillidentifier="weapons" skillvalue="-15" />
+        <SkillModifier skillidentifier="weapons" skillvalue="-3" />
       </Wearable>
     </Item>
     <Item name="" identifier="ballistichelmet2" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:75%][Weapon Skill:-17]" impactsoundtag="impact_metal_heavy" scale="0.325">
@@ -190,7 +190,7 @@
         <damagemodifier afflictionidentifiers="bitewounds" armorsector="0.0,360.0" damagemultiplier="0.3" damagesound="LimbArmor" deflectprojectiles="true" />
         <damagemodifier afflictiontypes="bleeding" armorsector="0.0,360.0" damagemultiplier="0.1" damagesound="LimbArmor" deflectprojectiles="true" />
         <sprite name="Ballistic Helmet 3 Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" hidewearablesoftype="Hair" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="207,201,104,101" origin="0.575,0.55" />
-        <SkillModifier skillidentifier="weapons" skillvalue="-17" />
+        <SkillModifier skillidentifier="weapons" skillvalue="-5" />
       </Wearable>
     </Item>
     <!-- HEADGEAR END -->

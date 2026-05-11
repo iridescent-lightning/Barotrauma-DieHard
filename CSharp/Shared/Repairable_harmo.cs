@@ -20,90 +20,54 @@ namespace BarotraumaDieHard
     {
 
 
+        // 统一的安全检查：判断一个设备是否“带电”
+        private static bool IsDeviceElectrified(Repairable __instance)
+        {
+            var item = __instance.item;
+            
+            // 1. 反应堆逻辑：只要在运行且有输出就带电
+            if (item.GetComponent<Reactor>() is Reactor reactor)
+            {
+                return !MathUtils.NearlyEqual(reactor.CurrPowerConsumption, 0.0f, 0.1f);
+            }
+
+            // 2. 电池/电容逻辑：检查输入和输出电网
+            if (item.GetComponent<PowerContainer>() is PowerContainer pc)
+            {
+                // 使用 ?. 确保即便拔线瞬间也不会 Crash
+                bool hasInputPower = pc.powerIn?.Grid?.Power > 1.0f;
+                bool hasOutputLoad = pc.powerOut?.Grid?.Load > 1.0f;
+                return hasInputPower || hasOutputLoad;
+            }
+
+            // 3. 普通用电设备（接线盒、氧气机等）
+            if (item.GetComponent<Powered>() is Powered powered)
+            {
+                return powered.powerIn?.Grid != null && powered.powerIn.Grid.Power > 1.0f;
+            }
+
+            return false;
+        }
+
+
         [HarmonyPatch("CheckCharacterSuccess")]
         [HarmonyPrefix]
         public static bool CheckCharacterSuccessPrefix(Character character, Item bestRepairItem, Repairable __instance, ref bool __result)
         {
             
             if (character == null) { __result = false; return false; }
-
             if (__instance.statusEffectLists == null) { __result = true; return false; }
-
             if (bestRepairItem != null && bestRepairItem.Prefab.CannotRepairFail) { __result = true; return false; }
-            
-            // unpowered (electrical) items can be repaired without a risk of electrical shock
-            // if (__instance.RequiredSkills.Any(s => s != null && s.Identifier == "electrical")). modding: inlcuding all powered items no matter requires e skill or other skills.
 
-
-                if (__instance.item.GetComponent<PowerContainer>() is PowerContainer powerContainer) 
-                {
-                    //bug fix.使用？防止空引用崩溃
-                    var gridOut = powerContainer?.powerOut?.Grid;
-                    var gridIn = powerContainer?.powerIn?.Grid;
-
-                    if (gridIn == null && gridOut == null)
-                    {
-                        __result = true;
-                        return false;
-                    }
-                    //  || powerContainer.powerIn.Grid.Load > 0 this has to be removed to avoid supercapacitor crash the game. Now only the load is checked.
-                    if (gridOut != null && gridOut.Load > 0)
-                    {
-                        __instance.ApplyStatusEffects(ActionType.OnFailure, 1.0f, character);
-#if CLIENT   
-                 
-                        BarotraumaDieHard.CustomHintManager.DisplayHint("electricalrepair".ToIdentifier());
-#endif
-                        __result = false;
-                        return false;
-                    }
-
-                    __result = true;
-                    return false;
-
-                }
-                
-                if (__instance.item.GetComponent<Reactor>() is Reactor reactor)
-                {
-                    if (MathUtils.NearlyEqual(reactor.CurrPowerConsumption, 0.0f, 0.1f)) { __result = true; return false; }
-                }
-                else if (__instance.item.GetComponent<Powered>() is Powered powered) 
-                {
-                    if (powered == null) // Check for devices that don't have powered component.
-                    {
-                        __result = true;
-                        return false;
-                    }
-                    if (powered.powerIn == null || powered.powerIn.Grid == null) // Check for broken devices. // The first null check is necessary because door like items may have inherited Powered class but doesn't have any 'powrIn'.
-                    {
-                        //DebugConsole.NewMessage("no powerin or grid is null");
-                        __result = true;
-                        return false;
-                    }
-                    else if (powered.powerIn.Grid.Power <= 1f)
-                    {
-                        //DebugConsole.NewMessage("Power < 0");
-                        __result = true;
-                        return false;
-                    }
-                    
-                    //DebugConsole.NewMessage(powered.powerIn.Grid.Power.ToString());
-                    __instance.ApplyStatusEffects(ActionType.OnFailure, 1.0f, character);
-#if CLIENT   
-                 
-            BarotraumaDieHard.CustomHintManager.DisplayHint("electricalrepair".ToIdentifier());
-#endif
-                    __result = false;
-                    
-                    return false;
-                }
-
-            // powered reactor will surely shock the repairer
-            if (__instance.item.GetComponent<Reactor>() is Reactor reactorPowered && !MathUtils.NearlyEqual(reactorPowered.CurrPowerConsumption, 0.0f, 0.1f)) 
+            // 使用统一检查
+            if (IsDeviceElectrified(__instance))
             {
                 __instance.ApplyStatusEffects(ActionType.OnFailure, 1.0f, character);
+#if CLIENT
+                BarotraumaDieHard.CustomHintManager.DisplayHint("electricalrepair".ToIdentifier());
+#endif
                 __result = false;
-                return false; // Powered reactor will shock
+                return false;
             }
 
            

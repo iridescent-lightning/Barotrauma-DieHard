@@ -281,12 +281,13 @@
     </npcs>
   </OutpostConfig>
 
-    <OutpostConfig identifier="outpost_er" totalmodulecount="5" minhallwaylength="200" allowedlocationtypes="EuropanRidge_Outpost" spawncrewinsideoutpost="false" alwaysdestructible="true" alwaysrewireable="false" allowstealing="false">
+    <OutpostConfig identifier="outpost_er" totalmodulecount="6" minhallwaylength="200" allowedlocationtypes="EuropanRidge_Outpost" spawncrewinsideoutpost="false" alwaysdestructible="true" alwaysrewireable="false" allowstealing="false">
       <modulecount flag="Airlock" count="1" />
       <modulecount flag="EngineeringModule" count="1" />
       <modulecount flag="AdminModule" count="1" />
       <modulecount flag="CrewModule" count="1" />
       <modulecount flag="MedicalModule" count="1" />
+      <modulecount flag="CreatureLootModule" count="1" />
       <!--<modulecount flag="ResearchModule" count="1"/>
     <modulecount flag="SecurityModule" count="1"/>-->
       <npcs>
@@ -307,6 +308,9 @@
         <npc from="outpostnpcs1" identifier="commoner" />
         <npc from="outpostnpcs1" identifier="commoner" />
         <npc from="outpostnpcs1" identifier="commoner" />
+
+      <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="separatists"/>
+      <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="coalition"/>
         <!--<npc from="outpostnpcs1" identifier="clown" faction="clowns"/>
       <npc from="outpostnpcs1" identifier="clown" faction="clowns"/>
       <npc from="outpostnpcs1" identifier="merchantclown" faction="clowns"/>
@@ -316,11 +320,12 @@
       <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult"/>-->
       </npcs>
     </OutpostConfig>
-    <OutpostConfig identifier="researchoutpost_er" replaceinradiation="AbandonedIrradiated" totalmodulecount="5" appendtoreachtotalmodulecount="false" minhallwaylength="200" allowedlocationtypes="EuropanRidge_Research" spawncrewinsideoutpost="false" alwaysdestructible="true">
+    <OutpostConfig identifier="researchoutpost_er" replaceinradiation="AbandonedIrradiated" totalmodulecount="6" appendtoreachtotalmodulecount="false" minhallwaylength="200" allowedlocationtypes="EuropanRidge_Research" spawncrewinsideoutpost="false" alwaysdestructible="true">
       <modulecount flag="Airlock" count="1" />
       <modulecount flag="EngineeringModule" count="1" />
       <modulecount flag="AdminModule" count="1" />
       <modulecount flag="CrewModule" count="1" />
+      <modulecount flag="CreatureLootModule" count="1" />
       <modulecount flag="ResearchModule" count="1" />
       <!--<modulecount flag="ClownModule" count="1" order="1" requiredfaction="clowns"/>
     <modulecount flag="HuskModule" count="1" order="1" requiredfaction="huskcult"/>-->
@@ -342,6 +347,9 @@
         <npc from="outpostnpcs1" identifier="researcher" />
         <npc from="outpostnpcs1" identifier="researcher" />
         <npc from="outpostnpcs1" identifier="researcher" />
+
+        <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="separatists"/>
+      <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="coalition"/>
         <!--<npc from="outpostnpcs1" identifier="clown" faction="clowns"/>
       <npc from="outpostnpcs1" identifier="clown" faction="clowns"/>
       <npc from="outpostnpcs1" identifier="clown" faction="clowns"/>
@@ -353,11 +361,12 @@
       <npc from="outpostnpcs1" identifier="merchanthusk" faction="huskcult"/>-->
       </npcs>
     </OutpostConfig>
-    <OutpostConfig identifier="miningoutpost_er" replaceinradiation="AbandonedIrradiated" totalmodulecount="5" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="EuropanRidge_Mine" spawncrewinsideoutpost="false" alwaysdestructible="true">
+    <OutpostConfig identifier="miningoutpost_er" replaceinradiation="AbandonedIrradiated" totalmodulecount="6" appendtoreachtotalmodulecount="false" minhallwaylength="400" allowedlocationtypes="EuropanRidge_Mine" spawncrewinsideoutpost="false" alwaysdestructible="true">
       <modulecount flag="Airlock" count="1" />
       <modulecount flag="EngineeringModule" count="1" />
       <modulecount flag="AdminModule" count="1" />
       <modulecount flag="CrewModule" count="1" />
+      <modulecount flag="CreatureLootModule" count="1" />
       <!--<modulecount flag="MineModule" count="1"/>-->
       <modulecount flag="MedicalModule" count="1" />
       <npcs>
@@ -378,14 +387,17 @@
         <npc from="outpostnpcs1" identifier="miner" />
         <npc from="outpostnpcs1" identifier="miner" />
         <npc from="outpostnpcs1" identifier="miner" />
+        <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="separatists"/>
+      <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="coalition"/>
       </npcs>
     </OutpostConfig>
-    <OutpostConfig identifier="mili_er" totalmodulecount="5" minhallwaylength="200" allowedlocationtypes="EuropanRidge_Military" spawncrewinsideoutpost="false" alwaysdestructible="true" alwaysrewireable="false" allowstealing="false">
+    <OutpostConfig identifier="mili_er" totalmodulecount="6" minhallwaylength="200" allowedlocationtypes="EuropanRidge_Military" spawncrewinsideoutpost="false" alwaysdestructible="true" alwaysrewireable="false" allowstealing="false">
       <modulecount flag="Airlock" count="1" />
       <modulecount flag="EngineeringModule" count="1" />
       <modulecount flag="AdminModule" count="1" />
       <modulecount flag="CrewModule" count="1" />
       <modulecount flag="MedicalModule" count="1" />
+      <modulecount flag="CreatureLootModule" count="1" />
       <!--<modulecount flag="ResearchModule" count="1"/>
       <modulecount flag="SecurityModule" count="1"/>-->
       <npcs>
@@ -406,6 +418,8 @@
         <npc from="outpostnpcs1" identifier="commoner" />
         <npc from="outpostnpcs1" identifier="commoner" />
         <npc from="outpostnpcs1" identifier="commoner" />
+        <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="separatists"/>
+      <npc from="merchant_npc_DieHard" identifier="merchantoutpost" faction="coalition"/>
       </npcs>
     </OutpostConfig>
     <OutpostConfig identifier="greatsea_outpost" totalmodulecount="7" minhallwaylength="200" allowedlocationtypes="Greatsea_Outpost"  alwaysdestructible="true" alwaysrewireable="false" allowstealing="false" spawncrewinsideoutpost="false">

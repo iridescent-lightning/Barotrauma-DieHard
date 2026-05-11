@@ -10,6 +10,7 @@ using System.Diagnostics;
 using FarseerPhysics;
 using Barotrauma;
 using HarmonyLib;
+using Barotrauma.Networking;
 
 [HarmonyPatch(typeof(AIObjectiveCombat), "Update")]
 public class CombatDoorPatch
@@ -30,7 +31,7 @@ public class CombatDoorPatch
         {
             //__instance.holdFireTimer = 5.0f; 
             // 如果能访问到 aimTimer，将其重置
-            character.Speak(TextManager.Get("dialog.bots.spottedenemybehinddoor").Value, null, 0.0f, "dialog.bots.spottedenemybehinddoor".ToIdentifier(), 10.0f
+            character.Speak(TextManager.Get("dialog.bots.spottedenemybehinddoor").Value, ChatMessageType.Default, 0.0f, "dialog.bots.spottedenemybehinddoor".ToIdentifier(), 10.0f
                     );
             AccessTools.Field(typeof(AIObjectiveCombat), "aimTimer")?.SetValue(__instance, 1.0f);
 

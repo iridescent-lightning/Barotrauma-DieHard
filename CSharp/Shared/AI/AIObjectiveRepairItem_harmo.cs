@@ -71,6 +71,12 @@ namespace BarotraumaDieHard
         [HarmonyPrefix]
         public static bool FindRepairToolPrefix(AIObjectiveRepairItem __instance)
         {
+            // 1. 安全检查：确保实例、物品和角色都不为空
+            if (__instance?.Item == null || __instance.character?.Inventory == null) return true; 
+
+            // 2. 确保有维修组件
+            if (__instance.Item.Repairables == null) return true;
+            
             foreach (Repairable repairable in __instance.Item.Repairables)
             {
                 foreach (var kvp in repairable.RequiredItems)

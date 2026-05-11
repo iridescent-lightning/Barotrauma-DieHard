@@ -724,6 +724,7 @@ namespace BarotraumaDieHard
 
                 _.directionalModeSwitch = new GUIButton(new RectTransform(new Vector2(0.3f, 0.8f), directionalModeFrame.RectTransform, Anchor.CenterLeft), string.Empty, style: "SwitchHorizontal")
                 {
+                    Selected = lockDirectionalSonar,
                     OnClicked = (button, data) =>
                     {
                         if (_.item.GetComponent<Steering>() == null) { return false; }

@@ -179,10 +179,11 @@ namespace BarotraumaDieHard
 
             for (var pingIndex = 0; pingIndex < _.activePingsCount;)
             {
-                if (_.item.AiTarget != null)
+                // 这里的 GetAITargets 是实例方法，需要通过 __instance 调用
+                foreach (AITarget aiTarget in _.GetAITargets())
                 {
-                    float range = MathUtils.InverseLerp(_.item.AiTarget.MinSoundRange, _.item.AiTarget.MaxSoundRange, _.Range * _.activePings[pingIndex].State / _.zoom);
-                    _.item.AiTarget.SoundRange = Math.Max(_.item.AiTarget.SoundRange, MathHelper.Lerp(_.item.AiTarget.MinSoundRange, _.item.AiTarget.MaxSoundRange, range));
+                    aiTarget.SectorDegrees = _.useDirectionalPing ? Sonar.DirectionalPingSector : 360.0f;
+                    aiTarget.SectorDir = new Vector2(_.pingDirection.X, -_.pingDirection.Y);
                 }
                 if (_.activePings[pingIndex].State > 1.0f)
                 {

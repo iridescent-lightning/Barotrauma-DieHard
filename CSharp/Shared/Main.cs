@@ -22,13 +22,13 @@ namespace BarotraumaDieHard
             GameMain.LuaCs.Hook.Add("think", "DieHardUpdate", (args) =>
             {
                 // 1. 处理按键开关 UI
-                if (PlayerInput.KeyHit(Keys.M))
+                /*if (PlayerInput.KeyHit(Keys.M))
                 {
                     if (MonsterLootStore.monsterstorePaddedFrame == null)
                         MonsterLootStore.CreateTestStore();
                     else
                         MonsterLootStore.Close();
-                }
+                }*/
 
                 // 2. 核心：确保 UI 渲染
                 MonsterLootStore.Update();
