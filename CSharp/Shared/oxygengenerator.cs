@@ -41,7 +41,7 @@ namespace BarotraumaDieHard
         public float RecycledAmount
         {
             get { return recycledAmount; }
-            set { recycledAmount = MathHelper.Clamp(value, 0.0f, 1000.0f); }
+            set { recycledAmount = MathHelper.Clamp(value, 0.0f, 2000.0f); }
         }
 
         public float CurrRecycleFlow
@@ -328,16 +328,16 @@ namespace BarotraumaDieHard
             
                 if (!turnedOn || oxygenCandle == null || (oxygenCandle != null && oxygenCandle.Condition <= 0))
                 {
-                    // Water tank is empty, set CurrFlow to 0
+                    // 1. 重置本地显示数值
                     CurrFlow = 0.0f;
-                    VentMod.CO2Flow = 0.0f;
-                    VentMod.PurifyingFlow = 0.0f;
-                    VentMod.HeatFlow = 0.0f;
-
                     CurrHeatingFlow = 0.0f;
                     CurrPurifyingFlow = 0.0f;
                     CurrRecycleFlow = 0.0f;
                     CurrAirPressureRegulatingFlow = 0.0f;
+
+                    // 2. 关键：必须调用这个来清理每个排风口实例里的本地 data 字段
+                    UpdateVents(0, 0, 0, 0, 0, deltaTime);
+
                 }
                 else
                 {
@@ -413,11 +413,16 @@ namespace BarotraumaDieHard
             {
                 if (vent.Item.CurrentHull == null) { continue; }
 
+                // 获取该 vent 对应的实例数据
+                var data = VentMod.GetVentData(vent);
+
+                // 独立赋值，不再互相覆盖
                 vent.OxygenFlow = deltaOxygen * (hullVolume / totalHullVolume);
-                VentMod.co2Flow = deltaCO2 * (hullVolume / totalHullVolume);
-                VentMod.purifyingFlow = deltaPurify * (hullVolume / totalHullVolume);
-                VentMod.heatFlow = deltaHeat * (hullVolume / totalHullVolume);
-                VentMod.deltaAirPressure = deltaHeat * (hullVolume / totalHullVolume);
+                data.Co2Flow = deltaCO2 * (hullVolume / totalHullVolume); 
+                data.PurifyingFlow = deltaPurify * (hullVolume / totalHullVolume);
+                data.HeatFlow = deltaHeat * (hullVolume / totalHullVolume);
+                data.DeltaAirPressure = deltaAirPressure * (hullVolume / totalHullVolume);
+
                 vent.IsActive = true;
             }
         }

@@ -5,7 +5,7 @@ if not Game.IsSubEditor then return end
 
 Hook.Add("chatMessage", "forcelightson", function (message, client)
 local lightfusePrefab = ItemPrefab.GetItemPrefab("lightfuse")
-local coolant = ItemPrefab.GetItemPrefab("reactorcooline")
+local coolant = ItemPrefab.GetItemPrefab("controlrod")
 local jbfuse = ItemPrefab.GetItemPrefab("junctionboxfuse")
 	if message == "!lightson" then 
 		for _, item in pairs(Item.ItemList) do

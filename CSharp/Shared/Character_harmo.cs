@@ -74,9 +74,9 @@ namespace BarotraumaDieHard
 			
 			if (!__instance.IsDead && __instance.UseHullOxygen)
 			{
-				HullMod.AddGas(__instance.CurrentHull, "CO2", 1f, deltaTime);
+				HullMod.AddGas(__instance.CurrentHull, "CO2", 10f, deltaTime);
 			
-				if (HullMod.GetGas(__instance.CurrentHull, "CO2")  > 600f)
+				if (HullMod.GetGas(__instance.CurrentHull, "CO2")  > 1000f)
 				{
 					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["co_poisoning"].Instantiate(1f * deltaTime));
 				}

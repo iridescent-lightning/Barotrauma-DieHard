@@ -34,10 +34,10 @@
 
 	  </ItemComponent>
   </Item>-->
-    <Item name="" description="" identifier="reactorcooline" Tags="reactorpart,mediumitem,reactorcoolant" category="Machine" Scale="0.8" hideinmanue="true" maxstacksize="4">
-      <InventoryIcon texture="%ModDir%/Items/Reactor/reactor_parts.png" sourcerect="1,0,53,77" origin="0.5,0.5" />
-      <Sprite texture="%ModDir%/Items/Reactor/reactor_parts.png" sourcerect="1,0,53,77" depth="0.5" />
-      <Body height="53" width="77" density="100" />
+    <Item name="" description="" identifier="controlrod" Tags="reactorpart,mediumitem,controlrod" category="Machine" Scale="0.5" hideinmanue="true" maxstacksize="4">
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="0,446,64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/Reactor/dhpower.png" sourcerect="9,238,35,303" depth="0.5" />
+      <Body height="303" width="35" density="400" />
       <Holdable slots="RightHand+LeftHand" holdpos="20,-20" handle1="-10,-20" handle2="10,-20" holdangle="45" msg="ItemMsgPickUpUse" canbeselected="true" canbepicked="true" pickkey="Use">
         <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.5" setvalue="true" />
       </Holdable>
@@ -55,13 +55,14 @@
       </Price>
       <Deconstruct time="30">
         <Item identifier="titaniumaluminiumalloy" />
-        <Item identifier="rubber" />
+        <Item identifier="copper" />
       </Deconstruct>
       <Fabricate suitablefabricators="fabricator" requiredtime="30">
         <RequiredSkill identifier="mechanical" level="40" />
-        <RequiredItem identifier="titaniumaluminiumalloy" />
-        <RequiredItem identifier="rubber" />
-        <RequiredItem identifier="rubber" />
+      <RequiredItem identifier="titaniumaluminiumalloy" />
+      <RequiredItem identifier="fpgacircuit" />
+      <RequiredItem identifier="steel" />
+	    <RequiredItem identifier="copper" />
       </Fabricate>
     </Item>
     <Item name="" description="" identifier="reactorslot" Tags="reactor" type="Reactor" showinstatusmonitor="false" category="Machine" Scale="0.65">
@@ -230,10 +231,10 @@
           <StatusEffect type="OnContaining" target="This" AvailableFuel="150.0" disabledeltatime="true" />
         </Containable>
       </ItemContainer>
-      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="reactorcooline">
-        <!--<SlotIcon slotindex="" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />-->
-        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
-        <Containable items="reactorcooline" excludebroken="false" />
+      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="controlrod">
+        <SlotIcon slotindex="0" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />
+        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,1.14" />
+        <Containable items="controlrod" excludebroken="false" />
       </ItemContainer>
       <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.125" mindeteriorationdelay="120" maxdeteriorationdelay="720" MinDeteriorationCondition="10" minsabotagecondition="10" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />

@@ -471,8 +471,8 @@
   <entitydescription.recycledfuelrod>由未用尽的燃料棒经特殊处理后获得。具有危害性，务必小心对待。</entitydescription.recycledfuelrod>
   <entityname.oxygencandle>氧烛</entityname.oxygencandle>
   <entitydescription.oxygencandle>高科技氧烛，制氧机执行多种空气净化工作的不可或缺的材料。</entitydescription.oxygencandle>
-  <entityname.reactorcooline>反应堆冷却剂</entityname.reactorcooline>
-  <entitydescription.reactorcooline>用于反应堆降温，以防过热</entitydescription.reactorcooline>
+  <entityname.controlrod>反应堆冷却剂</entityname.controlrod>
+  <entitydescription.controlrod>用于反应堆降温，以防过热</entitydescription.controlrod>
   <entityname.lightfuse>灯泡保险丝</entityname.lightfuse>
   <entitydescription.lightfuse>一个使灯泡能够正常使用的重要部件</entitydescription.lightfuse>
   <entityname.pumppart>水泵配件</entityname.pumppart>
@@ -648,7 +648,7 @@
   <connection.powerconsumptionout>功率消耗输出</connection.powerconsumptionout>
   <connection.VentIn>接入管道</connection.VentIn>
   <connection.VentOut>接出管道</connection.VentOut>
-  <uilabel.reactorcooline>冷却剂</uilabel.reactorcooline>
+  <uilabel.controlrod>冷却剂</uilabel.controlrod>
   <uilabel.oxygencandle>氧烛插槽</uilabel.oxygencandle>
   <uilabel.lock>锁定</uilabel.lock>
   <displayname.divingwatch>潜水手表</displayname.divingwatch>
@@ -797,8 +797,8 @@
 
   <lowoxygencandleheader>氧烛不足</lowoxygencandleheader>
   <lowoxygencandlewarning>潜艇上状态完好的氧烛少于两根。在氧烛不足的情况下继续前进可能导致氧气发生器无法工作。</lowoxygencandlewarning>
-  <lowreactorcoolantheader>反应堆冷却剂不足</lowreactorcoolantheader>
-  <lowreactorcoolantwarning>潜艇反应堆状态完好的冷却剂少于两份。冷却剂不足可能导致反应堆熔毁。</lowreactorcoolantwarning>
+  <lowreactorcontrolrodheader>反应堆冷却剂不足</lowreactorcontrolrodheader>
+  <lowreactorcontrolrodwarning>潜艇反应堆状态完好的冷却剂少于两份。冷却剂不足可能导致反应堆熔毁。</lowreactorcontrolrodwarning>
   <lowrepairconsumableheader>可修理零件不足</lowrepairconsumableheader>
   <lowrepairconsumablewarning>你的可修理消耗品（机械零件和电气零件）总数少于15个。没有足够的备件，潜艇设备将无法修复。</lowrepairconsumablewarning>
 

@@ -120,10 +120,10 @@
       <Containable items="reactorfuel" />
       <Containable items="reactoritem" />
     </ItemContainer>
-    <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="reactorcooline">
+    <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="controlrod">
         <!--<SlotIcon slotindex="" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />-->
         <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
-        <Containable items="reactorcooline" excludebroken="false" />
+        <Containable items="controlrod" excludebroken="false" />
       </ItemContainer>
     <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.125" mindeteriorationdelay="120" maxdeteriorationdelay="720" MinDeteriorationCondition="10" minsabotagecondition="10" AIRepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
       <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />

@@ -23,7 +23,7 @@ namespace BarotraumaDieHard
     {
         private static bool lowOxygenCandles;
 
-        private static bool lowCoolant;
+        private static bool lowcontrolrod;
 
         private static bool lowRepairConsumable;
 
@@ -36,7 +36,7 @@ namespace BarotraumaDieHard
 
             Submarine.MainSub.CheckFuel();
             CheckOxygenCandle();
-            CheckCoolant();
+            Checkcontrolrod();
             CheckRepairConsumables();
             bool lowFuel = Submarine.MainSub.Info.LowFuel;
             if (__instance.PendingSubmarineSwitch != null)
@@ -59,18 +59,18 @@ namespace BarotraumaDieHard
                 lowOxygenCandleBox.Buttons[1].OnClicked = lowOxygenCandleBox.Close;
 
             }
-            else if (Level.IsLoadedFriendlyOutpost && lowCoolant && (__instance.CargoManager.PurchasedItems.None(i => i.Value.Any(pi => pi.ItemPrefab.Tags.Contains(TagsDieHard.ReactorCoolant)))))
+            else if (Level.IsLoadedFriendlyOutpost && lowcontrolrod && (__instance.CargoManager.PurchasedItems.None(i => i.Value.Any(pi => pi.ItemPrefab.Tags.Contains(TagsDieHard.Reactorcontrolrod)))))
             {
                 
-                var lowCoolantBox = new GUIMessageBox(
-                    TextManager.Get("lowreactorcoolantheader"), 
-                    TextManager.Get("lowreactorcoolantwarning"), 
+                var lowcontrolrodBox = new GUIMessageBox(
+                    TextManager.Get("lowreactorcontrolrodheader"), 
+                    TextManager.Get("lowreactorcontrolrodwarning"), 
                     new LocalizedString[2] { TextManager.Get("ok"), TextManager.Get("cancel") }
                 );
 
-                lowCoolantBox.Buttons[0].OnClicked = (b, o) => { Confirm(); return true; };
-                lowCoolantBox.Buttons[0].OnClicked += lowCoolantBox.Close;
-                lowCoolantBox.Buttons[1].OnClicked = lowCoolantBox.Close;
+                lowcontrolrodBox.Buttons[0].OnClicked = (b, o) => { Confirm(); return true; };
+                lowcontrolrodBox.Buttons[0].OnClicked += lowcontrolrodBox.Close;
+                lowcontrolrodBox.Buttons[1].OnClicked = lowcontrolrodBox.Close;
 
             }
             else if (Level.IsLoadedFriendlyOutpost && lowRepairConsumable && (__instance.CargoManager.PurchasedItems.None(i => i.Value.Any(pi => pi.ItemPrefab.Tags.Contains(TagsDieHard.RepairConsumable)))))
@@ -133,11 +133,11 @@ namespace BarotraumaDieHard
             lowOxygenCandles = oxygenCandle < 200;
             return !lowOxygenCandles;
         }
-        public static bool CheckCoolant()
+        public static bool Checkcontrolrod()
         {
-            float coolant = Submarine.MainSub.GetItems(true).Where(i => i.HasTag("reactorcoolant")).Sum(i => i.Condition);
-            lowCoolant = coolant < 200;
-            return !lowCoolant;
+            float controlrod = Submarine.MainSub.GetItems(true).Where(i => i.HasTag("reactorcontrolrod")).Sum(i => i.Condition);
+            lowcontrolrod = controlrod < 200;
+            return !lowcontrolrod;
         }
         public static bool CheckRepairConsumables()
         {

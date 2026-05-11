@@ -43,16 +43,17 @@ namespace BarotraumaDieHard
                 // 如果电机缺失或损坏，强制关泵
                 if (motor == null || motor.Condition <= 0)
                 {
-                    _.IsActive = false;
+                    //_.IsActive = false;
                     _.flowPercentage = 0.0f;
                     // 这里不需要 return false，让原版去处理后续的停止逻辑和网络同步
                 }
                 else
                 {
                     // 如果有电机且正在运转，消耗电机耐久
-                    if (_.IsActive && Math.Abs(_.currFlow) > 0.01f)
+                    if (_.IsActive && Math.Abs(_.currFlow) > 1f)
                     {
-                        motor.Condition -= 0.001f * deltaTime;
+                        
+                        motor.Condition -= 0.05f * deltaTime;
                     }
                 }
             }

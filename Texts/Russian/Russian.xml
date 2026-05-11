@@ -453,8 +453,8 @@
   <Terminal.reactormanual>Очень важно ---- Работа реактора: Если реактор поврежден до критического состояния. Выключите реактор, чтобы предотвратить дальнейшую катастрофу. \nКоэффициент деления должен быть ниже 5, чтобы обеспечить безопасность всей подводной лодки. Если реактор неисправен, включить резервную сеть на субмарине!\n Не извлекать из реактора топливный стержень, не отработавший свой ресурс до конца. Радиация может быть смертельной. Если вам это очень надо, используйте подходящий контейнер! \nИнженерное руководство Коалиции 101</Terminal.reactormanual>
   <entityname.oxygencandle>oxygencandle</entityname.oxygencandle>
   <entitydescription.oxygencandle>Обработанная вода для кислородного генератора.</entitydescription.oxygencandle>
-  <entityname.reactorcooline>Охладитель реактора</entityname.reactorcooline>
-  <entitydescription.reactorcooline>Охладитель, предотвращающий перегрев реактора</entitydescription.reactorcooline>
+  <entityname.controlrod>Охладитель реактора</entityname.controlrod>
+  <entitydescription.controlrod>Охладитель, предотвращающий перегрев реактора</entitydescription.controlrod>
   <entityname.lightfuse>Предохранитель</entityname.lightfuse>
   <entitydescription.lightfuse>Важная часть любой лампы, за счет которой она светит.</entitydescription.lightfuse>
   <entityname.smallpumpmotor>Мотор маленького насоса</entityname.smallpumpmotor>
@@ -567,7 +567,7 @@
   <entitydescription.hypothalamusstimulator>Таблетка стимулирует гипоталамус и вызывает опасный внутренний перегрев.</entitydescription.hypothalamusstimulator>
   <entityname.diversbackpack>Рюкзак водолаза</entityname.diversbackpack>
   <entitydescription.diversbackpack>Прочный рюкзак для переноски вещей. Замедляет при ношении.</entitydescription.diversbackpack>
-  <uilabel.reactorcooline>Охлождение</uilabel.reactorcooline>
+  <uilabel.controlrod>Охлождение</uilabel.controlrod>
   <uilabel.oxygencandle>oxygencandle</uilabel.oxygencandle>
   <uilabel.lock>Замок</uilabel.lock>
   <displayname.divingwatch>Дайверские часы</displayname.divingwatch>

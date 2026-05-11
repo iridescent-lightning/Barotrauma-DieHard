@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Barotrauma Die Hard" modversion="4.6.387" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
+<contentpackage name="Barotrauma Die Hard" modversion="4.6.388" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
   <Item file="%ModDir%/Items/Diving/divinggear.xml" />
   <Item file="%ModDir%/Items/Weapons/weapons.xml" />
   <Item file="%ModDir%/Items/Weapons/small_arms.xml" />
@@ -167,9 +167,9 @@
   <OutpostModule file="%ModDir%/CrewModule_03DH.sub" />
   <OutpostModule file="%ModDir%/EngineeringModule_02DH.sub" />
   <OutpostModule file="%ModDir%/CrewModule_02DH.sub" />
-  <OutpostModule file="%ModDir%/./CreatureLoot_Module_CC_01.sub" />
   <Submarine file="%ModDir%/./0Mod Play Yard.sub" />
-  <Submarine file="%ModDir%/0test.sub" />
   <OutpostModule file="%ModDir%/MedicalModule_ER.sub" />
+  <Submarine file="%ModDir%/0test.sub" />
+  <OutpostModule file="%ModDir%/./CreatureLoot_Module_CC_01.sub" />
   <OutpostModule file="%ModDir%/./CreatureLootModule_ER.sub" />
 </contentpackage>

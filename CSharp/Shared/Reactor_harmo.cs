@@ -17,7 +17,7 @@ namespace BarotraumaDieHard
         public static Dictionary<int, ItemContainer> SecondItemContainerReactors = new Dictionary<int, ItemContainer>();
         
 
-        private static Item coolant;
+        private static Item controlrod;
         private static bool inEditor;
 
         [HarmonyPatch("Update")]
@@ -29,23 +29,25 @@ namespace BarotraumaDieHard
             if(inEditor && !__instance.Item.InPlayerSubmarine) return;
             if (SecondItemContainerReactors.TryGetValue(__instance.item.ID, out ItemContainer itemContainer))
             {
-                coolant = itemContainer.Inventory.GetItemAt(0);
+                controlrod = itemContainer.Inventory.GetItemAt(0);
             }
 
+            
 
-            // Check the condition of the coolant and the temperature of the reactor
-            if (coolant != null && coolant.Condition <= 0 && __instance.Temperature > 10f)
+            // Check the condition of the controlrod and the temperature of the reactor
+            if (controlrod != null && controlrod.Condition <= 0 && __instance.Temperature > 10f)
             {
+                __instance.fissionRate = 100f;
                 __instance.Item.Condition -= 1.5f * deltaTime;
             }
-            else if (coolant == null && __instance.Temperature > 10f)
+            else if (controlrod == null && __instance.Temperature > 10f)
             {
-                //DebugConsole.NewMessage(__instance.item.Condition.ToString());
+                __instance.fissionRate = 100f;
                 __instance.Item.Condition -= 1.5f * deltaTime;
             }
             else if (__instance.item.InPlayerSubmarine && __instance.Temperature > 10f)
             {
-                coolant.Condition -= 0.05f * deltaTime;
+                controlrod.Condition -= 0.05f * deltaTime;
             }
 
             // Trigger an action if the reactor's condition is critical

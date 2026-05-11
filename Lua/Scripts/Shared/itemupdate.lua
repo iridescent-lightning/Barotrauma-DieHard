@@ -43,19 +43,19 @@ local reactorComponent = item:GetComponentString("Reactor")
 local temperature = reactorComponent.Temperature
 
 	for container in  item.GetComponents(Components.ItemContainer) do
-		if container.Inventory.FindItemByIdentifier("reactorcooline") and container.Inventory.GetItemAt(0).Condition > 0 then
-				coolineFound = true
+		if container.Inventory.FindItemByIdentifier("controlrod") and container.Inventory.GetItemAt(0).Condition > 0 then
+				controlrodFound = true
 				if temperature > 5 then
 					container.Inventory.GetItemAt(0).Condition = container.Inventory.GetItemAt(0).Condition - 0.05
 				end
 			else
 				if temperature > 5 then
-				coolineFound = false
+				controlrodFound = false
 					end
 			end
 
 	end
-	if not coolineFound then
+	if not controlrodFound then
 	item.Condition = item.Condition -1.5
 	end
 	updateTimer = getRandomUpdateTime();
@@ -1004,7 +1004,7 @@ local message = display.ShowMessage
 
 
 if message == '1' then
-display.ShowMessage = "Very important----Reactor Operation: The reactor needs cooline to prevent from being damaged by overheat. If the reactor is damaged to critical state. Turn off the reactor to prevent further catastrophe. \nDuring low damage mode, the FissionRate should below 5 to ensure safetyness for the whole sub. If reactor is down, turn on the backup power grid on the sub!\n Do not remove an undepleted fuel rod from the reactor. The radiation can be fatal. If you insist on removing it, find a suitable container! \nCoalition Engineering Guideline 101"
+display.ShowMessage = "Very important----Reactor Operation: The reactor needs controlrod to prevent from being damaged by overheat. If the reactor is damaged to critical state. Turn off the reactor to prevent further catastrophe. \nDuring low damage mode, the FissionRate should below 5 to ensure safetyness for the whole sub. If reactor is down, turn on the backup power grid on the sub!\n Do not remove an undepleted fuel rod from the reactor. The radiation can be fatal. If you insist on removing it, find a suitable container! \nCoalition Engineering Guideline 101"
 elseif message == '2' then
 display.ShowMessage = "The pumps need motors to work. Remember to check and repair them regularly."
 elseif message == '3' then
@@ -1068,7 +1068,7 @@ local scooter = 0
 	for k,v in pairs (Submarine.MainSub.GetItems(false)) do
 		if v.HasTag('reactorfuel') and v.Condition ~= 0 then
 			fuelRodCount = fuelRodCount + 1
-		elseif v.Prefab.Identifier == 'reactorcooline' and v.Condition ~= 0 then
+		elseif v.Prefab.Identifier == 'controlrod' and v.Condition ~= 0 then
 			Coolant = Coolant +1
 		elseif v.Prefab.Identifier == 'watertank' and v.Condition ~= 0 then
 			waterTank = waterTank +1 

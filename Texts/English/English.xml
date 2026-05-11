@@ -473,8 +473,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.recycledfuelrod>Recycled from depleted fuel rods. Hazarous. Better take care with caution.</entitydescription.recycledfuelrod>
   <entityname.oxygencandle>Oxygen Candle</entityname.oxygencandle>
   <entitydescription.oxygencandle>High-tech oxygen candle that allows the oxygen generation to preform various air duties.</entitydescription.oxygencandle>
-  <entityname.reactorcooline>Reactor Coolant</entityname.reactorcooline>
-  <entitydescription.reactorcooline>Coolant to prevent the reactor from going overheat</entitydescription.reactorcooline>
+  <entityname.controlrod>Reactor controlrod</entityname.controlrod>
+  <entitydescription.controlrod>controlrod to prevent the reactor from going overheat</entitydescription.controlrod>
   <entityname.lightfuse>Light Fuse</entityname.lightfuse>
   <entitydescription.lightfuse>An important part for any lamp to light on.</entitydescription.lightfuse>
   <entityname.pumppart>Pump Part</entityname.pumppart>
@@ -650,14 +650,14 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <connection.powerconsumptionout>Power Consumption Out</connection.powerconsumptionout>
   <connection.VentIn>Vent In</connection.VentIn>
   <connection.VentOut>Vent Out</connection.VentOut>
-  <uilabel.reactorcooline>Cooline</uilabel.reactorcooline>
+  <uilabel.controlrod>controlrod</uilabel.controlrod>
   <uilabel.oxygencandle>Oxygen Candle Slot</uilabel.oxygencandle>
   <uilabel.lock>Lock</uilabel.lock>
   <displayname.divingwatch>Diving Watch</displayname.divingwatch>
   <cursorhover.changedirection>[[select]] Push it to initialize the submarine change direction sequence.</cursorhover.changedirection>
   <cursorhover.repair.heavywrench>[[use]] Repair (Heavy Wrench)</cursorhover.repair.heavywrench>
   <cursorhover.repair.guns>[[use]] Repair (weapon repair kit)</cursorhover.repair.guns>
-  <Terminal.reactormanual>Very important----Reactor Operation: The reactor needs cooline to prevent from being damaged during working condition. If the reactor is damaged to critical state. Turn off the reactor to prevent further catastrophe. \nThe FissionRate should below 5 to ensure safetyness for the whole sub. If reactor is down, turn on the backup power grid on the sub!\n Do not remove an undepleted fuel rod from the reactor. The radiation can be fatal. If you insist on removing it, find a suitable container! \nCoalition Engineering Guideline 101</Terminal.reactormanual>
+  <Terminal.reactormanual>Very important----Reactor Operation: The reactor needs controlrod to prevent from being damaged during working condition. If the reactor is damaged to critical state. Turn off the reactor to prevent further catastrophe. \nThe FissionRate should below 5 to ensure safetyness for the whole sub. If reactor is down, turn on the backup power grid on the sub!\n Do not remove an undepleted fuel rod from the reactor. The radiation can be fatal. If you insist on removing it, find a suitable container! \nCoalition Engineering Guideline 101</Terminal.reactormanual>
   <Terminal.helermanualstart>Welcome to the helper. Select corresponding number to view contents.\n1 Reactor\n2 Pump\n3 Turrets and Submarine Warfare\n4 Indoor Combat\nhome</Terminal.helermanualstart>
   <Terminal.subdocstart>Submarine Info\n Select corresponding number to view information.\n1 Vessel Payload Condition\n2 Ship design and efficiency\n3 Register Number\n4 Basic Assets\nhome</Terminal.subdocstart>
   <afflictionname.coldwater>Low Temperature</afflictionname.coldwater>
@@ -801,8 +801,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
 
   <lowoxygencandleheader>Low on Oxygen Candle</lowoxygencandleheader>
   <lowoxygencandlewarning>There are fewer than two full-condition oxygen candles on the submarine. Further proceed without engough candles may result in non-working oxygen generator.</lowoxygencandlewarning>
-  <lowreactorcoolantheader>Low on Reactor Coolant</lowreactorcoolantheader>
-  <lowreactorcoolantwarning>There are fewer than two full-condition coolant for submarine reactor. Insufficient coolant may result in reactor meltdown.</lowreactorcoolantwarning>
+  <lowreactorcontrolrodheader>Low on Reactor controlrod</lowreactorcontrolrodheader>
+  <lowreactorcontrolrodwarning>There are fewer than two full-condition controlrod for submarine reactor. Insufficient controlrod may result in reactor meltdown.</lowreactorcontrolrodwarning>
   <lowrepairconsumableheader>Low on repairable parts</lowrepairconsumableheader>
   <lowrepairconsumablewarning>You have less than 15 units of reairable consumables in total (Mechanical Parts and Electrical Parts). Without adequate spare parts submarine equipments cannot be fixed.</lowrepairconsumablewarning>
 
