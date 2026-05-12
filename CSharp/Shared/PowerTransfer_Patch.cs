@@ -104,49 +104,18 @@ namespace BarotraumaDieHard
         public static void OnReceiveJBSwitchMessage(object[] args)
         {
                 IReadMessage msg = (IReadMessage)args[0];
-    ushort itemID = msg.ReadUInt16();
-    bool newState = msg.ReadBoolean();
-
-    Item item = Entity.FindEntityByID(itemID) as Item;
-    if (item == null) return;
-
-    // 1. 服务器先更新自己的数据
-    SetLeverState(item, newState);
-    RefreshGrid(item);
-
-    // 2. 【关键】如果是服务器收到了消息，必须广播给所有客户端
-    // 否则只有服务器自己知道改了，Bot 的动作对玩家来说就是“隐形的”
-    #if SERVER
-    if (GameMain.Server != null)
-    {
-        // 构造一个新消息广播出去
-        SendJBSwitchMessage(item, newState); 
-    }
-    #endif
+                ushort itemID = msg.ReadUInt16();
+                bool newState = msg.ReadBoolean();
+                
+                Item item = Entity.FindEntityByID(itemID) as Item;
+                if (item == null) return;
+                Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab("revolver"), item.WorldPosition);
+                // 1. 服务器先更新自己的数据
+                SetLeverState(item, newState);
+                RefreshGrid(item);
         }
 
-        public static void SendJBSwitchMessage(Item item, bool leverState)
-{
-    // 1. 创建消息
-    IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
-    msg.WriteUInt16(item.ID);
-    msg.WriteBoolean(leverState);
-
-    // 2. 根据当前环境选择发送方式
-#if CLIENT
-    // 如果是玩家手动点的（客户端环境），发送给服务器，由服务器决定是否广播
-    if (GameMain.Client != null)
-    {
-        NetUtil.SendServer(msg, DeliveryMethod.Reliable);
-    }
-#elif SERVER
-    // 如果是 Bot 运行在服务器上（服务端环境），直接广播给所有人
-    if (GameMain.Server != null)
-    {
-        NetUtil.SendAll(msg, DeliveryMethod.Reliable);
-    }
-#endif
-}
+        
 
     }
 

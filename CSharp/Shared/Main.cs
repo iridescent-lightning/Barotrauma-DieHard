@@ -39,8 +39,15 @@ namespace BarotraumaDieHard
     #if SERVER
     // 服务器启动时注册网络监听
     NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
-    NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
-    #endif
+    //NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
+#endif
+//有趣。以前都是只在服务器注册的，shared注册会崩溃。现在看来不是这样。
+//必须都注册才能让bot正常从服务器端发送到客户端的指令
+if (!GameMain.IsSingleplayer)
+    {
+        
+        NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
+    }
 
             
             // 使用 Barotrauma 原生日志或 LuaCsLogger 都可以

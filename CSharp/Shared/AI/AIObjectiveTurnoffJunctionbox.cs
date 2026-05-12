@@ -70,8 +70,15 @@ namespace BarotraumaDieHard
             PowerTransferPatch.RefreshGrid(targetItem);
 
             
-  
-                PowerTransferPatch.SendJBSwitchMessage(targetItem, targetLeverState);
+            #if SERVER
+            IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
+                msg.WriteUInt16(targetItem.ID);
+                msg.WriteBoolean(targetLeverState);
+
+                // 调用你的 NetUtil 发送给所有人
+                // 在 Server 端运行这个会把消息推送到所有玩家的 Client 端
+                NetUtil.SendAll(msg, DeliveryMethod.Reliable);
+            #endif
 
 
             character.Speak(TextManager.Get("dialog.bot.operatedjunctionbox").Value, null, 0.0f, "operatedjb".ToIdentifier(), 10.0f);

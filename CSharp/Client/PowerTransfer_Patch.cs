@@ -74,7 +74,18 @@ namespace BarotraumaDieHard
             };
         }
 
+        public static void SendJBSwitchMessage(Item item, bool leverState)
+        {
+            // 1. 创建消息
+            IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
+            msg.WriteUInt16(item.ID);
+            msg.WriteBoolean(leverState);
+            
 
+            // 2. 根据当前环境选择发送方式
+            NetUtil.SendServer(msg, DeliveryMethod.Reliable);
+
+        }
         
     }
 
