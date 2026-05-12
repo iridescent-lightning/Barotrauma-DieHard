@@ -12,7 +12,7 @@ using Barotrauma.Items.Components;
 using Barotrauma;
 using HarmonyLib;
 
-namespace LampMod
+namespace BarotraumaDieHard
 {
 	[HarmonyPatch(typeof(LightComponent))]
 	class LightComponentPatch
@@ -48,6 +48,8 @@ namespace LampMod
         [HarmonyPostfix]
         public static void Postfix_Update(float deltaTime, Camera cam, LightComponent __instance)
         {
+            if(__instance == null) return;
+
             // 只处理带有 lamp 标签的物品
             if (!__instance.item.HasTag("lamp")) return;
 
@@ -66,6 +68,11 @@ namespace LampMod
                     __instance.FlickerSpeed = data.FlickerSpeed;
                 }
             }
+            
+            
         }
+
+        
+
 	}
 }

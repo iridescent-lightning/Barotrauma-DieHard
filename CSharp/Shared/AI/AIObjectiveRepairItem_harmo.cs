@@ -83,7 +83,7 @@ namespace BarotraumaDieHard
                 {
                     foreach (RelatedItem requiredItem in kvp.Value)
                     {
-                        __instance.character.Speak("I will need " + requiredItem.JoinedIdentifiers.ToString() + " to fix the " + __instance.Item.Name, identifier: "required items", minDurationBetweenSimilar: 10.0f);
+                        //__instance.character.Speak("I will need " + requiredItem.JoinedIdentifiers.ToString() + " to fix the " + __instance.Item.Name, identifier: "required items", minDurationBetweenSimilar: 10.0f);
                         
                         foreach (var item in __instance.character.Inventory.AllItems)
                         {

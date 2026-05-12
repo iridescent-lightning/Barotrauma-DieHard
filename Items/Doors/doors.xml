@@ -108,11 +108,13 @@
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="mechanical" level="40" />
         <RequiredItem items="wrench" type="equipped" />
-        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" InheritParentIsActive="false">
           <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="501,162,79,104"  origin="0,0.75" alpha="1.0" />
+          <ActiveConditional HasTag="door" />
         </LightComponent>
-        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" InheritParentIsActive="false">
           <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="360,162,75,104" origin="1,0.75" alpha="1.0" />
+          <ActiveConditional HasTag="door" />
         </LightComponent>
         <StatusEffect type="InWater" interval="2" target="This">
           <LuaHook name="WaterDoor" />
@@ -159,9 +161,11 @@
         <RequiredItem items="wrench" type="equipped" />
         <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" InheritParentIsActive="false">
           <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="501,162,79,104"  origin="0,0.75" alpha="1.0" />
+          <ActiveConditional HasTag="door" />
         </LightComponent>
-        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="0" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false" InheritParentIsActive="false">
           <sprite texture="%ModDir%/Items/Electricity/dhelectricities.png" depth="0.025" sourcerect="360,162,75,104" origin="1,0.75" alpha="1.0" />
+          <ActiveConditional HasTag="door" />
         </LightComponent>
         <!--<StatusEffect type="OnBroken">
           <LuaHook name="DoorStuck" />

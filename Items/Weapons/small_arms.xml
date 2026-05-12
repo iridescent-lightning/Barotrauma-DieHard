@@ -124,7 +124,7 @@
         <!--This makes bullet has bubble effect in water-->
         <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
         </Projectile>
@@ -394,9 +394,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -637,9 +637,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -803,9 +803,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -1106,9 +1106,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -1366,9 +1366,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -1538,9 +1538,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -1742,9 +1742,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>
@@ -1901,9 +1901,9 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This">
+        <StatusEffect type="OnActive" target="This" delay="0.05">
           <Conditional InWater="true" />
-          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3" delay="0.05"/>
+          <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
         </StatusEffect>
       </Projectile>

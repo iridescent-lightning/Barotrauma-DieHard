@@ -770,7 +770,7 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
-    <WallShrapnelProjectile name="" identifier="wallshrapnelprojectile" scale="0.5" category="Decorative" tags="collidable_always,hardsurface" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_glasscontainer" health="500">
+    <WallShrapnelProjectile name="1" identifier="wallshrapnelprojectile" scale="0.5" category="Decorative" tags="collidable_always,hardsurface" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_glasscontainer" health="500">
       <Body width="33" height="81" density="15" />
       <Sprite name="bottle" texture="%ModDir%/Items/Misc/DHMisc.png" depth="0.6" sourcerect="0,0,33,81" origin="0.5,0.5" />
       <ItemComponent>

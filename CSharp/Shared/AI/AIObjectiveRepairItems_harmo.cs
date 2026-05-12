@@ -12,33 +12,36 @@ using Barotrauma;
 namespace BarotraumaDieHard
 {
     [HarmonyPatch(typeof(AIObjectiveRepairItems))]
-public class AIObjectiveRepairItemsPatch
-{
-    [HarmonyPatch("IsValidTarget")]
-    [HarmonyPatch(new Type[] { typeof(Item), typeof(Character) })]
-    [HarmonyPrefix]
-    public static bool IsValidTargetPrefix(Item item, Character character, ref bool __result)
+    public class AIObjectiveRepairItemsPatch
     {
-        
-        // 获取维修组件
-        var repairable = item.GetComponent<Repairable>();
-        
-        // 核心安全检查：如果带电，直接拦截原版逻辑
-        if (repairable != null && RepairableDieHard.IsDeviceElectrified(repairable))
+        [HarmonyPatch("IsValidTarget")]
+        [HarmonyPatch(new Type[] { typeof(Item), typeof(Character) })]
+        [HarmonyPrefix]
+        public static bool IsValidTargetPrefix(Item item, Character character, ref bool __result)
         {
-            string localizedSpeech = TextManager.GetWithVariable(
-    "dialog.bots.brokendeviceconnectedtopoweredjunctionbox", 
-    "[itemname]", 
-    item.Name
-).Value;
-            character.Speak(localizedSpeech, null, 0.0f, "safetywarning".ToIdentifier(), 30.0f);
-                
-            __result = false; // 告知 AI：这个目标不合法
-            return false;    // 【关键】返回 false 以拦截原版 ViableForRepair 的执行
-        }
+            
+            // 获取维修组件
+            var repairable = item.GetComponent<Repairable>();
+            
+            // 核心安全检查：如果带电，直接拦截原版逻辑
+            if (repairable != null && RepairableDieHard.IsDeviceElectrified(repairable) && item.Condition < item.MaxCondition)
+            {
+#if CLIENT
+                string localizedSpeech = TextManager.GetWithVariable(
+                    "dialog.bots.brokendeviceconnectedtopoweredjunctionbox", 
+                    "[itemname]", 
+                    item.Name
+                ).Value;
 
-        // 如果不带电，则返回 true，允许原版方法继续执行（去检查火灾、敌人、技能等）
-        return true; 
+                character.Speak(localizedSpeech, null, 0.0f, "safetywarning".ToIdentifier(), 30.0f);
+#endif
+                    
+                __result = false; // 告知 AI：这个目标不合法
+                return false;    // 【关键】返回 false 以拦截原版 ViableForRepair 的执行
+            }
+
+            // 如果不带电，则返回 true，允许原版方法继续执行（去检查火灾、敌人、技能等）
+            return true; 
+        }
     }
-}
 }

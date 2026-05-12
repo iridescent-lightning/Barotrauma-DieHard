@@ -180,7 +180,7 @@ namespace BarotraumaDieHard
 
                 // 1. 修改发射冲力 (LaunchImpulse)
                 // 注意：这会直接影响内部 Launch 逻辑计算出的初速度
-                __instance.LaunchImpulse *= 0.7f; 
+                __instance.LaunchImpulse = 50f; 
 
                 // 2. 增加阻力 (Drag)
                 // 让子弹在水中不仅初速慢，而且很快停下来

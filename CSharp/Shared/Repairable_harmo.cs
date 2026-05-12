@@ -42,7 +42,7 @@ namespace BarotraumaDieHard
 
             // 4. 上游接线盒的状态
             var powered2 = item.GetComponent<Powered>();
-            if (powered2?.powerIn != null)
+            if (powered2?.powerIn != null && item.Prefab.Identifier != "junctionbox")
             {
                 foreach (var connection in powered2.powerIn.Recipients)
                 {

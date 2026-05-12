@@ -171,7 +171,7 @@ end)
 Hook.Add("Flamethrower","Flamethrower",function(effect, deltaTime, item, targets, worldPosition)
 local repairTool = item.GetComponentString("RepairTool") 
 	for target in targets do
-		if target.Name == "Flamethrower Fuel Tank" or target.Name == "flamethrowerfueltank" then
+		if target.Prefab.Identifier == "flamethrowerfueltank" then
 			if target.Condition > 0 then
 				repairTool.UsableIn = repairTool.UseEnvironment.Air
 			elseif target.Condition == 0  then

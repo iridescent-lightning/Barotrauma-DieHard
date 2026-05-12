@@ -105,6 +105,35 @@ namespace BarotraumaDieHard
 					lastUpdateTime = DateTime.UtcNow;
 				}
 				
+
+				// 1. 基础检查：确保是玩家在交互，且交互者有库存
+				if (character == null || character.Inventory == null) return true;
+
+				// 2. 获取玩家当前手里拿着的物品 (通常是右手或左手选中的物品)
+				Item heldItem = character.Inventory.GetItemInLimbSlot(InvSlotType.RightHand);
+				
+				// 如果手里没东西，走原逻辑（比如打开柜子看一眼）
+				if (heldItem == null) return true;
+
+				// 3. 检查容器是否能放下这个物品
+				// __instance.Inventory 是容器自身的库存
+				if (__instance.Inventory.CanBePut(heldItem) && (__instance.Item.HasTag("weaponholder") || __instance.Item.HasTag("extinguisherholder")))
+				{
+					// 4. 执行存入动作
+					bool success = __instance.Inventory.TryPutItem(heldItem, character);
+
+					if (success)
+					{
+#if CLIENT
+						// 播放一个存入的声音，增加反馈感
+						SoundPlayer.PlayUISound(GUISoundType.PickItem);
+#endif
+						
+						// 重要：返回 false 以拦截原逻辑，这样就不会弹出容器 UI 面板了
+						return false;
+					}
+				}
+				
 				
 				var abilityItem = new AbilityItemContainer(_.item);
 				character.CheckTalents(AbilityEffectType.OnOpenItemContainer, abilityItem);
@@ -121,6 +150,8 @@ namespace BarotraumaDieHard
 					return true;
 				// return base.Select(character);
 				}
+
+				
 				
 				return false;
 		}
