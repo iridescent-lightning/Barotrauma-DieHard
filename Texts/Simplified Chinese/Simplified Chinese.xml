@@ -752,7 +752,10 @@
   <dialog.bots.dangerousfuelrod>什么鬼！一根放射性燃料棒！</dialog.bots.dangerousfuelrod>
 
 
-  
+  <dialog.bots.cannotrepairpowereddevice>我不能修理带电设备!</dialog.bots.cannotrepairpowereddevice>
+  <dialog.bots.powereddeviceisbroken>坏掉了</dialog.bots.powereddeviceisbroken>
+  <dialog.bots.powereddeviceisbroken_in>在</dialog.bots.powereddeviceisbroken_in>
+  <dialog.bots.brokendeviceconnectedtopoweredjunctionbox>不能维修[itemname]！这个设备依然连接着一个通电的接线盒！</dialog.bots.brokendeviceconnectedtopoweredjunctionbox>
   <dialog.bots.cannotrepairpoweredreactor>我无法修理这个，反应堆仍在通电！</dialog.bots.cannotrepairpoweredreactor>
 
   <dialog.bots.findradiationsuit>我需要找到一套防辐射服！</dialog.bots.findradiationsuit>
@@ -780,12 +783,17 @@
   <orderdialogself.findandequipradiationsuit>我需要一件防辐射服。</orderdialogself.findandequipradiationsuit>
 
   <ordername.retrievefuelrod>Retrieve Fuel Rod</ordername.retrievefuelrod>
-  <orderdialog.findandequipradiationsuit>[name], 从反应堆取出一根燃料棒!</orderdialog.findandequipradiationsuit>
+  <orderdialog.retrievefuelrod>[name], 从反应堆取出一根燃料棒!</orderdialog.retrievefuelrod>
   <dialog.bots.missingequipment>我没有足够的设备取出燃料棒!</dialog.bots.missingequipment>
   <dialog.bots.retrievefuelrod.failure>找不到装备。放弃任务!</dialog.bots.retrievefuelrod.failure>
   <dialog.bots.retrievefuelrod.nofuelrod_inreactor>反应堆里没有需要取出的燃料棒</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
   <dialog.bots.retrievefuelrod.colling_and_putting>现在当心，让它慢慢冷却……</dialog.bots.retrievefuelrod.colling_and_putting>
   <dialog.bots.retrievefuelrod.success>燃料棒安全收容。</dialog.bots.retrievefuelrod.success>
+
+  <ordername.operatejunctionbox>切换接线盒开关</ordername.operatejunctionbox>
+  <orderdialog.operatejunctionbox>[name], 切换接线盒开关!</orderdialog.operatejunctionbox>
+  <dialog.bot.operatedjunctionbox>接线盒的开关拨动了！</dialog.bot.operatedjunctionbox>
+
   <hint.electricalrepair>确保切断电源以保证安全修理。</hint.electricalrepair>
   <hint.bugvent>一只耗电的虫子从你的一个通风口爬出。杀死它以恢复电力。</hint.bugvent>
   <hint.qteinsufficientskilllevel>你的技能等级未达到快速反应事件的要求。</hint.qteinsufficientskilllevel>

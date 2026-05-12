@@ -47,7 +47,7 @@ namespace BarotraumaDieHard
                 
                 if (poweredDevice.powerIn != null && poweredDevice.powerIn.Grid != null && poweredDevice.powerIn.Grid.Power > 1f)
                 {
-                    __instance.character.Speak("A " + __instance.Item.Name + " in " + localizedRoomName + " is broken." + " But it's too dangerous to repair this while it's powered!", identifier: "bot_repair_fail", minDurationBetweenSimilar: 20.0f);
+                    __instance.character.Speak(__instance.Item.Name + TextManager.Get("dialog.bots.powereddeviceisbroken_in").Value + localizedRoomName + TextManager.Get("dialog.bots.powereddeviceisbroken").Value + TextManager.Get("dialog.bots.cannotrepairpowereddevice").Value, identifier: "bot_repair_fail", minDurationBetweenSimilar: 20.0f);
                     __instance.Abandon = true;
                 }
                 

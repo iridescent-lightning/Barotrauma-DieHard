@@ -136,10 +136,14 @@ namespace BarotraumaDieHard
         // --- 接线盒损坏特效 ---
         private static void SpawnJunctionBoxEffects(Item target, Vector2 bulletVel)
         {
+            Hull hull = target.CurrentHull;
             Vector2 spawnPos = target.WorldPosition;
             // 接线盒可能冒烟、喷射大量金属火花，但没有玻璃
             //GameMain.ParticleManager.CreateParticle("blacksmoke", spawnPos, Vector2.UnitY * 20f, 0, target.CurrentHull);
-            
+            if (target.Condition <= 0)
+            {
+            GameMain.ParticleManager.CreateParticle("TeslaExplosion", spawnPos, Vector2.Zero, 0, hull);
+            }
             // 定向火花喷射 (使用你之前的向量旋转逻辑)
             SpawnDirectionalSparks(spawnPos, bulletVel, target.CurrentHull);
         }

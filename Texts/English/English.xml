@@ -754,8 +754,11 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <dialog.bots.dangerousfuelrod>What the fuck! A radioactive fuel rod!</dialog.bots.dangerousfuelrod>
 
 
-  
+  <dialog.bots.cannotrepairpowereddevice>I can't repair powered device!</dialog.bots.cannotrepairpowereddevice>
+  <dialog.bots.powereddeviceisbroken> is broken</dialog.bots.powereddeviceisbroken>
+  <dialog.bots.powereddeviceisbroken_in> in </dialog.bots.powereddeviceisbroken_in>
   <dialog.bots.cannotrepairpoweredreactor>I can't repair this, the reactor is still powered!</dialog.bots.cannotrepairpoweredreactor>
+  <dialog.bots.brokendeviceconnectedtopoweredjunctionbox>Can't repair! The device [itemname] is still connected to a working junction box!</dialog.bots.brokendeviceconnectedtopoweredjunctionbox>
 
   <dialog.bots.findradiationsuit>I need find a radiadition suit!</dialog.bots.findradiationsuit>
   <dialog.bots.findradiationsuit.failure>I can't find radiation suit.</dialog.bots.findradiationsuit.failure>
@@ -783,12 +786,16 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <orderdialogself.findandequipradiationsuit>I need a radiation protective suit.</orderdialogself.findandequipradiationsuit>
 
   <ordername.retrievefuelrod>Retrieve Fuel Rod</ordername.retrievefuelrod>
-  <orderdialog.findandequipradiationsuit>[name], Retrieve a fuel rod from the reactor!</orderdialog.findandequipradiationsuit>
+  <orderdialog.retrievefuelrod>[name], Retrieve a fuel rod from the reactor!</orderdialog.retrievefuelrod>
   <dialog.bots.missingequipment>I don't have enough equipments to do this!</dialog.bots.missingequipment>
   <dialog.bots.retrievefuelrod.failure>Can't find proper equipments. Abandon mission!</dialog.bots.retrievefuelrod.failure>
   <dialog.bots.retrievefuelrod.nofuelrod_inreactor>No spent fuel rods found in reactor.</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
   <dialog.bots.retrievefuelrod.colling_and_putting>Now careful. Cooling it down in the holder...</dialog.bots.retrievefuelrod.colling_and_putting>
   <dialog.bots.retrievefuelrod.success>Secured the radioactive rod.</dialog.bots.retrievefuelrod.success>
+
+  <ordername.operatejunctionbox>Switch Junction Box State</ordername.operatejunctionbox>
+  <orderdialog.operatejunctionbox>[name], Switch the junctionbox state!</orderdialog.operatejunctionbox>
+  <dialog.bot.operatedjunctionbox>The lever of the junctionbox is switched!</dialog.bot.operatedjunctionbox>
 
   <hint.electricalrepair>Make sure to cut off the power to ensure the safe repairing.</hint.electricalrepair>
   <hint.bugvent>An electric consuming bug crawls out of one of your vents. Kill it to retore the power.</hint.bugvent>

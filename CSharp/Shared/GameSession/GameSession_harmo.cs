@@ -108,6 +108,7 @@ namespace BarotraumaDieHard
             CharacterPatch.ClearPressureTimerDictionary();
 
             ConvertLocationToDestroyed();
+            PowerTransferPatch.LeverStates.Clear();
             
         }
     

@@ -35,14 +35,10 @@
       <InfectedSprite texture="Content/Items/Gardening/ballastflora.png" sourcerect="8,260,149,170" origin="0.5,0.5" />
       <DamagedInfectedSprite texture="Content/Items/Gardening/ballastflora.png" sourcerect="157,260,149,170" origin="0.5,0.5" />
       <SwappableItem price="800" origin="55,88" swapidentifier="junctionboxes" replacementonuninstall="jbslot"></SwappableItem>
-      <CustomJunctionBox canbeselected="true" msg="ItemMsgInteractSelect">
+      <PowerTransfer canbeselected="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.2,0.14" minsize="450,160" anchor="Center" style="ItemUI" />
         <!--minsize="350,160" maxsize="420,190"-->
-        <StatusEffect type="InWater" target="This" interval="180">
-          <Conditional voltage="gt 0.1" />
-          <LuaHook name="randomwaterdamage" />
-        </StatusEffect>
-      </CustomJunctionBox>
+      </PowerTransfer>
       <ItemContainer capacity="1" hideitems="true" canbeselected="true" maxstacksize="1">
         <GuiFrame relativesize="0.113,0.155" anchor="Center" canbeselected="true" minsize="110,220" relativeoffset="0.1,0.0" style="ItemUI" />
         <Containable items="junctionboxfuse" />
@@ -54,14 +50,14 @@
       <LightComponent range="10.0" lightcolor="255,255,255,0" alphablend="true" powerconsumption="1" IsOn="true" castshadows="false" allowingameediting="false">
         <Upgrade gameversion="0.9.600.0" lightcolor="255,255,255,0" />
         <sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="264,186,110,176" depth="0.1" origin="0.5,0.5" alpha="1.0" />
-        <IsActive targetitemcomponent="CustomJunctionBox" overload="eq False" />
+        <IsActive targetitemcomponent="PowerTransfer" overload="eq False" />
         <IsActive targetcontaineditem="true" condition="gt 0" />
       </LightComponent>
       <!--red light when overload and fuse not broken-->
       <LightComponent range="10.0" lightcolor="255,255,255,0" alphablend="true" powerconsumption="1" IsOn="false" castshadows="false" allowingameediting="false" blinkfrequency="1.5">
         <Upgrade gameversion="0.9.600.0" lightcolor="255,255,255,0" />
         <sprite texture="Content/Items/Electricity/signalcomp.png" sourcerect="376,186,110,176" depth="0.1" origin="0.5,0.5" alpha="1.0" />
-        <IsActive targetitemcomponent="CustomJunctionBox" overload="eq True" />
+        <IsActive targetitemcomponent="PowerTransfer" overload="eq True" />
         <IsActive targetcontaineditem="true" condition="gt 0" />
       </LightComponent>
       <!--yellow light when fuse is broken-->

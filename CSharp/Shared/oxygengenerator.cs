@@ -307,40 +307,29 @@ namespace BarotraumaDieHard
 
         public override void Update(float deltaTime, Camera cam)
         {
-            //DebugConsole.NewMessage(this.GeneratedAmount.ToString());
-			
-            CurrRecycleFlow = 0.0f;
-            CurrFlow = 0.0f;
-            CurrPurifyingFlow = 0.0f;
-            CurrHeatingFlow = 0.0f;
-            CurrAirPressureRegulatingFlow = 0.0f;
+            // 1. 初始化流量显示
+    CurrRecycleFlow = 0.0f;
+    CurrFlow = 0.0f;
+    CurrPurifyingFlow = 0.0f;
+    CurrHeatingFlow = 0.0f;
+    CurrAirPressureRegulatingFlow = 0.0f;
 
-            if (item.CurrentHull == null) { return; }
-            
-            if (Voltage < MinVoltage && PowerConsumption > 0)
-            {
-                return;
-            }
-                
-            // Get the items at slot 0 from the second container
-            oxygenCandle = secondItemContainer.Inventory.GetItemAt(0) as Item;
-            
-            
-                if (!turnedOn || oxygenCandle == null || (oxygenCandle != null && oxygenCandle.Condition <= 0))
-                {
-                    // 1. 重置本地显示数值
-                    CurrFlow = 0.0f;
-                    CurrHeatingFlow = 0.0f;
-                    CurrPurifyingFlow = 0.0f;
-                    CurrRecycleFlow = 0.0f;
-                    CurrAirPressureRegulatingFlow = 0.0f;
+    if (item.CurrentHull == null) { return; }
 
-                    // 2. 关键：必须调用这个来清理每个排风口实例里的本地 data 字段
-                    UpdateVents(0, 0, 0, 0, 0, deltaTime);
+    // 2. 检查关键停止条件：断电 OR 手动关闭 OR 没氧烛 OR 氧烛烧完
+    oxygenCandle = secondItemContainer.Inventory.GetItemAt(0) as Item;
+    
+    // 【关键修改】：将电力检查（HasPower）整合进停止条件
+    // 原版的 HasPower 逻辑通常是：IsActive && Voltage >= MinVoltage
+    bool canWork = turnedOn && HasPower && oxygenCandle != null && oxygenCandle.Condition > 0;
 
-                }
-                else
-                {
+    if (!canWork)
+    {
+        // 强制清空所有产出
+        UpdateVents(0, 0, 0, 0, 0, deltaTime);
+        return; // 彻底停止后续计算
+    }
+             
                     int activeRefillSlots = 0;
 
                     for (int i = 0; i < 5; i++)
@@ -389,7 +378,7 @@ namespace BarotraumaDieHard
                 {
                     oxygenCandle.Condition = oxygenCandle.Condition - 0.01f * newGeneratedAmountFactor * deltaTime;
                 }
-                }
+                
             
             item.SendSignal(CurrFlow.ToString(), "oxygen_generated_amount_out");
 

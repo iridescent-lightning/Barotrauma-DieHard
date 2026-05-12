@@ -16,4 +16,13 @@
          ignoreatoutpost="true">
     <Sprite texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="128,256,128,128"/>
   </Order>
+  <Order name="Operate Junction Box" identifier="operatejunctionbox"
+         assignmentpriority="60"
+         targetitemtype="PowerTransfer"
+         appropriatejobs="engineer"
+         appropriateskill="electrical"
+         category="operate"
+         ignoreatoutpost="true">
+    <Sprite texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="384,512,128,128"/>
+  </Order>
 </Orders>

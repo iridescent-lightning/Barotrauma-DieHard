@@ -2203,14 +2203,6 @@
       <ScriptedEvent identifier="Npc.conversation8" />
       <ScriptedEvent identifier="DHNpcMission.fetchmonsters" commonness="150" />
     </EventSet>
-    <EventSet identifier="dhoutpostevents.monstercollecters" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="3">
-      <ScriptedEvent identifier="checkloot_harmmerheads" />
-      <ScriptedEvent identifier="checkloot_crawlers" />
-      <ScriptedEvent identifier="checkloot_molochs" />
-      <ScriptedEvent identifier="checkloot_raptors" />
-      <ScriptedEvent identifier="checkloot_fish" />
-      <ScriptedEvent identifier="checkloot_abyssloot" />
-    </EventSet>
     <EventSet identifier="EuropaRidge.generic.randomevents" minleveldifficulty="0" maxleveldifficulty="80" allowatstart="true" chooserandom="true" onceperoutpost="true">
       <OverrideEventCount locationtype="City" eventcount="3" />
       <!-- events that can occur in both low and high difficulty, commoness reduced here to favor the more difficult ones-->

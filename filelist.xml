@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Barotrauma Die Hard" modversion="4.6.388" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
+<contentpackage name="Barotrauma Die Hard" modversion="4.6.391" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
   <Item file="%ModDir%/Items/Diving/divinggear.xml" />
   <Item file="%ModDir%/Items/Weapons/weapons.xml" />
   <Item file="%ModDir%/Items/Weapons/small_arms.xml" />
@@ -118,12 +118,10 @@
   <OutpostModule file="%ModDir%/AphoticPlateau_adminmodule_01.sub" />
   <OutpostModule file="%ModDir%/AphoticPlateau_engineering_01.sub" />
   <OutpostModule file="%ModDir%/Greatsea_SecurityModule_01.sub" />
-  <OutpostModule file="%ModDir%/AphoticPlateau_crewmodule_01.sub" />
   <OutpostModule file="%ModDir%/AphoticPlateau_dockingmodule_2.sub" />
   <OutpostModule file="%ModDir%/DockingModule_01DH.sub" />
   <OutpostModule file="%ModDir%/DockingModule_01DH1.sub" />
   <OutpostModule file="%ModDir%/DockingModule_01_ER.sub" />
-  <OutpostModule file="%ModDir%/DockingModule_02DH.sub" />
   <OutpostModule file="%ModDir%/DockingModule_02DH1.sub" />
   <OutpostModule file="%ModDir%/Greasea_DockingModule_01.sub" />
   <OutpostModule file="%ModDir%/Greatsea_DockingModule_04.sub" />
@@ -156,20 +154,22 @@
   <OutpostModule file="%ModDir%/AdminModule_01L_Airlock_ER.sub" />
   <OutpostModule file="%ModDir%/EngineerModule_01_ER.sub" />
   <OutpostModule file="%ModDir%/ResearchModule_01_ER.sub" />
-  <OutpostModule file="%ModDir%/Cave_Dock_01.sub" />
   <OutpostModule file="%ModDir%/AdminModule_02LDH.sub" />
   <OutpostModule file="%ModDir%/AdminModule_04DH.sub" />
   <OutpostModule file="%ModDir%/AdminModule_05DH.sub" />
-  <OutpostModule file="%ModDir%/Maps/DryCaves/Cave_Dock.sub" />
   <OutpostModule file="%ModDir%/CrewModule_01DH.sub" />
   <OutpostModule file="%ModDir%/MedicalModule_01DH.sub" />
   <OutpostModule file="%ModDir%/EngineeringModule_01DH.sub" />
-  <OutpostModule file="%ModDir%/CrewModule_03DH.sub" />
-  <OutpostModule file="%ModDir%/EngineeringModule_02DH.sub" />
   <OutpostModule file="%ModDir%/CrewModule_02DH.sub" />
-  <Submarine file="%ModDir%/./0Mod Play Yard.sub" />
   <OutpostModule file="%ModDir%/MedicalModule_ER.sub" />
-  <Submarine file="%ModDir%/0test.sub" />
   <OutpostModule file="%ModDir%/./CreatureLoot_Module_CC_01.sub" />
   <OutpostModule file="%ModDir%/./CreatureLootModule_ER.sub" />
+  <OutpostModule file="%ModDir%/CrewModule_03DH.sub" />
+  <OutpostModule file="%ModDir%/AphoticPlateau_crewmodule_01.sub" />
+  <OutpostModule file="%ModDir%/Maps/DryCaves/Cave_Dock.sub" />
+  <OutpostModule file="%ModDir%/Cave_Dock_01.sub" />
+  <OutpostModule file="%ModDir%/DockingModule_02DH.sub" />
+  <OutpostModule file="%ModDir%/EngineeringModule_02DH.sub" />
+  <Submarine file="%ModDir%/./0Mod Play Yard.sub" />
+  <Submarine file="%ModDir%/0test.sub" />
 </contentpackage>

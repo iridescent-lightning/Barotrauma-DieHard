@@ -21,7 +21,7 @@ namespace BarotraumaDieHard
 
 
         // 统一的安全检查：判断一个设备是否“带电”
-        private static bool IsDeviceElectrified(Repairable __instance)
+        public static bool IsDeviceElectrified(Repairable __instance)
         {
             var item = __instance.item;
             
@@ -40,11 +40,29 @@ namespace BarotraumaDieHard
                 return hasInputPower || hasOutputLoad;
             }
 
+            // 4. 上游接线盒的状态
+            var powered2 = item.GetComponent<Powered>();
+            if (powered2?.powerIn != null)
+            {
+                foreach (var connection in powered2.powerIn.Recipients)
+                {
+                    //DebugConsole.NewMessage($"{connection.ToString()}");
+                    // 检查连接的另一端电网
+                    if (connection.Grid != null && connection.Grid.Voltage > 0f) 
+                    {
+                        // 只要上游电网有电压，即便本设备 Condition 是 0，也认为带电（因为随时会通）
+                        return connection.Grid.Voltage > 0f; 
+                    }
+                }
+            }
+
             // 3. 普通用电设备（接线盒、氧气机等）
             if (item.GetComponent<Powered>() is Powered powered)
             {
                 return powered.powerIn?.Grid != null && powered.powerIn.Grid.Power > 1.0f;
             }
+
+            
 
             return false;
         }
@@ -66,6 +84,20 @@ namespace BarotraumaDieHard
 #if CLIENT
                 BarotraumaDieHard.CustomHintManager.DisplayHint("electricalrepair".ToIdentifier());
 #endif
+
+        if (character.AIController is HumanAIController humanAI)
+                {
+                    // 让 Bot 说话，解释为什么不修了
+                    character.Speak(TextManager.Get("dialog.bot.safetywarning").Value, null, 0.0f, "safetywarning".ToIdentifier(), 10.0f);
+                    
+                    // 强制放弃当前的维修目标
+                    // 这样 Bot 才会重新扫描周围，触发去关接线盒的逻辑
+                    var currentObjective = humanAI.ObjectiveManager.GetCurrentObjective();
+                    if (currentObjective != null)
+                    {
+                        currentObjective.Abandon = true; 
+                    }
+                }
                 __result = false;
                 return false;
             }

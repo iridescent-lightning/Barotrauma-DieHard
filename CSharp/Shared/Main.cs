@@ -36,10 +36,12 @@ namespace BarotraumaDieHard
                 return null;
             });
 #endif
-            #if SERVER
+    #if SERVER
     // 服务器启动时注册网络监听
     NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
+    NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
     #endif
+
             
             // 使用 Barotrauma 原生日志或 LuaCsLogger 都可以
             LuaCsLogger.Log("DieHard Mod Initialized via ACsMod Constructor.");

@@ -1,4 +1,4 @@
-/*using Barotrauma.Extensions;
+using Barotrauma.Extensions;
 using Barotrauma.Items.Components;
 using Barotrauma.Networking; // used by the server
 using Microsoft.Xna.Framework;
@@ -7,105 +7,38 @@ using System.Collections.Generic;
 using System.Linq;
 
 using HarmonyLib;
-using System.Reflection;
-using System.Xml.Linq;
-
 using Barotrauma;
-
 
 namespace BarotraumaDieHard
 {
-    class AIObjectiveRepairItemsDieHard  : IAssemblyPlugin
-    {
-
-
-        public Harmony harmony;
-        
-        
-        public void Initialize()
-        {
-            harmony = new Harmony("AIObjectiveRepairItemsDieHard");
-
-            harmony.Patch(
-                original: typeof(AIObjectiveRepairItems).GetMethod("IsValidTarget"),
-                prefix: new HarmonyMethod(typeof(AIObjectiveRepairItemsDieHard).GetMethod(nameof(IsValidTargetPrefix)))
-            );
-            
-        }
-
-        public void OnLoadCompleted() { }
-        public void PreInitPatching() { }
-
-        public void Dispose()
-        {
-            harmony.UnpatchSelf();
-            harmony = null;
-        }
-
-
-        public static bool IsValidTargetPrefix(Item item, Character character, AIObjectiveRepairItem __instance, ref bool __result)
+    [HarmonyPatch(typeof(AIObjectiveRepairItems))]
+public class AIObjectiveRepairItemsPatch
 {
-    
-    
-    if (item == null) 
-    { 
+    [HarmonyPatch("IsValidTarget")]
+    [HarmonyPatch(new Type[] { typeof(Item), typeof(Character) })]
+    [HarmonyPrefix]
+    public static bool IsValidTargetPrefix(Item item, Character character, ref bool __result)
+    {
         
-        __result = false; 
-        return false; 
-    }
-    if (item.IgnoreByAI(character)) 
-    { 
+        // 获取维修组件
+        var repairable = item.GetComponent<Repairable>();
         
-        __result = false; 
-        return false; 
-    }
-    if (!item.IsInteractable(character)) 
-    { 
-        
-        __result = false; 
-        return false; 
-    }
-    if (item.IsFullCondition) 
-    { 
-        
-        __result = false; 
-        return false; 
-    }
-    if (item.Submarine == null || character.Submarine == null) 
-    { 
-        
-        __result = false; 
-        return false; 
-    }
-    if (item.IsClaimedByBallastFlora) 
-    { 
-        
-        __result = false; 
-        return false; 
-    } 
-    if (character.IsOnPlayerTeam && item.Submarine.Info.IsOutpost) 
-    { 
-        
-        __result = false; 
-        return false; 
-    }
-    if (!character.Submarine.IsEntityFoundOnThisSub(item, includingConnectedSubs: true)) 
-    { 
-        
-        __result = false; 
-        return false; 
-    }
-    
-    if (item.Repairables.None()) 
-    {        
-        __result = false; 
-        return false; 
-    }
+        // 核心安全检查：如果带电，直接拦截原版逻辑
+        if (repairable != null && RepairableDieHard.IsDeviceElectrified(repairable))
+        {
+            string localizedSpeech = TextManager.GetWithVariable(
+    "dialog.bots.brokendeviceconnectedtopoweredjunctionbox", 
+    "[itemname]", 
+    item.Name
+).Value;
+            character.Speak(localizedSpeech, null, 0.0f, "safetywarning".ToIdentifier(), 30.0f);
+                
+            __result = false; // 告知 AI：这个目标不合法
+            return false;    // 【关键】返回 false 以拦截原版 ViableForRepair 的执行
+        }
 
-    __result = true; // Set __result to true if all checks pass
-    return false;
+        // 如果不带电，则返回 true，允许原版方法继续执行（去检查火灾、敌人、技能等）
+        return true; 
+    }
 }
-
-
-    }
-}*/
+}

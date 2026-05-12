@@ -12,8 +12,8 @@
     </Cursor>
     <TitleText color="255,255,255,255" hovercolor="255,255,255,255" selectedcolor="255,255,255,255" pressedcolor="255,255,255,255">
       <Sprite texture="%ModDir%/UI/DHtitleText.png" sourcerect="0,520,1024,470" tile="false" maintainaspectratio="true">
-        <override language="Traditional Chinese" texture="Content/UI/titleText.png" sourcerect="0,176,1024,343" />
-        <override language="Simplified Chinese" texture="Content/UI/titleText.png" sourcerect="0,176,1024,343" />
+        <override language="Traditional Chinese" texture="%ModDir%/UI/DHtitleText.png" sourcerect="0,520,1024,470" />
+        <override language="Simplified Chinese" texture="%ModDir%/UI/DHtitleText.png" sourcerect="0,520,1024,470" />
       </Sprite>
     </TitleText>
     <MainMenuBackground color="255,255,255,255">
