@@ -22,7 +22,7 @@ namespace BarotraumaDieHard
             
             // 获取维修组件
             var repairable = item.GetComponent<Repairable>();
-            
+            if (item.Condition > repairable.RepairThreshold) return false;
             // 核心安全检查：如果带电，直接拦截原版逻辑
             if (repairable != null && RepairableDieHard.IsDeviceElectrified(repairable) && item.Condition < item.MaxCondition)
             {

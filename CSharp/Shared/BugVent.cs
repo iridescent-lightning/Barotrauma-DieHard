@@ -56,6 +56,9 @@ namespace ButVentMod//todo make a structural namespace DieHard.Item.Components. 
         {
             
             if (!item.InPlayerSubmarine && onlyPlayerSub) {return;}
+
+           // 如果当前关卡是 Outpost，则不执行
+            if (GameMain.GameSession?.Level?.LevelData?.Type == LevelData.LevelType.Outpost) { return; }
             
             // Increment the elapsed time
             elapsedTime += deltaTime;

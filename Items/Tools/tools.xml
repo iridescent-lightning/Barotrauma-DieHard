@@ -1187,6 +1187,15 @@
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" minamount="1" maxamount="1" spawnprobability="0.01" />
       <PreferredContainer secondary="beaconengcab" amount="1" spawnprobability="0.2" />
       <PreferredContainer secondary="abandonedengcab,wreckengcab" amount="1" spawnprobability="0.02" />
+      <Price baseprice="700" displaynonempty="true" minavailable="2">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" minavailable="3" />
+        <Price storeidentifier="merchantresearch" />
+        <Price storeidentifier="merchantmilitary" />
+        <Price storeidentifier="merchantmine" />
+        <Price storeidentifier="merchantengineering" multiplier="0.9" minavailable="5" />
+        <Price storeidentifier="merchanttutorial" multiplier="0.5" minavailable="3" />
+    </Price>
       <Deconstruct time="10">
         <Item identifier="steel" />
         <Item identifier="uranium" mincondition="0.95" />
@@ -1217,6 +1226,14 @@
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" />
       <PreferredContainer secondary="beaconengcab" />
       <PreferredContainer secondary="abandonedengcab,wreckengcab" />
+      <Price baseprice="250" sold="false" displaynonempty="true">
+        <Price storeidentifier="merchantoutpost" />
+        <Price storeidentifier="merchantcity" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" multiplier="1.1" />
+        <Price storeidentifier="merchantengineering" multiplier="0.9" minavailable="2" />
+    </Price>
       <Deconstruct time="10">
         <Item identifier="steel" />
         <Item identifier="lead" />
@@ -1240,6 +1257,14 @@
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" amount="1" spawnprobability="0.01" />
       <PreferredContainer secondary="beaconengcab" amount="1" spawnprobability="0.02" />
       <PreferredContainer secondary="abandonedengcab,wreckengcab" amount="1" spawnprobability="0.01" />
+      <Price baseprice="1400" displaynonempty="true">
+        <Price storeidentifier="merchantoutpost" sold="false" />
+        <Price storeidentifier="merchantcity" minavailable="1" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmilitary" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+        <Price storeidentifier="merchantengineering" multiplier="0.9" minavailable="2" />
+      </Price>
       <Deconstruct time="10">
         <Item identifier="steel" />
         <Item identifier="lead" />

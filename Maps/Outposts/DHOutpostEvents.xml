@@ -599,7 +599,7 @@
         <Option text="EventText.dhhuskcultambush.c.o1">
           <ConversationAction targettag="triggerer_player" text="EventText.dhhuskcultambush.c.o1.c" />
           <ConversationAction targettag="triggerer_player" text="EventText.dhhuskcultambush.c.o1.c2" />
-          <CombatAction combatmode="Offensive" npctag="cultist1" enemytag="triggerer_player" isinstigator="true" guardreaction="arrest" witnessreaction="retreat" />
+          <CombatAction combatmode="Offensive" npctag="cultist1" enemytag="triggerer_player" isinstigator="true" witnessreaction="retreat" />
         </Option>
         <Option text="EventText.dhhuskcultambush.c.o2">
           <ConversationAction targettag="triggerer_player" text="EventText.dhhuskcultambush.c.o2.c" />
