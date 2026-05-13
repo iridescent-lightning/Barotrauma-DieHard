@@ -171,7 +171,10 @@ namespace BarotraumaDieHard
         public static void LaunchPrefix(Projectile __instance,  Character user)
         {
             if (__instance == null || __instance.item == null) return;
+            
+            Item itemInRightHand = user.Inventory?.GetItemInLimbSlot(InvSlotType.RightHand);
 
+            if (itemInRightHand != null && itemInRightHand.Prefab.Identifier == "underwatergun") return;
             // 判定条件：如果子弹在水中，或者发射者在水中
             if (__instance.item.InWater || (user != null && user.InWater))
             {
@@ -180,7 +183,7 @@ namespace BarotraumaDieHard
 
                 // 1. 修改发射冲力 (LaunchImpulse)
                 // 注意：这会直接影响内部 Launch 逻辑计算出的初速度
-                __instance.LaunchImpulse = 50f; 
+                __instance.LaunchImpulse = 25f; 
 
                 // 2. 增加阻力 (Drag)
                 // 让子弹在水中不仅初速慢，而且很快停下来

@@ -55,56 +55,9 @@ namespace BarotraumaDieHard
 						}
 					}
 				}
-				//use the system time if you have no access to deltaTime
-				if (DateTime.UtcNow - lastUpdateTime < updateInterval)
-				{
-					//do nothing
-				}
-				else
-				{
-					//a template will fill in sound effects here
-					if (_.item.HasTag("steelcabinetsfx"))
-					{
-						#if CLIENT
-							SoundPlayer.PlaySound("interactive_large_container", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
-						#endif
-					}
-					else if (_.item.HasTag("mediumsteelcabinetsfx"))
-					{
-						//DebugConsole.NewMessage("mediumsteelcabinetsfx");
-						#if CLIENT
-							SoundPlayer.PlaySound("interactive_medium_container", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
-						#endif
-					}
-					else if (_.item.HasTag("extinguisherholder"))
-					{
-						#if CLIENT
-							SoundPlayer.PlaySound("interactive_large_container", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
-						#endif
-					}
-					else if (_.item.HasTag("suppliescontainer"))
-					{
-						#if CLIENT
-							SoundPlayer.PlaySound("interactive_emergencycab", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
-						#endif
-					}
-					else if (_.item.HasTag("securecontainer"))
-					{
-						#if CLIENT
-							SoundPlayer.PlaySound("interactive_securitycab_open", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
-						#endif
-					}
-					else if (_.item.HasTag("medcontainer"))
-					{
-						#if CLIENT
-							SoundPlayer.PlaySound("interactive_med_container_open", _.item.WorldPosition, hullGuess: _.item.CurrentHull);
-						#endif
-					}
 
-
-					lastUpdateTime = DateTime.UtcNow;
-				}
-				
+				// 先播放声音（无论后续是否存入物品）
+    PlayContainerSound(_);  // 提取成独立方法
 
 				// 1. 基础检查：确保是玩家在交互，且交互者有库存
 				if (character == null || character.Inventory == null) return true;
@@ -134,6 +87,7 @@ namespace BarotraumaDieHard
 					}
 				}
 				
+
 				
 				var abilityItem = new AbilityItemContainer(_.item);
 				character.CheckTalents(AbilityEffectType.OnOpenItemContainer, abilityItem);
@@ -155,6 +109,35 @@ namespace BarotraumaDieHard
 				
 				return false;
 		}
+
+
+
+
+
+
+
+		// 提取声音播放为独立方法，避免重复代码
+private static void PlayContainerSound(ItemContainer container)
+{
+    if (DateTime.UtcNow - lastUpdateTime < updateInterval) return;
+    
+#if CLIENT
+    if (container.item.HasTag("steelcabinetsfx"))
+        SoundPlayer.PlaySound("interactive_large_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+    else if (container.item.HasTag("mediumsteelcabinetsfx"))
+        SoundPlayer.PlaySound("interactive_medium_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+    else if (container.item.HasTag("extinguisherholder"))
+        SoundPlayer.PlaySound("interactive_large_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+    else if (container.item.HasTag("suppliescontainer"))
+        SoundPlayer.PlaySound("interactive_emergencycab", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+    else if (container.item.HasTag("securecontainer"))
+        SoundPlayer.PlaySound("interactive_securitycab_open", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+    else if (container.item.HasTag("medcontainer"))
+        SoundPlayer.PlaySound("interactive_med_container_open", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+#endif
+    
+    lastUpdateTime = DateTime.UtcNow;
+}
 		//no use leftover
 		/*
 		[HarmonyPatch("Equip")]

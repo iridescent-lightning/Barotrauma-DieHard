@@ -109,7 +109,7 @@ namespace BarotraumaDieHard
                 
                 Item item = Entity.FindEntityByID(itemID) as Item;
                 if (item == null) return;
-                Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab("revolver"), item.WorldPosition);
+                
                 // 1. 服务器先更新自己的数据
                 SetLeverState(item, newState);
                 RefreshGrid(item);

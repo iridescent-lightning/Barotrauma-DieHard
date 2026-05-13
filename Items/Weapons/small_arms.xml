@@ -104,6 +104,9 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>-->
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <Attack structuredamage="10" targetforce="10" itemdamage="20" severlimbsprobability="0.4" penetration="0.6" stun="0.1">
           <Affliction identifier="gunshotwound" strength="28" />
           <Affliction identifier="bleeding" strength="3" />
@@ -113,16 +116,21 @@
           <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
         </StatusEffect>
         <!--<StatusEffect type="OnImpact" target="UseTarget" >
-			<LuaHook name="goToPrision"/>
+			    <LuaHook name="goToPrision"/>
         </StatusEffect>-->
         <StatusEffect type="OnImpact" target="UseTarget">
+          <Conditional InWater="false" />
           <Conditional entitytype="eq Structure" />
           <Conditional hastag="eq door" />
           <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
         </StatusEffect>
+        <StatusEffect type="OnImpact" target="UseTarget">
+          <Conditional InWater="true" />
+          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3"/>
+        </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -378,6 +386,9 @@
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="12" />
         </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <StatusEffect type="OnImpact" target="UseTarget">
           <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
           <Conditional entitytype="!eq Character" />
@@ -394,7 +405,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -621,6 +632,9 @@
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="37" />
         </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <StatusEffect type="OnImpact" target="UseTarget">
           <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
           <Conditional entitytype="!eq Character" />
@@ -637,7 +651,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -803,7 +817,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -1090,6 +1104,9 @@
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="20" />
         </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <StatusEffect type="OnImpact" target="UseTarget">
         <Conditional entitytype="!eq Character" />
           <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -1106,7 +1123,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -1350,6 +1367,9 @@
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="45" />
         </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <StatusEffect type="OnImpact" target="UseTarget">
         <Conditional entitytype="!eq Character" />
           <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -1366,7 +1386,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -1538,7 +1558,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -1726,6 +1746,9 @@
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="55" />
         </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <StatusEffect type="OnImpact" target="UseTarget">
         <Conditional entitytype="!eq Character" />
           <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -1742,7 +1765,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />
@@ -1885,6 +1908,9 @@
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="45" />
         </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="0.1">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="0" anglemax="0" particleamount="1" velocitymin="500" velocitymax="500" scalemin="0.6" scalemax="0.7" />
+        </StatusEffect>
         <StatusEffect type="OnImpact" target="UseTarget">
         <Conditional entitytype="!eq Character" />
           <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" />
@@ -1901,7 +1927,7 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.05">
+        <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
           <Remove />

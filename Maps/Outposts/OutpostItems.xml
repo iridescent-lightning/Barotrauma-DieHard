@@ -333,7 +333,7 @@
       </Controller>
       <Body width="152" height="240" density="100" friction="50" />
     </Item>
-    <Item name="" identifier="op_cafeteriatable" scale="0.5" noninteractable="true" category="Decorative,collidable">
+    <Item name="" identifier="op_cafeteriatable" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable">
       <Body width="252" height="172" density="200" />
       <sprite texture="Content/Map/Outposts/Art/CafeteriaGardenAssets.png" sourcerect="338,223,252,172" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
     </Item>

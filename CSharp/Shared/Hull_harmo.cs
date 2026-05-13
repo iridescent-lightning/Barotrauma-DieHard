@@ -20,7 +20,8 @@ namespace BarotraumaDieHard
     [HarmonyPatch(typeof(Hull))]
     class HullMod
     {
-        [HarmonyPatch("ApplyFlowForces")]
+        // Kind of buggy for some light mass items.
+        /*[HarmonyPatch("ApplyFlowForces")]
         [HarmonyPrefix]
         public static bool ApplyFlowForces(Hull __instance, float deltaTime, Item item)
         {
@@ -38,7 +39,7 @@ namespace BarotraumaDieHard
                 }
             }
             return false;
-        }
+        }*/
 
         //this is used to assign gas from the GasInfo class to each hull
         public static Dictionary<Hull, GasInfo> gasMap = new Dictionary<Hull, GasInfo>();

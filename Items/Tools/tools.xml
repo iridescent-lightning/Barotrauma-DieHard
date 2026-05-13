@@ -1085,8 +1085,9 @@
         <Attack targetimpulse="50">
           <Affliction identifier="stun" strength="5" />
           <Affliction identifier="burn" strength="10" />
+          <Affliction identifier="electricshock" strength="80"/>
         </Attack>
-        <StatusEffect type="OnUse" forceplaysounds="true">
+        <StatusEffect target="This" type="OnUse" forceplaysounds="true">
           <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" range="20000" selectionmode="random" />
           <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge2.ogg" range="20000" />
           <Explosion range="500.0" camerashake="15" stun="0" force="0.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
