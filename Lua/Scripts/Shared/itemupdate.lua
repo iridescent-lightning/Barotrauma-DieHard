@@ -675,12 +675,7 @@ end)--]]
 
 
 
---[[Hook.Patch("Barotrauma.Item", "IsInWater", function(instance, ptable) no clear effect
-	if (instance.HasTag('slowinwater')) then 
-		local theComponent = instance:GetComponentString('Projectile')
-			theComponent.LaunchImpulse = 10
-	end
-end)--]]
+
 
 --[[Hook.Patch("Barotrauma.Items.Components.Door", "SetState", function(instance, ptable)
 if instance then

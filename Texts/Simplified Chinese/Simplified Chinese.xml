@@ -797,6 +797,8 @@
   <ordername.repairwithdisconnect>断电维修</ordername.repairwithdisconnect>
   <orderdialog.repairwithdisconnect>[name], 断电维修这个设备!</orderdialog.repairwithdisconnect>
   <dialog.bot.repairwithdisconnect.complete>设备修好了并且恢复了供电!</dialog.bot.repairwithdisconnect.complete>
+  <dialog.bot.repairwithdisconnect.canfindrepairtarget>没有需要维修的设备。</dialog.bot.repairwithdisconnect.canfindrepairtarget>
+  <dialog.bot.repairwithdisconnect.disconnectingpowerwires>正在解除电源线……</dialog.bot.repairwithdisconnect.disconnectingpowerwires>
 
   <hint.electricalrepair>确保切断电源以保证安全修理。</hint.electricalrepair>
   <hint.bugvent>一只耗电的虫子从你的一个通风口爬出。杀死它以恢复电力。</hint.bugvent>

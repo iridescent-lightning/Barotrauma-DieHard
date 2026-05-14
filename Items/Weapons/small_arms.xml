@@ -207,7 +207,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </Item>
-    <Item name="" identifier="57mag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="57mag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="FNFive-seven" minamount="1" notcampaign="true" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -340,7 +340,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
     </Item>
-    <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MPX" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -587,7 +587,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </M16>
-    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="M16" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -756,7 +756,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
     </Item>
-    <Item name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MCX" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -791,7 +791,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name=".300 AAC Round" identifier="300aac" category="Equipment" interactthroughwalls="true" tags="mediumitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
+    <Item name=".300 AAC Round" identifier="300aac" category="Equipment" interactthroughwalls="true" tags="" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
       <Body width="50" height="20" density="40" />
@@ -918,7 +918,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
     </Item>
-    <Item name="" identifier="mp9mag" description="" maxstacksize="3" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="mp9mag" description="" maxstacksize="3" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MP9" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -1057,7 +1057,8 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </Item>
-    <Item name="" identifier="p90mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="p90mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+      <PreferredContainer primary="P90" amount="1" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
       <PreferredContainer secondary="armcab,weaponholder" />
@@ -1237,7 +1238,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </Item>
-    <Item name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="mk17" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1357,7 +1358,7 @@
       <Body width="323" height="62" density="33" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </MK17Barrel>
-    <Item name="7.62x51mm Round" identifier="76251round" category="Equipment" interactthroughwalls="true" tags="smallitem,warhead" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
+    <Item name="7.62x51mm Round" identifier="76251round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="50,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
       <Body width="50" height="20" density="20" />
@@ -1499,7 +1500,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
     </Item>
-    <Item name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
+    <Item name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
       <PreferredContainer primary="ak47" amount="1" notcampaign="True" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1702,7 +1703,7 @@
       <SkillRequirementHint identifier="weapons" level="90" />
       <aitarget sightrange="2000" soundrange="8000" fadeouttime="5" />
     </Item>
-    <Item name="" identifier="pkmmag" aliases="pkmmag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" health="200" subcategory="small arms">
+    <Item name="" identifier="pkmmag" aliases="pkmmag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" health="200" subcategory="small arms">
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="703,0,64,64" origin="0.5,0.5"/>
       <PreferredContainer primary="PKM" amount="1" notcampaign="True" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1737,7 +1738,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="7.62x54mm Round" identifier="76254round" category="Equipment" interactthroughwalls="true" tags="smallitem,slowinwater" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
+    <Item name="7.62x54mm Round" identifier="76254round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="40,0.5" />
       <Body width="50" height="20" density="20" />
@@ -1864,7 +1865,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="60" />
     </Item>
-    <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo,refilereloadsfx" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="fal" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -2009,7 +2010,7 @@
       <SkillRequirementHint identifier="weapons" level="55" />
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
     </Item>
-    <Item name="" identifier="g19mag" description="17 round 9x19 magazine for Glock 19" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="g19mag" description="17 round 9x19 magazine for Glock 19" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="G19" amount="1" notcampaign="true" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.25" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -2152,7 +2153,7 @@
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <SkillRequirementHint identifier="weapons" level="35" />
     </Item>
-    <Item name="" identifier="apsmag" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" linkable="true" tags="smallitem,smgammo" impactsoundtag="impact_metal_light" health="26" maxstacksize="2" subcategory="small arms">
+    <Item name="" identifier="apsmag" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" linkable="true" tags="smallitem,collidable" impactsoundtag="impact_metal_light" health="26" maxstacksize="2" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="2" notcampaign="true" />
       <PreferredContainer primary="underwatergun" minamount="1" maxamount="1" spawnprobability="1" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.25" />

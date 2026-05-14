@@ -1180,7 +1180,7 @@
       <QualityStat stattype="Condition" value="0.1"/>
     </Quality>
   </Item>-->
-    <Item name="" identifier="fuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="8" health="1200" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_porcelain_statue_small" >
+    <Item name="" identifier="fuelrod" Category="Fuel" Tags="smallitem,reactorfuel,collidable" maxstacksize="8" health="1200" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_porcelain_statue_small" >
       <PreferredContainer primary="reactorcab"/>
       <PreferredContainer secondary="fuelrodcase"/>
       <PreferredContainer secondary="nucleargun" minamount="1" maxamount="1" spawnprobability="1" />
@@ -1195,7 +1195,7 @@
         <Price storeidentifier="merchantmine" />
         <Price storeidentifier="merchantengineering" multiplier="0.9" minavailable="5" />
         <Price storeidentifier="merchanttutorial" multiplier="0.5" minavailable="3" />
-    </Price>
+      </Price>
       <Deconstruct time="10">
         <Item identifier="steel" />
         <Item identifier="uranium" mincondition="0.95" />
@@ -1209,7 +1209,7 @@
       </LightComponent>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="576,64,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="410,1,19,68" />
-      <Body radius="6" height="55" density="20" />
+      <Body width="21" height="55" density="20" />
       <Holdable handle1="0,0" slots="RightHand,LeftHand,Any" msg="ItemMsgPickUpSelect">
       </Holdable>
       <ItemContainer hideitems="true" capacity="1" itemrotation="90" drawinventory="false" canbeselected="false" SpawnWithId="nucleargunbolt" removecontaineditemsondeconstruct="true" showcontainedstateindicator="false">
@@ -1220,7 +1220,7 @@
       </ItemContainer>
       <RadioactiveFuelRod/>
     </Item>
-    <Item name="" identifier="fulguriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="8" cargocontaineridentifier="metalcrate" health="2800" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
+    <Item name="" identifier="fulguriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel,collidable" maxstacksize="8" cargocontaineridentifier="metalcrate" health="2800" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
       <PreferredContainer primary="reactorcab" />
       <PreferredContainer secondary="fuelrodcase"/>
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" />
@@ -1233,7 +1233,7 @@
         <Price storeidentifier="merchantmilitary" multiplier="1.25" />
         <Price storeidentifier="merchantmine" multiplier="1.1" />
         <Price storeidentifier="merchantengineering" multiplier="0.9" minavailable="2" />
-    </Price>
+      </Price>
       <Deconstruct time="10">
         <Item identifier="steel" />
         <Item identifier="lead" />
@@ -1241,7 +1241,7 @@
       </Deconstruct>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="640,64,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Tools/tools.png" depth="0.55" sourcerect="431,1,19,68" />
-      <Body radius="6" height="55" density="20" />
+      <Body radius="19" height="55" density="20" />
       <Holdable handle1="0,0" slots="Any,RightHand,LeftHand" msg="ItemMsgPickUpSelect" />
       <ItemContainer hideitems="true" capacity="1" itemrotation="90" drawinventory="false" canbeselected="false" SpawnWithId="nucleargunbolt" removecontaineditemsondeconstruct="true" showcontainedstateindicator="false">
         <Containable items="nucleargunbolt" />
@@ -1251,7 +1251,7 @@
       </ItemContainer>
       <RadioactiveFuelRod/>
     </Item>
-    <Item name="" identifier="thoriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel" maxstacksize="1" cargocontaineridentifier="metalcrate" health="2000" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
+    <Item name="" identifier="thoriumfuelrod" Category="Fuel" Tags="smallitem,reactorfuel,collidable" maxstacksize="1" cargocontaineridentifier="metalcrate" health="2000" scale="0.5" impactsoundtag="impact_porcelain_statue_small">
       <PreferredContainer primary="reactorcab"/>
       <PreferredContainer secondary="fuelrodcase"/>
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" amount="1" spawnprobability="0.01" />

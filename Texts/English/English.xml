@@ -800,6 +800,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <ordername.repairwithdisconnect>Depowered Repair</ordername.repairwithdisconnect>
   <orderdialog.repairwithdisconnect>[name], Disconect the power cable and repair!</orderdialog.repairwithdisconnect>
   <dialog.bot.repairwithdisconnect.complete>Device repaired and putting back online!</dialog.bot.repairwithdisconnect.complete>
+  <dialog.bot.repairwithdisconnect.canfindrepairtarget>there's no device that needs to be repaired</dialog.bot.repairwithdisconnect.canfindrepairtarget>
+  <dialog.bot.repairwithdisconnect.disconnectingpowerwires>Disconecting power...</dialog.bot.repairwithdisconnect.disconnectingpowerwires>
 
   <hint.electricalrepair>Make sure to cut off the power to ensure the safe repairing.</hint.electricalrepair>
   <hint.bugvent>An electric consuming bug crawls out of one of your vents. Kill it to retore the power.</hint.bugvent>

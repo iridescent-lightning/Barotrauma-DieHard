@@ -77,6 +77,16 @@ namespace BarotraumaDieHard.AI
             else if (order?.Identifier.Value.ToLowerInvariant() == "repairwithdisconnect")
             {
                 var targetItem = order.TargetEntity as Item;
+
+                // --- 核心修复：如果菜单下达没有目标，自动寻找全船损坏最严重的设备 ---
+                if (targetItem == null)
+                {
+                    targetItem = Item.ItemList
+                        .Where(i => i.GetComponent<Repairable>() != null && i.Condition < i.GetComponent<Repairable>().RepairThreshold && i.InPlayerSubmarine)
+                        .OrderByDescending(i => i.MaxCondition - i.Condition)
+                        .FirstOrDefault();
+                }
+
                 if (targetItem != null)
                 {
                     var repairObjective = new AIObjectiveRepairWithDisconnect(
@@ -85,9 +95,20 @@ namespace BarotraumaDieHard.AI
                         __instance, 
                         priorityModifier);
                         
-                        repairObjective.Completed += () => __instance.DismissSelf(order);
+                    repairObjective.Completed += () => __instance.DismissSelf(order);
                     __result = repairObjective;
                     return false;
+                }
+                else 
+                {
+                    // 如果全船都没东西坏，反馈给玩家或者放弃
+                    DebugConsole.NewMessage("没有找到需要维修的设备", Color.Yellow);
+                    var newObjective = new AIObjectiveRepairItems(__instance.character, 
+                    __instance, priorityModifier: priorityModifier, 
+                    prioritizedItem: order.TargetEntity as Item);
+
+                    __result = newObjective;
+                    return false; 
                 }
             }
 
