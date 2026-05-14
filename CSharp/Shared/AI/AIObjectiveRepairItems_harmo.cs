@@ -19,7 +19,19 @@ namespace BarotraumaDieHard
         [HarmonyPrefix]
         public static bool IsValidTargetPrefix(Item item, Character character, ref bool __result)
         {
-            
+            // --- 核心修改：特赦逻辑 ---
+        if (character.AIController is HumanAIController humanAI)
+        {
+            // 如果 AI 已经在执行我们的“断电维修”任务，直接允许，不再检查带电状态
+            var currentObj = humanAI.ObjectiveManager.GetCurrentObjective();
+            if (currentObj?.Identifier == "repair.with.disconnect".ToIdentifier())
+            {
+                __result = true; 
+                return false; // 拦截，不走后面的带电检查
+            }
+        }
+
+        
             // 获取维修组件
             var repairable = item.GetComponent<Repairable>();
             if (item.Condition > repairable.RepairThreshold) return false;

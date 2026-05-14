@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Barotrauma Die Hard" modversion="4.6.395" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
+<contentpackage name="Barotrauma Die Hard" modversion="4.6.398" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
   <Item file="%ModDir%/Items/Diving/divinggear.xml" />
   <Item file="%ModDir%/Items/Weapons/weapons.xml" />
   <Item file="%ModDir%/Items/Weapons/small_arms.xml" />

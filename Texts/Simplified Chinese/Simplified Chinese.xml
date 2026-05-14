@@ -794,6 +794,10 @@
   <orderdialog.operatejunctionbox>[name], 切换接线盒开关!</orderdialog.operatejunctionbox>
   <dialog.bot.operatedjunctionbox>接线盒的开关拨动了！</dialog.bot.operatedjunctionbox>
 
+  <ordername.repairwithdisconnect>断电维修</ordername.repairwithdisconnect>
+  <orderdialog.repairwithdisconnect>[name], 断电维修这个设备!</orderdialog.repairwithdisconnect>
+  <dialog.bot.repairwithdisconnect.complete>设备修好了并且恢复了供电!</dialog.bot.repairwithdisconnect.complete>
+
   <hint.electricalrepair>确保切断电源以保证安全修理。</hint.electricalrepair>
   <hint.bugvent>一只耗电的虫子从你的一个通风口爬出。杀死它以恢复电力。</hint.bugvent>
   <hint.qteinsufficientskilllevel>你的技能等级未达到快速反应事件的要求。</hint.qteinsufficientskilllevel>

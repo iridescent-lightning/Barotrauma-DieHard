@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <OutpostGenerationParameters>
-    <OutpostConfig identifier="outpost" replaceinradiation="AbandonedIrradiated" totalmodulecount="8" appendtoreachtotalmodulecount="false" minhallwaylength="200" allowedlocationtypes="Outpost" spawncrewinsideoutpost="false" alwaysdestructible="true">
+    <OutpostConfig identifier="outpost" replaceinradiation="AbandonedIrradiated" totalmodulecount="9" appendtoreachtotalmodulecount="false" minhallwaylength="200" allowedlocationtypes="Outpost" spawncrewinsideoutpost="false" alwaysdestructible="true">
       <modulecount flag="Airlock" count="1" />
       <modulecount flag="EngineeringModule" count="1" />
       <modulecount flag="AdminModule" count="1" />
@@ -57,7 +57,7 @@
     <OutpostConfig
     identifier="miningoutpost"
     replaceinradiation="AbandonedIrradiated"
-    totalmodulecount="8"
+    totalmodulecount="9"
     appendtoreachtotalmodulecount="false"
     minhallwaylength="200"
     allowedlocationtypes="Mine"
@@ -109,7 +109,7 @@
   <OutpostConfig
     identifier="researchoutpost"
     replaceinradiation="AbandonedIrradiated"
-    totalmodulecount="8"
+    totalmodulecount="9"
     appendtoreachtotalmodulecount="false"
     minhallwaylength="200"
     allowedlocationtypes="Research"
@@ -162,7 +162,7 @@
   <OutpostConfig
     identifier="militaryoutpost"
     replaceinradiation="AbandonedIrradiated"
-    totalmodulecount="8" 
+    totalmodulecount="9" 
     appendtoreachtotalmodulecount="false"
     minhallwaylength="200"
     allowedlocationtypes="Military"

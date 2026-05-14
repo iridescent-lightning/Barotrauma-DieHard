@@ -48,6 +48,7 @@ namespace BarotraumaDieHard
         if (!GameMain.IsSingleplayer)
         {
             NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
+            NetUtil.Register(NetEvent.WIRE_DISCONNECT_SYNC, AIObjectiveRepairWithDisconnect.OnReceiveWireSync);
         }
 
             

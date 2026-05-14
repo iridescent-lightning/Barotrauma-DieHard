@@ -25,4 +25,12 @@
          ignoreatoutpost="true">
     <Sprite texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="384,512,128,128"/>
   </Order>
+  <Order name="Operate Junction Box" identifier="repairwithdisconnect"
+         assignmentpriority="60"
+         targetitemtype="Repairable"
+         appropriatejobs="mechanic,engineer,assistant"
+         category="maintenance"
+         ignoreatoutpost="true">
+    <Sprite texture="%ModDir%/UI/CommandUIAtlas.png" sourcerect="382,0,128,128"/>
+  </Order>
 </Orders>

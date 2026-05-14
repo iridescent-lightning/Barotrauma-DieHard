@@ -56,10 +56,10 @@ namespace BarotraumaDieHard
 					}
 				}
 
-				/*// 先播放声音（无论后续是否存入物品）
+				// 先播放声音（无论后续是否存入物品）
     PlayContainerSound(_);  // 提取成独立方法
 
-				// 1. 基础检查：确保是玩家在交互，且交互者有库存
+				/*// 1. 基础检查：确保是玩家在交互，且交互者有库存
 				if (character == null || character.Inventory == null) return true;
 
 				// 2. 获取玩家当前手里拿着的物品 (通常是右手或左手选中的物品)

@@ -74,6 +74,22 @@ namespace BarotraumaDieHard.AI
                     return false;
                 }
             }
+            else if (order?.Identifier.Value.ToLowerInvariant() == "repairwithdisconnect")
+            {
+                var targetItem = order.TargetEntity as Item;
+                if (targetItem != null)
+                {
+                    var repairObjective = new AIObjectiveRepairWithDisconnect(
+                        __instance.character, 
+                        targetItem, 
+                        __instance, 
+                        priorityModifier);
+                        
+                        repairObjective.Completed += () => __instance.DismissSelf(order);
+                    __result = repairObjective;
+                    return false;
+                }
+            }
 
             return true; // 其他所有情况，放行给原版代码处理
         }
