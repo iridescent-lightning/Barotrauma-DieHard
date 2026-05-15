@@ -640,8 +640,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entityname.jbslot>JunctionBox Slot</entityname.jbslot>
   <entityname.pressurizedgastank>Pressurized Gas Tank</entityname.pressurizedgastank>
   <entitydescription.pressurizedgastank>Stores high pressure gas for ballast room pumps.</entitydescription.pressurizedgastank>
-
-
+  <entityname.meltdownfuelrod>Meltdown Fuelrod</entityname.meltdownfuelrod>
+  <entitydescription.meltdownfuelrod>Radioactive leftover of a fuelrod</entitydescription.meltdownfuelrod>
 
   <connection.moveup>Move Up</connection.moveup>
   <connection.movedown>Move Down</connection.movedown>

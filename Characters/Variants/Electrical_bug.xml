@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Charactervariant inherit="Legacycrawler" speciesname="Electrical_bug" speciestranslationoverride="Electrical Bug" usebosshealthbar="false">
   <health vitality="10" poisonvulnerability="1" />
-  <StatusEffect type="Always" target="NearbyItems" targettags="junctionbox,supercapacitor" range="300.0" setvalue="true" stackable="false" extraload="8000" interval="3" />
+  <StatusEffect type="Always" target="NearbyItems" targettags="junctionbox" range="300.0" setvalue="true" stackable="false" extraload="3000" interval="3" >
+  </StatusEffect>
   <StatusEffect type="OnDeath" target="This" delay="4">
     <RemoveCharacter />
   </StatusEffect>

@@ -164,6 +164,20 @@ Hook.Add("JunctionboxOpen","JunctionboxOpen",function(effect, deltaTime, item, t
 	item.AddTag("junctionbox_openlid")
 end)
 
+Hook.Add("HasAddextraLoad","HasAddextraLoad",function(effect, deltaTime, item, targets, worldPosition)
+	
+    for target in targets do
+		print(target)
+		local powerTransfer = target.GetComponentString("PowerTransfer") 
+        -- 统一获取 Item 对象
+        
+        
+        if powerTransfer ~= nil and powerTransfer.item.Prefab.Identifier == "junctionbox" then
+            powerTransfer.item.AddTag("HasAddextraLoad")
+        end
+    end
+end)
+
 
 
 

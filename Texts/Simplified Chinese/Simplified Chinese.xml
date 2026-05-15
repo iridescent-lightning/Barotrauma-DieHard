@@ -638,6 +638,8 @@
   <entityname.jbslot>接线盒插槽</entityname.jbslot>
   <entityname.pressurizedgastank>加压气罐</entityname.pressurizedgastank>
   <entitydescription.pressurizedgastank>为压载舱水泵储存高压气体。</entitydescription.pressurizedgastank>
+  <entityname.meltdownfuelrod>融毁的燃料棒</entityname.meltdownfuelrod>
+  <entitydescription.meltdownfuelrod>带有辐射性的燃料棒的残骸</entitydescription.meltdownfuelrod>
 
 
 

@@ -70,7 +70,7 @@
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <SkillRequirementHint identifier="weapons" level="50" />
     </Revolver>
-    <Revolverround name="" identifier="revolverround" category="Weapon" maxstacksize="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" Scale="0.5" tags="smallitem,revolverammo,pistolammoitem,slowinwater" impactsoundtag="impact_metal_light" description="" nameidentifier="revolverroundnew">
+    <Revolverround name="" identifier="revolverround" category="Weapon" maxstacksize="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" Scale="0.5" tags="smallitem,revolverammo,pistolammoitem" impactsoundtag="impact_metal_light" description="" nameidentifier="revolverroundnew">
       <PreferredContainer primary="revolver" amount="6" spawnprobability="1" />
       <PreferredContainer primary="armcab" amount="6" spawnprobability="0.2" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" minamount="1" maxamount="6" spawnprobability="0.2" />
@@ -412,7 +412,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <M16Receiver name="" identifier="M16Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <M16Receiver name="" identifier="M16Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -435,7 +435,7 @@
       <Body width="118" height="114" density="50" />
       <Holdable slots="RightHand, LeftHand" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </M16Receiver>
-    <M16Barrel name="" identifier="M16Barrel" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <M16Barrel name="" identifier="M16Barrel" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -456,7 +456,7 @@
       <Body width="262" height="68" density="50" />
       <Holdable slots="RightHand, LeftHand" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </M16Barrel>
-    <M16Stock name="" identifier="M16Stock" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <M16Stock name="" identifier="M16Stock" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -587,7 +587,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </M16>
-    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="M16" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -756,7 +756,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
     </Item>
-    <Item name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,mcxammo,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <Item name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MCX" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -1271,7 +1271,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <MK17Receiver name="" identifier="MK17Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MK17Receiver name="" identifier="MK17Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1294,7 +1294,7 @@
       <Body width="118" height="141" density="91" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </MK17Receiver>
-    <MK17Scope name="" identifier="MK17Scope" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MK17Scope name="" identifier="MK17Scope" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1337,7 +1337,7 @@
       <Body width="116" height="100" density="33" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </MK17Stock>
-    <MK17Barrel name="" identifier="MK17Barrel" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MK17Barrel name="" identifier="MK17Barrel" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1566,7 +1566,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <AK47Receiver name="" identifier="AK47Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.28" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <AK47Receiver name="" identifier="AK47Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.28" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1587,7 +1587,7 @@
       <Body width="297" height="105" density="50" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </AK47Receiver>
-    <AK47Barrel name="" identifier="AK47Barrel" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,,collidable" Scale="0.28" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <AK47Barrel name="" identifier="AK47Barrel" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.28" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />

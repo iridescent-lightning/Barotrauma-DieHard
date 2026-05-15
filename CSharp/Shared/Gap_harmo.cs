@@ -22,7 +22,7 @@ namespace BarotraumaDieHard
        
         private static float updateTimer = 0.0f;
         private static float updateInterval = 1f;
-        private static float TemperatureDistributionSpeed = 1f;
+        private static float TemperatureDistributionSpeed = 5f;
         private static float GasDistributionspeed = 50f;
 
         private static float PressureDistributionspeed = 1000f;
@@ -54,15 +54,23 @@ namespace BarotraumaDieHard
 
                 
                 // Temperature Exchange
+                // 在温度交换部分
+                float temp1 = HullMod.GetGas(hull1, "Temperature");
+                float temp2 = HullMod.GetGas(hull2, "Temperature");
+                float temperatureDiff = Math.Abs(temp1 - temp2);
 
-                float totalTempreture = HullMod.GetGas(hull1, "Temperature") + HullMod.GetGas(hull2, "Temperature");
-                float averageTemperature = totalTempreture / 2f;  // Calculate average temp
-                float deltaTempreture = averageTemperature - HullMod.GetGas(hull1, "Temperature"); // Adjust delta
+                // 温差越大，交换越快（最多5倍加速）
+                float temperatureMultiplier = MathHelper.Clamp(1f + temperatureDiff / 100f, 1f, 5f);
+                float effectiveRate = TemperatureDistributionSpeed * (_.Open + 0.1f) * temperatureMultiplier;
 
-                deltaTempreture = MathHelper.Clamp(deltaTempreture, -TemperatureDistributionSpeed * deltaTime, TemperatureDistributionSpeed * deltaTime);
+                float averageTemperature = (temp1 + temp2) / 2f;
+                float deltaTemperature = averageTemperature - temp1;
+                deltaTemperature = MathHelper.Clamp(deltaTemperature, -effectiveRate * deltaTime, effectiveRate * deltaTime);
 
-                HullMod.AddGas(hull1, "Temperature", deltaTempreture, 1f); // Old AddGas use the last parameter to time delta time. But since I did delta time here, just put 1f to keep the value.
-                HullMod.AddGas(hull2, "Temperature", -deltaTempreture, 1f);
+                deltaTemperature = MathHelper.Clamp(deltaTemperature, -TemperatureDistributionSpeed * deltaTime, TemperatureDistributionSpeed * deltaTime);
+
+                HullMod.AddGas(hull1, "Temperature", deltaTemperature, 1f); // Old AddGas use the last parameter to time delta time. But since I did delta time here, just put 1f to keep the value.
+                HullMod.AddGas(hull2, "Temperature", -deltaTemperature, 1f);
 
                 ExchangeGas(hull1, hull2, "CO2", deltaTime);
                 ExchangeGas(hull1, hull2, "CO", deltaTime);

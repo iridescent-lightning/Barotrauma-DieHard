@@ -102,6 +102,14 @@ namespace BarotraumaDieHard
                 // 注意：npc 现在已经恢复为 Store 状态了
                 DrawCustomIcon(entry.Key, spriteBatch, cam, character);
             }
+            // 3. 为所有 Electrical_bug 绘制指示图标
+            foreach (Character npc in Character.CharacterList)
+            {
+                if (npc.SpeciesName.Value == "Electrical_bug" && !npc.IsDead)
+                {
+                    DrawElectricalBugIcon(npc, spriteBatch, cam, character);
+                }
+            }
         }
 
         // 我们自己建立的绘制方法，完全模仿原版逻辑
@@ -109,6 +117,37 @@ namespace BarotraumaDieHard
         {
             // 1. 获取你的自定义样式
             if (!GUIStyle.ComponentStyles.TryGet("CampaignInteractionIndicator.StoreMonster".ToIdentifier(), out var style)) return;
+
+            // 2. 计算可见范围 (模仿原版)
+            Hull currentHull = npc.CurrentHull;
+            Range<float> visibleRange = new Range<float>(
+                currentHull == observer.CurrentHull ? 500.0f : 100.0f, 
+                float.PositiveInfinity);
+
+            // 3. 计算透明度 (模仿原版)
+            float dist = Vector2.Distance(observer.WorldPosition, npc.WorldPosition);
+            float distFactor = 1.0f - MathHelper.Clamp((dist - 1000.0f) / (3000.0f - 1000.0f), 0, 1);
+            float alpha = MathHelper.Lerp(0.3f, 1.0f, distFactor);
+
+            // 4. 获取 Label
+            LocalizedString label = npc.Info?.Title;
+
+            // 5. 调用最稳妥的 DrawIndicator 重载 (不带 Nullable 的那个)
+            // 如果报错参数不匹配，请根据你当前游戏版本的 GUI.DrawIndicator 补齐参数
+            GUI.DrawIndicator(
+                spriteBatch,
+                npc.DrawPosition,
+                cam,
+                visibleRange,
+                style.GetDefaultSprite(),
+                style.Color * alpha,
+                label: label);
+        }
+
+        private static void DrawElectricalBugIcon(Character npc, SpriteBatch spriteBatch, Camera cam, Character observer)
+        {
+            // 1. 获取你的自定义样式
+            if (!GUIStyle.ComponentStyles.TryGet("PositionIndicator.ElectricalBug".ToIdentifier(), out var style)) return;
 
             // 2. 计算可见范围 (模仿原版)
             Hull currentHull = npc.CurrentHull;

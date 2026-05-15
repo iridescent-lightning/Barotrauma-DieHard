@@ -68,8 +68,21 @@ namespace BarotraumaDieHard
                     __instance.FlickerSpeed = data.FlickerSpeed;
                 }
             }
-            
-            
+
+        }
+
+        //让门关闭时感应灯不要灭
+        [HarmonyPatch("ReceiveSignal")]
+        [HarmonyPrefix]
+        public static bool Prefix(LightComponent __instance)
+        {
+            if(__instance == null) return false;
+
+            if(__instance.item.HasTag("door"))
+            {
+                return false;
+            }
+            return true;
         }
 
         

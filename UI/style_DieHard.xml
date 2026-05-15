@@ -27,4 +27,7 @@
   <CampaignInteractionIndicator.StoreMonster color="66,113,189">
     <Sprite name="CampaignInteractionBubble.StoreMonster" texture="%ModDir%/UI/CampaignUIAtlas2.png" tile="false" sourcerect="774,64,35,17" origin="0.5,0.5" maintainaspectratio="true"/>
   </CampaignInteractionIndicator.StoreMonster>
+  <PositionIndicator.ElectricalBug color="255,51,51">
+    <Sprite name="PositionIndicator.ElectricalBug" texture="%ModDir%/UI/CampaignUIAtlas2.png" tile="false" sourcerect="737,32,35,28" origin="0.5,0.5" maintainaspectratio="true"/>
+  </PositionIndicator.ElectricalBug>
 </style>

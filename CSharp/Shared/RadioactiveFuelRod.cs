@@ -19,7 +19,7 @@ namespace BarotraumaDieHard.Items//todo make a structural namespace DieHard.Item
     class RadioactiveFuelRod : ItemComponent
     {
 		private float dropTimer; // 累计烫伤时间
-        private const float DropDelay = 2.0f; // 接触多久后会强制掉落
+        private const float DropDelay = 1.0f; // 接触多久后会强制掉落
 
         private float fireTimer; // 累计火焰计时
         private const float FireDelay = 4.0f; // 多久后开始着火
@@ -73,6 +73,9 @@ namespace BarotraumaDieHard.Items//todo make a structural namespace DieHard.Item
             {
                 // 维护危险列表逻辑（注意：你原来的代码中 Add/Remove 在 Update 里每帧切换，建议根据状态判断）
                 if (!DangerousFuelRods.Contains(this.item)) { DangerousFuelRods.Add(this.item); }
+                
+                            
+
 
                 Hull currentHull = this.item.CurrentHull;
                 if (currentHull != null)
@@ -86,12 +89,22 @@ namespace BarotraumaDieHard.Items//todo make a structural namespace DieHard.Item
                     if (isNotInHolder)
                     {
                         fireTimer += deltaTime;
+
+                        this.item.Condition -= 1f;
+                            
+                        
+                        if (this.item.Condition <= 0f)
+                        {
+                            Entity.Spawner.AddEntityToRemoveQueue(this.item);
+                            Entity.Spawner.AddItemToSpawnQueue(ItemPrefab.GetItemPrefab("meltdownfuelrod"),this.item.WorldPosition);
+                        }
+                        
                         
                         #if CLIENT
                             // 定义何时开始冒烟，例如当计时达到总延迟的 40% 时
                             float smokeStartThreshold = FireDelay * 0.3f;
 
-                            if (fireTimer > smokeStartThreshold && currentHull.FireSources.Count < 5)
+                            if (fireTimer > smokeStartThreshold && currentHull.FireSources.Count < 2)
                             {
                                 particleTimer += deltaTime;
                                 // 限制粒子生成频率，每 0.1 秒生成一个烟雾
@@ -116,7 +129,7 @@ namespace BarotraumaDieHard.Items//todo make a structural namespace DieHard.Item
         #endif
 
                         // 2. 检查火源
-                        if (currentHull.FireSources.Count < 5 && fireTimer > FireDelay)
+                        if (currentHull.FireSources.Count < 2 && fireTimer > FireDelay)
                         {
                             new FireSource(this.item.WorldPosition);
                         }
