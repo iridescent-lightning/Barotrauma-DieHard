@@ -59,8 +59,8 @@ namespace BarotraumaDieHard
                 float temp2 = HullMod.GetGas(hull2, "Temperature");
                 float temperatureDiff = Math.Abs(temp1 - temp2);
 
-                // 温差越大，交换越快（最多5倍加速）
-                float temperatureMultiplier = MathHelper.Clamp(1f + temperatureDiff / 100f, 1f, 5f);
+                // 温差越大，交换越快（最多倍2加速）
+                float temperatureMultiplier = MathHelper.Clamp(1f + temperatureDiff / 100f, 1f, 2f);
                 float effectiveRate = TemperatureDistributionSpeed * (_.Open + 0.1f) * temperatureMultiplier;
 
                 float averageTemperature = (temp1 + temp2) / 2f;

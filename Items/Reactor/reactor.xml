@@ -230,6 +230,9 @@
         <Containable items="fulguriumfuelrodvolatile">
           <StatusEffect type="OnContaining" target="This" AvailableFuel="150.0" disabledeltatime="true" />
         </Containable>
+        <Containable items="meltdownfuelrod">
+          <StatusEffect type="OnContaining" target="This" AvailableFuel="0" disabledeltatime="true" />
+        </Containable>
       </ItemContainer>
       <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="controlrod">
         <SlotIcon slotindex="0" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />

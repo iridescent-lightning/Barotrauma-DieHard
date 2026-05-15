@@ -19,41 +19,71 @@ namespace BarotraumaDieHard
         [HarmonyPrefix]
         public static bool IsValidTargetPrefix(Item item, Character character, ref bool __result)
         {
-            // --- 核心修改：特赦逻辑 ---
-        if (character.AIController is HumanAIController humanAI)
-        {
-            // 如果 AI 已经在执行我们的“断电维修”任务，直接允许，不再检查带电状态
-            var currentObj = humanAI.ObjectiveManager.GetCurrentObjective();
-            if (currentObj?.Identifier == "repair.with.disconnect".ToIdentifier())
+            try
             {
-                __result = true; 
-                return false; // 拦截，不走后面的带电检查
-            }
-        }
+                // 基础空值检查
+                if (item == null || character == null)
+                {
+                    return true; // 让原版逻辑处理
+                }
 
-        
-            // 获取维修组件
-            var repairable = item.GetComponent<Repairable>();
-            if (item.Condition > repairable.RepairThreshold) return false;
-            // 核心安全检查：如果带电，直接拦截原版逻辑
-            if (repairable != null && RepairableDieHard.IsDeviceElectrified(repairable) && item.Condition < item.MaxCondition)
+                // 获取维修组件，增加空值检查
+                var repairable = item.GetComponent<Repairable>();
+                if (repairable == null)
+                {
+                    return true;
+                }
+
+                // 检查维修阈值
+                if (item.Condition > repairable.RepairThreshold)
+                {
+                    __result = false;
+                    return false;
+                }
+
+                // --- 特赦逻辑：增加完整的空值检查 ---
+                if (character.AIController is HumanAIController humanAI && 
+                    humanAI.ObjectiveManager != null)
+                {
+                    var currentObj = humanAI.ObjectiveManager.GetCurrentObjective();
+                    // 安全地比较 Identifier，避免在联机初始化时调用扩展方法
+                    if (currentObj != null && 
+                        currentObj.Identifier != null &&
+                        currentObj.Identifier.Value == "repair.with.disconnect")
+                    {
+                        __result = true;
+                        return false;
+                    }
+                }
+                
+                // 核心安全检查
+                if (RepairableDieHard.IsDeviceElectrified(repairable) && 
+                    item.Condition < item.MaxCondition)
+                {
+        #if CLIENT
+                    // 客户端显示警告，但需要确保在服务器环境不会崩溃
+                    if (GameMain.Client != null) // 只在客户端环境下执行
+                    {
+                        string localizedSpeech = TextManager.GetWithVariable(
+                            "dialog.bots.brokendeviceconnectedtopoweredjunctionbox", 
+                            "[itemname]", 
+                            item.Name
+                        ).Value;
+                        character.Speak(localizedSpeech, null, 0.0f, "safetywarning".ToIdentifier(), 30.0f);
+                    }
+        #endif
+                    __result = false;
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception ex)
             {
-#if CLIENT
-                string localizedSpeech = TextManager.GetWithVariable(
-                    "dialog.bots.brokendeviceconnectedtopoweredjunctionbox", 
-                    "[itemname]", 
-                    item.Name
-                ).Value;
-
-                character.Speak(localizedSpeech, null, 0.0f, "safetywarning".ToIdentifier(), 30.0f);
-#endif
-                    
-                __result = false; // 告知 AI：这个目标不合法
-                return false;    // 【关键】返回 false 以拦截原版 ViableForRepair 的执行
+                // 记录错误但不崩溃
+                DebugConsole.Log($"Error in AIObjectiveRepairItemsPatch: {ex.Message}");
+                return true; // 出错时让原版逻辑处理
             }
-
-            // 如果不带电，则返回 true，允许原版方法继续执行（去检查火灾、敌人、技能等）
-            return true; 
         }
     }
 }

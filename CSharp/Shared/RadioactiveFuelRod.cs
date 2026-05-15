@@ -129,7 +129,7 @@ namespace BarotraumaDieHard.Items//todo make a structural namespace DieHard.Item
         #endif
 
                         // 2. 检查火源
-                        if (currentHull.FireSources.Count < 2 && fireTimer > FireDelay)
+                        if (currentHull.FireSources.Count < 2 && fireTimer > FireDelay && !this.item.HasTag("meltdownfuelrod"))
                         {
                             new FireSource(this.item.WorldPosition);
                         }

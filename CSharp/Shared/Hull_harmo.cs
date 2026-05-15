@@ -64,7 +64,8 @@ namespace BarotraumaDieHard
                 Chlorine = 0f,
                 PressurizedAir = 0f,
                 // Pressurized Air
-                GapOpenSum = 0.0f
+                GapOpenSum = 0.0f,
+                OriginalAmbientLight = __instance.AmbientLight // 保存原始颜色
             };
             gasMap[__instance] = gasInfo;
         //__instance.ToxicGasPercentage = volume <= 0.0f ? 100.0f : __instance.toxicGas / volume * 100.0f;
@@ -87,11 +88,11 @@ namespace BarotraumaDieHard
             // Temperature
             if (GetGas(hull, "Temperature") > 273.15f && hull.WaterPercentage > 0.3f)
             {
-                AddGas(hull, "Temperature", -0.3f, deltaTime);
+                AddGas(hull, "Temperature", -2.5f, deltaTime);
             }
             else if (GetGas(hull, "Temperature") > 273.15f)
             {
-                AddGas(hull, "Temperature", -0.025f, deltaTime);
+                AddGas(hull, "Temperature", -0.1f, deltaTime);
             }
             else if (GetGas(hull, "Temperature") > 318.15f && hull.WaterPercentage > 0.3f)
             {
@@ -110,12 +111,51 @@ namespace BarotraumaDieHard
             .Sum(g => g.Open);
             
 
-            // Store the GapOpenSum in the GasInfo struct for this hull. 
-            if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
-            {
-                gasInfo.GapOpenSum = gapOpenSum;
-                gasMap[hull] = gasInfo; // Update the dictionary with the modified struct
-            }
+    // 温度颜色显示和GapOpenSum存储合并成一个TryGetValue
+    if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
+    {
+        // 存储 GapOpenSum
+        gasInfo.GapOpenSum = gapOpenSum;
+        
+        // 温度颜色显示
+        float temp = GetGas(hull, "Temperature");
+        float tempCelsius = temp - 273.15f;
+        
+        // 定义安全温度范围
+        float safeLower = 10f;
+        float safeUpper = 30f;
+        float maxColorTemp = 50f;
+        float minColorTemp = -10f;
+
+        Color coldColor = new Color(100, 150, 255, 120);  // 柔和的淡蓝色
+        Color hotColor = new Color(255, 100, 100, 60);
+        
+        float t = 0f;
+        Color targetColor;
+        
+        if (temp < 293.15f)
+        {
+            // 寒冷区域：从原始颜色渐变到蓝色
+            t = MathHelper.Clamp((safeLower - tempCelsius) / (safeLower - minColorTemp), 0f, 1f);
+            targetColor = Color.Lerp(gasInfo.OriginalAmbientLight, coldColor, t);
+        }
+        else if (temp > 303.15f)
+        {
+            // 炎热区域：从原始颜色渐变到红色
+            t = MathHelper.Clamp((tempCelsius - safeUpper) / (maxColorTemp - safeUpper), 0f, 1f);
+            targetColor = Color.Lerp(gasInfo.OriginalAmbientLight, hotColor, t);
+        }
+        else
+        {
+            // 安全温度范围：恢复原始颜色
+            targetColor = gasInfo.OriginalAmbientLight;
+        }
+        
+        hull.AmbientLight = targetColor;
+        
+        // 更新字典中的结构体
+        gasMap[hull] = gasInfo;
+    }
 
         }
         
@@ -174,6 +214,7 @@ namespace BarotraumaDieHard
             public float NobleGas;
             public float PressurizedAir;
             public float GapOpenSum;
+            public Color OriginalAmbientLight;
 
             public float GetGasAmount(string gasType)
             {

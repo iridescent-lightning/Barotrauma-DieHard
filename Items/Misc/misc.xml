@@ -883,7 +883,7 @@
         <StatusEffect type="OnPicked" target="Character" SpeedMultiplier="0.5" setvalue="true" />
       </Holdable>
     </pressurizedgastank>
-    <MeltDownFuelRod name="" identifier="meltdownfuelrod" Category="Fuel" Tags="smallitem,reactorfuel,collidable" maxstacksize="8" health="100" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_porcelain_statue_small" >
+    <MeltDownFuelRod name="" identifier="meltdownfuelrod" Category="Fuel" Tags="smallitem,reactorfuel,collidable,meltdownfuelrod" maxstacksize="8" health="100" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_porcelain_statue_small" hideconditionbar="true">
       <PreferredContainer secondary="wreckreactorcab,abandonedreactorcab" minamount="1" maxamount="1" spawnprobability="0.01" />
       <PreferredContainer secondary="abandonedengcab,wreckengcab" amount="1" spawnprobability="0.02" />
       <Deconstruct time="10">
@@ -891,14 +891,14 @@
       </Deconstruct>
       <LightComponent LightColor="155,155,155,255" Flicker="0.0" range="25" IsOn="false" castshadows="false" allowingameediting="false">
         <sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="432,230,44,71" alpha="1.0" origin="0.5,0.5" depth="0.55" />
-        <StatusEffect type="Always" targettype="This" IsOn="true" interval="0.1">
+        <StatusEffect type="Always" targettype="This" IsOn="true" interval="0.1" Condition = "90" setvalue="true">
         </StatusEffect>
       </LightComponent>
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="512,256,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Tools/DHtools.png" depth="0.55" sourcerect="479,232,19,71" />
       <Body width="21" height="55" density="20" />
-      <Holdable handle1="0,0" slots="RightHand,LeftHand,Any" msg="ItemMsgPickUpSelect">
-      </Holdable>
+      <Holdable handle1="0,0" slots="RightHand,LeftHand,Any" msg="ItemMsgPickUpSelect"/>
+      <RadioactiveFuelRod/>
     </MeltDownFuelRod>
   </Items>
 </Override>

@@ -114,6 +114,9 @@
       <Containable items="huskfigurine">
         <StatusEffect type="OnContaining" target="This" AvailableFuel="0" disabledeltatime="true" />
       </Containable>
+      <Containable items="meltdownfuelrod">
+          <StatusEffect type="OnContaining" target="This" AvailableFuel="0" disabledeltatime="true" />
+        </Containable>
       <!-- not needed by the vanilla game, but can be used by mods to add custom fuel rods with this tag. The custom items can also modify the AvailableFuel of the reactor themselves, e.g.
         <StatusEffect type="OnContained" target="Parent" AvailableFuel="100.0" disabledeltatime="true" />
       -->

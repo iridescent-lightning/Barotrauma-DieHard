@@ -293,12 +293,12 @@
       </Repairable>
     </Item>
     
-    <Item name="" nameidentifier="oxygenerator" identifier="outpostoxygenerator" tags="oxygengenerator,outpostoxygengenerator" category="Machine" linkable="true" allowedlinks="vent" damagedbyexplosions="true" scale="0.5" explosiondamagemultiplier="0.2">
+    <OutpostOxygenerator name="" nameidentifier="oxygenerator" identifier="outpostoxygenerator" tags="oxygengenerator,outpostoxygengenerator" category="Machine" linkable="true" allowedlinks="vent" damagedbyexplosions="true" scale="0.5" explosiondamagemultiplier="0.2">
       <Sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" depth="0.8" sourcerect="52,1197,360,410" origin="0.5,0.5" />
       <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="2,1607,240,302" depth="0.79" origin="0.5,0.5" offset="100,0" maxcondition="80" fadein="true" />
       <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="243,1629,213,286" depth="0.79" origin="0.5,0.5" offset="100,0" maxcondition="10" fadein="true" />
       <UpgradePreviewSprite scale="2.5" texture="Content/UI/WeaponUI.png" sourcerect="384,960,64,64" origin="0.5,0.45" />
-      <CustomOxygenGenerator powerconsumption="1000.0" minvoltage="0.5" generatedamount="5000" canbeselected="true" msg="ItemMsgInteractSelect">
+      <CustomOxygenGenerator powerconsumption="1000.0" minvoltage="0.5" generatedamount="10000" canbeselected="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.35" minsize="420,220" anchor="Center" relativeoffset="0, 0 " style="ItemUI" />
         <poweronsound file="Content/Items/PowerOnLight2.ogg" range="1500" loop="false" />
         <sound file="Content/Items/OxygenGenerator/OxygenGenerator.ogg" type="OnActive" range="1000.0" volumeproperty="CurrFlow" volume="0.001" loop="true" />
@@ -344,7 +344,7 @@
           <Affliction identifier="stun" strength="4" />
         </StatusEffect>
       </Repairable>
-    </Item>
+    </OutpostOxygenerator>
 
     <Item name="compressor" identifier="compressor" tags="ventilation" category="Machine" linkable="true" allowedlinks="ventilation_vent" damagedbyexplosions="true" explosiondamagemultiplier="0.2" scale="0.8">
       <Sprite texture="ventilation.png" depth="0.8" origin="0.5,0.5" sourcerect="6,0,163,128" />
