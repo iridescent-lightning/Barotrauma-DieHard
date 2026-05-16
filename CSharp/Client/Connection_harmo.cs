@@ -33,7 +33,7 @@ namespace BarotraumaDieHard
 				string text = __instance.DisplayName.Value.ToUpperInvariant();
 				
 				// 从你已有的字典里获取贴图
-				if (GameSessionDieHard.customSprites.TryGetValue("mechanical_slot", out Sprite customSprite))
+				if (Main.customSprites.TryGetValue("mechanical_slot", out Sprite customSprite))
 				{
 					// 1. 绘制黄色标签
 					DrawMechanicalLabel(spriteBatch, text, labelPos);
@@ -120,7 +120,7 @@ namespace BarotraumaDieHard
 			// 4. 判断该接口是否为机械接口
 			if (connection != null && connection.Name.Contains("mechanical", StringComparison.InvariantCultureIgnoreCase))
 			{
-				if (GameSessionDieHard.customSprites.TryGetValue("water_pipe", out Sprite customWireSprite))
+				if (Main.customSprites.TryGetValue("water_pipe", out Sprite customWireSprite))
 				{
 					// --- 开始自定义绘制逻辑 ---
 					Vector2 diff = end - start;

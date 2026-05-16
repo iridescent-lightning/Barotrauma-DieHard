@@ -31,12 +31,7 @@ namespace BarotraumaDieHard
     public class GameSessionDieHard
     {
         
-#if CLIENT 
 
-        public static Dictionary<string, Sprite> customSprites = new Dictionary<string, Sprite>();
-
-        private static ContentPackage modPackage = ContentPackageManager.AllPackages.FirstOrDefault(p => p.Name == "Barotrauma Die Hard");
-#endif
 
         public static AfflictionPrefab pressurizedhullPrefab;
 
@@ -62,29 +57,7 @@ namespace BarotraumaDieHard
 
 #if CLIENT
 
-            // Need to init it to avoid null reference.
-            BarotraumaDieHard.CustomHintManager.Init();    
-                
-            AddTextureToSpriteList("mediumsteelcabinet_open", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(0, 0, 149, 360), originPercentage: new Vector2(0.5f, 0.495f));
-            AddTextureToSpriteList("mediumwindowedsteelcabinet_open", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(154, 0, 149, 360), originPercentage: new Vector2(0.52f, 0.495f));
-            AddTextureToSpriteList("steelcabinet_open", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(313, 0, 371, 359), originPercentage: new Vector2(0.48f, 0.485f));
-            AddTextureToSpriteList("medcabinet_open", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(814, 252, 210, 321), originPercentage: new Vector2(0.5f, 0.48f));
-            //AddTextureToSpriteList("seccabinet_open_0", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(905, 14, 105, 160));
-            AddTextureToSpriteList("seccabinet_open_1", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(773, 8, 105, 209), originPercentage: new Vector2(0.5f, 0.42f));
-            AddTextureToSpriteList("toxiccabinet_open", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(684, 426, 111, 155), originPercentage: new Vector2(0.5f, 0.48f));
-            AddTextureToSpriteList("supplycabinet_open", "%ModDir%/Items/Containers/containers_opened.png", new Rectangle(827, 621, 189, 132), originPercentage: new Vector2(0.7f, 0.498f));
-            AddTextureToSpriteList("junctionbox_open_nodamage", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(0, 0, 194, 178), originPercentage: new Vector2(0.29f, 0.498f));
-            AddTextureToSpriteList("junctionbox_open_damage", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(196, 0, 194, 178), originPercentage: new Vector2(0.29f, 0.498f));
-            AddTextureToSpriteList("junctionbox_open_broken", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(396, 0, 194, 178), originPercentage: new Vector2(0.26f, 0.496f));
-
-            AddTextureToSpriteList("battery_open_nodamage", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(0, 194, 158, 184), originPercentage: new Vector2(0.37f, 0.43f));
-            AddTextureToSpriteList("battery_open_damage", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(196, 193, 158, 184), originPercentage: new Vector2(0.353f, 0.441f));
-            AddTextureToSpriteList("battery_open_broken", "%ModDir%/Items/Electricity/poweritemopened.png", new Rectangle(389, 194, 159, 184), originPercentage: new Vector2(0.353f, 0.441f));
-            AddTextureToSpriteList("mechanical_slot", "%ModDir%/UI/ButtonUI.png", new Rectangle(93, 335, 56, 53), originPercentage: new Vector2(0.353f, 0.441f));
-            AddTextureToSpriteList("mechanical_slot_glow", "%ModDir%/UI/ButtonUI.png", new Rectangle(56, 436, 131, 121), originPercentage: new Vector2(0.353f, 0.441f));
-            AddTextureToSpriteList("water_pipe", "%ModDir%/UI/ButtonUI.png", new Rectangle(4, 624, 187, 69), originPercentage: new Vector2(0.353f, 0.441f));
-            AddTextureToSpriteList("door_open", "Content/UI/MainIconsAtlas.png", new Rectangle(128, 128, 128, 128), originPercentage: new Vector2(0.353f, 0.441f));
-            AddTextureToSpriteList("wire_realism", "%ModDir%/Items/Electricity/signalcomp.png", new Rectangle(968, 118, 16, 16), originPercentage: new Vector2(0.353f, 0.441f));
+            
 
 #endif
 
@@ -117,32 +90,7 @@ namespace BarotraumaDieHard
 
 
 
-#if CLIENT
-        public static void AddTextureToSpriteList(string spriteKey, string filepath, Rectangle sourceRect, Vector2? offset = null, Vector2? originPercentage = null, float rotation = 0)
-        {
-            string modTexturePath = filepath;
-            ContentPath contentPath = ContentPath.FromRaw(modPackage, modTexturePath);
 
-            if (offset == null)
-                offset = Vector2.Zero;
-
-            // Initialize the Sprite without immediately loading the texture
-            Sprite newSprite = new Sprite(contentPath.FullPath, sourceRect, offset, rotation);
-
-            // Enable lazy loading if applicable
-            newSprite.LazyLoad = true;
-
-            // Calculate origin based on the percentage, defaulting to the center if no percentage is specified
-            Vector2 origin = originPercentage.HasValue 
-                ? new Vector2(sourceRect.Width * originPercentage.Value.X, sourceRect.Height * originPercentage.Value.Y) 
-                : new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
-            
-            newSprite.Origin = origin;
-
-            // Add the sprite to the dictionary with the specified key
-            customSprites[spriteKey] = newSprite;
-        }
-#endif
 
 
         //This causes the togglecampaignteleport can't view the normal abandoned outposts if teleported directly to that location. Bucause it will always convert to destroyed type.

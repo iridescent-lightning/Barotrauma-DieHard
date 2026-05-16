@@ -69,7 +69,7 @@ namespace BarotraumaDieHard
         public static void DrawCustomSprite(string spriteName, string targetItemIdentifier, string targetItemTag, Item targetItem, SpriteBatch spriteBatch)
         {
             // Try to get the sprite by its name from the dictionary
-            if (GameSessionDieHard.customSprites.TryGetValue(spriteName, out Sprite customSprite))
+            if (Main.customSprites.TryGetValue(spriteName, out Sprite customSprite))
             {
                 
                 // Check if the item matches the specified identifier and tag
@@ -98,7 +98,7 @@ namespace BarotraumaDieHard
         public static void DrawCustomSprite(string spriteName, string targetItemIdentifier, string targetItemTag, Item targetItem, (float minCondition, float maxCondition) conditionRange, SpriteBatch spriteBatch)
 {
     // Try to get the sprite by its name from the dictionary
-    if (GameSessionDieHard.customSprites.TryGetValue(spriteName, out Sprite customSprite))
+    if (Main.customSprites.TryGetValue(spriteName, out Sprite customSprite))
     {
         // Check if the item matches the specified identifier and tag
         if (targetItem.Prefab.Identifier == targetItemIdentifier && 

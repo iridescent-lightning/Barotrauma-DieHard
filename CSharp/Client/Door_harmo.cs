@@ -39,7 +39,7 @@ namespace BarotraumaDieHard
                 bool shiftDown = character.IsKeyDown(InputType.Crouch);
                 if (character.IsKeyDown(InputType.Crouch))
                 {
-                    if (GameSessionDieHard.customSprites.TryGetValue("door_open", out Sprite customWireSprite))
+                    if (Main.customSprites.TryGetValue("door_open", out Sprite customWireSprite))
                     {
                         // 设置原点为图标中心，这样图标会准确居中在门上
                         Vector2 origin = new Vector2(customWireSprite.SourceRect.Width / 2f, customWireSprite.SourceRect.Height / 2f);

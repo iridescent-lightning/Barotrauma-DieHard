@@ -9,13 +9,9 @@ using Networking;
 namespace BarotraumaDieHard
 {
     // 继承 ACsMod 
-    public class Main : ACsMod
+    public partial class Main : ACsMod
     {
         public static Harmony HarmonyInstance;
-         public static void Init()
-        {
-            DebugConsole.NewMessage("working");
-        }
 
         // 1. 构造函数：LuaCs 加载 Mod 时会自动运行这里
         public Main()
@@ -23,28 +19,12 @@ namespace BarotraumaDieHard
             HarmonyInstance = new Harmony("com.iri.diehard");
             HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
 
-#if CLIENT
-            GameMain.LuaCs.Hook.Add("think", "DieHardUpdate", (args) =>
-            {
-                // 1. 处理按键开关 UI
-                /*if (PlayerInput.KeyHit(Keys.M))
-                {
-                    if (MonsterLootStore.monsterstorePaddedFrame == null)
-                        MonsterLootStore.CreateTestStore();
-                    else
-                        MonsterLootStore.Close();
-                }*/
-
-                // 2. 核心：确保 UI 渲染
-                MonsterLootStore.Update();
-                
-                return null;
-            });
-#endif
+            // 调用部分方法（如果客户端文件存在，就会执行那边的逻辑）
+            InitClient();
 
 #if SERVER
     // 服务器启动时注册网络监听。只写在server里
-    NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
+    
 #endif
 
         //有趣。以前都是只在服务器注册的，shared注册会崩溃。现在看来不是这样。
@@ -77,6 +57,8 @@ namespace BarotraumaDieHard
                 //-- TorpedoTurret
                 NetUtil.Register(NetEvent.TORPEDOTUBE_TRYLAUNCH, TorpedoTurret.OnReceiveTryLaunchTorpedoMessage);
 
+                NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
+
 
 
             }
@@ -85,6 +67,9 @@ namespace BarotraumaDieHard
             // 使用 Barotrauma 原生日志或 LuaCsLogger 都可以
             //LuaCsLogger.Log("DieHard Mod Initialized via ACsMod Constructor.");
         }
+
+        // 声明一个部分方法
+        partial void InitClient();
 
         // 2. 必须重写 Stop 方法：这是 ACsMod 模式下的卸载点
         public override void Stop()

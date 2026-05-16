@@ -32,14 +32,14 @@ namespace BarotraumaDieHard
 		public void PreInitPatching() { }
 
 		public void Dispose()
-		{
+            {
 		  harmony.UnpatchSelf();
 		  harmony = null;
-		}
+            }
 
         
         public static void ParseSubElementsClientPostfix(ContentXElement element, ItemPrefab variantOf, ItemPrefab __instance)
-        {
+                {
             //DebugConsole.NewMessage("patched");
         }
 
