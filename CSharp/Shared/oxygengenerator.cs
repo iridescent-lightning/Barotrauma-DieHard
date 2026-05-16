@@ -295,14 +295,6 @@ namespace BarotraumaDieHard
             }
 
 #endif
-
-#if SERVER
-            NetUtil.Register(NetEvent.CUSTOM_OXYGENGENERATOR_TOGGLE, OnReceiveToggleOxygenGeneratorMessage);
-
-            NetUtil.Register(NetEvent.CUSTOM_OXYGENGENERATOR_GENERATEDAMOUNTFACTOR, OnReceiveGeneratedAmountFactorMessage);
-
-            NetUtil.Register(NetEvent.CUSTOM_OXYGENGENERATOR_REFILLTOGGLE, OnReceiveToggleChargingOxygenTankMessage);
-#endif
         }
 
         public override void Update(float deltaTime, Camera cam)
@@ -495,7 +487,7 @@ namespace BarotraumaDieHard
             return consumption;
         }
 
-        private void OnReceiveToggleOxygenGeneratorMessage(object[] args)
+        public static void OnReceiveToggleOxygenGeneratorMessage(object[] args)
         {
             IReadMessage msg = (IReadMessage)args[0];
             ushort itemId = msg.ReadUInt16();
@@ -507,13 +499,13 @@ namespace BarotraumaDieHard
                 var oxygenGenerator = oxygenGeneratorItem.GetComponent<CustomOxygenGenerator>();
                 if (oxygenGenerator != null)
                 {
-                    oxygenGenerator.turnedOn = turnedOn;
+                    oxygenGenerator.turnedOn = isActive;
                     // Additional logic if needed
                 }
             }
         }
 
-        private void OnReceiveGeneratedAmountFactorMessage(object[] args)
+        public static void OnReceiveGeneratedAmountFactorMessage(object[] args)
         {
             IReadMessage msg = (IReadMessage)args[0];
             ushort itemId = msg.ReadUInt16();
@@ -533,7 +525,7 @@ namespace BarotraumaDieHard
         }
 
 
-        private void OnReceiveToggleChargingOxygenTankMessage(object[] args)
+        public static void OnReceiveToggleChargingOxygenTankMessage(object[] args)
         {
             IReadMessage msg = (IReadMessage)args[0];
             ushort itemId = msg.ReadUInt16();

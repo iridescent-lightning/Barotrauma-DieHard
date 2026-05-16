@@ -17,7 +17,7 @@ using Networking;
 using Microsoft.Xna.Framework.Graphics;
 #endif
 
-namespace TorpedoTurretMod//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
+namespace BarotraumaDieHard
 {
     class TorpedoTurret : Turret
     {
@@ -74,9 +74,7 @@ namespace TorpedoTurretMod//todo make a structural namespace DieHard.Item.Compon
                 }
             };
 #endif
-#if SERVER
-            NetUtil.Register(NetEvent.TORPEDOTUBE_TRYLAUNCH, OnReceiveTryLaunchTorpedoMessage);
-#endif
+
         }
         
         public TorpedoTurret(Item item, ContentXElement element)
@@ -291,7 +289,7 @@ namespace TorpedoTurretMod//todo make a structural namespace DieHard.Item.Compon
         NetUtil.SendServer(msg, DeliveryMethod.Reliable);
     }
 #endif
-	private void OnReceiveTryLaunchTorpedoMessage(object[] args)
+	public static void OnReceiveTryLaunchTorpedoMessage(object[] args)
     {
         IReadMessage msg = (IReadMessage)args[0];
         ushort itemId = msg.ReadUInt16();

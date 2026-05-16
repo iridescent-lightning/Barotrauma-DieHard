@@ -10,7 +10,6 @@
     <health vitality="400" doesbleed="True" bleedingreduction="10" crushdepth="Infinity" usehealthwindow="False" burnreduction="0" constanthealthregeneration="0.5" healthregenerationwheneating="0">
       <Limb name="Head">
         <VitalityMultiplier type="damage" multiplier="2.0" />
-        <VitalityMultiplier type="gundamage" multiplier="5.0" />
       </Limb>
       <Limb name="Torso" />
       <Limb name="LeftArm">

@@ -18,7 +18,7 @@
         <Price storeidentifier="merchantmine" />
         <Price storeidentifier="merchantmedical" multiplier="0.9" />
       </Price>
-      <SuitableTreatment type="gundamage" suitability="75" />
+      
       <SuitableTreatment type="damage" suitability="50" />
       <SuitableTreatment identifier="opiatewithdrawal" suitability="30" />
       <SuitableTreatment type="burn" suitability="1" />
@@ -41,7 +41,6 @@
         <StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true" />
         <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
           <ReduceAffliction type="damage" amount="5" />
-          <ReduceAffliction type="gundamage" amount="5" />
           <ReduceAffliction type="burn" amount="0.1" />
           <Affliction identifier="oxygenlow" amount="2" />
           <Affliction identifier="opiateaddiction" amount="0.5" />
@@ -50,7 +49,6 @@
         </StatusEffect>
         <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
           <ReduceAffliction type="damage" amount="2.5" />
-          <ReduceAffliction type="gundamage" amount="1.5" />
           <ReduceAffliction type="burn" amount="0.05" />
           <Affliction identifier="oxygenlow" amount="3" />
           <Affliction identifier="opiateaddiction" amount="2.5" />
@@ -112,7 +110,6 @@
         <Price storeidentifier="merchantmedical" multiplier="0.9" />
       </Price>
       <SuitableTreatment type="damage" suitability="75" />
-      <SuitableTreatment type="gundamage" suitability="75" />
       <SuitableTreatment type="burn" suitability="5" />
       <SuitableTreatment identifier="opiatewithdrawal" suitability="100" />
       <SuitableTreatment identifier="opiateoverdose" suitability="-22.5" />
@@ -138,7 +135,6 @@
         <StatusEffect type="OnFailure" target="This" Condition="-100.0" setvalue="true" />
         <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="5">
           <ReduceAffliction type="damage" amount="15" />
-          <ReduceAffliction type="gundamage" amount="10" />
           <ReduceAffliction type="burn" amount="1" />
           <Affliction identifier="oxygenlow" amount="6" />
           <Affliction identifier="opiateaddiction" amount="1.5" />
@@ -147,7 +143,6 @@
         </StatusEffect>
         <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="5">
           <ReduceAffliction type="damage" amount="10" />
-          <ReduceAffliction type="gundamage" amount="5" />
           <ReduceAffliction type="burn" amount="0.75" />
           <Affliction identifier="oxygenlow" amount="8" />
           <Affliction identifier="opiateaddiction" amount="6" />

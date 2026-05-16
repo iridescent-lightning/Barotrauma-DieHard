@@ -15,7 +15,7 @@ using Networking;
 using Microsoft.Xna.Framework.Graphics;
 #endif
 
-namespace TorpedoMod//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
+namespace BarotraumaDieHard//todo make a structural namespace DieHard.Item.Components. namespace can't be used in elsewhere
 {
     class TorpedoTube : ItemContainer 
     {
@@ -50,9 +50,6 @@ namespace TorpedoMod//todo make a structural namespace DieHard.Item.Components. 
             unsentChanges = false;
             correctionTimer = 0.0f;
             IsActive = true;
-#if SERVER
-            NetUtil.Register(NetEvent.TORPEDOTUBE_ARM, OnReceiveArmTorpedoMessage);
-#endif
 
         }
 
@@ -206,7 +203,7 @@ namespace TorpedoMod//todo make a structural namespace DieHard.Item.Components. 
 #endif
 
 
-        private void OnReceiveArmTorpedoMessage(object[] args)
+        public static void OnReceiveArmTorpedoMessage(object[] args)
         {
             IReadMessage msg = (IReadMessage)args[0];
             // Extract data from the message

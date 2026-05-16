@@ -115,7 +115,6 @@
         <Price storeidentifier="merchantmine" />
         <Price storeidentifier="merchantmedical" multiplier="0.9" />
       </Price>
-      <!--<SuitableTreatment type="gundamage" suitability="75" />-->
       <Fabricate suitablefabricators="medicalfabricator" requiredtime="10">
         <RequiredSkill identifier="medical" level="18" />
         <RequiredItem identifier="opium" amount="1" />

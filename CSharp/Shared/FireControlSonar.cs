@@ -9,7 +9,6 @@ using Barotrauma.Extensions;
 using Barotrauma;
 using HarmonyLib;
 using System.Globalization;
-using TorpedoMod;
 using System.Reflection;//for FieldInfo
 
 
@@ -20,7 +19,7 @@ using FarseerPhysics;//for convert units
 using Microsoft.Xna.Framework.Graphics;
 #endif
 
-namespace FireControlSonar
+namespace BarotraumaDieHard
 {
     class FireControlSonar : Sonar
     {

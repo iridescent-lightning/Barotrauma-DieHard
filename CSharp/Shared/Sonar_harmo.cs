@@ -48,9 +48,7 @@ namespace BarotraumaDieHard
         */
 		public void PreInitPatching() 
         { 
-#if SERVER
-            NetUtil.Register(NetEvent.APPLY_SONAR_PING_DAMAGE, OnReceiveSonarPingApplyDamageMessage);
-#endif
+
         }
 
 		
@@ -65,9 +63,7 @@ namespace BarotraumaDieHard
                 // Store the reload value using the item ID as the key
                 
                 SonarRange[item.ID] = __instance.Range; // Store original reload value
-#if SERVER
-            NetUtil.Register(NetEvent.SONAR_CHANGERANGE, OnReceiveChangeRangeMessage);
-#endif
+
         }
         
 
@@ -271,7 +267,7 @@ namespace BarotraumaDieHard
         NetUtil.SendServer(msg, DeliveryMethod.Reliable);
         }
 #endif
-        private void OnReceiveSonarPingApplyDamageMessage(object[] args) 
+        public static void OnReceiveSonarPingApplyDamageMessage(object[] args) 
         {
         IReadMessage msg = (IReadMessage)args[0];
         ushort characterId = msg.ReadUInt16();
@@ -322,7 +318,7 @@ namespace BarotraumaDieHard
 		}
 
 
-        private static void OnReceiveChangeRangeMessage(object[] args)
+        public static void OnReceiveChangeRangeMessage(object[] args)
 {
     IReadMessage msg = (IReadMessage)args[0];
     ushort itemId = msg.ReadUInt16(); // Read the item ID

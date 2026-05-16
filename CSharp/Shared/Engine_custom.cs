@@ -38,13 +38,6 @@ namespace BarotraumaDieHard
         {
 
             InitProjSpecific(element);
-            
-
-
-            #if SERVER
-            NetUtil.Register(NetEvent.VECTORED_ENGINE_FORCECHANGE, OnReceiveVerticalForceMessage);
-            NetUtil.Register(NetEvent.VECTORED_ENGINE_MAINTAINDEPTH, OnReceiveMaintainDepthMessage);
-            #endif
         }
 
         partial void InitProjSpecific(ContentXElement element);
@@ -131,7 +124,7 @@ namespace BarotraumaDieHard
             }
         }
 
-        private void OnReceiveVerticalForceMessage(object[] args)
+        public static void OnReceiveVerticalForceMessage(object[] args)
         {
             IReadMessage msg = (IReadMessage)args[0];
             
@@ -154,32 +147,32 @@ namespace BarotraumaDieHard
             }
         }
 
-        private void OnReceiveMaintainDepthMessage(object[] args)
-{
-    IReadMessage msg = (IReadMessage)args[0];
-    
-    ushort itemId = msg.ReadUInt16();
-    bool receivedEnabled = msg.ReadBoolean();
-    float receivedDepth = msg.ReadSingle();
-
-    Item engineItem = Entity.FindEntityByID(itemId) as Item;
-    if (engineItem != null)
-    {
-        var customEngine = engineItem.GetComponent<CustomEngine>();
-        if (customEngine != null)
+        public static void OnReceiveMaintainDepthMessage(object[] args)
         {
-            // 只需要更新这两个控制变量
-            customEngine.isMaintainDepthEnabled = receivedEnabled;
-            customEngine.maintainDepthTarget = receivedDepth;
+            IReadMessage msg = (IReadMessage)args[0];
+            
+            ushort itemId = msg.ReadUInt16();
+            bool receivedEnabled = msg.ReadBoolean();
+            float receivedDepth = msg.ReadSingle();
 
-            // 额外处理：如果关闭了功能，顺便把目标力清空，防止残余推力
-            if (!receivedEnabled)
+            Item engineItem = Entity.FindEntityByID(itemId) as Item;
+            if (engineItem != null)
             {
-                customEngine.targetVerticalForce = 0.0f;
+                var customEngine = engineItem.GetComponent<CustomEngine>();
+                if (customEngine != null)
+                {
+                    // 只需要更新这两个控制变量
+                    customEngine.isMaintainDepthEnabled = receivedEnabled;
+                    customEngine.maintainDepthTarget = receivedDepth;
+
+                    // 额外处理：如果关闭了功能，顺便把目标力清空，防止残余推力
+                    if (!receivedEnabled)
+                    {
+                        customEngine.targetVerticalForce = 0.0f;
+                    }
+                }
             }
         }
-    }
-}
     
     }
 }

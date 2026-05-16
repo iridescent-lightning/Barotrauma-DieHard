@@ -12,6 +12,10 @@ namespace BarotraumaDieHard
     public class Main : ACsMod
     {
         public static Harmony HarmonyInstance;
+         public static void Init()
+        {
+            DebugConsole.NewMessage("working");
+        }
 
         // 1. 构造函数：LuaCs 加载 Mod 时会自动运行这里
         public Main()
@@ -38,22 +42,48 @@ namespace BarotraumaDieHard
             });
 #endif
 
-    #if SERVER
-    // 服务器启动时注册网络监听
+#if SERVER
+    // 服务器启动时注册网络监听。只写在server里
     NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
 #endif
 
-//有趣。以前都是只在服务器注册的，shared注册会崩溃。现在看来不是这样。
-//必须都注册才能让bot正常从服务器端发送到客户端的指令
-        if (!GameMain.IsSingleplayer)
-        {
-            NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
-            NetUtil.Register(NetEvent.WIRE_DISCONNECT_SYNC, AIObjectiveRepairWithDisconnect.OnReceiveWireSync);
-        }
+        //有趣。以前都是只在服务器注册的，shared注册会崩溃。现在看来不是这样。
+        //必须都注册才能让bot正常从服务器端发送到客户端的指令
+            if (!GameMain.IsSingleplayer)
+            {
+                //--junctionbox
+                NetUtil.Register(NetEvent.SWITCH_JUNCTIONBOX, PowerTransferPatch.OnReceiveJBSwitchMessage);
+                //--wire
+                NetUtil.Register(NetEvent.WIRE_DISCONNECT_SYNC, AIObjectiveRepairWithDisconnect.OnReceiveWireSync);
+
+                //--oxygengenerator
+                NetUtil.Register(NetEvent.CUSTOM_OXYGENGENERATOR_GENERATEDAMOUNTFACTOR, CustomOxygenGenerator.OnReceiveGeneratedAmountFactorMessage);
+                NetUtil.Register(NetEvent.CUSTOM_OXYGENGENERATOR_REFILLTOGGLE, CustomOxygenGenerator.OnReceiveToggleChargingOxygenTankMessage);
+                NetUtil.Register(NetEvent.CUSTOM_OXYGENGENERATOR_TOGGLE, CustomOxygenGenerator.OnReceiveToggleOxygenGeneratorMessage);
+                //--lock door
+                NetUtil.Register(NetEvent.DOOR_JAMMED_STATE_CHANGE, MiniMapLegacy.OnReceiveDoorJamMessage);
+
+                //--engine
+                NetUtil.Register(NetEvent.VECTORED_ENGINE_FORCECHANGE, CustomEngine.OnReceiveVerticalForceMessage);
+                NetUtil.Register(NetEvent.VECTORED_ENGINE_MAINTAINDEPTH, CustomEngine.OnReceiveMaintainDepthMessage);
+
+                //--Sonar
+                NetUtil.Register(NetEvent.APPLY_SONAR_PING_DAMAGE, SonarMod.OnReceiveSonarPingApplyDamageMessage);
+                NetUtil.Register(NetEvent.SONAR_CHANGERANGE, SonarMod.OnReceiveChangeRangeMessage);
+
+                //-- TorpedoTube
+                NetUtil.Register(NetEvent.TORPEDOTUBE_ARM, TorpedoTube.OnReceiveArmTorpedoMessage);
+
+                //-- TorpedoTurret
+                NetUtil.Register(NetEvent.TORPEDOTUBE_TRYLAUNCH, TorpedoTurret.OnReceiveTryLaunchTorpedoMessage);
+
+
+
+            }
 
             
             // 使用 Barotrauma 原生日志或 LuaCsLogger 都可以
-            LuaCsLogger.Log("DieHard Mod Initialized via ACsMod Constructor.");
+            //LuaCsLogger.Log("DieHard Mod Initialized via ACsMod Constructor.");
         }
 
         // 2. 必须重写 Stop 方法：这是 ACsMod 模式下的卸载点

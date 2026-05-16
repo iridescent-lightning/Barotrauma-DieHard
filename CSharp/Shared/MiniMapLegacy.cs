@@ -57,9 +57,9 @@ namespace BarotraumaDieHard
             IsActive = true;
             hullDatas = new Dictionary<Hull, HullData>();
             InitProjSpecific(element);
-#if SERVER
-            NetUtil.Register(NetEvent.DOOR_JAMMED_STATE_CHANGE, OnReceiveDoorJamMessage);
-#endif
+
+            
+
         }
 
         partial void InitProjSpecific(ContentXElement element);
@@ -138,7 +138,7 @@ namespace BarotraumaDieHard
 
 
 
-        private void OnReceiveDoorJamMessage(object[] args)
+        public static void OnReceiveDoorJamMessage(object[] args)
         {
             IReadMessage msg = (IReadMessage)args[0];
             // Extract data from the message

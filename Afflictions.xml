@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Afflictions>
-    <InternalDamage name="Gunshot wound" identifier="gunshotwound" description="The entry site is a small, dark, bruised hole oozing a little blood. The exit wound however is a large ragged mess of exposed tissue and pouring blood." type="gundamage" causeofdeathdescription="Shot to death" selfcauseofdeathdescription="You have died of gunshot wounds." limbspecific="true" maxstrength="200" karmachangeonapplied="-1" damageoverlayalpha="2">
-      <Description textidentifier="afflictiondescription.gunshotwound.low" minstrength="0" maxstrength="40" />
-      <Description textidentifier="afflictiondescription.gunshotwound" minstrength="40" maxstrength="200" />
-      <Effect minstrength="0" maxstrength="200" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="2" dialogflag="GunshotWound"></Effect>
-      <icon texture="Content/UI/MainIconsAtlas.png" sourcerect="256,768,128,128" color="195,60,60,255" origin="0,0" />
-    </InternalDamage>
-    <!--obsolete. now use dodamagetolimb to directly check if armor on limb is hit. no longer needs this fake affliction-->
-    <Affliction name="Armormarker" identifier="Armormarker" type="marker" description="marker" limbspecific="true" indicatorlimb="Torso" activationthreshold="0" maxstrength="10" targets="human">
-      <Effect minstrength="0" maxstrength="10" strengthchange="-10" />
-    </Affliction>
     <Affliction name="In Pain" identifier="gunshotpain" type="pain" description="pain" limbspecific="false" indicatorlimb="Torso" activationthreshold="0" maxstrength="10" targets="human">
       <Effect minstrength="0" maxstrength="10" strengthchange="-0.1">
         <StatusEffect target="Character" comparison="and" disabledeltatime="true" stackable="false" checkconditionalalways="false" delay="1">
@@ -106,7 +96,7 @@ maxstrength="100">
       <!-- no effects at this point -->
       <Effect minstrength="0" maxstrength="40" strengthchange="-4" />
       <Effect minstrength="40" maxstrength="80" strengthchange="-3.5" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.9" maxspeedmultiplier="0.7"></Effect>
-      <Effect minstrength="80" maxstrength="100" strengthchange="-3" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.7" maxspeedmultiplier="0.5">
+      <Effect minstrength="80" maxstrength="90" strengthchange="-3" minfacetint="0,51,102,0" maxfacetint="0,51,102,50" minspeedmultiplier="0.7" maxspeedmultiplier="0.5">
         <StatusEffect target="Character">
           <Sound file="%ModDir%/Sounds/panting.ogg" range="500" volumenum="2" />
         </StatusEffect>

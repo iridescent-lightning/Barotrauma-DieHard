@@ -8,7 +8,7 @@
     <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="473,1197,502,655" depth="0.79" maxcondition="50" offset="0,0" fadein="true" />
     <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="975,1197,502,690" depth="0.79" maxcondition="10" offset="0,0" fadein="true" />
     <aitarget sightrange="500" soundrange="7500" />
-    <Reactor canbeselected="true" firedelay="20" meltdowndelay="120" maxpoweroutput="20000" fuelconsumptionrate="0.2" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
+    <Reactor canbeselected="true" firedelay="20" meltdowndelay="120" maxpoweroutput="40000" fuelconsumptionrate="0.2" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
       <StatusEffect type="InWater" target="This" condition="-0.5">
         <Conditional condition="gt 10" />
       </StatusEffect>

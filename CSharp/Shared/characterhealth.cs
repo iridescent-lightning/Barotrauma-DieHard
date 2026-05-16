@@ -82,9 +82,9 @@ namespace BarotraumaDieHard
 		}
     }
 	
-	[HarmonyPatch("Update")]
-	[HarmonyPostfix]
-	public static void Update(CharacterHealth __instance, float deltaTime)
+		[HarmonyPatch("Update")]
+		[HarmonyPostfix]
+		public static void Update(CharacterHealth __instance, float deltaTime)
         {
 			CharacterHealth _ = __instance;
 
@@ -103,5 +103,46 @@ namespace BarotraumaDieHard
 				_.Character.PressureProtection= 4500.0f;
 			}
 		}
+
+
+
+
+		[HarmonyPatch("AddLimbAffliction")]
+		[HarmonyPatch( new Type[] {typeof(Limb), typeof(Affliction), typeof(bool), typeof(bool) })]
+		[HarmonyPrefix]
+		// 使用 Prefix 在伤害结算前动态修改其倍率
+        public static void Prefix(CharacterHealth __instance, Limb limb, Affliction newAffliction, bool allowStacking, bool recalculateVitality)
+        {
+            // 1. 基础安全检查
+			if (__instance.Character == null || limb == null || newAffliction == null) return;
+			
+			// 2. 核心物种过滤：只允许普通人类(human)、人型画皮(humanhusk)和普通画皮(husk)
+			// Barotrauma 的 SpeciesName 默认是小写形式的 Identifier，使用 .Value 获取纯文本
+			string species = __instance.Character.SpeciesName.Value.ToLower();
+			
+			bool isValidTarget = species == "human" || species == "humanhusk" || species == "husk";
+			if (!isValidTarget) return;
+
+			// 3. 检查伤害类型是否是原版的枪伤 (gunshotwound)
+			if (newAffliction.Prefab.Identifier == "gunshotwound")
+			{
+				//DebugConsole.NewMessage($"[DieHard] 捕获合法的目标枪伤 ({species}): {limb.type}");
+				
+				// 获取当前命中的肢体类型
+				LimbType type = limb.type;
+				
+				// 4. 核心倍率逻辑
+				if (type == LimbType.Head)
+				{
+					//DebugConsole.NewMessage("amplifying");
+					newAffliction.Strength *= 5.0f;
+				}
+				else if (type == LimbType.Torso)
+				{
+					//DebugConsole.NewMessage("amplifyingT");
+					newAffliction.Strength *= 9.0f;
+				}
+			}
+        }
   	}
 }
