@@ -26,18 +26,16 @@ namespace BarotraumaDieHard
     partial class SonarMod
     {
         
-		public static float NewSectorAngle { get; set; } = 120.0f;
+		
 
-        // Calculate the dot product whenever NewSectorAngle is changed
-        public static float NewDotProduct => (float)Math.Cos(MathHelper.ToRadians(NewSectorAngle) *0.5f);
+        
         
         public static float steeringangleUpdate { get; private set; }
         public static bool lockDirectionalSonar = false;
 
-        private static float minHertzValue = 30000f; // Minimum hertz value
-        private static float maxHertzValue = 500000f; // Maximum hertz value
+        
 
-        private static float hertz = 30000f; // Default hertz value
+        
 
         
 
@@ -667,7 +665,7 @@ namespace BarotraumaDieHard
                 {
                     Steering steering = _.item.GetComponent<Steering>();
                     
-                    float minRange = 5000f; // In case we can't find a range in dictionary.
+                    float minRange = 8000f; // In case we can't find a range in dictionary.
                     // Set the initial range based on the item's ID or fallback to default
                     if (SonarMod.SonarRange.ContainsKey(_.item.ID))
                     {
@@ -686,11 +684,11 @@ namespace BarotraumaDieHard
                         // Interpolate between the default range and max range based on the slider value
                         _.Range = MathHelper.Lerp(minRange, maxRange, scroll);
 
-                        SendChangeRangeMessage(_.item);
+                        SendChangeRangeMessage(_.item, NewSectorAngle, hertz);
                     }
                     //DebugConsole.NewMessage(_.Range.ToString());
 
-                    SonarMod.NewSectorAngle = MathHelper.Lerp(120f, 15f, scroll);
+                    NewSectorAngle = MathHelper.Lerp(120f, 15f, scroll);
                     SonarMod.hertz = MathHelper.Lerp(SonarMod.minHertzValue, SonarMod.maxHertzValue, _.zoomSlider.BarScroll);
                     if (GameMain.Client != null)
                     {
@@ -848,13 +846,15 @@ namespace BarotraumaDieHard
 
 
 
-    private static void SendChangeRangeMessage(Item item)
+    private static void SendChangeRangeMessage(Item item, float NewSectorAngle, float hertz)
     {
         IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.SONAR_CHANGERANGE);
 
         msg.WriteUInt16(item.ID); // ID of the sonar item
         Sonar sonar = item.GetComponent<Sonar>();
         msg.WriteSingle(sonar.Range);  // Send the new range value
+        msg.WriteSingle(NewSectorAngle);
+        msg.WriteSingle(hertz);
         NetUtil.SendServer(msg, DeliveryMethod.Reliable);
     }
 

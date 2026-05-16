@@ -25,6 +25,7 @@ namespace BarotraumaDieHard
     {
 
         private static Dictionary<int, float>SonarRange = new Dictionary<int, float>();
+        private static Dictionary<ushort, float> lastDamageTime = new Dictionary<ushort, float>();
 		
 		private static float PingFrequency = 0.5f;//how fast a ping spreads
 		private static float timeSinceLastPing = 5.1f;
@@ -34,12 +35,13 @@ namespace BarotraumaDieHard
         private static float minAfflictionStrength = 0.1f;
         private static float maxAfflictionStrength = 1.0f;
 
-		
+        public static float NewSectorAngle { get; set; } = 120.0f;
+        // Calculate the dot product whenever NewSectorAngle is changed
+        public static float NewDotProduct => (float)Math.Cos(MathHelper.ToRadians(NewSectorAngle) *0.5f);
 
-            //creategui has to be patched first. or game crash without error message
-
-		
-		
+        private static float minHertzValue = 30000f; // Minimum hertz value
+        private static float maxHertzValue = 500000f; // Maximum hertz value
+        private static float hertz = 30000f; // Default hertz value
 
 
         /*var originalMouseInPingRing = typeof(Sonar).GetMethod("MouseInDirectionalPingRing", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -161,8 +163,9 @@ namespace BarotraumaDieHard
                         _.activePings[_.currentPingIndex].PrevPingRadius = 0.0f;
                         if (_.item.AiTarget != null)
                         {
-                            _.item.AiTarget.SectorDegrees = _.useDirectionalPing ? Sonar.DirectionalPingSector : 360.0f;
+                            _.item.AiTarget.SectorDegrees = _.useDirectionalPing ? SonarMod.NewSectorAngle : 360.0f;
                             _.item.AiTarget.SectorDir = new Vector2(_.pingDirection.X, -_.pingDirection.Y);
+                            DebugConsole.NewMessage(_.item.AiTarget.SectorDegrees.ToString());
                         }
                         _.item.Use(deltaTime);
                     }
@@ -178,8 +181,10 @@ namespace BarotraumaDieHard
                 // 这里的 GetAITargets 是实例方法，需要通过 __instance 调用
                 foreach (AITarget aiTarget in _.GetAITargets())
                 {
-                    aiTarget.SectorDegrees = _.useDirectionalPing ? Sonar.DirectionalPingSector : 360.0f;
+                    float range = MathUtils.InverseLerp(aiTarget.MinSoundRange, aiTarget.MaxSoundRange, __instance.Range * __instance.activePings[pingIndex].State / __instance.zoom);
+                    aiTarget.SectorDegrees = _.useDirectionalPing ? SonarMod.NewSectorAngle : 360.0f;
                     aiTarget.SectorDir = new Vector2(_.pingDirection.X, -_.pingDirection.Y);
+                    aiTarget.SoundRange = Math.Max(aiTarget.SoundRange, MathHelper.Lerp(aiTarget.MinSoundRange, aiTarget.MaxSoundRange, range));
                 }
                 if (_.activePings[pingIndex].State > 1.0f)
                 {
@@ -199,7 +204,7 @@ namespace BarotraumaDieHard
             }
             
 
-#if CLIENT            
+       
             foreach (Character c in Character.CharacterList)
             {
                 Vector2 pingSource = _.item.WorldPosition;
@@ -235,14 +240,17 @@ namespace BarotraumaDieHard
                             // Apply the range-based penalty to affliction strength
                             float adjustedAfflictionStrength = afflictionStrength * distanceFactor;
                             
-                            target.CharacterHealth.ApplyAffliction(target.AnimController.MainLimb, AfflictionPrefab.Prefabs["sonardamage"].Instantiate(adjustedAfflictionStrength * 0.1f));
-                            //DebugConsole.NewMessage($"SonarMod: {target.Name} DamageReceived: " + $"{afflictionStrength}", Color.White);
-                            if (GameMain.Client != null)
+                            
+                            float currentTime = (float)Timing.TotalTime;
+                            if (lastDamageTime.TryGetValue(target.ID, out float lastTime) && currentTime - lastTime < 2f)
                             {
-                                _.unsentChanges = true;
-                                _.correctionTimer = Sonar.CorrectionDelay;
-                                SendApplyDamageMessage(target.ID, "sonardamage", afflictionStrength * 0.1f);
+                                continue; // 0.5秒内只造成一次伤害
                             }
+                            lastDamageTime[target.ID] = currentTime;
+
+                            target.CharacterHealth.ApplyAffliction(target.AnimController.MainLimb, AfflictionPrefab.Prefabs["sonardamage"].Instantiate(adjustedAfflictionStrength * 10f));
+                            //DebugConsole.NewMessage($"SonarMod: {target.Name} DamageReceived: " + $"{afflictionStrength}", Color.White);
+                            
                             // Debug log to show calculated affliction strength
                             //DebugConsole.NewMessage($"SonarMod: {target.Name} DamageReceived: {adjustedAfflictionStrength}", Color.White);
                             
@@ -251,7 +259,7 @@ namespace BarotraumaDieHard
                     }
                 }
             }
-#endif
+
             return false;
         }
 
@@ -319,29 +327,31 @@ namespace BarotraumaDieHard
 
 
         public static void OnReceiveChangeRangeMessage(object[] args)
-{
-    IReadMessage msg = (IReadMessage)args[0];
-    ushort itemId = msg.ReadUInt16(); // Read the item ID
-
-    // Find the sonar item by ID
-    Item sonarItem = Entity.FindEntityByID(itemId) as Item;
-    if (sonarItem != null)
-    {
-        // Get the Sonar component from the item
-        var sonar = sonarItem.GetComponent<Sonar>();
-        if (sonar != null)
         {
-            // Read the new range value from the message
-            float newRange = msg.ReadSingle(); // Read the new range from the message
-            
-            // Update the sonar's range
-            sonar.Range = newRange;
+            IReadMessage msg = (IReadMessage)args[0];
+            ushort itemId = msg.ReadUInt16(); // Read the item ID
+            float newRange = msg.ReadSingle();
+            float newSectorAngle = msg.ReadSingle();
+            float newhertz = msg.ReadSingle();
 
-            // Optionally, log the new range value for debugging
-            //DebugConsole.NewMessage($"Sonar range updated to: {newRange}");
+            // Find the sonar item by ID
+            Item sonarItem = Entity.FindEntityByID(itemId) as Item;
+            if (sonarItem != null)
+            {
+                // Get the Sonar component from the item
+                var sonar = sonarItem.GetComponent<Sonar>();
+                if (sonar != null)
+                {
+                    
+                    
+                    // Update the sonar's range
+                    sonar.Range = newRange;
+                    NewSectorAngle = newSectorAngle;
+                    hertz =newhertz;
+                    //DebugConsole.NewMessage($"Sonar range updated to: {newRange}");
+                }
+            }
         }
-    }
-}
 
     
     

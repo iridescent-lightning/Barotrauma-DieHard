@@ -22,7 +22,7 @@ namespace BarotraumaDieHard
        
         private static float updateTimer = 0.0f;
         private static float updateInterval = 1f;
-        private static float TemperatureDistributionSpeed = 5f;
+        private static float TemperatureDistributionSpeed = 1.5f;
         private static float GasDistributionspeed = 50f;
 
         private static float PressureDistributionspeed = 1000f;
