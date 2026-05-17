@@ -19,10 +19,16 @@ namespace BarotraumaDieHard
     class AIObjectiveRepairItemPatch
     {
 
-        [HarmonyPatch("CheckPreviousCondition")]
+        /*[HarmonyPatch("CheckPreviousCondition")]
         [HarmonyPrefix]
         public static bool CheckPreviousConditionPrefix(float deltaTime, AIObjectiveRepairItem __instance)
         {
+            // 提前检查 Item 和 CurrentHull
+            if (__instance.Item == null || __instance.Item.Removed) 
+            { 
+                return false; 
+            }
+
             // Use this to get the localization name of the hull.
             string localizedRoomName = TextManager.Get(__instance.Item.CurrentHull.RoomName).Value;
 
@@ -64,7 +70,7 @@ namespace BarotraumaDieHard
             }
 
             return false;
-        }
+        }*/
 
 
         [HarmonyPatch("FindRepairTool")]
