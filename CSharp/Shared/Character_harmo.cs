@@ -21,6 +21,7 @@ using Microsoft.Xna.Framework.Graphics;
 #endif
 
 
+
 using Barotrauma;
 using HarmonyLib;
 using System.Globalization;
@@ -70,9 +71,16 @@ namespace BarotraumaDieHard
 			Character _ = __instance;
 			if (__instance == null) { return; }
 
+			
+			Item headGear = __instance.Inventory.GetItemInLimbSlot(InvSlotType.Head);
+			Item bodyGear = __instance.Inventory.GetItemInLimbSlot(InvSlotType.InnerClothes);
+
+			bool breathGearOxygen = (headGear != null && headGear.HasTag("diving")) || (bodyGear != null && bodyGear.HasTag("diving"));
+
 			if (__instance.CurrentHull == null || __instance.Submarine == null || __instance.IsDead) { return; }
 			
-			if (!__instance.IsDead && __instance.UseHullOxygen)
+			
+			if (!__instance.IsDead && !breathGearOxygen)
 			{
 				HullMod.AddGas(__instance.CurrentHull, "CO2", 10f, deltaTime);
 			
@@ -97,7 +105,7 @@ namespace BarotraumaDieHard
 			}
 			else if (HullMod.GetGas(__instance.CurrentHull, "Temperature" ) > 323.15f)
 			{
-				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["burn"].Instantiate((HullMod.GetGas(__instance.CurrentHull, "Temperature") - 318.15f) * deltaTime * 2f));
+				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["burn"].Instantiate((HullMod.GetGas(__instance.CurrentHull, "Temperature") - 318.15f) * deltaTime / 4f));
 			}
 			else if (HullMod.GetGas(__instance.CurrentHull, "Temperature") > 293.15f)
 			{

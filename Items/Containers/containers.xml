@@ -75,7 +75,6 @@
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="electrical" level="55" />
         <RequiredItem items="wrench" type="equipped" />
-        <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
       <Upgrade gameversion="0.10.0.0" scale="*0.5" itempos="35,-130" />
     <!-- the item used to have the (default) 64 max stack size, i.e. stack size was only limited by the max stack size of the contained items -->

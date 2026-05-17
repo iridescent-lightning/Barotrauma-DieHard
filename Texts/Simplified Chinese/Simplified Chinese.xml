@@ -610,7 +610,7 @@
   <entityname.rebreathertank>循环呼吸器气罐</entityname.rebreathertank>
   <entitydescription.rebreathertank>一个沉重的氧气罐，允许循环呼吸器为连接的潜水服中的氧气罐补充氧气。</entitydescription.rebreathertank>
   <entityname.grapplegun>抓钩枪</entityname.grapplegun>
-  <entitydescription.grapplegun>用于越过复杂地形。\n连接缆绳后\n按[上]设置为牵引模式\n按[下]设置为下降模式\n按[蹲下]抓住绳索。</entitydescription.grapplegun>
+  <entitydescription.grapplegun>用于越过复杂地形。\n连接缆绳后\n按[上]设置为牵引模式\n按[下]设置为下降模式\n按[蹲下]切断绳索\n[空格]使用。</entitydescription.grapplegun>
   <entityname.grapplesmall>抓钩</entityname.grapplesmall>
   <entitydescription.grapplesmall>抓钩枪弹药</entitydescription.grapplesmall>
   <entityname.gastank>气罐</entityname.gastank>

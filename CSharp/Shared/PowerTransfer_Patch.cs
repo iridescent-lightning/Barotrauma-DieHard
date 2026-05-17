@@ -113,8 +113,32 @@ namespace BarotraumaDieHard
                 // 1. 服务器先更新自己的数据
                 SetLeverState(item, newState);
                 RefreshGrid(item);
+                NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
+                
         }
 
+#if SERVER
+public static void HandleClientSwitchRequest(IReadMessage msg, NetworkConnection clientConnection)
+{
+    ushort itemID = msg.ReadUInt16();
+    bool requestedState = msg.ReadBoolean();
+    
+    Item item = Entity.FindEntityByID(itemID) as Item;
+    if (item != null)
+    {
+        // 1. 服务器更新状态
+        PowerTransferPatch.SetLeverState(item, requestedState);
+        
+        // 2. 服务器广播给所有客户端
+        var broadcastMsg = NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
+        broadcastMsg.WriteUInt16(itemID);
+        broadcastMsg.WriteBoolean(requestedState);
+        
+        // 服务器可以使用 SendAll
+        NetUtil.SendAll(broadcastMsg, DeliveryMethod.Reliable);
+    }
+}
+#endif
         
 
     }
