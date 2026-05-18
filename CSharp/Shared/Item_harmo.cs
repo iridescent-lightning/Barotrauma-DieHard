@@ -61,9 +61,18 @@ namespace BarotraumaDieHard
         // 4. 修改 Submarine 属性
         // 如果物品之前属于潜艇的一部分（静态），现在它应该可以自由移动
         //__instance.Submarine = __instance.Submarine; 
-    }*/
+    }
 
-
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]	
+        public static void Postfix(Item __instance)
+        {
+            if (__instance.Prefab.Identifier == "revolver")
+            {
+                
+            }
+            
+        }*/
 
                 
     }

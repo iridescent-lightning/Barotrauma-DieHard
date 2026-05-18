@@ -1361,8 +1361,8 @@
     <Item name="7.62x51mm Round" identifier="76251round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="50,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="20" />
-      <Projectile characterusable="false" launchimpulse="50" removeonhit="true">
+      <Body width="20" height="15" density="20" />
+      <Projectile characterusable="false" launchimpulse="150" removeonhit="true">
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
         <Attack structuredamage="0.9" itemdamage="40" targetforce="6" penetration="0.7" severlimbsprobability="0.8" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />

@@ -68,6 +68,7 @@ namespace BarotraumaDieHard
                 Vector2 diff = targetItem.WorldPosition - currentWorldPos;
                 if (diff.LengthSquared() < 1600f) 
                 {
+                   // __instance.item.body.LinearVelocity *= 0.2f;
                     // 检查逻辑记录，防止单发子弹重复破坏同一个灯
                     if (!processedItems.ContainsKey(__instance)) 
                         processedItems[__instance] = new HashSet<Item>();
@@ -80,7 +81,82 @@ namespace BarotraumaDieHard
                     }
                 }
             }
+
+
+            Vector2 currentPos = __instance.item.SimPosition; // 使用物理世界坐标 (SimPosition) 更精准
+            Vector2 velocity = __instance.item.body.LinearVelocity;
+            // 计算这一帧子弹预计移动的位移向量
+    Vector2 movementThisFrame = velocity * deltaTime;
+    float moveLength = movementThisFrame.Length();
+
+    if (moveLength < 0.01f) return;
+
+    // 射线终点：当前位置 + 这一帧的位移（可以稍微乘个 1.2 做宽限预算）
+    Vector2 nextPos = currentPos + movementThisFrame;
+
+    // 在 Farseer 物理世界中拉一条射线检测
+    object hitTarget = null;
+    Limb hitLimb = null;
+
+    GameMain.World.RayCast((fixture, point, normal, fraction) =>
+    {
+        if (fixture.Body.UserData is Limb limb && limb.character != null)
+        {
+            hitLimb = limb;
+            hitTarget = limb.character;
+            return 0; // 返回 0 表示立即终止射线，拿到最近的碰撞
         }
+        return -1; // 继续检测
+    }, currentPos, nextPos);
+
+    if (hitLimb != null && hitLimb.character != null)
+{
+    // 获取原版 Projectile 内部的 hits 字段
+    // 因为原版 hits 是 private 的，我们需要用一点点反射（Reflection）来读取它
+    var hitsField = typeof(Projectile).GetField("hits", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+    var hitsHashSet = hitsField?.GetValue(__instance) as HashSet<Body>;
+
+    // 锁 1：如果原版 hits 已经包含了这个生物的刚体，说明原版物理已经管过它了，射线绝对不重复触发
+    if (hitsHashSet != null && hitsHashSet.Contains(hitLimb.body.FarseerBody))
+    {
+        return; 
+    }
+
+    // 找到射击中肢体的对应 Fixture
+    Fixture targetFixture = hitLimb.body?.FarseerBody?.FixtureList?.FirstOrDefault();
+    
+    if (targetFixture != null)
+    {
+        DebugConsole.NewMessage($"[DieHard] 射线成功挽救漏判！命中: {hitLimb.character.Name}");
+        
+        Vector2 collisionNormal = velocity.LengthSquared() > 0.01f ? -Vector2.Normalize(velocity) : Vector2.UnitY;
+        
+        // 锁 2：手动将这个刚体加入原版的 hits 列表！
+        // 这样不仅能防止射线这一帧重复判定，还能防止下一帧原版物理和射线再次对它造成伤害
+        hitsHashSet?.Add(hitLimb.body.FarseerBody);
+
+        // 强行调用原版碰撞处理（伤害、音效、断肢血流全套触发）
+        __instance.HandleProjectileCollision(targetFixture, collisionNormal, velocity);
+        
+        // 锁 3：同步原版子弹的命中次数上限逻辑
+        // 如果子弹达到了最大命中数，手动关闭它的碰撞，让它失效
+        if (hitsHashSet != null && hitsHashSet.Count >= __instance.MaxTargetsToHit)
+        {
+            // 利用反射调用原版的私有方法 DisableProjectileCollisions() 
+            var disableMethod = typeof(Projectile).GetMethod("DisableProjectileCollisions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            disableMethod?.Invoke(__instance, null);
+            
+            // 如果勾选了撞击销毁，则让子弹消失
+            if (__instance.RemoveOnHit)
+            {
+                //__instance.item.Remove();
+                __instance.IsActive = false;
+            }
+        }
+    }
+}
+        }
+        
         public static void OnItemPassedBy(Projectile projectile, Item targetItem)
         {
             float fireProb = Rand.Range(0,100f);
@@ -170,7 +246,7 @@ namespace BarotraumaDieHard
         [HarmonyPrefix]
         public static void LaunchPrefix(Projectile __instance,  Character user)
         {
-            if (__instance == null || __instance.item == null) return;
+            if (__instance == null || __instance.item == null || user == null) return;
             
             Item itemInRightHand = user.Inventory?.GetItemInLimbSlot(InvSlotType.RightHand);
 
