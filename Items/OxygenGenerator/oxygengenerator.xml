@@ -228,8 +228,7 @@
       <Vent>
         <sound file="%ModDir%/Items/OxygenGenerator/Entities_Station#434_oxymixer_ventilator_idle_01.ogg" type="OnActive" range="400.0" volumeproperty="OxygenFlow" volume="0.0005f" loop="true" />
       </Vent>
-      <BugVent BugAppearChance="0.01" OnlyPlayerSub="true" UpdateInterval="360" />
-      <Upgrade gameversion = "100.0.0.0" BugAppearChance="0.05" />
+      <BugVent BugAppearChance="1" OnlyPlayerSub="true" UpdateInterval="360" />
       <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,216" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="mechanical" level="9" />
@@ -271,7 +270,7 @@
       <Vent>
         <sound file="%ModDir%/Items/OxygenGenerator/Entities_Station#434_oxymixer_ventilator_idle_01.ogg" type="OnActive" range="400.0" volumeproperty="OxygenFlow" volume="0.0005f" loop="true" />
       </Vent>
-      <BugVent BugAppearChance="0.01" OnlyPlayerSub="true" UpdateInterval="360" />
+      <BugVent BugAppearChance="1" OnlyPlayerSub="true" UpdateInterval="360" />
       <ItemContainer capacity="1" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
         <Containable items="smallitem,mediumitem" />

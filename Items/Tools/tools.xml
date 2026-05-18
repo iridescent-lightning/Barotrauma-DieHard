@@ -304,7 +304,7 @@
       <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite texture="Content/Items/Tools/tools.png" sourcerect="0,3,152,88" depth="0.55" origin="0.5,-0.2" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" limb="Torso" scale="0.5"/>
       </Wearable>
-      <RepairTool firedamage="10.0" structurefixamount="1.0" range="150" barrelpos="35,12" particles="weld" repairmultiple="true" repairthroughwalls="false" combatpriority="10" levelwallfixamount="-0.425" targetforce="10">
+      <RepairTool firedamage="10.0" structurefixamount="2.0" range="150" barrelpos="35,12" particles="weld" repairmultiple="true" repairthroughwalls="false" combatpriority="10" levelwallfixamount="-0.425" targetforce="10">
         <!-- the item must contain a welding fuel tank for it to work -->
         <RequiredItems items="weldingtoolfuel,oxygensource" type="Contained" msg="ItemMsgWeldingFuelRequired" />
         <RequiredSkill identifier="mechanical" level="50" />

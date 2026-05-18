@@ -37,7 +37,7 @@ namespace BarotraumaDieHard
         private bool turnedOn = true;
         private float recycledAmount;
 
-        [Editable, Serialize(1000.0f, IsPropertySaveable.Yes, description: "How much CO2 gas it can reduced.", alwaysUseInstanceValues: true)]
+        [Editable, Serialize(500.0f, IsPropertySaveable.Yes, description: "How much CO2 gas it can reduced.", alwaysUseInstanceValues: true)]
         public float RecycledAmount
         {
             get { return recycledAmount; }

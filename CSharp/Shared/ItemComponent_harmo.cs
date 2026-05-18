@@ -37,5 +37,12 @@ namespace BarotraumaDieHard
             return true;
         }
 
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]	
+        public static void Postfix(Item __instance)
+        {
+            DebugConsole.NewMessage("update");
+        }
+
     }
 }

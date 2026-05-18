@@ -113,32 +113,32 @@ namespace BarotraumaDieHard
                 // 1. 服务器先更新自己的数据
                 SetLeverState(item, newState);
                 RefreshGrid(item);
-                NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
+                // 【关键】：如果是服务器收到客户端的包，必须转发广播给所有人！
+#if SERVER
+            {
+                
+                // 重新包装一个发往所有客户端的广播包
+                IWriteMessage broadcastMsg = NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
+                broadcastMsg.WriteUInt16(itemID);
+                broadcastMsg.WriteBoolean(newState);
+
+                // 广播给所有玩家（除了发件人，或者干脆广播给所有人）
+                // 假设你的 NetUtil 里有广播方法，若没有可用底层：GameMain.Server.SendDirectBlockMessage(...)
+                // 这里调用你 NetUtil 实现的广播方法，例如：
+                NetUtil.SendAll(broadcastMsg, DeliveryMethod.Reliable);
+
+                /*string msgToClient = $"[SERVER-DIRECT] 服务器通知：组件 ID {itemID} 状态已变更为 {newState}";
+
+                // 方式 A：广播给所有在线的客户端控制台
+                foreach (var client in GameMain.Server.ConnectedClients)
+                {
+                    // 参数 1: 文本内容, 参数 2: 发送给哪个连接
+                    GameMain.Server.SendConsoleMessage(msgToClient, client);
+                }*/
+            }
+#endif
                 
         }
-
-#if SERVER
-public static void HandleClientSwitchRequest(IReadMessage msg, NetworkConnection clientConnection)
-{
-    ushort itemID = msg.ReadUInt16();
-    bool requestedState = msg.ReadBoolean();
-    
-    Item item = Entity.FindEntityByID(itemID) as Item;
-    if (item != null)
-    {
-        // 1. 服务器更新状态
-        PowerTransferPatch.SetLeverState(item, requestedState);
-        
-        // 2. 服务器广播给所有客户端
-        var broadcastMsg = NetUtil.CreateNetMsg(NetEvent.SWITCH_JUNCTIONBOX);
-        broadcastMsg.WriteUInt16(itemID);
-        broadcastMsg.WriteBoolean(requestedState);
-        
-        // 服务器可以使用 SendAll
-        NetUtil.SendAll(broadcastMsg, DeliveryMethod.Reliable);
-    }
-}
-#endif
         
 
     }

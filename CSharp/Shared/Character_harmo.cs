@@ -82,7 +82,7 @@ namespace BarotraumaDieHard
 			
 			if (!__instance.IsDead && !breathGearOxygen)
 			{
-				HullMod.AddGas(__instance.CurrentHull, "CO2", 10f, deltaTime);
+				HullMod.AddGas(__instance.CurrentHull, "CO2", 5f, deltaTime);
 			
 				if (HullMod.GetGas(__instance.CurrentHull, "CO2")  > 1000f)
 				{

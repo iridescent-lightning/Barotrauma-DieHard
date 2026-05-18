@@ -68,10 +68,10 @@ namespace ButVentMod//todo make a structural namespace DieHard.Item.Components. 
             {
                 // Reset the elapsed time
                 elapsedTime = 0.0f;
-                
+                //DebugConsole.NewMessage("update!");
 
                 // Perform the action with a chance
-                if (Rand.Range(0.0f, 1.0f) < bugAppearChance)
+                if (Rand.Range(0.0f, 100.0f) < bugAppearChance)
                 {
 #if CLIENT
                     BarotraumaDieHard.CustomHintManager.DisplayHint("bugvent".ToIdentifier());

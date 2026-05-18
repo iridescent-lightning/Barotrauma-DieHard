@@ -34,7 +34,7 @@
       <BrokenSprite texture="signalcomp.png" sourcerect="488,1,110,176" depth="0.8" maxcondition="0" />
       <InfectedSprite texture="Content/Items/Gardening/ballastflora.png" sourcerect="8,260,149,170" origin="0.5,0.5" />
       <DamagedInfectedSprite texture="Content/Items/Gardening/ballastflora.png" sourcerect="157,260,149,170" origin="0.5,0.5" />
-      <SwappableItem price="800" origin="55,88" swapidentifier="junctionboxes" replacementonuninstall="jbslot"></SwappableItem>
+      <SwappableItem price="800" origin="55,88" swapidentifier="junctionboxes" replacementonuninstall="jbslot"/>
       <PowerTransfer canbeselected="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.2,0.14" minsize="450,160" anchor="Center" style="ItemUI" />
         <!--minsize="350,160" maxsize="420,190"-->

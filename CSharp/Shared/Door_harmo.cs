@@ -11,14 +11,12 @@ using Barotrauma.Lights;
 #endif
 using Barotrauma.Extensions;
 using System.Runtime.CompilerServices;
-
-
 using HarmonyLib;
 using Barotrauma.Items.Components;
+using Networking; // 确保引入了你的 NetUtil 命名空间
 
 namespace BarotraumaDieHard
 {
-
     public class DoorData
     {
         public bool IsHalfOpenTarget; // 标记该门是否处于半开目标状态
@@ -27,76 +25,72 @@ namespace BarotraumaDieHard
     [HarmonyPatch(typeof(Door))]
     partial class DoorPatch
     {
-
-
-        // 使用 ConditionalWeakTable 自动管理内存，当门被销毁时，对应的数据也会释放
+        // 使用 ConditionalWeakTable 自动管理内存
         private static ConditionalWeakTable<Door, DoorData> doorStateTable = new ConditionalWeakTable<Door, DoorData>();
+
+        
 
         [HarmonyPatch("Select")]
         [HarmonyPrefix]
-        // 交互逻辑：通过按下不同的按键（如 Shift+点击）或循环状态来实现切换
         public static bool Prefix_Select(Character character, Door __instance, ref bool __result)
         {
-            if (__instance.IsBroken) return true;
+            if (__instance.IsBroken || character == null) return true;
 
-            // 检查玩家是否按住特定按键（例如“运行”键/Shift）来触发半开
-            bool shiftDown = character.IsKeyDown(InputType.Crouch);
+            // 检查玩家是否按住特定按键（如蹲伏键/Crouch，对应 Shift/Ctrl 取决于键位）
             if (character.IsKeyDown(InputType.Crouch))
             {
+                var data = doorStateTable.GetOrCreateValue(__instance);
+                bool newHalfOpenState = !data.IsHalfOpenTarget; // 翻转本地预测状态
 
-            var data = doorStateTable.GetOrCreateValue(__instance);
-                data.IsHalfOpenTarget = !data.IsHalfOpenTarget; // 切换半开状态
-
-               
+                if (GameMain.IsSingleplayer)
+                {
+                    // 单机模式：直接生效
+                    data.IsHalfOpenTarget = newHalfOpenState;
+                }
+                else
+                {
+#if CLIENT
+                    // 联机模式：不要直接修改本地字典，而是向服务器发送“申请包”
+                    SendDoorHalfOpenMessage(__instance.Item, newHalfOpenState);
+#endif
+                }
 
                 __result = true;
-                return true; 
+                return false; // 拦截原版的“开/关门”动作
             }
 
-            // 如果是普通点击，清除半开标记
+            // 如果是普通点击，说明玩家想正常开/关门
             if (doorStateTable.TryGetValue(__instance, out var d))
             {
-                d.IsHalfOpenTarget = false;
+                if (d.IsHalfOpenTarget)
+                {
+                    if (GameMain.IsSingleplayer)
+                    {
+                        d.IsHalfOpenTarget = false;
+                    }
+                    else
+                    {
+                        #if CLIENT
+                        // 联机模式：向服务器申请关闭半开状态，恢复正常
+                        SendDoorHalfOpenMessage(__instance.Item, false);
+                        #endif
+                    }
+                }
             }
-            //Kind of annonying
-/*#if CLIENT   
-                 
-                        BarotraumaDieHard.CustomHintManager.DisplayHint("half_opened_door_turtorial".ToIdentifier());
-#endif*/
 
             return true;
         }
 
-        
-        /*public static void Update(float deltaTime, Camera cam, Door __instance)
-        {
-            //DebugConsole.NewMessage(__instance.stuck.ToString());
-            if (__instance.LinkedGap != null)
-            {
-                // Calculate the door's condition as a percentage
-                float conditionPercentage = __instance.item.Condition / __instance.item.MaxCondition;
-
-                // If the door has received more than 50% damage
-                if (conditionPercentage < 0.5f)
-                {
-                    // Calculate gap openness
-                    // The more damaged and stuck the door is, the more open the gap should be
-                    float gapOpenness = 1.0f - (conditionPercentage * 2.0f);
-                    gapOpenness = MathHelper.Clamp(gapOpenness - (__instance.stuck / 100.0f), 0.0f, 1.0f);
-
-                    // Set the openness of the gap
-                    __instance.LinkedGap.Open = gapOpenness;
-                }
-            }
-        } */
         [HarmonyPatch("Update")]
         [HarmonyPrefix]
         public static bool Prefix_Update(float deltaTime, Camera cam, Door __instance)
         {
-            // 1. 无论是否在半开逻辑中，我们都需要知道原始位置
+            if (__instance == null || __instance.Item == null) return true;
+
+            // 1. 获取门的原始物理位置
             Vector2 originSimPos = ConvertUnits.ToSimUnits(new Vector2(__instance.Item.Rect.Center.X, __instance.Item.Rect.Y - __instance.Item.Rect.Height / 2f));
 
-            // 检查标记
+            // 检查半开标记
             if (doorStateTable.TryGetValue(__instance, out var data) && data.IsHalfOpenTarget && !__instance.IsBroken)
             {
                 // --- 自动移动逻辑 ---
@@ -121,7 +115,6 @@ namespace BarotraumaDieHard
                     __instance.Body.Enabled = true;
                     Vector2 targetSimPos = originSimPos;
 
-                    // 只有当 OpenState 足够大时才偏移
                     if (__instance.OpenState > 0.2f)
                     {
                         if (__instance.IsHorizontal) 
@@ -136,20 +129,17 @@ namespace BarotraumaDieHard
                         }
                     }
                     
-                    // 关键：在这里应用变换（即便偏移是0，也能保证它回到原位）
                     __instance.Body.SetTransform(targetSimPos, 0f);
                 }
 
                 __instance.item.SendSignal("3", "state_out");
-                return false; 
+                return false; // 拦截原版 Update，防止原版把 OpenState 强行掰回 0 或 1
             }
             else
             {
-                // 关键补丁：如果半开标记消失了（门恢复正常），必须把碰撞体坐标拉回来
-                // 否则碰撞体由于之前 SetTransform 过，会一直悬在半空
+                // 如果没有半开标记，把碰撞体坐标拉回来
                 if (__instance.Body != null)
                 {
-                    // 检查当前位置是否偏离了原始位置，如果偏离了，重置它
                     if (Vector2.DistanceSquared(__instance.Body.SimPosition, originSimPos) > 0.001f)
                     {
                         __instance.Body.SetTransform(originSimPos, 0f);
@@ -160,12 +150,9 @@ namespace BarotraumaDieHard
             return true; 
         }
 
-        
         [HarmonyPatch("IsPositionOnWindow")]
         [HarmonyPrefix]
-        // 强制让这个方法永远返回 true
-        // 这样只要门有窗户，不管射线打在哪，都会认为打在了窗户上
-        static bool Prefix(ref bool __result, Barotrauma.Items.Components.Door __instance)
+        static bool Prefix(ref bool __result, Door __instance)
         {
             if (__instance.HasWindow)
             {
@@ -173,6 +160,72 @@ namespace BarotraumaDieHard
             }
             return false;
         }
-        
+
+        // ==========================================
+        //             网络同步通道 (NETWORKING)
+        // ==========================================
+
+        /// <summary>
+        /// 发送端：客户端申请改变某个门的半开状态
+        /// </summary>
+#if CLIENT
+        public static void SendDoorHalfOpenMessage(Item item, bool isHalfOpen)
+        {
+            
+            IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.SYNC_DOOR_HALF_OPEN);
+            msg.WriteUInt16(item.ID);
+            msg.WriteBoolean(isHalfOpen);
+
+            NetUtil.SendServer(msg, DeliveryMethod.Reliable);
+        }
+#endif
+
+        /// <summary>
+        /// 接收端：服务器接收申请并广播 / 客户端接收服务器的最终确认广播
+        /// </summary>
+        public static void OnReceiveDoorHalfOpenMessage(object[] args)
+        {
+            if (args == null || args.Length == 0) return;
+
+            IReadMessage msg = args[0] as IReadMessage;
+            if (msg == null) return;
+
+            // 严格按顺序读取：ItemID -> bool状态
+            ushort itemID = msg.ReadUInt16();
+            bool targetState = msg.ReadBoolean();
+
+            // 获取本地对应的物品与组件
+            Item item = Entity.FindEntityByID(itemID) as Item;
+            if (item == null) return;
+
+            Door door = item.GetComponent<Door>();
+            if (door == null) return;
+
+            // 【关键】所有端（服务器和客户端）同步更新字典数据
+            var data = doorStateTable.GetOrCreateValue(door);
+            data.IsHalfOpenTarget = targetState;
+#if SERVER
+            // 如果是在服务器端收到这个数据
+            if (GameMain.Server != null)
+            {
+                // 服务器控制台打印调试信息
+                DebugConsole.NewMessage($"[SERVER] 门半开状态同步: ID={itemID}, 状态={targetState}", Color.Green);
+
+                // 构建广播包，转发给所有人
+                IWriteMessage broadcastMsg = NetUtil.CreateNetMsg(NetEvent.SYNC_DOOR_HALF_OPEN);
+                broadcastMsg.WriteUInt16(itemID);
+                broadcastMsg.WriteBoolean(targetState);
+
+                // 广播全员
+                NetUtil.SendAll(broadcastMsg, DeliveryMethod.Reliable);
+            }
+#else
+             if (GameMain.Client != null)
+            {
+                // 客户端控制台打印，按 F3 可见，用于验证闭环
+                //DebugConsole.NewMessage($"[CLIENT] 收到服务器门的广播! ID={itemID}, 状态={targetState}", Color.Cyan);
+            }
+#endif
+        }
     }
 }
