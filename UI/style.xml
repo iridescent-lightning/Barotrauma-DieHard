@@ -3,10 +3,10 @@
   <style>
     <Cursor>
       <Sprite name="Cursor.Pointer" state="Default" texture="%ModDir%/UI/UIAtlasGeneral.png" sourcerect="387,482,37,49" origin="0,0" compress="false" />
-      <Sprite name="Cursor.Hand" state="Hand" texture="%ModDir%/UI/UIAtlasGeneral.png" sourcerect="387,482,37,49" origin="0.1,0.1" compress="false" />
+      <Sprite name="Cursor.Hand" state="Hand" texture="%ModDir%/UI/UIAtlasGeneral.png" sourcerect="525,476,28,50" origin="0.1,-0.05" compress="false" />
       <Sprite name="Cursor.Move" state="Move" texture="Content/UI/UIAtlasGeneral.png" sourcerect="604,477,45,45" origin="0.5,0.5" compress="false" />
       <Sprite name="Cursor.IBeam" state="IBeam" texture="Content/UI/UIAtlasGeneral.png" sourcerect="498,480,22,37" origin="0.5,0.5" compress="false" />
-      <Sprite name="Cursor.Dragging" state="Dragging" texture="Content/UI/UIAtlasGeneral.png" sourcerect="560,487,33,34" origin="0.5,0.5" compress="false" />
+      <Sprite name="Cursor.Dragging" state="Dragging" texture="%ModDir%/UI/UIAtlasGeneral.png" sourcerect="559,482,36,45" origin="0.5,0.5" compress="false" />
       <Sprite name="Cursor.Waiting" state="Waiting" texture="%ModDir%/UI/UIAtlasGeneral.png" sourcerect="332,479,46,52" origin="0.5,0.5" compress="false" />
       <Sprite name="Cursor.WaitingBG" state="WaitingBackground" texture="Content/UI/UIAtlasGeneral.png" sourcerect="429,480,39,49" origin="0.17,0.1" compress="false" />
     </Cursor>

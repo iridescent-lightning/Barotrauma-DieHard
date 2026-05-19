@@ -88,5 +88,16 @@ namespace BarotraumaDieHard
                 return MathHelper.Lerp(0f, NewSmallGapOpenness, t);
             }
         }
+
+        [HarmonyPatch("OnMapLoaded")]
+        [HarmonyPostfix]
+        private static void OnMapLoadedPostfix(Structure __instance)
+        {
+            if (__instance == null) return;
+
+            __instance.MaxHealth *= 2f;
+
+            
+        }
     }
 }

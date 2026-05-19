@@ -165,7 +165,7 @@ namespace BarotraumaDieHard
                         {
                             _.item.AiTarget.SectorDegrees = _.useDirectionalPing ? SonarMod.NewSectorAngle : 360.0f;
                             _.item.AiTarget.SectorDir = new Vector2(_.pingDirection.X, -_.pingDirection.Y);
-                            DebugConsole.NewMessage(_.item.AiTarget.SectorDegrees.ToString());
+                            //DebugConsole.NewMessage(_.item.AiTarget.SectorDegrees.ToString());
                         }
                         _.item.Use(deltaTime);
                     }

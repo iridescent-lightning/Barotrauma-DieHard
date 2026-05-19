@@ -42,10 +42,10 @@ namespace BarotraumaDieHard
         public static void Update(Projectile __instance, float deltaTime)
         {
             if (!__instance.IsActive || __instance.item.Removed) 
-        {
-            processedItems.Remove(__instance);
-            return;
-        }
+            {
+                processedItems.Remove(__instance);
+                return;
+            }
 
             // 1. 获取子弹的当前像素坐标
             Vector2 currentWorldPos = __instance.item.WorldPosition;
@@ -82,79 +82,182 @@ namespace BarotraumaDieHard
                 }
             }
 
-
-            Vector2 currentPos = __instance.item.SimPosition; // 使用物理世界坐标 (SimPosition) 更精准
+            //被orz的ccd取代
+            /*Vector2 currentPos = __instance.item.SimPosition; // 使用物理世界坐标 (SimPosition) 更精准
             Vector2 velocity = __instance.item.body.LinearVelocity;
             // 计算这一帧子弹预计移动的位移向量
-    Vector2 movementThisFrame = velocity * deltaTime;
-    float moveLength = movementThisFrame.Length();
+            Vector2 movementThisFrame = velocity * deltaTime;
+            float moveLength = movementThisFrame.Length() / 2f;
 
-    if (moveLength < 0.01f) return;
+            if (moveLength < 0.01f) return;
 
-    // 射线终点：当前位置 + 这一帧的位移（可以稍微乘个 1.2 做宽限预算）
-    Vector2 nextPos = currentPos + movementThisFrame;
+            // 射线终点：当前位置 + 这一帧的位移（可以稍微乘个 1.2 做宽限预算）
+            Vector2 nextPos = currentPos + movementThisFrame;
 
-    // 在 Farseer 物理世界中拉一条射线检测
-    object hitTarget = null;
-    Limb hitLimb = null;
 
-    GameMain.World.RayCast((fixture, point, normal, fraction) =>
-    {
-        if (fixture.Body.UserData is Limb limb && limb.character != null)
-        {
-            hitLimb = limb;
-            hitTarget = limb.character;
-            return 0; // 返回 0 表示立即终止射线，拿到最近的碰撞
-        }
-        return -1; // 继续检测
-    }, currentPos, nextPos);
+            // 在 Farseer 物理世界中拉一条射线检测
+            object hitTarget = null;
+            Limb hitLimb = null;
+            Item hitItem = null;
+            Fixture closestFixture = null;
+            float closestFraction = 1f; // 1 代表射线的终点，我们要找最接近 0 (起点) 的碰撞
 
-    if (hitLimb != null && hitLimb.character != null)
-{
-    // 获取原版 Projectile 内部的 hits 字段
-    // 因为原版 hits 是 private 的，我们需要用一点点反射（Reflection）来读取它
-    var hitsField = typeof(Projectile).GetField("hits", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-    var hitsHashSet = hitsField?.GetValue(__instance) as HashSet<Body>;
-
-    // 锁 1：如果原版 hits 已经包含了这个生物的刚体，说明原版物理已经管过它了，射线绝对不重复触发
-    if (hitsHashSet != null && hitsHashSet.Contains(hitLimb.body.FarseerBody))
-    {
-        return; 
-    }
-
-    // 找到射击中肢体的对应 Fixture
-    Fixture targetFixture = hitLimb.body?.FarseerBody?.FixtureList?.FirstOrDefault();
-    
-    if (targetFixture != null)
-    {
-        DebugConsole.NewMessage($"[DieHard] 射线成功挽救漏判！命中: {hitLimb.character.Name}");
-        
-        Vector2 collisionNormal = velocity.LengthSquared() > 0.01f ? -Vector2.Normalize(velocity) : Vector2.UnitY;
-        
-        // 锁 2：手动将这个刚体加入原版的 hits 列表！
-        // 这样不仅能防止射线这一帧重复判定，还能防止下一帧原版物理和射线再次对它造成伤害
-        hitsHashSet?.Add(hitLimb.body.FarseerBody);
-
-        // 强行调用原版碰撞处理（伤害、音效、断肢血流全套触发）
-        __instance.HandleProjectileCollision(targetFixture, collisionNormal, velocity);
-        
-        // 锁 3：同步原版子弹的命中次数上限逻辑
-        // 如果子弹达到了最大命中数，手动关闭它的碰撞，让它失效
-        if (hitsHashSet != null && hitsHashSet.Count >= __instance.MaxTargetsToHit)
-        {
-            // 利用反射调用原版的私有方法 DisableProjectileCollisions() 
-            var disableMethod = typeof(Projectile).GetMethod("DisableProjectileCollisions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            disableMethod?.Invoke(__instance, null);
-            
-            // 如果勾选了撞击销毁，则让子弹消失
-            if (__instance.RemoveOnHit)
+            GameMain.World.RayCast((fixture, point, normal, fraction) =>
             {
-                //__instance.item.Remove();
-                __instance.IsActive = false;
+                // 性能过滤：如果已经找到了更近的碰撞体，直接无视后面更远的
+                if (fraction >= closestFraction) return -1;
+
+                // 情况 A：扫到了盾牌、墙壁、或者其他具有物理结构的 Item 刚体
+                if (fixture.Body.UserData is Item targetItem)
+                {
+                    // 过滤自伤：子弹不能在刚发射时用射线把自己或者枪给打掉
+                    if (targetItem == __instance.item || targetItem == __instance.Launcher) return -1;
+                    
+                    // 过滤：只有能阻挡或能与子弹碰撞的 Item 才具备拦截能力
+                    if (fixture.IsSensor) return -1;
+
+                    closestFraction = fraction;
+                    closestFixture = fixture;
+                    hitItem = targetItem;
+                    hitLimb = null; // 刷新最近目标为物体
+                    return fraction;
+                }
+
+
+                // 检查：撞到了角色的肢体 (防弹衣挂在这里面)
+                if (fixture.Body.UserData is Limb limb && limb.character != null)
+                {
+                    if (limb.character.IsDead) return -1;
+
+                    closestFraction = fraction;
+                    closestFixture = fixture;
+                    hitLimb = limb;
+                    hitItem = null; // 清空 Item
+                    return fraction;
+                }
+                
+
+                // 情况 C：结构性墙壁、潜艇外壳 (Structure)
+                if (fixture.Body.UserData is Structure)
+                {
+                    closestFraction = fraction;
+                    closestFixture = fixture;
+                    hitItem = null;
+                    hitLimb = null;
+                    return fraction;
+                }
+
+                return -1; // 继续检测
+            }, currentPos, nextPos);
+
+            // 路由 1：最先撞到的是物体 (如手持防爆盾)
+            if (hitItem != null && closestFixture != null)
+            {
+                // 【核心修复】：检查 Item 的 XML 配置中是否带有顶层的偏转属性
+                // 通过 targetItem.Prefab.ConfigElement 或者直接通过属性读取
+                bool hasItemDeflect = false;
+                
+                // 检查物品预制件(Prefab)的顶层 XML 元素中是否包含 deflectprojectiles 属性
+                var deflectAttr = hitItem.Prefab?.ConfigElement?.GetAttribute("deflectprojectiles");
+                if (deflectAttr != null && bool.TryParse(deflectAttr.Value, out bool deflectVal))
+                {
+                    hasItemDeflect = deflectVal;
+                }
+
+                // 如果这就是手持防爆盾等配置了绝对偏转的道具
+                if (hasItemDeflect)
+                {
+                    var hitsField = typeof(Projectile).GetField("hits", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    var hitsHashSet = hitsField?.GetValue(__instance) as HashSet<Body>;
+
+                    if (hitsHashSet != null && !hitsHashSet.Contains(closestFixture.Body))
+                    {
+                        DebugConsole.NewMessage($"[DieHard] 射线盾牌格挡：子弹撞击防爆盾 [{hitItem.Name}] 成功！");
+                        
+                        hitsHashSet.Add(closestFixture.Body);
+                        Vector2 normal = velocity.LengthSquared() > 0.01f ? -Vector2.Normalize(velocity) : Vector2.UnitY;
+                        
+                        // 1. 调用原版处理（用于扣盾牌耐久、放金属撞击音效）
+                        __instance.HandleProjectileCollision(closestFixture, normal, velocity);
+
+                        // 2. 盾牌是绝对格挡，当场扣下子弹，剥夺后续任何高频判定和穿透能力
+                        var disableMethod = typeof(Projectile).GetMethod("DisableProjectileCollisions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                        disableMethod?.Invoke(__instance, null);
+
+                        if (__instance.item?.body != null)
+                        {
+                            __instance.item.body.LinearVelocity = Vector2.Zero;
+                        }
+                        if (__instance.RemoveOnHit)
+                        {
+                            __instance.IsActive = false;
+                        }
+                    }
+                    return; // 撞到盾牌，绝对不能过穿到后方的人
+                }
+
+                // 如果撞到的是普通的、没有偏转属性的普通Item（比如地上的扳手、箱子），放回给原版逻辑处理，不需要强制截断
+                return;
             }
-        }
-    }
-}
+
+            // 场景 2：如果最先撞到的是潜艇墙壁
+            if (closestFixture != null && hitLimb == null && hitItem == null)
+            {
+                // 撞墙了，把控制权还给原版物理，让子弹打在墙上
+                Vector2 collisionNormal = velocity.LengthSquared() > 0.01f ? -Vector2.Normalize(velocity) : Vector2.UnitY;
+                __instance.HandleProjectileCollision(closestFixture, collisionNormal, velocity);
+                return;
+            }
+
+            // 路由 3：【核心重构区】射线扫到了肢体 (手持盾牌拦截的真正战场)
+            if (hitLimb != null && hitLimb.character != null && closestFixture != null)
+            {
+                var hitsField = typeof(Projectile).GetField("hits", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var hitsHashSet = hitsField?.GetValue(__instance) as HashSet<Body>;
+
+                // 去重锁：避免同一次物理碰撞重复判定
+                if (hitsHashSet != null && hitsHashSet.Contains(hitLimb.body.FarseerBody)) return;
+
+                // --- 逆向嗅探：检查该角色手上是否持有防爆盾 ---
+                bool shieldItem = false;
+                Character targetCharacter = hitLimb.character;
+
+                // 遍历角色全身上下装备的所有物品（包括手里拿的、口袋里揣的、衣服穿的）
+                foreach (Item heldItem in targetCharacter.Inventory.AllItems)
+                {
+                    // 检查物品预制件(Prefab)的顶层 XML 元素中是否包含 deflectprojectiles="True"
+                    var deflectAttr = heldItem.Prefab?.ConfigElement?.GetAttribute("deflectprojectiles");
+                    if (deflectAttr != null && bool.TryParse(deflectAttr.Value, out bool deflectVal) && deflectVal)
+                    {
+                        shieldItem = true;
+                    }
+                }
+
+                // 【盾牌格挡触发】：如果玩家确实手里举着盾牌
+                if (shieldItem)
+                {
+                    DebugConsole.NewMessage($"[DieHard] 物理检测盾牌：[{targetCharacter.Name}] 手持 [{shieldItem}] 成功拦截了子弹！");
+                    
+                    // 注意：因为手持盾牌没有物理 Body，这里必须把防住子弹的【肢体刚体】或【子弹本身】加入去重列表，锁死伤害
+                    hitsHashSet?.Add(hitLimb.body.FarseerBody);
+                    return; // 成功拦截，安全退出，绝不过穿
+                }
+
+                // --- 裸肉或防弹衣分支：如果没有手持盾牌拦截，执行正常的原版肉体受击与防弹背心结算 ---
+                DebugConsole.NewMessage($"[DieHard] 射线挽救肉体命中：目标 [{targetCharacter.Name}]，部位 [{hitLimb.type}]。防弹衣将自适应解析。");
+                
+                hitsHashSet?.Add(hitLimb.body.FarseerBody);
+                Vector2 normalVec = velocity.LengthSquared() > 0.01f ? -Vector2.Normalize(velocity) : Vector2.UnitY;
+                
+                __instance.HandleProjectileCollision(closestFixture, normalVec, velocity);
+                
+                if (hitsHashSet != null && hitsHashSet.Count >= __instance.MaxTargetsToHit)
+                {
+                    var disableMethod = typeof(Projectile).GetMethod("DisableProjectileCollisions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                    disableMethod?.Invoke(__instance, null);
+                    if (__instance.RemoveOnHit) __instance.IsActive = false;
+                }
+            }*/
         }
         
         public static void OnItemPassedBy(Projectile projectile, Item targetItem)
@@ -259,7 +362,7 @@ namespace BarotraumaDieHard
 
                 // 1. 修改发射冲力 (LaunchImpulse)
                 // 注意：这会直接影响内部 Launch 逻辑计算出的初速度
-                __instance.LaunchImpulse = 25f; 
+                __instance.LaunchImpulse = 15f; 
 
                 // 2. 增加阻力 (Drag)
                 // 让子弹在水中不仅初速慢，而且很快停下来

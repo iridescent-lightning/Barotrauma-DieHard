@@ -3,7 +3,7 @@
   <Items>
     <Item name="bulletcase" identifier="bulletcase" category="Equipment" tags="bulletcase" impactsoundtag="case_impact" scale="0.2" hideinmenus="true">
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="294,1,29,12" depth="0.55" origin="0.5,0.5" />
-      <Body width="1" height="1" density="10" angulardamping="1.0" />
+      <Body width="1" height="1" density="10" angulardamping="1.0" waterdragcoefficient="10"/>
       <ItemComponent>
         <!--This gives bubble effect when bullet travels though water-->
         <StatusEffect type="Always" target="This" lifetime="3" interval="0.1">
@@ -92,9 +92,9 @@
       </Fabricate>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas.png" sourcerect="704,384,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="1,0,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="10" />
+      <Body width="20" height="20" density="10" />
       <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
-      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="50.0">
+      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="150">
         <!--<StatusEffect type="OnActive" target="NearbyItems" targettags="damage_by_passing_bullet" range="25" condition="-100">
           <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
           <Sound file="%ModDir%/Items/Weapons/bullethit.ogg" type="OnImpact" volumenum="2" Range="1000" selectionmode="Random" />
@@ -378,8 +378,8 @@
     <Item name="9x19mm Round" identifier="9mmround" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,0,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="40" />
-      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="45.0">
+      <Body width="20" height="20" density="40" />
+      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="150">
         
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
         <Attack structuredamage="0.5" itemdamage="25" targetforce="6" penetration="0.3" severlimbsprobability="0.3" stun="0.1">
@@ -625,8 +625,8 @@
     <Item name="556x45mm" identifier="556x45mm" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,0,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="40" />
-      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="50.0">
+      <Body width="20" height="20" density="40" />
+      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="150">
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
         <Attack structuredamage="0.5" itemdamage="25" targetforce="6" penetration="0.4" severlimbsprobability="0.8" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />
@@ -794,8 +794,8 @@
     <Item name=".300 AAC Round" identifier="300aac" category="Equipment" interactthroughwalls="true" tags="" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="40" />
-      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="50">
+      <Body width="20" height="20" density="40" />
+      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="150">
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
         <Attack structuredamage="0.9" itemdamage="30" targetforce="6" penetration="0.6" severlimbsprobability="0.8" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />
@@ -1098,7 +1098,7 @@
     <Item name="5.7x28mm Round" identifier="57round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="40" />
+      <Body width="20" height="20" density="40" />
       <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="45">
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
         <Attack structuredamage="0.9" itemdamage="18" targetforce="6" penetration="0.3" severlimbsprobability="0.8" stun="0.1">
@@ -1131,7 +1131,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="mk17" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Scar name="" identifier="mk17" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1237,8 +1237,8 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
-    </Item>
-    <Item name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    </Scar>
+    <ScarMag name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="mk17" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1270,7 +1270,7 @@
           <SpawnItem identifiers="76251round" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </Item>
+    </ScarMag>
     <MK17Receiver name="" identifier="MK17Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
@@ -1390,7 +1390,7 @@
         <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+          
         </StatusEffect>
       </Projectile>
     </Item>
@@ -1537,8 +1537,8 @@
     <Item name="7.62x39mm Round" identifier="76239round" category="Equipment" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="40,0.5" />
-      <Body width="50" height="20" density="20" />
-      <Projectile characterusable="false" removeonhit="true" launchimpulse="50">
+      <Body width="20" height="20" density="20" />
+      <Projectile characterusable="false" removeonhit="true" launchimpulse="150">
         <Attack structuredamage="0.9" itemdamage="40" targetforce="6" penetration="0.5" severlimbsprobability="0.8" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="35" />
@@ -1741,8 +1741,8 @@
     <Item name="7.62x54mm Round" identifier="76254round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="40,0.5" />
-      <Body width="50" height="20" density="20" />
-      <Projectile characterusable="false" removeonhit="true" launchimpulse="50">
+      <Body width="20" height="20" density="20" />
+      <Projectile characterusable="false" removeonhit="true" launchimpulse="150">
         <Attack structuredamage="0.9" itemdamage="40" targetforce="6" penetration="0.95" severlimbsprobability="0.8" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="55" />
@@ -1902,8 +1902,8 @@
     <Item name="7.62x51mm Round" identifier="76251roundFAL" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="50,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="50" height="20" density="40" />
-      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="50">
+      <Body width="20" height="20" density="40" />
+      <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="150">
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
         <Attack structuredamage="0.9" itemdamage="40" targetforce="6" penetration="0.9" severlimbsprobability="0.6" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />
@@ -2192,8 +2192,8 @@
     </Item>
     <Item name="Underwater ammo" identifier="underwaterammo" category="Equipment" maxstacksize="32" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,underwaterammo" Scale="0.5" impactsoundtag="impact_metal_light" hideinmenus="true">
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
-      <Body width="170" height="2" density="20" />
-      <Projectile characterusable="false" launchimpulse="30.0" removeonhit="true">
+      <Body width="100" height="2" density="20" />
+      <Projectile characterusable="false" launchimpulse="40.0" removeonhit="true">
         <StatusEffect type="OnActive" target="This" lifetime="2">
           <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.6" scalemax="0.7" />
         </StatusEffect>

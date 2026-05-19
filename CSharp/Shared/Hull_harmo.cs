@@ -88,11 +88,15 @@ namespace BarotraumaDieHard
             // Temperature
             if (GetGas(hull, "Temperature") > 273.15f && hull.WaterPercentage > 0.3f)
             {
-                AddGas(hull, "Temperature", -2.5f, deltaTime);
+                AddGas(hull, "Temperature", -1f, deltaTime);
             }
             else if (GetGas(hull, "Temperature") > 273.15f)
             {
                 AddGas(hull, "Temperature", -0.1f, deltaTime);
+            }
+            else if (GetGas(hull, "Temperature") > 363.15f)
+            {
+                AddGas(hull, "Temperature", -0.35f, deltaTime);
             }
             else if (GetGas(hull, "Temperature") > 318.15f && hull.WaterPercentage > 0.3f)
             {
