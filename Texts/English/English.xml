@@ -581,8 +581,6 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.dhheavywrench>A large and heavy titanium wrench. Used to repair exterior submarine devices.</entitydescription.dhheavywrench>
   <entityname.weaponparts>Weapon Parts</entityname.weaponparts>
   <entitydescription.weaponparts>Parts for the repairs of various weapons.</entitydescription.weaponparts>
-  <entityname.containerkey>Key</entityname.containerkey>
-  <entitydescription.containerkey>Can lock or unlock cabinet</entitydescription.containerkey>
   <entityname.keymaster>Master Key</entityname.keymaster>
   <entitydescription.keymaster>Master key can unlock all cabinets</entitydescription.keymaster>
   <entityname.keyorganzier>Key Organizer</entityname.keyorganzier>
@@ -642,6 +640,13 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.pressurizedgastank>Stores high pressure gas for ballast room pumps.</entitydescription.pressurizedgastank>
   <entityname.meltdownfuelrod>Meltdown Fuelrod</entityname.meltdownfuelrod>
   <entitydescription.meltdownfuelrod>Radioactive leftover of a fuelrod</entitydescription.meltdownfuelrod>
+  
+  <entityname.keymediumcab>Medium Cabinet Key</entityname.keymediumcab>
+  <entitydescription.keymediumcab>Use to lock cabinets</entitydescription.keymediumcab>
+  <entityname.keylargecab>Large Cabinet Key</entityname.keylargecab>
+  <entitydescription.keylargecab>Use to lock large cabinets</entitydescription.keylargecab>
+  <entityname.keymedical>Medical Cabinet Key</entityname.keymedical>
+  <entitydescription.keymedical>Use to lock medical cabinets</entitydescription.keymedical>
 
   <connection.moveup>Move Up</connection.moveup>
   <connection.movedown>Move Down</connection.movedown>
@@ -846,6 +851,12 @@ The man pulled out a syringe and injected something into your arm. You felt some
 
   <progressbar.scavenging>Scavenging</progressbar.scavenging>
   <progressbar.cutting>Cutting</progressbar.cutting>
+  <progressbar.keyunlocking>Unlocking with key</progressbar.keyunlocking>
+  <progressbar.keylocking>Locking with key</progressbar.keylocking>
+
+  <item.interactve.hint.lock>[[use]] Use key</item.interactve.hint.lock>
 
   <itemmsgscavengeuse>[[use]] Scavenge</itemmsgscavengeuse>
+
+  
 </infotexts>

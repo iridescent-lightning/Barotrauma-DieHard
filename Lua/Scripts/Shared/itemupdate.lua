@@ -97,66 +97,14 @@ Hook.Add("ContainerBrokenLock","ContainerBrokenLock",function(effect, deltaTime,
 local container = item:GetComponentString("ItemContainer")
 container.Locked = true
 end)
-Hook.Add("KeyLockMedium","KeyLockMedium",function(effect, deltaTime, item, targets, worldPosition)
-	local container = item:GetComponentString("ItemContainer")
-	local lock = false
-	for container in item.GetComponents(Components.ItemContainer) do
-		if container.Inventory.FindItemByIdentifier("key1") or container.Inventory.FindItemByIdentifier("keymaster") or item.Condition <= 15 then
-			lock = false
-			
-		else
-			lock = true
-			
-		end
-	end
-	if not lock then
-		container.Locked = false
-	else
-		container.Locked = true
-	end
-end)
-Hook.Add("KeyLockLarge","KeyLockLarge",function(effect, deltaTime, item, targets, worldPosition)
-	local container = item:GetComponentString("ItemContainer")
-	local lock = false
-	for container in item.GetComponents(Components.ItemContainer) do
-		if container.Inventory.FindItemByIdentifier("key2") or container.Inventory.FindItemByIdentifier("keymaster") or item.Condition <= 15 then
-			lock = false
-			
-		else
-			lock = true
-			
-		end
-	end
-	if not lock then
-		container.Locked = false
-	else
-		container.Locked = true
-	end
-end)
-Hook.Add("KeyLockDivingLocker","KeyLockDivingLocker",function(effect, deltaTime, item, targets, worldPosition)
-	local container = item:GetComponentString("ItemContainer")
-	local lock = false
-	for container in item.GetComponents(Components.ItemContainer) do
-		if container.Inventory.FindItemByIdentifier("key3") or container.Inventory.FindItemByIdentifier("keymaster") or item.Condition <= 15 then
-			lock = false
-			
-		else
-			lock = true
-			
-		end
-	end
-	if not lock then
-		container.Locked = false
-	else
-		container.Locked = true
-	end
-end)
 
 
 
 Hook.Add("AddTagForOpen","AddTagForOpen",function(effect, deltaTime, item, targets, worldPosition)
-
-	item.AddTag("draw_container_open")
+	local container = item:GetComponentString("ItemContainer")
+	if container ~= nil and container.Locked == false then
+		item.AddTag("draw_container_open")
+	end
 end)
 
 Hook.Add("JunctionboxOpen","JunctionboxOpen",function(effect, deltaTime, item, targets, worldPosition)
@@ -808,6 +756,21 @@ Hook.Add("MoveHatchDown", "MoveHatchDown", function(effect, deltaTime, item, tar
 		fakeLight.IsOn = true
 	else
 		fakeLight.IsOn = false
+	end
+end)
+
+Hook.Add("MoveHatchDown", "ForceCheckFloorY", function(effect, deltaTime, item, targets, worldPosition)
+	print(effect.user)
+	for human in targets do
+	local headSet = human.Inventory.GetItemInLimbSlot(InvSlotType.Headset)
+	local limb = human.AnimController.GetLimb(LimbType.Torso)
+		if headSet then
+			headSet.Condition = headSet.Condition - 0.5
+			if headSet.Condition == 0 and not human.IsDead and human.IsPlayer then
+				human.Kill(CauseOfDeathType.Unknown)
+				human.BreakJoints()
+			end
+		end
 	end
 end)
 

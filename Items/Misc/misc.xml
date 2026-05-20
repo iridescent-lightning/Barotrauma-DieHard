@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Items>
-    <Item name="Tactical headset" identifier="tacticalheadset" scale="0.5" category="Equipment" tags="smallitem,mobileradio" description="A tactical headset protects your ears from noise, giving the wearer 25 bonus of weapon skill." cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light">
-      <PreferredContainer primary="secarmcab" amount="2" notcampaign="true" />
-      <PreferredContainer primary="searmcab" minamount="1" maxamount="1" spawnprobability="1" />
+    <Item name="Tactical headset" identifier="tacticalheadset" scale="0.5" maxstacksize="3" category="Equipment" tags="smallitem,mobileradio" description="A tactical headset protects your ears from noise, giving the wearer 25 bonus of weapon skill." cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light">
+      <PreferredContainer primary="armcab" secondary="storagecab" amount="3" notcampaign="true"/>
       <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" spawnprobability="0.05" />
       <Price baseprice="350" canbespecial="false">
         <Price storeidentifier="merchantoutpost" minavailable="1" />
@@ -313,31 +312,36 @@
         </StatusEffect>
       </Holdable>
     </Item>
-    <Item name="" identifier="key1" scale="0.25" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" nameidentifier="containerkey">
-      <PreferredContainer primary="mediumwindowedsteelcabinet,mediumsteelcabinet" amount="1" />
-      <Body width="21" height="33" density="15" />
-      
-      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="0,101,50,58" origin="0.5,0.5" />
+    <keymediumcab name="" identifier="keymediumcab" scale="0.4" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" >
+      <PreferredContainer primary="keyorganzier" amount="1" />
+      <PreferredContainer secondary="mediumwindowedsteelcabinet,steelcabinet,mediumsteelcabinet"/>
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="512,126,64,64" />
+      <Body width="53" height="33" density="15" />
+      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="435,13,53,24" origin="0.5,0.5" />
+      <Throwable slots="Any,RightHand,LeftHand" throwforce="1.5" aimpos="35,-10" handle1="-2,0" handle2="5,0" canbepicked="True" />
+    </keymediumcab>
+    <Item name="" identifier="keylargecab" scale="0.4" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" >
+      <PreferredContainer primary="keyorganzier" amount="1" />
+      <PreferredContainer secondary="mediumwindowedsteelcabinet,steelcabinet,mediumsteelcabinet"/>
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="512,126,64,64" />
+      <Body width="53" height="33" density="15" />
+      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="435,13,53,24" origin="0.5,0.5" />
       <Throwable slots="Any,RightHand,LeftHand" throwforce="1.5" aimpos="35,-10" handle1="-2,0" handle2="5,0" canbepicked="True" />
     </Item>
-    <Item name="" identifier="key2" scale="0.5" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" nameidentifier="containerkey">
-      <PreferredContainer primary="steelcabinet" amount="1" />
-      <Body width="20" height="30" density="15" />
-      
-      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.25" sourcerect="113,104,53,60" origin="0.5,0.5" />
-      <Throwable slots="Any,RightHand,LeftHand" throwforce="1.5" aimpos="35,-10" handle1="-2,0" handle2="5,0" canbepicked="True" />
-    </Item>
-    <Item name="" identifier="key3" scale="0.25" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" nameidentifier="containerkey">
-      <PreferredContainer primary="divingsuitlocker" amount="1" />
-      <Body width="53" height="59" density="15" />
-      
-      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="61,102,47,57" origin="0.5,0.5" />
+    <Item name="" identifier="keymedical" scale="0.4" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" >
+      <PreferredContainer primary="keyorganzier" amount="1" />
+      <PreferredContainer secondary="mediumwindowedsteelcabinet,steelcabinet,mediumsteelcabinet"/>
+      <Body width="53" height="33" density="15" />
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="702,191,64,64" />
+      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="435,13,53,24" origin="0.5,0.5" />
       <Throwable slots="Any,RightHand,LeftHand" throwforce="1.5" aimpos="35,-10" handle1="-2,0" handle2="5,0" canbepicked="True" />
     </Item>
     <Item name="" identifier="keymaster" scale="0.5" category="Machine" tags="smallitem,midair_collide,containerkey" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light">
-      <Body width="25" height="39" density="15" />
-      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="576,194,64,64" />
-      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.6" sourcerect="311,5,25,39" origin="0.5,0.5" />
+      <PreferredContainer primary="keyorganzier" amount="1" />
+      <PreferredContainer secondary="mediumwindowedsteelcabinet,steelcabinet,mediumsteelcabinet"/>
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,0,64,64" />
+      <Body width="66" height="33" density="15" />
+      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="500,9,66,31" origin="0.5,0.5" />
       <Throwable slots="Any,RightHand,LeftHand" throwforce="1.5" aimpos="35,-10" handle1="-2,0" handle2="5,0" canbepicked="True" />
     </Item>
     <Item name="" identifier="keyorganzier" scale="0.5" category="Equipment" tags="smallitem,midair_collide" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light">
@@ -357,10 +361,10 @@
         <RequiredItem identifier="organicfiber" />
       </Fabricate>
       <Body width="218" height="87" density="15" />
-      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="126,256,64,64" />
-      <Sprite texture="%ModDir%/Items/Misc/DHMisc.png" depth="0.6" sourcerect="62,100,128,87" origin="0.5,0.5" />
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="766,190,64,64" />
+      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.6" sourcerect="181,110,50,46" origin="0.5,0.5" />
       <Wearable slots="Any,Bag" handle1="-2,0" handle2="5,0" canbepicked="True" />
-      <ItemContainer capacity="15" canbeselected="true" hideitems="true">
+      <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="1" ShowConditionInContainedStateIndicator="false">
         <Containable items="containerkey" />
       </ItemContainer>
     </Item>
@@ -900,5 +904,52 @@
       <Holdable handle1="0,0" slots="RightHand,LeftHand,Any" msg="ItemMsgPickUpSelect"/>
       <RadioactiveFuelRod/>
     </MeltDownFuelRod>
+    <Item name="lift1" identifier="lift1" scale="0.5" health="100" allowrotatingineditor="false" noninteractable="true" allowedlinks="lever,terminal,decobarrier1" linkable="true" Tags="">
+      <Sprite texture="%ModDir%/Items/Doors/elevator.png" sourcerect="0,11,258,65" depth="0.4" origin="0.5,0.5" />
+      <body width="258" height="65" density="100" bodytype="static"/>
+      <Door canbeselected="true" canbepicked="false" horizontal="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="1,0.8" IsOpen="false" UseBetweenOutpostModules="false">
+        <!--<Sprite texture="hatch.png" sourcerect="256,0,256,38" depth="0.05" origin="0.0,0.5" />-->
+        <sprite texture="%ModDir%/Items/Doors/elevator.png" sourcerect="0,11,258,65" depth="0.05" origin="0.0,0.5" />
+        <WeldedSprite texture="%ModDir%/Items/Doors/hatch.png" sourcerect="0,100,227,75" depth="0.0" origin="0.5,0.5" />
+        <BrokenSprite texture="%ModDir%/Items/Doors/hatch.png" sourcerect="256,45,256,114" depth="0.509" origin="0.0,0.5" scale="true" />
+        <sound file="Content/Items/Door/Door1.ogg" type="OnUse" range="500.0" />
+        <sound file="Content/Items/Door/Door2.ogg" type="OnUse" range="500.0" />
+        <sound file="Content/Items/Door/Door3.ogg" type="OnUse" range="500.0" />
+        <sound file="Content/Items/Door/Door4.ogg" type="OnUse" range="500.0" />
+        <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+        <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+        <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+        <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+        <StatusEffect type="OnDamaged" target="This">
+          <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+        </StatusEffect>
+      </Door>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+        <RequiredItem items="screwdriver" type="Equipped" />
+        <input name="toggle" displayname="connection.togglestate" />
+        <input name="set_state" displayname="connection.setstate" />
+        <input name="moveup" displayname="moveup">
+          <StatusEffect type="OnUse" target="This" loop="true">
+            <Sound file="%ModDir%/Items/Doors/platform1_startmove.ogg" />
+          </StatusEffect>
+        </input>
+        <input name="movedown" displayname="movedown">
+          <StatusEffect type="OnUse" target="This" loop="true">
+            <Sound file="%ModDir%/Items/Doors/platform1_startmove.ogg" />
+          </StatusEffect>
+        </input>
+        <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
+        <output name="condition_out" displayname="connection.conditionout" />
+        <output name="Dock_State" displayname="connection.Dock_State" />
+        <output name="debug_out" displayname="connection.debug_out" />
+      </ConnectionPanel>
+      <Elevator EnableDebugOutput="true" />
+    </Item>
+    <LiftBarrier name="LiftBarrier" nameidentifier="LiftBarrier" identifier="decobarrier1" category="Decorative" subcategory="generic" allowattachitems="true" width="448" height="128" scale="0.5" linkable="true">
+    <sprite texture="Content/Map/SubmarineDeco.png" sourcerect="0,496,448,128" depth="0.75" />
+    </LiftBarrier>
   </Items>
 </Override>

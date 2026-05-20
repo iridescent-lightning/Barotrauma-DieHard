@@ -25,6 +25,9 @@
         <Item identifier="subdoc" />
         <Item identifier="keyorganzier">
           <Item identifier="keymaster" />
+          <Item identifier="keymediumcab" />
+          <Item identifier="keylargecab" />
+          <Item identifier="keymedical" />
         </Item>
         <Item identifier="revolver" equip="false">
           <Item identifier="revolverround" />
@@ -48,6 +51,9 @@
         <Item identifier="subdoc" />
         <Item identifier="keyorganzier">
           <Item identifier="keymaster" />
+          <Item identifier="keymediumcab" />
+          <Item identifier="keylargecab" />
+          <Item identifier="keymedical" />
         </Item>
         <Item identifier="revolver" equip="false">
           <Item identifier="revolverround" />
@@ -71,6 +77,9 @@
         <Item identifier="subdoc" />
         <Item identifier="keyorganzier">
           <Item identifier="keymaster" />
+          <Item identifier="keymediumcab" />
+          <Item identifier="keylargecab" />
+          <Item identifier="keymedical" />
         </Item>
         <Item identifier="revolver" equip="false">
           <Item identifier="revolverround" />

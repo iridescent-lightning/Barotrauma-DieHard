@@ -73,7 +73,7 @@ namespace BarotraumaDieHard
             AddTextureToSpriteList("farLookIcon", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(345,554,19,15));
             AddTextureToSpriteList("openPalm", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(341,585,41,50));
             AddTextureToSpriteList("doorHandle", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(397,542,60,34), originPercentage: new Vector2(0.73f, 0));
-            AddTextureToSpriteList("pickHand", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(342,642,45,51));
+            AddTextureToSpriteList("pickHand", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(342,642,45,51), originPercentage: new Vector2(0.3f, 0.6f));
             AddTextureToSpriteList("ladderClimbIcon", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(407,643,34,60));
             AddTextureToSpriteList("magnifierIcon", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(465,530,50,54), originPercentage: new Vector2(-0.2f, -0.1f));
             

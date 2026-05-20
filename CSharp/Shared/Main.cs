@@ -60,6 +60,7 @@ namespace BarotraumaDieHard
                 NetUtil.Register(NetEvent.STORE_SELL, MonsterLootStore.OnReceiveSellItemMessage);
 
                 NetUtil.Register(NetEvent.SYNC_DOOR_HALF_OPEN, DoorPatch.OnReceiveDoorHalfOpenMessage);
+                NetUtil.Register(NetEvent.CONTAINER_LOCK_STATE, KeyLock.OnReceiveContainerLockStateMessage);
 
             }
 

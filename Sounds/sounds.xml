@@ -221,6 +221,7 @@
     <interactive_revolver_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_revolver.ogg" volume="20" range="500" />
     <interactive_AK_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_AK.ogg" volume="0.7" range="500" />
     <interactive_SCAR_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_scar.ogg" volume="0.7" range="500" />
+    <interactive_lift_moving file="%ModDir%/Items/Doors/platform1_startmove.ogg" volume="0.7" range="1500" />
     <use_lubricate file="%ModDir%/Items/Tools/LubricatingOil.ogg" range="500" />
     <Electrocution1 file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
     <rope_slide file="%ModDir%/Sounds/Item/rope_silde.ogg" volume="2" range="1000" />
@@ -228,5 +229,7 @@
     <character_damage_human_male File="Content/Characters/Human/male_damage1.ogg" Range="500" Volume="1" />
     <character_damage_human_female File="Content/Characters/Human/female_damage3.ogg" Range="500" Volume="1" />
     <crate_break file="%ModDir%/Sounds/InteractiveSounds/crate_break.ogg" volume="1" range="800" />
+    <guisound_lockCab file="%ModDir%/Sounds/UI/lock_cabinet.ogg" range="500" />
+    <guisound_lockCab_cannotopen file="%ModDir%/Sounds/UI/lock_cabinet_cannot_open.ogg" range="500" />
   </sounds>
 </Override>

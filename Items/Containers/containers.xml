@@ -93,20 +93,15 @@
         <!--<StatusEffect type="OnBroken" target="This">
           <DropContainedItems aimspread="250" rotationtype="Random"/>
         </StatusEffect>-->
+        <StatusEffect type="OnPicked" target="This">
+          <LuaHook name="AddTagForOpen" />
+        </StatusEffect>
         <SubContainer capacity="3" maxstacksize="1">
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="mobilecontainer" />
         </SubContainer>
       </ItemContainer>
-      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="lock">
-        <!--<SlotIcon slotindex="" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />-->
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="KeyLockMedium" />
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
-        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
-        <Containable items="key1,keymaster" excludebroken="true" />
-      </ItemContainer>
+      <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keymediumcab" WindowedCabinet="false" />
       <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="mechanical" level="25" />
@@ -129,20 +124,15 @@
         <!--<StatusEffect type="OnBroken" target="This">
 	  <DropContainedItems aimspread="250" rotationtype="Random"/>
 	  </StatusEffect>-->
+      <StatusEffect type="OnPicked" target="This">
+            <LuaHook name="AddTagForOpen" />
+          </StatusEffect>
         <SubContainer capacity="3" maxstacksize="1">
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="mobilecontainer" />
         </SubContainer>
       </ItemContainer>
-      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="lock">
-        <!--<SlotIcon slotindex="" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />-->
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="KeyLockMedium" />
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
-        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
-        <Containable items="key1,keymaster" excludebroken="true" />
-      </ItemContainer>
+      <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keymediumcab" WindowedCabinet="true" />
       <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="mechanical" level="25" />
@@ -159,6 +149,9 @@
       <ItemContainer capacity="35" slotsperrow="7" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem,mediumitem" />
+        <StatusEffect type="OnPicked" target="This">
+          <LuaHook name="AddTagForOpen" />
+        </StatusEffect>
         <!--<StatusEffect type="OnBroken" target="This">
 	  <DropContainedItems aimspread="250" rotationtype="Random"/>
 	  </StatusEffect>-->
@@ -167,15 +160,7 @@
           <Containable items="mobilecontainer" />
         </SubContainer>
       </ItemContainer>
-      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="lock">
-        <!--<SlotIcon slotindex="" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />-->
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="KeyLockLarge" />
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
-        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
-        <Containable items="key2,keymaster" excludebroken="true" />
-      </ItemContainer>
+      <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keylargecab" WindowedCabinet="true" />
       <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
         <RequiredSkill identifier="mechanical" level="25" />
@@ -188,7 +173,8 @@
     <Item name="" identifier="medcabinet" tags="container,medcontainer,playinteractsound" category="Medical" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="815,1,208,346" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="752,662,228,333" depth="0.9" origin="0.43,0.47" />
-      <ItemContainer capacity="35" slotsperrow="6" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+      <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keymedical" WindowedCabinet="false" />
+      <ItemContainer capacity="35" slotsperrow="7" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.45" anchor="Center" slotsperrow="6" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />
         <SubContainer capacity="5" maxstacksize="1">
@@ -243,14 +229,6 @@
       <ItemContainer hideitems="false" drawinventory="true" capacity="1" slotsperrow="1" itempos="0,0" iteminterval="0,0" canbeselected="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.2,0.25" anchor="Center" minsize="140,170" maxsize="280,280" style="ItemUI" />
         <Containable items="deepdiving" excludeditems="deepdivinglarge" />
-      </ItemContainer>
-      <ItemContainer capacity="1" maxstacksize="1" itemsperrow="1" canbeselected="true" hideitems="true" uilabel="lock">
-        <!--<SlotIcon slotindex="" texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="255,255,64,64" origin="0.5,0.5" />-->
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="KeyLockDivingLocker" />
-        </StatusEffect>
-        <GuiFrame relativesize="0.1,0.2" anchor="Center" style="ItemUI" relativeoffset="-0.35,-0.1" />
-        <Containable items="key3,keymaster" excludebroken="true" />
       </ItemContainer>
     </Item>
     <Item name="" identifier="oxygentankshelf2" nameidentifier="oxygentankshelf" category="Diving" tags="container,oxygentankcontainer,oxygentankrefiller,oxygentankshelf_2capacity" pickdistance="50" scale="0.5">

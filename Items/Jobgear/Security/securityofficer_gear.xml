@@ -5,7 +5,7 @@
     <Item name="" identifier="bodyarmor" category="Equipment" tags="smallitem,clothing,bodyarmor" scale="0.35" cargocontaineridentifier="metalcrate" description="bodyarmorI" impactsoundtag="impact_soft" nameidentifier="bodyarmorI">
       <Upgrade gameversion="0.9.3.0" scale="0.35" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
-      <PreferredContainer secondary="armcab" />
+      <PreferredContainer primary="armcab" secondary="storagecab" amount="1" notcampaign="true"/>
       <Price baseprice="250">
         <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.3" />
         <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="1" sold="false" />
@@ -37,9 +37,8 @@
     <Item name="" identifier="bodyarmorII" category="Equipment" tags="smallitem,clothing,bodyarmor" scale="0.35" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
       <!--What the fuck is this? "bodyarmorII" is cauing a strange bug!-->
       <Upgrade gameversion="0.9.3.0" scale="0.35" />
-      <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
-      <PreferredContainer secondary="armcab" />
+      <PreferredContainer primary="armcab" secondary="storagecab" amount="1" notcampaign="true"/>
       <Price baseprice="500">
         <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.3" />
         <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="1" sold="false" />
@@ -71,9 +70,8 @@
     </Item>
     <Item name="" identifier="bodyarmorIII" category="Equipment" tags="smallitem,clothing,bodyarmor" scale="0.35" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_soft">
       <Upgrade gameversion="0.9.3.0" scale="0.35" />
-      <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
-      <PreferredContainer secondary="armcab" />
+      <PreferredContainer primary="armcab" secondary="storagecab" amount="1" notcampaign="true"/>
       <Price baseprice="1000" minleveldifficulty="60">
         <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.3" />
         <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="1" sold="false" />
@@ -103,9 +101,9 @@
       </Wearable>
     </Item>
     <!-- HEADGEAR START -->
-    <Item name="" identifier="ballistichelmet1" aliases="ballistichelmet" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:15%]" impactsoundtag="impact_metal_heavy" scale="0.325">
+    <BulletProofHelmet name="" identifier="ballistichelmet1" aliases="ballistichelmet" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:15%]" impactsoundtag="impact_metal_heavy" scale="0.325">
       <Upgrade gameversion="0.9.6.0" scale="0.325" />
-      <PreferredContainer primary="secarmcab" amount="2" notcampaign="true" />
+      <PreferredContainer secondary="armcab" amount="3" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
       <PreferredContainer secondary="armcab" />
       <Price baseprice="800">
@@ -133,9 +131,9 @@
         <sprite name="Ballistic Helmet 1 Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" hidewearablesoftype="Hair" sourcerect="7,215,85,68" origin="0.5,0.7" />
         <SkillModifier skillidentifier="weapons" skillvalue="-3" />
       </Wearable>
-    </Item>
-    <Item name="" identifier="ballistichelmet2" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:75%][Weapon Skill:-17]" impactsoundtag="impact_metal_heavy" scale="0.325">
-      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
+    </BulletProofHelmet>
+    <GunnerHelmet name="" identifier="ballistichelmet2" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:75%][Weapon Skill:-17]" impactsoundtag="impact_metal_heavy" scale="0.325">
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.25" />
       <PreferredContainer secondary="armcab" />
       <Price baseprice="100">
         <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.3" />
@@ -162,9 +160,9 @@
         <sprite name="Ballistic Helmet 2 Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" hidewearablesoftype="Hair" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="112,213,82,94" origin="0.625,0.5" />
         <SkillModifier skillidentifier="weapons" skillvalue="-5" />
       </Wearable>
-    </Item>
-    <Item name="" identifier="ballistichelmet3" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:35%]" impactsoundtag="impact_metal_heavy" scale="0.325">
-      <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
+    </GunnerHelmet>
+    <RiotHelmet name="" identifier="ballistichelmet3" category="Equipment" tags="smallitem,clothing" cargocontaineridentifier="metalcrate" description="[Pentration Rate Multiplier:35%]" impactsoundtag="impact_metal_heavy" scale="0.325">
+      <PreferredContainer secondary="armcab" amount="3" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab,outpostarmcab" amount="1" spawnprobability="0.05" />
       <PreferredContainer secondary="armcab" />
       <Price baseprice="300">
@@ -192,7 +190,7 @@
         <sprite name="Ballistic Helmet 3 Wearable" texture="Content/Items/Jobgear/headgears.png" limb="Head" hidewearablesoftype="Hair" inheritlimbdepth="true" inheritscale="true" ignorelimbscale="true" scale="0.65" sourcerect="207,201,104,101" origin="0.575,0.55" />
         <SkillModifier skillidentifier="weapons" skillvalue="-5" />
       </Wearable>
-    </Item>
+    </RiotHelmet>
     <!-- HEADGEAR END -->
     <Item name="" identifier="thermalgoggles" scale="0.5" category="Equipment" tags="smallitem,clothing" allowasextracargo="true" cargocontaineridentifier="metalcrate" description="" impactsoundtag="impact_metal_light">
       <PreferredContainer primary="engcab" />

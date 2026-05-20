@@ -55,6 +55,27 @@ namespace BarotraumaDieHard
 						}
 					}
 				}
+				KeyLock keyLock = _.item.GetComponent<KeyLock>();
+				if(_.Locked && keyLock != null && keyLock.WindowedCabinet == false)
+				{
+#if CLIENT
+
+					SoundPlayer.PlaySound("guisound_lockCab_cannotopen", _.item.WorldPosition);
+				
+            
+#endif
+					return false;
+				}
+
+#if CLIENT
+				if(_.Locked)
+				{
+					SoundPlayer.PlaySound("guisound_lockCab_cannotopen", _.item.WorldPosition);
+				}
+				
+            
+#endif
+
 
 				// 先播放声音（无论后续是否存入物品）
     PlayContainerSound(_);  // 提取成独立方法

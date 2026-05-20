@@ -579,10 +579,6 @@
   <entitydescription.dhheavywrench>一把又大又重的钛合金扳手。用于修理潜艇外部设备。</entitydescription.dhheavywrench>
   <entityname.weaponparts>武器零件</entityname.weaponparts>
   <entitydescription.weaponparts>用于修理各种武器的零件。</entitydescription.weaponparts>
-  <entityname.containerkey>钥匙</entityname.containerkey>
-  <entitydescription.containerkey>可以锁定或解锁柜子</entitydescription.containerkey>
-  <entityname.keymaster>万能钥匙</entityname.keymaster>
-  <entitydescription.keymaster>万能钥匙可以打开所有柜子</entitydescription.keymaster>
   <entityname.keyorganzier>钥匙收纳盒</entityname.keyorganzier>
   <entitydescription.keyorganzier>用来收集所有钥匙的盒子</entitydescription.keyorganzier>
   <entityname.flamethrowerfueltank>火焰喷射器燃料罐</entityname.flamethrowerfueltank>
@@ -640,6 +636,14 @@
   <entitydescription.pressurizedgastank>为压载舱水泵储存高压气体。</entitydescription.pressurizedgastank>
   <entityname.meltdownfuelrod>融毁的燃料棒</entityname.meltdownfuelrod>
   <entitydescription.meltdownfuelrod>带有辐射性的燃料棒的残骸</entitydescription.meltdownfuelrod>
+  <entityname.keymediumcab>中等储物柜钥匙</entityname.keymediumcab>
+  <entitydescription.keymediumcab>用来上锁/解锁柜子</entitydescription.keymediumcab>
+  <entityname.keylargecab>大型储物柜钥匙</entityname.keylargecab>
+  <entitydescription.keylargecab>用来上锁/解锁柜子</entitydescription.keylargecab>
+  <entityname.keymedical>医疗储物柜钥匙</entityname.keymedical>
+  <entitydescription.keymedical>用来上锁/解锁柜子</entitydescription.keymedical>
+  <entityname.keymaster>主管钥匙</entityname.keymaster>
+  <entitydescription.keymaster>用来上锁/解锁所有儲物柜子</entitydescription.keymaster>
 
 
 
@@ -843,6 +847,9 @@
 
   <progressbar.scavenging>搜刮</progressbar.scavenging>
   <progressbar.cutting>切割</progressbar.cutting>
+  <progressbar.keyunlocking>正在解锁</progressbar.keyunlocking>
+  <progressbar.keylocking>正在上锁</progressbar.keylocking>
 
+  <item.interactve.hint.lock>[[use]] 使用钥匙</item.interactve.hint.lock>
   <itemmsgscavengeuse>[[use]] 搜刮</itemmsgscavengeuse>
 </infotexts>

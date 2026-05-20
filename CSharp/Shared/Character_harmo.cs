@@ -178,6 +178,7 @@ namespace BarotraumaDieHard
 		public static void UpdatePostfix(float deltaTime, Character __instance)
 		{
 			Character _ = __instance;
+			
 			if (_.InWater)
 			{
 				ApplyFlowForces(deltaTime, _);

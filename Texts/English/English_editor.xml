@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <sp.keylock.RequiredKey.name>Required Key</sp.keylock.RequiredKey.name>
+  <sp.keylock.RequiredKey.description>item needs to be at hand to use the lock</sp.keylock.RequiredKey.description>
+</infotexts>
