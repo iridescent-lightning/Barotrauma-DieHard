@@ -12,50 +12,58 @@ namespace BarotraumaDieHard
     [HarmonyPatch(typeof(Reactor))]
     class ReactorDieHard
     {
-        public static Dictionary<int, ItemContainer> SecondItemContainerReactors = new Dictionary<int, ItemContainer>();
+        // 升级字典：不仅缓存 Container，还把每个反应堆专属的独立计时器存进去
+        public class ReactorCacheData
+        {
+            public ItemContainer Container;
+            public float Timer;
+        }
+
+        public static Dictionary<int, ReactorCacheData> ReactorDataCache = new Dictionary<int, ReactorCacheData>();
         private static bool inEditor;
+        private const float UPDATE_INTERVAL = 0.2f;  // 每秒更新5次
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         public static void UpdatePostfix(float deltaTime, Camera cam, Reactor __instance)
         {
-            // 安全检查：如果游戏正在关卡加载中或结束时，直接放行
+            // 安全检查
             if (__instance.item == null) return;
 
-            ItemContainer itemContainer = null;
-            Item controlrod = null; // 【修改 1】移除了 static，改为局部变量，防止 null 污染
+            int reactorId = __instance.item.ID;
 
-            // 尝试从字典中读取第二个容器
-            if (SecondItemContainerReactors.TryGetValue(__instance.item.ID, out var cachedContainer))
+            // 1. 获取或创建属于当前反应堆实例的独立缓存
+            if (!ReactorDataCache.TryGetValue(reactorId, out var cache))
             {
-                itemContainer = cachedContainer;
-            }
-            else
-            {
-                // 【修改 2：双保险防御机制】
-                // 如果开局前几帧字典还没初始化好，我们尝试直接在运行时动态抓取它身上的所有容器
                 var containers = __instance.item.GetComponents<ItemContainer>().ToList();
                 if (containers.Count > 1)
                 {
-                    itemContainer = containers[1];
-                    SecondItemContainerReactors[__instance.item.ID] = itemContainer; // 顺手补回缓存
+                    cache = new ReactorCacheData { Container = containers[1], Timer = 0f };
+                    ReactorDataCache[reactorId] = cache;
                 }
                 else
                 {
-                    // 如果这个反应堆身上真的没有第二个容器，说明可能是原版潜艇或者是其它模组的反应堆
-                    // 直接 return 放行，不要执行自定义的惩罚，避免报错
-                    return; 
+                    // 没有第二个容器，属于原版或不相干反应堆，直接放行
+                    return;
                 }
             }
 
-            // 成功拿到容器，安全地获取里面的控制棒
-            if (itemContainer != null && itemContainer.Inventory != null)
+            // 2. 实例隔离的节流控制（每个反应堆自己过自己的 0.2 秒）
+            cache.Timer += deltaTime;
+            if (cache.Timer < UPDATE_INTERVAL) return;
+            cache.Timer = 0f; // 仅清空当前反应堆的计时器，不影响其他反应堆
+
+            // 3. 核心逻辑执行
+            Item controlrod = null;
+            if (cache.Container != null && cache.Container.Inventory != null)
             {
-                controlrod = itemContainer.Inventory.GetItemAt(0);
+                controlrod = cache.Container.Inventory.GetItemAt(0);
             }
 
-            // 只有当涡轮有输出（即反应堆开着、或者处于自动控制启动状态）时才检测
-            if (__instance.TargetTurbineOutput > 0f)
+            
+            bool isOperating = __instance.TargetTurbineOutput > 0f;
+
+            if (isOperating)
             {
                 if (controlrod != null)
                 {
@@ -63,23 +71,23 @@ namespace BarotraumaDieHard
                     {
                         // 控制棒耗尽，反应堆失控
                         __instance.fissionRate = 100f;
-                        __instance.Item.Condition -= 1.5f * deltaTime;
+                        __instance.Item.Condition -= 1.5f * UPDATE_INTERVAL;
                     }
                     else if (__instance.item.InPlayerSubmarine)
                     {
-                        // 正常消耗控制棒
-                        controlrod.Condition -= 0.05f * deltaTime;
+                        // 正常消耗控制棒（联机模式下加个同步脏标记，确保通知到服务器/客户端）
+                        controlrod.Condition -= 0.05f * UPDATE_INTERVAL;
                     }
                 }
                 else
                 {
-                    // 【修改 3】只有当初始化完全就绪，且明确检测到里面“确实没有控制棒”时才惩罚
-                    // 并且加上 InPlayerSubmarine 判定，防止战局刚载入时非玩家潜艇（如前哨站、遗迹）的反应堆跟着一起平白无故爆炸
+                    // 明确没有控制棒时的失控惩罚
                     if (__instance.item.InPlayerSubmarine)
                     {
-                        DebugConsole.NewMessage($"[DieHard] 反应堆 {__instance.item.ID} 内未检测到控制棒，反应堆开始失控！");
+                        // 联机环境下可以用这条，但注意别刷屏控制台
+                        // DebugConsole.NewMessage($"[DieHard] 反应堆 {reactorId} 缺失控制棒！");
                         __instance.fissionRate = 100f;
-                        __instance.Item.Condition -= 1.5f * deltaTime;
+                        __instance.Item.Condition -= 1.5f * UPDATE_INTERVAL;
                     }
                 }
             }
@@ -104,9 +112,10 @@ namespace BarotraumaDieHard
             }
         }
 
+        // 每次换图或清理战局时调用，防止内存泄漏
         public static void ClearRactorySecondContainerDictionary()
         {
-            SecondItemContainerReactors.Clear();
+            ReactorDataCache.Clear();
         }
     }
 }

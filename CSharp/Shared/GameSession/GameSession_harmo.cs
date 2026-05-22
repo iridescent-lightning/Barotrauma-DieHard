@@ -46,12 +46,27 @@ namespace BarotraumaDieHard
             pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
             
 
-            foreach (Item preactor in Item.ItemList)
+            foreach (Item reactor in Item.ItemList)
             {
-                if (preactor.HasTag("reactor"))
+                if (reactor.HasTag("reactor".ToIdentifier())) // 注意：原版新架构中 Tag 通常需要转为 Identifier
                 {
-                    var ItemContainers = preactor.GetComponents<ItemContainer>().ToList();;
-                    ReactorDieHard.SecondItemContainerReactors[preactor.ID] = ItemContainers[1];
+                    var itemContainers = reactor.GetComponents<ItemContainer>().ToList();
+                    
+                    // 核心修改 1：安全检查，必须确保该反应堆真的有第 2 个容器（索引 1），否则直接抓取会引起游戏崩溃
+                    if (itemContainers.Count > 1)
+                    {
+                        // 核心修改 2：适配我们之前的 ReactorCacheData 数据结构，并修正 preactor -> reactor 的拼写错误
+                        ReactorDieHard.ReactorDataCache[reactor.ID] = new ReactorDieHard.ReactorCacheData
+                        {
+                            Container = itemContainers[1],
+                            Timer = 0f // 初始化计时器为 0
+                        };
+                    }
+                    else
+                    {
+                        // 调试日志（可选）：如果是原版潜艇或者没有双容器配置的普通反应堆，打印提示并跳过
+                        DebugConsole.ThrowError($"[DieHard] 反应堆 {reactor.ID} 没有双容器组件，已跳过初始化。");
+                    }
                 }
             }
 

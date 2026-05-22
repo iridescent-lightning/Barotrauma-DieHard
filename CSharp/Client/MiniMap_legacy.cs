@@ -16,6 +16,13 @@ namespace BarotraumaDieHard
 {
     partial class MiniMapLegacy : Powered
     {
+        public enum MonitorMode
+        {
+            NormalMap, // 传统状态监视器地图
+            Buoyancy   // 浮力实时监控页面
+        }
+        private MonitorMode currentMode = MonitorMode.NormalMap; // 默认显示地图
+        private List<GUIButton> modeButtons = new List<GUIButton>(); // 存储按钮以便控制选中状态
         private GUIFrame submarineContainer;
 
         private GUIFrame hullInfoFrame;
@@ -27,6 +34,8 @@ namespace BarotraumaDieHard
         private readonly List<Submarine> displayedSubs = new List<Submarine>();
 
         private Point prevResolution;
+
+        private bool showBuoyancyInfo = false; // 是否显示浮力监视器
 
         partial void InitProjSpecific(ContentXElement element)
         {
@@ -72,19 +81,60 @@ namespace BarotraumaDieHard
             temperatureText = new GUITextBlock(new RectTransform(new Vector2(1.0f, 0.6f), hullInfoContainer.RectTransform), "") { Wrap = true };
             lockRoomHitText = new GUITextBlock(new RectTransform(new Vector2(1.0f, 0.9f), hullInfoContainer.RectTransform), "") { Wrap = true };
 
-
             hullInfoFrame.Children.ForEach(c =>
             {
                 c.CanBeFocused = false;
                 c.Children.ForEach(c2 => c2.CanBeFocused = false);
             });
+
+            // ==============================================================
+            // ======== 新增：创建最新原版风格的页面切换按钮布局 ========
+            // ==============================================================
+            var buttonGroup = new GUILayoutGroup(new RectTransform(new Vector2(0.35f, 0.05f), GuiFrame.RectTransform, Anchor.TopLeft)
+            {
+                AbsoluteOffset = new Point(25, 20) // 略微放大偏移，规避顶部边框
+            }, isHorizontal: true, childAnchor: Anchor.CenterLeft)
+            {
+                RelativeSpacing = 0.02f
+            };
+
+            // 1. 创建“系统状态”切换按钮
+            var mapBtn = new GUIButton(new RectTransform(new Vector2(0.48f, 1.0f), buttonGroup.RectTransform), TextManager.Get("MiniMapModeNormal").Value, style: "GUIButton")
+            {
+                Selected = true,
+                OnClicked = (btn, obj) =>
+                {
+                    SwitchMonitorMode(MonitorMode.NormalMap);
+                    return true;
+                }
+            };
+            modeButtons.Add(mapBtn);
+
+            // 2. 创建“浮力监控”切换按钮
+            var buoyancyBtn = new GUIButton(new RectTransform(new Vector2(0.48f, 1.0f), buttonGroup.RectTransform), TextManager.Get("MiniMapModeBuoyancy").Value, style: "GUIButton")
+            {
+                OnClicked = (btn, obj) =>
+                {
+                    SwitchMonitorMode(MonitorMode.Buoyancy);
+                    return true;
+                }
+            };
+            modeButtons.Add(buoyancyBtn);
+            
+            if (submarineContainer != null)
+            {
+                // 地图页面时向下偏移，腾出顶部空间给导航按钮
+                submarineContainer.RectTransform.RelativeOffset = Vector2.Zero;
+            }
         }
 
         public override void AddToGUIUpdateList(int order = 0)
         {
             base.AddToGUIUpdateList(order);
-            hullInfoFrame?.AddToGUIUpdateList(order: order + 1);
-            
+            if (currentMode == MonitorMode.NormalMap)
+            {
+                hullInfoFrame?.AddToGUIUpdateList(order: order + 1);
+            }
         }
 
         private void CreateHUD()
@@ -102,13 +152,12 @@ namespace BarotraumaDieHard
 
         public override void UpdateHUDComponentSpecific(Character character, float deltaTime, Camera cam)
         {
-            //recreate HUD if the subs we should display have changed
-            if ((item.Submarine == null && displayedSubs.Count > 0) ||                                       //item not inside a sub anymore, but display is still showing subs
-                !displayedSubs.Contains(item.Submarine) ||                                                   //current sub not displayer
-                prevResolution.X != GameMain.GraphicsWidth || prevResolution.Y != GameMain.GraphicsHeight || //resolution changed
-                item.Submarine.DockedTo.Any(s => !displayedSubs.Contains(s)) ||                              //some of the docked subs not diplayed
-                !submarineContainer.Children.Any() ||                                                        // We lack a GUI
-                displayedSubs.Any(s => s != item.Submarine && !item.Submarine.DockedTo.Contains(s)))         //displaying a sub that shouldn't be displayed
+            if ((item.Submarine == null && displayedSubs.Count > 0) ||                                       
+                !displayedSubs.Contains(item.Submarine) ||                                                   
+                prevResolution.X != GameMain.GraphicsWidth || prevResolution.Y != GameMain.GraphicsHeight || 
+                item.Submarine.DockedTo.Any(s => !displayedSubs.Contains(s)) ||                              
+                !submarineContainer.Children.Any() ||                                                        
+                displayedSubs.Any(s => s != item.Submarine && !item.Submarine.DockedTo.Contains(s)))         
             {
                 CreateHUD();
             }
@@ -130,153 +179,28 @@ namespace BarotraumaDieHard
             }
         }
 
-		
-        private void DrawHUDFront(SpriteBatch spriteBatch, GUICustomComponent container)
-        {
-            if (Voltage < MinVoltage)
-            {
-                Vector2 textSize = GUIStyle.Font.MeasureString(noPowerTip);
-                Vector2 textPos = GuiFrame.Rect.Center.ToVector2();
-
-                GUI.DrawString(spriteBatch, textPos - textSize / 2, noPowerTip,
-                               GUIStyle.Orange * (float)Math.Abs(Math.Sin(Timing.TotalTime)), Color.Black * 0.8f, font: GUIStyle.SubHeadingFont);
-                return;
-            }
-            if (!submarineContainer.Children.Any()) { return; }
-            foreach (GUIComponent child in submarineContainer.Children.FirstOrDefault()?.Children)
-            {
-                if (child.UserData is Hull hull)
-                {
-                    if (hull.Submarine == null || !hull.Submarine.Info.IsOutpost) { continue; }
-                    string text = TextManager.GetWithVariable("MiniMapOutpostDockingInfo", "[outpost]", hull.Submarine.Info.Name).Value;
-                    Vector2 textSize = GUIStyle.Font.MeasureString(text);
-                    Vector2 textPos = child.Center;
-                    if (textPos.X + textSize.X / 2 > submarineContainer.Rect.Right)
-                        textPos.X -= ((textPos.X + textSize.X / 2) - submarineContainer.Rect.Right) + 10 * GUI.xScale;
-                    if (textPos.X - textSize.X / 2 < submarineContainer.Rect.X)
-                        textPos.X += (submarineContainer.Rect.X - (textPos.X - textSize.X / 2)) + 10 * GUI.xScale;
-                    GUI.DrawString(spriteBatch, textPos - textSize / 2, text,
-                       GUIStyle.Orange * (float)Math.Abs(Math.Sin(Timing.TotalTime)), Color.Black * 0.8f);
-
-                      
-                    break;
-                }
-            }
-            
-
-            
-        }
-
-        // Manual adjustment factors
-        float xAdjuster = 1.0f; // Adjust the horizontal position scaling
-        float yAdjuster = 1.0f; // Adjust the vertical position scaling
-        float xOffset = 20.0f;   // Manual X offset
-        float yOffset = 15.0f;   // Manual Y offset
-
-        private void DrawPersonalIndicators(SpriteBatch spriteBatch, Hull hull)
-        {
-            var hullFrame = submarineContainer.Children.FirstOrDefault()?.FindChild(hull);
-            if (hullFrame == null) { return; }
-
-            // Get the world size of the hull and the screen size of the hull frame
-            Vector2 hullWorldSize = hull.Rect.Size.ToVector2();
-            Vector2 hullScreenSize = hullFrame.Rect.Size.ToVector2();
-
-            // Calculate the scaling ratio
-            Vector2 scaleRatio = hullScreenSize / hullWorldSize;
-
-            foreach (Character character in Character.CharacterList)
-            {
-                if (character.CurrentHull != hull || character.CurrentHull.Submarine !=Submarine.MainSub) { continue; }
-
-                // Calculate the character's position relative to the hull dimensions
-                Vector2 relativePos = (character.WorldPosition - hull.WorldPosition) / hullWorldSize;
-
-                // Map the relative position to the hullFrame's screen position and apply scaling with manual adjustments
-                Vector2 indicatorPos = new Vector2(
-                    hullFrame.Rect.X + (hullFrame.Rect.Width * relativePos.X * scaleRatio.X * xAdjuster) + xOffset,
-                    hullFrame.Rect.Y + (hullFrame.Rect.Height * (1 - relativePos.Y) * scaleRatio.Y * yAdjuster) + yOffset // Invert Y axis
-                );
-
-                // Draw a square to indicate character's position
-                Rectangle indicatorRect = new Rectangle((int)indicatorPos.X - 5, (int)indicatorPos.Y - 5, 10, 10);
-                spriteBatch.Draw(GUI.WhiteTexture, indicatorRect, Color.Green);
-            }
-            
-        }
-
-        
-
-    
-        // Function triggered on click
-        private void OnHullClick(Hull clickedHull)
-        {
-            
-            // Lock all doors linked to gaps
-            foreach (Gap gap in clickedHull.ConnectedGaps)
-            {
-                if (gap.IsRoomToRoom)
-                {
-                    var door = gap.ConnectedDoor; // Get the connected door
-
-                    if (door != null && door.Item.InPlayerSubmarine)
-                    {
-                        if (door.OpenState == 0f)
-                        {
-                            door.IsJammed = true;
-                            SendDoorJammedMessage(door.Item, true); // Notify other clients of the jammed state
-                        }
-                        
-                        else if (door.OpenState == 1f)
-                        {
-                            door.SetState(false, true, true, false); // I think using this method can network the door state.
-                            door.IsJammed = true;
-                            SendDoorJammedMessage(door.Item, true); // Notify other clients of the jammed state
-                        }
-                        
-                    }
-                }
-            }
-        }
-
-        private void UnlockAllDoors(Hull clickedHull)
-        {
-            foreach (Gap gap in clickedHull.ConnectedGaps)
-            {
-                if (gap.IsRoomToRoom)
-                {
-                    var door = gap.ConnectedDoor; // Get the connected door
-
-                    if (door != null && door.Item.InPlayerSubmarine)
-                    {
-                        door.IsJammed = false; // Free the door
-                        SendDoorJammedMessage(door.Item, false); // Notify other clients of the jammed state
-                    }
-                }
-            }
-        }
-
-        
-
         private void DrawHUDBack(SpriteBatch spriteBatch, GUICustomComponent container)
         {
-			
-			float flashSpeed = 5.0f; // Adjust this for faster/slower flashes
-			float flashIntensity = (float)Math.Sin(Timing.TotalTime * flashSpeed) * 0.5f + 0.5f;
-			
+            // 【核心修正】如果切换到了浮力监控页面，直接不绘制任何底层房间色块、锁定指示器与潜艇外轮廓
+            if (currentMode == MonitorMode.Buoyancy)
+            {
+                hullInfoFrame.Visible = false;
+                return;
+            }
+
+            float flashSpeed = 5.0f; 
+            float flashIntensity = (float)Math.Sin(Timing.TotalTime * flashSpeed) * 0.5f + 0.5f;
 
             Hull mouseOnHull = null;
             hullInfoFrame.Visible = false;
-            
             
             foreach (Hull hull in Hull.HullList)
             {
                 var hullFrame = submarineContainer.Children.FirstOrDefault()?.FindChild(hull);
                 if (hullFrame == null) { continue; }
 
-                bool allDoorsLocked = true; // Assume all doors are locked
+                bool allDoorsLocked = true; 
 
-                // Lock room feature starts
                 foreach (Gap gap in hull.ConnectedGaps)
                 {
                     if (gap.IsRoomToRoom)
@@ -284,67 +208,49 @@ namespace BarotraumaDieHard
                         var door = gap.ConnectedDoor;
                         if (door != null && door.Item.InPlayerSubmarine && !door.IsJammed)
                         {
-                            allDoorsLocked = false; // Found an unlocked door
-                            break; // Exit loop
+                            allDoorsLocked = false; 
+                            break; 
                         }
-                        // No need to check for a gap without a door,
-                        // just ensure that if any doors are jammed, they count as locked.
                     }
                 }
 
-                // Draw the red square if all doors are locked
                 if (allDoorsLocked && hull.Submarine == Submarine.MainSub)
                 {
-                    Rectangle lockedIndicatorRect = new Rectangle(
-                        hullFrame.Rect.X,
-                        hullFrame.Rect.Y,
-                        10, // Width of the indicator
-                        10  // Height of the indicator
-                    );
+                    Rectangle lockedIndicatorRect = new Rectangle(hullFrame.Rect.X, hullFrame.Rect.Y, 10, 10);
                     spriteBatch.Draw(GUI.WhiteTexture, lockedIndicatorRect, Color.Red);
                 }
 
-
-                    if (GUI.MouseOn == hullFrame || hullFrame.IsParentOf(GUI.MouseOn))
+                if (GUI.MouseOn == hullFrame || hullFrame.IsParentOf(GUI.MouseOn))
+                {
+                    mouseOnHull = hull;
+                    hullFrame.Color = Color.White; 
+                    
+                    if (PlayerInput.PrimaryMouseButtonClicked())
                     {
-                        mouseOnHull = hull;
-                        hullFrame.Color = Color.White; // Highlight hull when hovering
-                        
-                        // Detect Mouse Click (Left Button)
-                        if (PlayerInput.PrimaryMouseButtonClicked())
+                        if (PlayerInput.KeyDown(Microsoft.Xna.Framework.Input.Keys.LeftControl)) 
                         {
-                            if (PlayerInput.KeyDown(Microsoft.Xna.Framework.Input.Keys.LeftControl)) // Check if Ctrl key is held down
-                            {
-                                
-                                UnlockAllDoors(mouseOnHull); // Call the method to unlock all doors
-                            }
-                            else
-                            {
-                                OnHullClick(mouseOnHull); // Call the regular function when clicked
-                            }
+                            UnlockAllDoors(mouseOnHull); 
+                        }
+                        else
+                        {
+                            OnHullClick(mouseOnHull); 
                         }
                     }
-                // Lock room feature ends.
+                }
 
                 if (item.Submarine == null || !hasPower)
                 {
                     hullFrame.Color = Color.DarkCyan * 0.3f;
-                    if (hullFrame.Children != null && hullFrame.Children.Any()) // Somehow using the legacy version needs to check if the content is there. Otherwise will crash the game.
-					{
-						hullFrame.Children.First().Color = Color.DarkCyan * 0.3f;
-					}
+                    if (hullFrame.Children != null && hullFrame.Children.Any()) 
+                    {
+                        hullFrame.Children.First().Color = Color.DarkCyan * 0.3f;
+                    }
                 }
 
-                // Call to draw personal indicators for characters inside the current hull
                 DrawPersonalIndicators(spriteBatch, hull);
-                
             }
-			
 
-            if (Voltage < MinVoltage)
-            {
-                return;
-            }
+            if (Voltage < MinVoltage) return;
 
             float scale = 1.0f;
             HashSet<Submarine> subs = new HashSet<Submarine>();
@@ -426,22 +332,21 @@ namespace BarotraumaDieHard
                     }
                 }
 
-                if (mouseOnHull == hull ||
-                    hullData.LinkedHulls.Contains(mouseOnHull))
+                if (mouseOnHull == hull || hullData.LinkedHulls.Contains(mouseOnHull))
                 {
-					if (hullFrame.Children != null && hullFrame.Children.Any())
-					{
-                    borderColor = Color.Lerp(borderColor, Color.White, 0.5f);
-                    hullFrame.Children.First().Color = Color.White;
-                    hullFrame.Color = borderColor;
-					}
+                    if (hullFrame.Children != null && hullFrame.Children.Any())
+                    {
+                        borderColor = Color.Lerp(borderColor, Color.White, 0.5f);
+                        hullFrame.Children.First().Color = Color.White;
+                        hullFrame.Color = borderColor;
+                    }
                 }
                 else
                 {
-					if (hullFrame.Children != null && hullFrame.Children.Any())
-					{
-                    hullFrame.Children.First().Color = neutralColor * 0.8f;
-					}
+                    if (hullFrame.Children != null && hullFrame.Children.Any())
+                    {
+                        hullFrame.Children.First().Color = neutralColor * 0.8f;
+                    }
                 }
 
                 if (mouseOnHull == hull)
@@ -453,13 +358,11 @@ namespace BarotraumaDieHard
                     hullInfoFrame.Visible = true;
                     hullNameText.Text = hull.DisplayName;
 
-
                     foreach (Hull linkedHull in hullData.LinkedHulls)
                     {
                         gapOpenSum += linkedHull.ConnectedGaps.Where(g => !g.IsRoomToRoom).Sum(g => g.Open);
                         oxygenAmount += linkedHull.OxygenPercentage;
                         waterAmount += Math.Min(linkedHull.WaterVolume / linkedHull.Volume, 1.0f);
-
                     }
                     oxygenAmount /= (hullData.LinkedHulls.Count + 1);
                     waterAmount /= (hullData.LinkedHulls.Count + 1);
@@ -475,21 +378,16 @@ namespace BarotraumaDieHard
                         TextManager.AddPunctuation(':', TextManager.Get("MiniMapWaterLevel"), (int)(waterAmount * 100.0f) + " %");
                     hullWaterText.TextColor = waterAmount == null ? GUIStyle.Red : Color.Lerp(Color.LightGreen, GUIStyle.Red, (float)waterAmount);
                     
-                    
-                            
-                            float co2Amount = HullMod.GetGas(hull, "CO2");
-                            float coAmount = HullMod.GetGas(hull, "CO");
-                            float chlorineAmount = HullMod.GetGas(hull, "Chlorine");
-                            float temperature = HullMod.GetGas(hull, "Temperature");
+                    float co2Amount = HullMod.GetGas(hull, "CO2");
+                    float coAmount = HullMod.GetGas(hull, "CO");
+                    float chlorineAmount = HullMod.GetGas(hull, "Chlorine");
+                    float temperature = HullMod.GetGas(hull, "Temperature");
 
-                            float celsiusTemperature = (float)temperature - 273.15f;
-                            string formattedTemperature = celsiusTemperature.ToString("0.0") + " °C";
-                        
+                    float celsiusTemperature = (float)temperature - 273.15f;
+                    string formattedTemperature = celsiusTemperature.ToString("0.0") + " °C";
 
                     temperatureText.Text = temperature == null ? TextManager.Get("MiniMapAirQualityUnavailable") :
                     TextManager.AddPunctuation(':', TextManager.Get("MiniMapTemperature"), formattedTemperature);
-                    
-
 
                     hullCO2Text.Text = co2Amount == null ? TextManager.Get("MiniMapAirQualityUnavailable") :
                     TextManager.AddPunctuation(':', TextManager.Get("MiniMapCO2"), (int)co2Amount + " ppm");
@@ -503,9 +401,7 @@ namespace BarotraumaDieHard
                         TextManager.AddPunctuation(':', TextManager.Get("MiniMapChlorine"), (int)chlorineAmount + " ppm");
                     hullChlorineText.TextColor = chlorineAmount == null ? GUIStyle.Red : Color.Lerp(GUIStyle.Green, Color.Red, (float)chlorineAmount / 100.0f);
 
-
                     lockRoomHitText.Text = TextManager.Get("MiniMapLockRoomHit");
-                    
                 }
                 
                 hullFrame.Color = borderColor;
@@ -537,6 +433,246 @@ namespace BarotraumaDieHard
             }
         }
 
+        private void DrawHUDFront(SpriteBatch spriteBatch, GUICustomComponent container)
+        {
+            if (!HasPower || item.Submarine == null) return;
+
+            // ==============================================================
+            // 情况 A：系统状态常规地图
+            // ==============================================================
+            if (currentMode == MonitorMode.NormalMap)
+            {
+                // [此处为你保留的传统地图前端文字绘制预留区，由于你删去了大部分，此处为空即可]
+                return; 
+            }
+
+            // ==============================================================
+            // 情况 B：浮力监控控制台模式（独立紧凑排版，使用中型字体防止文字溢出）
+            // ==============================================================
+            if (currentMode == MonitorMode.Buoyancy)
+            {
+                var submarine = item.Submarine;
+                var connectedSubs = submarine.GetConnectedSubs();
+                
+                float ballastWaterVolume = 0f;
+                float ballastVolume = 0f;
+                float nonBallastVolume = 0f;
+                float realNonBallastWaterVolume = 0f;
+                float nonBallastEffectiveWater = 0f;
+
+                float floodTolerance = 0.15f; 
+                
+
+                if (item.Submarine.Info.SubmarineClass == SubmarineClass.Scout)
+                {
+                    floodTolerance = 0.17f;
+                }
+                else if (item.Submarine.Info.SubmarineClass == SubmarineClass.Attack)
+                {
+                    floodTolerance = 0.15f;
+                }
+                else if (item.Submarine.Info.SubmarineClass == SubmarineClass.Transport)
+                {
+                    floodTolerance = 0.25f;
+                }
+                else if (item.Submarine.Info.SubmarineClass == SubmarineClass.Undefined)
+                {
+                    floodTolerance = 0.1f;
+                }
+                else
+                {
+                    floodTolerance = 0f;
+                }
+
+                float nonBallastMultiplier = BarotraumaDieHard.BuoyancyConfig.NonBallastFloodMultiplier; 
+
+                foreach (Hull hull in Hull.HullList)
+                {
+                    if (hull.Submarine == null || !connectedSubs.Contains(hull.Submarine)) continue;
+                    if (hull.Submarine.PhysicsBody is not { BodyType: FarseerPhysics.BodyType.Dynamic }) continue;
+
+                    bool isBallast = hull.RoomName != null && hull.RoomName.ToLower().Contains("ballast");
+
+                    if (isBallast)
+                    {
+                        ballastVolume += hull.Volume;
+                        ballastWaterVolume += hull.WaterVolume;
+                    }
+                    else
+                    {
+                        nonBallastVolume += hull.Volume;
+                        realNonBallastWaterVolume += hull.WaterVolume;
+                        
+                        float floodRatio = hull.Volume > 0 ? hull.WaterVolume / hull.Volume : 0;
+                        if (floodRatio > floodTolerance)
+                        {
+                            float excessFloodVolume = (floodRatio - floodTolerance) * hull.Volume;
+                            nonBallastEffectiveWater += excessFloodVolume * nonBallastMultiplier;
+                        }
+                    }
+                }
+
+                float totalEffectiveWater = ballastWaterVolume + nonBallastEffectiveWater;
+                float totalEffectiveVolume = ballastVolume + nonBallastVolume;
+
+                if (totalEffectiveVolume > 0f)
+                {
+                    float realNonBallastWaterPercentage = nonBallastVolume > 0f ? realNonBallastWaterVolume / nonBallastVolume : 0f;
+                    float waterPercentage = totalEffectiveWater / totalEffectiveVolume;
+                    float buoyancy = Barotrauma.SubmarineBody.NeutralBallastPercentage - waterPercentage;
+                    buoyancy = MathHelper.Clamp(buoyancy, -0.5f, 0.2f);
+                    
+                    float totalMass = connectedSubs.Sum(s => s.SubBody?.Body?.Mass ?? 0f);
+                    float massRatio = submarine.SubBody != null ? submarine.SubBody.Body.Mass / (totalMass > 0 ? totalMass : 1f) : 1f;
+                    float forceY = buoyancy * totalMass * 10f * massRatio;
+
+                    // --- 多语言状态诊断文本处理 ---
+                    string statusString;
+                    Color statusColor;
+                    if (forceY < -1200f)
+                    {
+                        statusString = TextManager.Get("MiniMapBuoyancyStatusSevere").Value;
+                        statusColor = GUIStyle.Red;
+                    }
+                    else if (forceY < -200f)
+                    {
+                        statusString = TextManager.Get("MiniMapBuoyancyStatusWarning").Value;
+                        statusColor = Color.Orange;
+                    }
+                    else if (forceY > 500f)
+                    {
+                        statusString = TextManager.Get("MiniMapBuoyancyStatusSurfacing").Value;
+                        statusColor = Color.Cyan;
+                    }
+                    else
+                    {
+                        statusString = TextManager.Get("MiniMapBuoyancyStatusBalanced").Value;
+                        statusColor = Color.LightGreen;
+                    }
+
+                    // --- 多语言排版拼接 ---
+                    string textHeader = $"=== [ {TextManager.Get("MiniMapBuoyancyHeader").Value} ] ===";
+                    
+                    string textShipInfo = TextManager.Get("MiniMapBuoyancyShipInfo").Value
+                        .Replace("[subname]", submarine.Info.Name)
+                        .Replace("[subclass]", submarine.Info.SubmarineClass.ToString())
+                        .Replace("[tolerance]", (floodTolerance * 100).ToString("F0"))
+                        .Replace("[multiplier]", nonBallastMultiplier.ToString("F2"));
+                    
+                    string textData1 = $" [ {TextManager.Get("MiniMapBuoyancyCategoryTitle").Value} ]\n" +
+                                    TextManager.Get("MiniMapBuoyancyBallastWater").Value.Replace("[water]", ballastWaterVolume.ToString("F0")).Replace("[vol]", ballastVolume.ToString("F0")) + "\n" +
+                                    TextManager.Get("MiniMapBuoyancyNonBallastWater").Value.Replace("[pct]", (realNonBallastWaterPercentage * 100).ToString("F1")).Replace("[water]", realNonBallastWaterVolume.ToString("F0")).Replace("[vol]", nonBallastVolume.ToString("F0")) + "\n" +
+                                    TextManager.Get("MiniMapBuoyancyEffectiveWater").Value.Replace("[water]", nonBallastEffectiveWater.ToString("F0"));
+                    
+                    string textData2 = $" [ {TextManager.Get("MiniMapBuoyancyResultTitle").Value} ]\n" +
+                                    TextManager.Get("MiniMapBuoyancyTotalWaterPct").Value.Replace("[pct]", (waterPercentage * 100).ToString("F1")) + "\n" +
+                                    TextManager.Get("MiniMapBuoyancyNetValue").Value.Replace("[buoyancy]", buoyancy.ToString("F3")).Replace("[neutral]", Barotrauma.SubmarineBody.NeutralBallastPercentage.ToString("F2")) + "\n" +
+                                    TextManager.Get("MiniMapBuoyancyForceY").Value.Replace("[force]", forceY.ToString("F0"));
+
+                    // 定位整个画面的安全显示起始区域
+                    Vector2 basePos = GuiFrame.Rect.Location.ToVector2() + new Vector2(35f, 75f);
+                    float lineSpacing = 26f * GUI.Scale;
+
+                    // 1. 绘制标题
+                    DrawStringWithShadow(spriteBatch, basePos, textHeader, Color.Green, GUIStyle.SmallFont);
+                    basePos.Y += lineSpacing * 1.5f;
+
+                    // 2. 绘制基础状态
+                    DrawStringWithShadow(spriteBatch, basePos, textShipInfo, Color.Green, GUIStyle.SmallFont);
+                    basePos.Y += lineSpacing * 2.5f;
+
+                    // 3. 绘制详细数据
+                    DrawStringWithShadow(spriteBatch, basePos, textData1, Color.Green, GUIStyle.SmallFont);
+                    basePos.Y += lineSpacing * 2.5f;
+
+                    DrawStringWithShadow(spriteBatch, basePos, textData2, Color.Green, GUIStyle.SmallFont);
+                    basePos.Y += lineSpacing * 2.5f;
+
+                    // 4. 绘制最底部的状态评级提示
+                    DrawStringWithShadow(spriteBatch, basePos, "--------------------------------------------------------", Color.Green, GUIStyle.SmallFont);
+                    basePos.Y += lineSpacing;
+                    //DrawStringWithShadow(spriteBatch, basePos, $"{TextManager.Get("MiniMapBuoyancyDiagnosis").Value} : {statusString}", statusColor, GUIStyle.SmallFont);
+                }
+            }
+        }
+
+        // 辅助阴影绘制函数，确保强光或复杂背景下文字极度清晰
+        private void DrawStringWithShadow(SpriteBatch spriteBatch, Vector2 pos, string text, Color color, GUIFont font)
+        {
+            GUI.DrawString(spriteBatch, pos + Vector2.One, text, Color.Black * 0.85f, Color.Transparent, font: font);
+            GUI.DrawString(spriteBatch, pos, text, color, Color.Transparent, font: font);
+        }
+
+        float xAdjuster = 1.0f; 
+        float yAdjuster = 1.0f; 
+        float xOffset = 20.0f;   
+        float yOffset = 15.0f;   
+
+        private void DrawPersonalIndicators(SpriteBatch spriteBatch, Hull hull)
+        {
+            var hullFrame = submarineContainer.Children.FirstOrDefault()?.FindChild(hull);
+            if (hullFrame == null) { return; }
+
+            Vector2 hullWorldSize = hull.Rect.Size.ToVector2();
+            Vector2 hullScreenSize = hullFrame.Rect.Size.ToVector2();
+            Vector2 scaleRatio = hullScreenSize / hullWorldSize;
+
+            foreach (Character character in Character.CharacterList)
+            {
+                if (character.CurrentHull != hull || character.CurrentHull.Submarine != Submarine.MainSub) { continue; }
+
+                Vector2 relativePos = (character.WorldPosition - hull.WorldPosition) / hullWorldSize;
+                Vector2 indicatorPos = new Vector2(
+                    hullFrame.Rect.X + (hullFrame.Rect.Width * relativePos.X * scaleRatio.X * xAdjuster) + xOffset,
+                    hullFrame.Rect.Y + (hullFrame.Rect.Height * (1 - relativePos.Y) * scaleRatio.Y * yAdjuster) + yOffset 
+                );
+
+                Rectangle indicatorRect = new Rectangle((int)indicatorPos.X - 5, (int)indicatorPos.Y - 5, 10, 10);
+                spriteBatch.Draw(GUI.WhiteTexture, indicatorRect, Color.Green);
+            }
+        }
+
+        private void OnHullClick(Hull clickedHull)
+        {
+            foreach (Gap gap in clickedHull.ConnectedGaps)
+            {
+                if (gap.IsRoomToRoom)
+                {
+                    var door = gap.ConnectedDoor; 
+                    if (door != null && door.Item.InPlayerSubmarine)
+                    {
+                        if (door.OpenState == 0f)
+                        {
+                            door.IsJammed = true;
+                            SendDoorJammedMessage(door.Item, true); 
+                        }
+                        else if (door.OpenState == 1f)
+                        {
+                            door.SetState(false, true, true, false); 
+                            door.IsJammed = true;
+                            SendDoorJammedMessage(door.Item, true); 
+                        }
+                    }
+                }
+            }
+        }
+
+        private void UnlockAllDoors(Hull clickedHull)
+        {
+            foreach (Gap gap in clickedHull.ConnectedGaps)
+            {
+                if (gap.IsRoomToRoom)
+                {
+                    var door = gap.ConnectedDoor; 
+                    if (door != null && door.Item.InPlayerSubmarine)
+                    {
+                        door.IsJammed = false; 
+                        SendDoorJammedMessage(door.Item, false); 
+                    }
+                }
+            }
+        }
+
         private void GetLinkedHulls(Hull hull, List<Hull> linkedHulls)
         {
             foreach (var linkedEntity in hull.linkedTo)
@@ -550,19 +686,33 @@ namespace BarotraumaDieHard
             }
         }
 
-
-
-
-
         private static void SendDoorJammedMessage(Item item, bool isJammed)
         {
             IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.DOOR_JAMMED_STATE_CHANGE);
-
-            msg.WriteUInt16(item.ID); // ID of the door item
-            msg.WriteBoolean(isJammed); // Write the jammed state
+            msg.WriteUInt16(item.ID); 
+            msg.WriteBoolean(isJammed); 
             NetUtil.SendServer(msg, DeliveryMethod.Reliable);
-            
         }
 
+        private void SwitchMonitorMode(MonitorMode newMode)
+        {
+            currentMode = newMode;
+
+            if (modeButtons.Count >= 2)
+            {
+                modeButtons[0].Selected = (currentMode == MonitorMode.NormalMap);
+                modeButtons[1].Selected = (currentMode == MonitorMode.Buoyancy);
+            }
+
+            // 核心控制：当切换到浮力页面时，将地图底层渲染挂载的实体容器完全关闭，杜绝偏移干扰
+            if (submarineContainer != null)
+            {
+                submarineContainer.Visible = (currentMode == MonitorMode.NormalMap);
+            }
+            if (hullInfoFrame != null)
+            {
+                hullInfoFrame.Visible = (currentMode == MonitorMode.NormalMap);
+            }
+        }
     }
 }

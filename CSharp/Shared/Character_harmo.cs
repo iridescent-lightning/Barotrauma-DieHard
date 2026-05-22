@@ -33,17 +33,18 @@ namespace BarotraumaDieHard
 	[HarmonyPatch(typeof(Character))]
     partial class CharacterPatch
     {
-		//Moved to GameSession
-		//public static AfflictionPrefab pressurizedhullPrefab;
-		
-		
 		private static float escapedTime;
         private static float updateTimer = 1.0f;
 
+		// 升级原本的字典，用于同时存储每个角色的【高压内爆计时器】和【降频节流计时器】
+		public class CharacterDataCache
+		{
+			public float PressureTimer; // 暴露在高压下的致死计时器（原 customPressureTimers）
+			public float ThrottleTimer; // 用来降低气体/温度结算频率的计时器
+		}
 
-
-		// Declare the dictionary at the class level
-		private static Dictionary<Character, float> customPressureTimers = new Dictionary<Character, float>();
+		private static Dictionary<Character, CharacterDataCache> charDataCache = new Dictionary<Character, CharacterDataCache>();
+		private const float GAS_UPDATE_INTERVAL = 0.25f; // 气体与温度降频：每秒仅检测 4 次
 
 		[HarmonyPatch(MethodType.Constructor)]
         [HarmonyPatch(new Type[] { 
@@ -54,120 +55,128 @@ namespace BarotraumaDieHard
         [HarmonyPostfix]
 		public static void CharacteConstructorPostfix(CharacterPrefab prefab, Vector2 position, string seed, CharacterInfo characterInfo, ushort id, bool isRemotePlayer, RagdollParams ragdollParams, bool spawnInitialItems, Character __instance)
 		{
-			//Moved to GameSession- RoundStart
-			//pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
-			
-			// Ensure the dictionary has an entry for the character
-			if (!customPressureTimers.ContainsKey(__instance))
+			if (!charDataCache.ContainsKey(__instance))
 			{
-				customPressureTimers[__instance] = 0.0f;
+				charDataCache[__instance] = new CharacterDataCache();
 			}
 		}
+
 		[HarmonyPatch("UpdateOxygen")]
         [HarmonyPostfix]
 		public static void UpdateOxygenPostfix(Character __instance, float deltaTime)
 		{
-			
-			Character _ = __instance;
-			if (__instance == null) { return; }
+			if (__instance == null || __instance.IsDead || __instance.CurrentHull == null || __instance.Submarine == null) { return; }
 
+			// 1. 获取或创建属于该角色的独立计时器缓存
+			if (!charDataCache.TryGetValue(__instance, out var cache))
+			{
+				cache = new CharacterDataCache();
+				charDataCache[__instance] = cache;
+			}
+
+			// 2. 累加降频计时器
+			cache.ThrottleTimer += deltaTime;
+			if (cache.ThrottleTimer < GAS_UPDATE_INTERVAL) 
+			{ 
+				return; // 如果没到 0.25 秒，直接放行，不进行高能耗计算！
+			}
 			
+			// 3. 到达检测周期，计算出这一段区间的累积时间步长 (代替原本的单帧 deltaTime)
+			float accumulatedTime = cache.ThrottleTimer;
+			cache.ThrottleTimer = 0f; // 重置节流计时器
+
+			// --- 以下为高能耗核心逻辑，现在每秒只跑 4 次 ---
+
 			Item headGear = __instance.Inventory.GetItemInLimbSlot(InvSlotType.Head);
 			Item bodyGear = __instance.Inventory.GetItemInLimbSlot(InvSlotType.InnerClothes);
 
 			bool breathGearOxygen = (headGear != null && headGear.HasTag("diving")) || (bodyGear != null && bodyGear.HasTag("diving"));
 
-			if (__instance.CurrentHull == null || __instance.Submarine == null || __instance.IsDead) { return; }
-			
-			
-			if (!__instance.IsDead && !breathGearOxygen)
+			if (!breathGearOxygen)
 			{
-				HullMod.AddGas(__instance.CurrentHull, "CO2", 5f, deltaTime);
+				// 往房间注入气体
+				HullMod.AddGas(__instance.CurrentHull, "CO2", 5f, accumulatedTime);
 			
-				if (HullMod.GetGas(__instance.CurrentHull, "CO2")  > 1000f)
+				// 气体毒性检测
+				float co2 = HullMod.GetGas(__instance.CurrentHull, "CO2");
+				if (co2 > 1000f)
 				{
-					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["co_poisoning"].Instantiate(1f * deltaTime));
+					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["co_poisoning"].Instantiate(1f * accumulatedTime));
 				}
-				if (HullMod.GetGas(__instance.CurrentHull, "CO") > 400f)
+				
+				float co = HullMod.GetGas(__instance.CurrentHull, "CO");
+				if (co > 400f)
 				{
-					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["co_poisoning"].Instantiate(5f * deltaTime));
+					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["co_poisoning"].Instantiate(5f * accumulatedTime));
 				}
-				if (HullMod.GetGas(__instance.CurrentHull, "CL") > 200f)
+				
+				float cl = HullMod.GetGas(__instance.CurrentHull, "CL");
+				if (cl > 200f)
 				{
-					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["chlorine_poisoning"].Instantiate(0.1f * deltaTime));
+					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["chlorine_poisoning"].Instantiate(0.1f * accumulatedTime));
 				}
 			}
 
-
-			if (HullMod.GetGas(__instance.CurrentHull, "Temperature") < 278.15f)
+			// 温度伤害检测
+			float currentTemp = HullMod.GetGas(__instance.CurrentHull, "Temperature");
+			if (currentTemp < 278.15f)
 			{
-				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["coldwater"].Instantiate(0.3f * deltaTime));
+				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["coldwater"].Instantiate(0.3f * accumulatedTime));
 			}
-			else if (HullMod.GetGas(__instance.CurrentHull, "Temperature" ) > 323.15f)
+			else if (currentTemp > 323.15f)
 			{
-				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["burn"].Instantiate((HullMod.GetGas(__instance.CurrentHull, "Temperature") - 318.15f) * deltaTime / 4f));
+				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["burn"].Instantiate((currentTemp - 318.15f) * accumulatedTime / 4f));
 			}
-			else if (HullMod.GetGas(__instance.CurrentHull, "Temperature") > 293.15f)
+			else if (currentTemp > 293.15f)
 			{
-				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["coldwater"].Instantiate(-0.5f * deltaTime));
+				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["coldwater"].Instantiate(-0.5f * accumulatedTime));
 			}
 			
-			// --- 简化的压力伤害逻辑 ---
-
-			// 直接获取当前房间的压力值（假设范围 0 到 100+）
+			// --- 简化的压力伤害逻辑（同步引入降频步长） ---
 			float airPressure = HullMod.GetGas(__instance.CurrentHull, "PressurizedAir");
 
-			// 获取角色穿着
-			Item innerCloth = _.Inventory.GetItemInLimbSlot(InvSlotType.InnerClothes);
-
-			// 1. 轻微伤害阶段 (低压警告)
-			// 比如压力超过 30 就会开始感到不适
 			if (airPressure > 30f)
 			{
-				_.CharacterHealth.ApplyAffliction(
-					targetLimb: _.AnimController.MainLimb, 
-					new Affliction(GameSessionDieHard.pressurizedhullPrefab, 1f * deltaTime)); // 造成压力感官效果
+				__instance.CharacterHealth.ApplyAffliction(
+					targetLimb: __instance.AnimController.MainLimb, 
+					new Affliction(GameSessionDieHard.pressurizedhullPrefab, 1f * accumulatedTime));
 			}
 
-			// 2. 致命伤害阶段 (高压危险)
-			// 比如压力超过 70 为致命线，如果没有 deepdiving 标签的衣服就会内爆
 			float lethalThreshold = 70f;
-
-			if (airPressure > lethalThreshold && (innerCloth == null || !innerCloth.HasTag("deepdiving"))) 
+			if (airPressure > lethalThreshold && (bodyGear == null || !bodyGear.HasTag("deepdiving"))) 
 			{
-				// 加重视觉/听觉压力效果
-				_.CharacterHealth.ApplyAffliction(
-						targetLimb: _.AnimController.MainLimb, 
-						new Affliction(GameSessionDieHard.pressurizedhullPrefab, 3f * deltaTime));
+				__instance.CharacterHealth.ApplyAffliction(
+						targetLimb: __instance.AnimController.MainLimb, 
+						new Affliction(GameSessionDieHard.pressurizedhullPrefab, 3f * accumulatedTime));
 				
-				// 增加角色的压力计时器
-				customPressureTimers[__instance] += 1 * deltaTime;
+				// 累加高压暴露时间
+				cache.PressureTimer += accumulatedTime;
 
-				// 持续暴露造成内脏损伤
-				// 压力越高，伤害跳得越快
 				float damageSeverity = (airPressure - lethalThreshold) / 20f; 
-				_.CharacterHealth.ApplyAffliction(
-						targetLimb: _.AnimController.MainLimb, 
-						new Affliction(AfflictionPrefab.OrganDamage, damageSeverity * deltaTime));
+				__instance.CharacterHealth.ApplyAffliction(
+						targetLimb: __instance.AnimController.MainLimb, 
+						new Affliction(AfflictionPrefab.OrganDamage, damageSeverity * accumulatedTime));
 
-				// 达到 15 秒计时直接内爆 (Implode)
-				if (customPressureTimers[__instance] >= 15.0f)
+				// 达到 15 秒致死线内爆
+				if (cache.PressureTimer >= 15.0f)
 				{
 					if (GameMain.NetworkMember == null || !GameMain.NetworkMember.IsClient)
 					{
-						_.Implode();
-						if (_.IsDead) { return; }
+						__instance.Implode();
+						if (__instance.IsDead) { return; }
 					}
 				}
 			}
 			else
 			{
-				// 如果压力下降或者穿上了防护服，重置计时器
-				if (customPressureTimers.ContainsKey(__instance))
-				{
-					customPressureTimers[__instance] = 0.0f;
-				}
+				cache.PressureTimer = 0.0f; // 安全重置
 			}
+		}
+
+		// 别忘了清理函数同步修改，防止切关卡内存泄漏
+		public static void ClearPressureTimerDictionary()
+		{
+			charDataCache.Clear();
 		}
 
 
@@ -272,13 +281,6 @@ namespace BarotraumaDieHard
 				}
 			}
 		}
-
-
-// Cutting loot logic
-		public static void ClearPressureTimerDictionary()
-		    {
-			    customPressureTimers.Clear();
-		    }
 
 
 		// 存储怪物实体的切割进度 (0.0f - 100.0f)

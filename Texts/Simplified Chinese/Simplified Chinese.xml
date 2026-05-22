@@ -852,4 +852,28 @@
 
   <item.interactve.hint.lock>[[use]] 使用钥匙</item.interactve.hint.lock>
   <itemmsgscavengeuse>[[use]] 搜刮</itemmsgscavengeuse>
+
+
+  <MiniMapModeNormal>系统状态</MiniMapModeNormal>
+  <MiniMapModeBuoyancy>浮力监控</MiniMapModeBuoyancy>
+
+  <MiniMapBuoyancyHeader>核心物理系统：全舰浮力解算控制台</MiniMapBuoyancyHeader>
+  <MiniMapBuoyancyShipInfo> • 潜艇名称 : [subname] ([subclass])&#10; • 备用浮力阈值 : [tolerance]%  |  普通舱室进水下沉系数 : x[multiplier]  |  压载舱进水下沉系数 ： x1</MiniMapBuoyancyShipInfo>
+  
+  <MiniMapBuoyancyCategoryTitle>📊 物理舱室分项账目</MiniMapBuoyancyCategoryTitle>
+  <MiniMapBuoyancyBallastWater>  - 全舰压载舱(Ballast)当前水量 : [water] / [vol] m³</MiniMapBuoyancyBallastWater>
+  <MiniMapBuoyancyNonBallastWater>  - 常规舱(Non-Ballast)实际进水 : [pct]% ([water] / [vol] m³)</MiniMapBuoyancyNonBallastWater>
+  <MiniMapBuoyancyEffectiveWater>  - 常规舱超标折算有效水量 : [water] m³</MiniMapBuoyancyEffectiveWater>
+  
+  <MiniMapBuoyancyResultTitle>⚖️ 综合算法最终结算</MiniMapBuoyancyResultTitle>
+  <MiniMapBuoyancyTotalWaterPct>  - 算法折算后总进水率 (Water%): [pct]%</MiniMapBuoyancyTotalWaterPct>
+  <MiniMapBuoyancyNetValue>  - 当前净浮力系数值 (Buoyancy): [buoyancy] (平衡浮力: [neutral])</MiniMapBuoyancyNetValue>
+  <MiniMapBuoyancyForceY>  - 潜艇垂直受力 (Force Y)  : [force] N</MiniMapBuoyancyForceY>
+  
+  <MiniMapBuoyancyDiagnosis> 状态诊断</MiniMapBuoyancyDiagnosis>
+  
+  <BuoyancyStatusBalanced>✅ 浮力平衡成功 (悬停安全状态)</BuoyancyStatusBalanced>
+  <BuoyancyStatusSinkingSlow>正常航行：正在通过压载舱调节深度/下沉中。</BuoyancyStatusSinkingSlow>
+  <BuoyancyStatusSinkingFast>⚠️ 严重漏水！常规舱室进水超标，潜艇正处于失控当下沉状态！</BuoyancyStatusSinkingFast>
+  <BuoyancyStatusRising>🚀 正常航行：正在执行上浮控制。</BuoyancyStatusRising>
 </infotexts>

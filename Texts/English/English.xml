@@ -858,5 +858,26 @@ The man pulled out a syringe and injected something into your arm. You felt some
 
   <itemmsgscavengeuse>[[use]] Scavenge</itemmsgscavengeuse>
 
+  <MiniMapModeNormal>System Status</MiniMapModeNormal>
+  <MiniMapModeBuoyancy>Buoyancy Monitor</MiniMapModeBuoyancy>
+
+  <MiniMapBuoyancyHeader>Core Physics System: Fleet Buoyancy Solver Console</MiniMapBuoyancyHeader>
+  <MiniMapBuoyancyShipInfo> • Submarine Name : [subname] ([subclass])&#10; • Reserved Buoyancy Threshold : [tolerance]%  |  Non-Ballast hull flooding sinkage Coefficient : x[multiplier]\nBallast Hull flooding sinkage : x1</MiniMapBuoyancyShipInfo>
   
+  <MiniMapBuoyancyCategoryTitle>📊 Physical Compartment Breakdown</MiniMapBuoyancyCategoryTitle>
+  <MiniMapBuoyancyBallastWater>  - Total Ballast Water Volume : [water] / [vol] m³</MiniMapBuoyancyBallastWater>
+  <MiniMapBuoyancyNonBallastWater>  - Non-Ballast Real Flooding : [pct]% ([water] / [vol] m³)</MiniMapBuoyancyNonBallastWater>
+  <MiniMapBuoyancyEffectiveWater>  - Non-Ballast Excess Effective Water : [water] m³</MiniMapBuoyancyEffectiveWater>
+  
+  <MiniMapBuoyancyResultTitle>⚖️ Integrated Algorithm Final Settlement</MiniMapBuoyancyResultTitle>
+  <MiniMapBuoyancyTotalWaterPct>  - Total Calculated Flooding Rate (Water%): [pct]%</MiniMapBuoyancyTotalWaterPct>
+  <MiniMapBuoyancyNetValue>  - Net Buoyancy Coefficient (Buoyancy): [buoyancy] (Neutral Buoyancy: [neutral])</MiniMapBuoyancyNetValue>
+  <MiniMapBuoyancyForceY>  - Vertical Dynamic Net Force (Force Y)  : [force] N</MiniMapBuoyancyForceY>
+  
+  <MiniMapBuoyancyDiagnosis> Status Diagnosis</MiniMapBuoyancyDiagnosis>
+  
+  <BuoyancyStatusBalanced>✅ Buoyancy balanced. (Hovering/Safe state)</BuoyancyStatusBalanced>
+  <BuoyancyStatusSinkingSlow>Normal Navigation: Adjusting depth / descending via ballasts.</BuoyancyStatusSinkingSlow>
+  <BuoyancyStatusSinkingFast>⚠️ CRITICAL FLOODING! Non-ballast compartments breached, submarine is sinking out of control!</BuoyancyStatusSinkingFast>
+  <BuoyancyStatusRising>🚀 Normal Navigation: Ascending control active.</BuoyancyStatusRising>
 </infotexts>

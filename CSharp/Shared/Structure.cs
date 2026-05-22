@@ -8,7 +8,7 @@ namespace BarotraumaDieHard
     [HarmonyPatch(typeof(Structure))]
     public class StructureLeakPatch
     {
-        private const float NewBigGapThreshold = 0.9f;
+        private const float NewBigGapThreshold = 0.85f;
         private const float NewSmallGapOpenness = 0.25f;
         private const float NewLargeGapOpenness = 0.75f;
         
