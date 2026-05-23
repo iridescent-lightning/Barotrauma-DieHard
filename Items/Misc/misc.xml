@@ -951,5 +951,19 @@
     <LiftBarrier name="LiftBarrier" nameidentifier="LiftBarrier" identifier="decobarrier1" category="Decorative" subcategory="generic" allowattachitems="true" width="448" height="128" scale="0.5" linkable="true">
     <sprite texture="Content/Map/SubmarineDeco.png" sourcerect="0,496,448,128" depth="0.75" />
     </LiftBarrier>
+    <DebugTriangle name="triangle" identifier="debugtriangle" scale="0.5" Tags="collidable_always">
+      <Sprite texture="%ModDir%/UI/Debug.png" sourcerect="0,0,139,120" depth="0.4" origin="0.5,0.5" />
+      <Body width="130" height="130" density="25" customshape="triangle"/>
+    </DebugTriangle>
+    <DebugTable name="debugtable" identifier="debugtable" scale="0.5" Tags="collidable_always">
+      <Sprite texture="%ModDir%/UI/Debug.png" sourcerect="3,182,187,115" depth="0.4" origin="0.5,0.5" />
+      <Body customshape="table" 
+    width="200" 
+    height="20" 
+    density="100" 
+    legwidth="12" 
+    legheight="40" 
+    legoffset="85"/>
+    </DebugTable>
   </Items>
 </Override>

@@ -22,10 +22,10 @@ namespace BarotraumaDieHard
         // 不同潜艇类型的进水容忍阈值（超过此比例才开始损失浮力）
         public static readonly Dictionary<SubmarineRole, float> FloodToleranceByRole = new Dictionary<SubmarineRole, float>
         {
-            { SubmarineRole.Scout, 0.17f },     // 15% 进水才开始下沉
-            { SubmarineRole.Combat, 0.15f },    // 10% 进水才开始下沉
-            { SubmarineRole.Transport, 0.25f },  // 20% 进水才开始下沉
-            { SubmarineRole.Shuttle, 0.1f },
+            { SubmarineRole.Scout, 0.25f },     // 15% 进水才开始下沉
+            { SubmarineRole.Combat, 0.2f },    // 10% 进水才开始下沉
+            { SubmarineRole.Transport, 0.35f },  // 20% 进水才开始下沉
+            { SubmarineRole.Shuttle, 0.15f },
             { SubmarineRole.Undefined, 0f }
         };
 
@@ -34,7 +34,7 @@ namespace BarotraumaDieHard
 
         // 非压载舱进水影响系数（达到阈值后的影响程度）
         // 1.0 = 完全影响，0.5 = 只有一半影响
-        public const float NonBallastFloodMultiplier = 0.5f;
+        public const float NonBallastFloodMultiplier = 0.45f;
     }
 
     [HarmonyPatch(typeof(SubmarineBody))]

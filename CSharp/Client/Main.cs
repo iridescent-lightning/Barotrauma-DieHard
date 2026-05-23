@@ -63,6 +63,13 @@ namespace BarotraumaDieHard
             AddTextureToSpriteList("wire_realism", "%ModDir%/Items/Electricity/signalcomp.png", new Rectangle(968, 118, 16, 16), originPercentage: new Vector2(0.353f, 0.441f));
             AddTextureToSpriteList("newMorphineIcon", "%ModDir%/Items/InventoryIconAtlas.png", new Rectangle(256, 448, 64, 64));
             AddTextureToSpriteList("newFentanylIcon", "%ModDir%/Items/InventoryIconAtlas.png", new Rectangle(320, 448, 64, 64));
+            //-- ui icons
+            AddTextureToSpriteList("farLookIcon", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(345,554,19,15));
+            AddTextureToSpriteList("openPalm", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(341,585,41,50));
+            AddTextureToSpriteList("doorHandle", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(397,542,60,34), originPercentage: new Vector2(0.73f, 0));
+            AddTextureToSpriteList("pickHand", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(342,642,45,51));
+            AddTextureToSpriteList("ladderClimbIcon", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(407,643,34,60));
+            AddTextureToSpriteList("magnifierIcon", "%ModDir%/UI/UIAtlasGeneral.png", new Rectangle(465,530,50,54), originPercentage: new Vector2(-0.2f, -0.1f));
         }
 
         public static void AddTextureToSpriteList(string spriteKey, string filepath, Rectangle sourceRect, Vector2? offset = null, Vector2? originPercentage = null, float rotation = 0)
