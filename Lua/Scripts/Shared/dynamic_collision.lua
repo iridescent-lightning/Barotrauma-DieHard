@@ -100,8 +100,8 @@ Hook.Add("item.created", "ItemCollision.MakeItemCollider", function (item)
 end)
 
 for key, value in pairs(Item.ItemList) do
-    if (item.HasTag('collidable')) then
-    MakeItemCollide(item)
+    if (value.HasTag('collidable')) then
+    MakeItemCollide(value)
     --original was MakeItemCollide(value). But it looked like an error. Now changed to 'item'
 	end
 end

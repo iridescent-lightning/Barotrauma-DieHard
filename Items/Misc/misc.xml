@@ -904,7 +904,7 @@
       <Holdable handle1="0,0" slots="RightHand,LeftHand,Any" msg="ItemMsgPickUpSelect"/>
       <RadioactiveFuelRod/>
     </MeltDownFuelRod>
-    <Item name="lift1" identifier="lift1" scale="0.5" health="100" allowrotatingineditor="false" noninteractable="true" allowedlinks="lever,terminal,decobarrier1" linkable="true" Tags="">
+    <Item name="lift" identifier="lift" scale="0.5" health="100" allowrotatingineditor="false" noninteractable="true" allowedlinks="lever,terminal,decobarrier1" linkable="true" Tags="">
       <Sprite texture="%ModDir%/Items/Doors/elevator.png" sourcerect="0,11,258,65" depth="0.4" origin="0.5,0.5" />
       <body width="258" height="65" density="100" bodytype="static"/>
       <Door canbeselected="true" canbepicked="false" horizontal="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="1,0.8" IsOpen="false" UseBetweenOutpostModules="false">

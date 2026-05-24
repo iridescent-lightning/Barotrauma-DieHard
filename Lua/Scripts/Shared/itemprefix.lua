@@ -1,8 +1,6 @@
-
-LiftStopper = {}
 mainsubHulls = {}--in mp this is needed
 rebreatherStart = {}
-platformState = {}
+
 subDimensionRatio = 0 -- need  to delcear first or some display run ahead of the water 
 subWidth = 0
 subHeight = 0
@@ -31,10 +29,7 @@ Timer.Wait(function()
 	
     for _, item in pairs(Item.ItemList) do
         
-		if item.HasTag('topstop') or item.HasTag('bottomstop') then
-			table.insert(LiftStopper,item)
-			--liftstopper[item] = {}
-		elseif item.HasTag('mineralscanner_sonar') then
+		if item.HasTag('mineralscanner_sonar') then
 		Timer.Wait(function()
 			local sonarComponent = item:GetComponentString('Sonar')
 			if sonarComponent then
@@ -42,14 +37,6 @@ Timer.Wait(function()
                 sonarComponent.HasMineralScanner=true;
 			end
 			end,100)
-		--[[elseif item.HasTag('creature_loot') then
-		Timer.Wait(function()
-			local randomDecay = math.random(1,20)
-				item.Condition = item.Condition - randomDecay
-			if item.Condition == 0 then
-				Entity.Spawner.AddEntityToRemoveQueue(item)
-			end
-			end,100)--]]
 		elseif item.Prefab.Identifier == 'warrant' then
 		
 			item.Condition = item.Condition - 50
@@ -61,12 +48,6 @@ Timer.Wait(function()
 		{
 			init = 0
 		}
-		elseif item.Prefab.Identifier == "lift" then
-		platformState[item] = 
-		{
-			hasReachBottom = false,
-			hasReachTop = false
-		}
 		
 		elseif item.HasTag('windoweddoorwbuttons') or item.HasTag('doorwbuttons') then
 			local theComponent = item.GetComponentString('Door')
@@ -75,13 +56,6 @@ Timer.Wait(function()
 			theComponent.set_ClosingSpeed(0.8)
 			end
 
-		elseif item.Prefab.Identifier == 'enterable_doora' then
-		
-			local fakeDoor = item:GetComponentString('Door')
-			if fakeDoor then
-				fakeDoor.DisableBody()
-				--print("body siabled")
-			end
         end
 		
 		
@@ -90,9 +64,6 @@ Timer.Wait(function()
 end);
 
 Hook.Add("roundEnd","ClearCache",function()
-LiftStopper = {}
-platformState = {}
---ballastPump = {}
 mainsubHulls = {}
 rebreatherStart = {}
 

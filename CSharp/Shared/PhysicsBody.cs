@@ -261,11 +261,10 @@ public static class CustomShapeManager
 
             LastDirections[__instance] = currentDir;
 
-            // 核心修复：从全局字典取出属于当前桌子实例的专属、干净的数据！
+            // 从全局字典取出属于当前桌子实例的专属数据
             if (!TableInstanceStorage.TryGetValue(__instance, out TableData data)) return;
 
             float boardWidthPixels = ConvertUnits.ToDisplayUnits(__instance.Width);
-            // 绝不参与动态减法，直接用最稳妥的备份模拟高度
             float boardHeightPixels = ConvertUnits.ToDisplayUnits(data.OriginalBoardHeightSim);
 
             // 判定方向：镜像交换左右数据
@@ -292,14 +291,36 @@ public static class CustomShapeManager
                 density = __instance.FarseerBody.FixtureList[0].Shape.Density;
             }
 
-            // 安全移除旧 Fixtures
+            // 🌟【联动修复准备】：在清空旧治具前，先找出寄生在这把枪里的弹匣物品
+            Barotrauma.Item parentGunItem = __instance.FarseerBody.UserData as Barotrauma.Item;
+            if (parentGunItem == null && __instance.FarseerBody.UserData is PhysicsBody pBody)
+            {
+                // 有时候 UserData 绑定的是 PhysicsBody，我们需要借此拿到真实的 Item 实例
+                parentGunItem = pBody.FarseerBody.UserData as Barotrauma.Item;
+            }
+
+            Barotrauma.Item containedMagazine = null;
+            if (parentGunItem != null && parentGunItem.OwnInventory != null)
+            {
+                // 遍历枪内部的物品，找到那个带独立物理标签的弹匣
+                foreach (var containedItem in parentGunItem.OwnInventory.AllItems)
+                {
+                    if (containedItem != null && containedItem.HasTag("Enable_contained_physics"))
+                    {
+                        containedMagazine = containedItem;
+                        break;
+                    }
+                }
+            }
+
+            // 安全移除旧 Fixtures（这会把之前的旧弹匣治具一起删掉）
             for (int i = __instance.FarseerBody.FixtureList.Count - 1; i >= 0; i--)
             {
                 var fixture = __instance.FarseerBody.FixtureList[i];
                 __instance.FarseerBody.Remove(fixture); 
             }
 
-            // 重新塞入镜像治具
+            // 重新塞入枪支自身的镜像治具
             foreach (var vertices in parts)
             {
                 var polyShape = new FarseerPhysics.Collision.Shapes.PolygonShape(vertices, density);
@@ -307,12 +328,44 @@ public static class CustomShapeManager
                 fixture.UserData = __instance;
             }
 
-            // 核心修复：强制重设 Farseer 质心与物理质量，防止位置偏置
+            // 🌟【核心修复】：如果枪里有弹匣，在这里为它重新注入完美翻转后的新治具！
+            if (containedMagazine != null && OriginalMagazineShapes.TryGetValue(containedMagazine, out var origVertices))
+            {
+                // 计算当前翻转方向下的相对偏移量
+                Vector2 worldOffset = containedMagazine.WorldPosition - parentGunItem.WorldPosition;
+                
+                // 💥【物理镜像关键点】：如果枪翻转了，弹匣在 X 轴上的相对偏移需要取反！
+                // 这样弹匣碰撞箱才会跟着枪的美术贴图一起跑到左边或右边
+                if (currentDir < 0)
+                {
+                    worldOffset.X = -worldOffset.X;
+                }
+
+                Vector2 localOffsetSim = ConvertUnits.ToSimUnits(worldOffset);
+
+                // 根据原始顶点和新偏移克隆新形状
+                var newVertices = new FarseerPhysics.Common.Vertices(origVertices);
+                for (int i = 0; i < newVertices.Count; i++)
+                {
+                    // 如果枪向左(Dir < 0)，弹匣碰撞箱自身的形状顶点可能也需要水平镜像
+                    if (currentDir < 0)
+                    {
+                        newVertices[i] = new Vector2(-newVertices[i].X, newVertices[i].Y);
+                    }
+                    newVertices[i] += localOffsetSim;
+                }
+
+                var attachedShape = new FarseerPhysics.Collision.Shapes.PolygonShape(newVertices, density);
+                var clonedFixture = __instance.FarseerBody.CreateFixture(attachedShape, collisionCategory, collidesWith);
+                clonedFixture.UserData = __instance;
+
+                // 重新更新全局追踪字典，确保拔出时能正常销毁
+                AttachedFixtures[containedMagazine] = clonedFixture;
+            }
+
+            // 强制重设 Farseer 质心与物理质量，防止位置偏置
             __instance.FarseerBody.ResetMassData();
             __instance.FarseerBody.Awake = true;
-                    
-            //DebugConsole.NewMessage($"[桌腿镜像成功] 实例 ID: {__instance.GetHashCode()} 方向已切换至: {currentDir}，物理碰撞完全同步。");
-            
         }
 
         [HarmonyPatch(typeof(PhysicsBody), nameof(PhysicsBody.Remove))]
@@ -369,18 +422,103 @@ public static class CustomShapeManager
             return false;
         }
 
-        [HarmonyPatch(typeof(Barotrauma.Inventory), "PutItem")]
-        [HarmonyPostfix]
-        public static void PutItemPostfix(Barotrauma.Item item)
+        // 追踪寄生治具的全局字典
+    public static readonly Dictionary<Barotrauma.Item, FarseerPhysics.Dynamics.Fixture> AttachedFixtures = 
+        new Dictionary<Barotrauma.Item, FarseerPhysics.Dynamics.Fixture>();
+
+    // 🌟 新增：专门用来持久化备份弹匣刚出生时的原始顶点形状，防止翻转逻辑因重复计算而变形变形
+    public static readonly Dictionary<Barotrauma.Item, FarseerPhysics.Common.Vertices> OriginalMagazineShapes = 
+        new Dictionary<Barotrauma.Item, FarseerPhysics.Common.Vertices>();
+
+    [HarmonyPatch(typeof(Barotrauma.Inventory), "PutItem")]
+    [HarmonyPostfix]
+    public static void PutItemPostfix(Barotrauma.Item item)
+    {
+        if (item == null) return;
+
+        if (item.HasTag("Enable_contained_physics") && item.ParentInventory?.Owner is Barotrauma.Item parentGun)
         {
-            if (item?.body == null) return;
-            if (item.HasTag("Enable_contained_physics") && item.ParentInventory?.Owner != null && item.ParentInventory.Owner is Item parentItem)
+            if (item.body == null || parentGun.body == null || parentGun.body.FarseerBody == null || !parentGun.HasTag("gun")) return;
+            if (AttachedFixtures.ContainsKey(item)) return;
+
+            if (item.body.FarseerBody.FixtureList.Count > 0)
+            {
+                var origFixture = item.body.FarseerBody.FixtureList[0];
+                if (origFixture.Shape is FarseerPhysics.Collision.Shapes.PolygonShape origPoly)
+                {
+                    // 🌟 备份原始顶点数据，供枪支 Flip 刷新的时时候用
+                    if (!OriginalMagazineShapes.ContainsKey(item))
+                    {
+                        OriginalMagazineShapes[item] = new FarseerPhysics.Common.Vertices(origPoly.Vertices);
+                    }
+
+                    float currentDir = parentGun.body.Dir;
+                    Vector2 worldOffset = item.WorldPosition - parentGun.WorldPosition;
+                    
+                    // 如果装载时枪已经是反向的，应用反向坐标偏移
+                    if (currentDir < 0)
+                    {
+                        worldOffset.X = -worldOffset.X;
+                    }
+
+                    Vector2 localOffsetSim = ConvertUnits.ToSimUnits(worldOffset);
+
+                    var newVertices = new FarseerPhysics.Common.Vertices(origPoly.Vertices);
+                    for (int i = 0; i < newVertices.Count; i++)
+                    {
+                        if (currentDir < 0)
+                        {
+                            newVertices[i] = new Vector2(-newVertices[i].X, newVertices[i].Y);
+                        }
+                        newVertices[i] += localOffsetSim;
+                    }
+
+                    var attachedShape = new FarseerPhysics.Collision.Shapes.PolygonShape(newVertices, origPoly.Density);
+                    var clonedFixture = parentGun.body.FarseerBody.CreateFixture(
+                        attachedShape, 
+                        parentGun.body.CollisionCategories, 
+                        parentGun.body.CollidesWith
+                    );
+                    clonedFixture.UserData = parentGun.body;
+
+                    AttachedFixtures[item] = clonedFixture;
+                    item.body.Enabled = false;
+
+                    parentGun.body.FarseerBody.ResetMassData();
+                    parentGun.body.FarseerBody.Awake = true;
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(Barotrauma.Inventory), "RemoveItem")]
+    [HarmonyPostfix]
+    public static void RemoveItemPostfix(Barotrauma.Item item)
+    {
+        if (item == null) return;
+
+        if (AttachedFixtures.TryGetValue(item, out var clonedFixture))
+        {
+            var parentBody = clonedFixture.Body;
+            if (parentBody != null)
+            {
+                parentBody.Remove(clonedFixture);
+                parentBody.ResetMassData();
+                parentBody.Awake = true;
+            }
+
+            AttachedFixtures.Remove(item);
+            // 拔出时清理形状备份字典
+            if (OriginalMagazineShapes.ContainsKey(item)) OriginalMagazineShapes.Remove(item);
+
+            if (item.body != null)
             {
                 item.body.Enabled = true;
                 item.body.BodyType = FarseerPhysics.BodyType.Dynamic;
-                item.body.CollisionCategories = Physics.CollisionItem;
-                DebugConsole.NewMessage($"[独立物理] 弹匣 {item.Name} 已成功开启碰撞。");
+                item.body.CollisionCategories = Barotrauma.Physics.CollisionItem;
+                item.body.FarseerBody.Awake = true;
             }
         }
+    }
     }
 }

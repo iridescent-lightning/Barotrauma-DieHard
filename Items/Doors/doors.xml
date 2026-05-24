@@ -249,59 +249,96 @@
         <output name="activate_out" displayname="connection.activateout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="lift" scale="0.5" health="100" allowrotatingineditor="false" noninteractable="true">
-      <Sprite texture="%ModDir%/Items/Doors/elevator.png" sourcerect="0,11,258,65" depth="0.4" origin="0.5,0.5" />
-      <Door canbeselected="true" canbepicked="false" horizontal="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="1,0.8" IsOpen="false" UseBetweenOutpostModules="false">
-        <!--<Sprite texture="hatch.png" sourcerect="256,0,256,38" depth="0.05" origin="0.0,0.5" />-->
-        <sprite texture="%ModDir%/Items/Doors/elevator.png" sourcerect="0,11,258,65" depth="0.05" origin="0.0,0.5" />
-        <WeldedSprite texture="hatch.png" sourcerect="0,100,227,75" depth="0.0" origin="0.5,0.5" />
-        <BrokenSprite texture="hatch.png" sourcerect="256,45,256,114" depth="0.509" origin="0.0,0.5" scale="true" />
-        <sound file="Content/Items/Door/Door1.ogg" type="OnUse" range="500.0" />
-        <sound file="Content/Items/Door/Door2.ogg" type="OnUse" range="500.0" />
-        <sound file="Content/Items/Door/Door3.ogg" type="OnUse" range="500.0" />
-        <sound file="Content/Items/Door/Door4.ogg" type="OnUse" range="500.0" />
-        <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
-        <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
-        <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
-        <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
-        <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
-        <StatusEffect type="OnDamaged" target="This">
-          <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
-          <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
-        </StatusEffect>
-      </Door>
-      <LightComponent range="0" lightcolor="0,0,0,0" powerconsumption="0" IsOn="false" castshadows="false" allowingameediting="false">
-        <StatusEffect type="Always" target="This" checkconditionalalways="true" loop="true">
-          <Sound file="%ModDir%/Items/Doors/platform1_startmove.ogg" />
-          <Conditional ison="true" />
-        </StatusEffect>
-      </LightComponent>
-      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
-        <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
-        <RequiredItem items="screwdriver" type="Equipped" />
-        <input name="toggle" displayname="connection.togglestate" />
-        <input name="set_state" displayname="connection.setstate" />
-        <input name="moveup" displayname="moveup">
-          <StatusEffect type="OnUse" target="This">
-            <LuaHook name="MoveHatchUp" range="50" />
-          </StatusEffect>
-        </input>
-        <input name="movedown" displayname="movedown">
-          <StatusEffect type="OnUse" target="This">
-            <LuaHook name="MoveHatchDown" />
-          </StatusEffect>
-        </input>
-        <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout" />
-        <output name="condition_out" displayname="connection.conditionout" />
-        <output name="Dock_State" displayname="connection.Dock_State" />
-      </ConnectionPanel>
-    </Item>
     <Item name="" identifier="lifttopstop" tags="topstop" scale="0.3" health="100" noninteractable="true">
       <sprite texture="Content/Map/ShuttleWalls.png" sourcerect="596,296,444,56" depth="0.1" origin="0.5,0.5" />
     </Item>
     <Item name="" identifier="liftbottomstop" tags="bottomstop" scale="0.3" health="100" noninteractable="true">
       <sprite texture="Content/Map/ShuttleWalls.png" sourcerect="596,296,444,56" depth="0.1" origin="0.5,0.5" />
     </Item>
-    <!--Тяггенпыхц platform1_startmove -->
+    <Hatch name="" identifier="hatch" allowedlinks="gap,hull,structure,item" linkable="true" tags="door,weldable" category="misc" subcategory="doorsandhatches" scale="0.5" health="300" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" ondamagedthreshold="2" allowrotatingineditor="false">
+    <Upgrade gameversion="1.2.14.0" spritedepth="0.7"/>
+    <Sprite texture="hatch.png" sourcerect="0,0,256,98" depth="0.7" origin="0.5,0.5" />
+    <DecorativeSprite texture="hatch.png" sourcerect="0,180,256,50" depth="0.69" origin="0.5,0.5"/>
+    <DecorativeSprite texture="hatch.png" sourcerect="0,0,256,98" depth="0.04" origin="0.5,0.5" />
+    <Door canbeselected="true" canbepicked="true" horizontal="true" pickkey="Action" msg="ItemMsgForceOpenCrowbar" PickingTime="7.5" shadowscale="1,0.8">
+      <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+      <RequiredItem items="crowbar" type="Equipped" />
+      <Sprite texture="hatch.png" sourcerect="256,0,256,38" depth="0.05" origin="0.0,0.5" />
+      <WeldedSprite texture="hatch.png" sourcerect="0,100,227,75" depth="0.0" origin="0.5,0.5" />
+      <BrokenSprite texture="hatch.png" sourcerect="256,45,256,114" depth="0.6" origin="0.0,0.5" scale="true" />
+      <sound file="Content/Items/Door/Door1.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door2.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door3.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door4.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+      <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+      <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+      <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+      <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+      <StatusEffect type="OnDamaged" target="This">
+        <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+      </StatusEffect>
+    </Door>
+    <AiTarget sightrange="1500.0" static="True"/>
+    <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem items="wrench" type="equipped" />
+    </Repairable>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout"/>
+      <output name="condition_out" displayname="connection.conditionout" />
+      <output name="activate_out" displayname="connection.activateout" />
+    </ConnectionPanel>
+  </Hatch>
+    <HatchwButtons name="" identifier="hatchwbuttons" allowedlinks="gap,hull,structure,item" linkable="true" tags="door,weldable" category="misc" subcategory="doorsandhatches" scale="0.5" health="300" requirebodyinsidetrigger="false" damagedbyrepairtools="true" damagedbymonsters="true" damagedbyprojectiles="true" damagedbymeleeweapons="true" damagedbyexplosions="true" ShowNameInHealthBar="false" explosiondamagemultiplier="0.1" ondamagedthreshold="2" allowrotatingineditor="false">
+    <Upgrade gameversion="1.2.14.0" spritedepth="0.7"/>
+    <Sprite texture="hatch.png" sourcerect="0,0,256,98" depth="0.7" origin="0.5,0.5" />
+    <DecorativeSprite texture="hatch.png" sourcerect="0,0,256,98" depth="0.04" origin="0.5,0.5" />
+    <DecorativeSprite texture="hatch.png" sourcerect="0,234,256,193" depth="0.7" origin="0.5,0.5"/>
+    <DecorativeSprite texture="hatch.png" sourcerect="0,180,256,50" depth="0.69" origin="0.5,0.5"/>
+    <Door canbeselected="true" canbepicked="true" horizontal="true" pickkey="Action" msg="ItemMsgOpen" PickingTime="7.5" shadowscale="1,0.8" hasintegratedbuttons="true">
+      <Upgrade gameversion="0.22.0.0" PickingTime="7.5" />
+      <RequiredItem items="crowbar" type="Equipped" optional="true"/>
+      <Requireditem items="idcard" type="Picked" optional="true"/>
+      <Sprite texture="hatch.png" sourcerect="256,0,256,38" depth="0.05" origin="0.0,0.5" />
+      <WeldedSprite texture="hatch.png" sourcerect="0,100,227,75" depth="0.0" origin="0.5,0.5" />
+      <BrokenSprite texture="hatch.png" sourcerect="256,45,256,114" depth="0.6" origin="0.0,0.5" scale="true" />
+      <sound file="Content/Items/Door/Door1.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door2.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door3.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Door/Door4.ogg" type="OnUse" range="500.0" />
+      <sound file="Content/Items/Tools/Crowbar.ogg" type="OnPicked" range="2000.0" onlyinsamesub="true" />
+      <sound file="Content/Items/Door/Duct1.ogg" type="OnFailure" selectionmode="Random" range="300" />
+      <sound file="Content/Items/Door/Duct2.ogg" type="OnFailure" range="300" />
+      <sound file="Content/Items/Door/DoorBreak1.ogg" type="OnBroken" selectionmode="Random" range="2000" />
+      <sound file="Content/Items/Door/DoorBreak2.ogg" type="OnBroken" range="2000" />
+      <StatusEffect type="OnDamaged" target="This">
+        <sound file="Content/Items/Door/DoorBreak1.ogg" selectionmode="Random" range="800" />
+        <sound file="Content/Items/Door/DoorBreak2.ogg" range="800" />
+      </StatusEffect>
+    </Door>
+    <trigger x="170" y="51" width="70" height="200" />
+    <AiTarget sightrange="1500.0" static="True"/>
+    <Repairable selectkey="Action" header="mechanicalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairWrench" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+      <RequiredSkill identifier="mechanical" level="40" />
+      <RequiredItem items="wrench" type="equipped" />
+    </Repairable>
+    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+      <GuiFrame relativesize="0.2,0.32" minsize="400,350" maxsize="480,420" anchor="Center" style="ConnectionPanel" />
+      <RequiredItem items="screwdriver" type="Equipped" />
+      <input name="toggle" displayname="connection.togglestate" />
+      <input name="set_state" displayname="connection.setstate" />
+      <output name="state_out" displayname="connection.stateout" fallbackdisplayname="connection.signalout"/>
+      <output name="condition_out" displayname="connection.conditionout" />
+      <output name="activate_out" displayname="connection.activateout" />
+    </ConnectionPanel>
+  </HatchwButtons>
   </Items>
 </Override>

@@ -140,7 +140,7 @@
         </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Revolverround>
-    <Item name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms">
+    <FNFiveSeven name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" secondary="armcab" minamount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -168,7 +168,9 @@
       </DecorativeSprite>
       <DecorativeSprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="363,16,86,59" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="64,16,86,59" depth="0.83" />
-      <Body width="90" height="60" density="50" />
+      <Body customshape="table" width="110" height="16" density="25" 
+            leftlegwidth="8" leftlegheight="15" leftlegoffset="0"
+            rightlegwidth="7" rightlegheight="5" rightlegoffset="11"/>
       <Holdable slots="Any,RightHand,LeftHand" controlpose="true" aimpos="70,10" handle1="-40,-5" msg="ItemMsgPickUpSelect" />
       <RangedWeapon barrelpos="50,15" spread="10" unskilledspread="20" reload="0.25" combatPriority="85" drawhudwhenequipped="true" crosshairscale="0.2" reloadskillrequirement="30">
         <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
@@ -208,7 +210,7 @@
       </ItemContainer>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
-    </Item>
+    </FNFiveSeven>
     <Item name="" identifier="57mag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="FNFive-seven" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -243,7 +245,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MPX name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" secondary="armcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.35" />
@@ -265,7 +267,14 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="704,960,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="0,0,205,88" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="0,0,205,88" depth="0.83" />
-      <Body width="240" height="64" density="50" />
+      <Body customshape="table" 
+            width="205" 
+            height="22" 
+            density="200" 
+            leftlegwidth="7" leftlegheight="11" leftlegoffset="0"
+            rightlegwidth="7" rightlegheight="19" rightlegoffset="50"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="40,0" handle1="-30,-5" handle2="25,5" holdangle="-40" msg="ItemMsgPickUpSelect" />
       <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite name="MPX Worn" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="0,0,205,88" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" depth="0.6" limb="Torso" scale="0.35" origin="0.5,-0.2" />
@@ -341,8 +350,8 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
-    </Item>
-    <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    </MPX>
+    <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MPX" amount="1"/>
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -508,11 +517,11 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="384,894,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="0,0,466,106" depth="0.55" />
       <Body customshape="table" 
-            width="320" 
+            width="450" 
             height="24" 
             density="200" 
-            leftlegwidth="9" leftlegheight="25" leftlegoffset="0"
-            rightlegwidth="9" rightlegheight="17" rightlegoffset="72"
+            leftlegwidth="16" leftlegheight="12" leftlegoffset="0"
+            rightlegwidth="7" rightlegheight="15" rightlegoffset="78"
             waterdragcoefficient="20"
             friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-10" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40" msg="ItemMsgPickUpSelect" />
@@ -597,7 +606,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </M16>
-    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <M16Mag name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="M16" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -621,8 +630,13 @@
       </Fabricate>
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="320,894,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" depth="0.56" sourcerect="7,123,40,52" origin="0.5,0.5" />
-      <ContainedSprite name=".300 AAC Magazine" allowedcontainertags="M16" texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" depth="0.56" sourcerect="7,123,40,52" />
-      <Body width="32" height="64" density="50" />
+      <ContainedSprite name="M16 Magazine" allowedcontainertags="M16" texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" depth="0.56" sourcerect="7,123,40,52" />
+      <Body 
+            width="35" 
+            height="55" 
+            density="100" 
+            waterdragcoefficient="5"
+            friction="2.0"/>
       <Holdable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,0" holdangle="-5" aimable="false" msg="ItemMsgPickUpSelect" canBeCombined="true" />
       <ItemContainer hideitems="true" capacity="1" maxstacksize="1" removecontaineditemsondeconstruct="true" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" canbecombined="true" SpawnWithID="300acc">
         <Containable identifiers="556x45mm" />
@@ -631,7 +645,7 @@
           <SpawnItem identifiers="556x45mm" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </Item>
+    </M16Mag>
     <Item name="556x45mm" identifier="556x45mm" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,0,1,1" depth="0.55" origin="0.5,0.5" />
@@ -870,7 +884,14 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="512,960,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="0,285,214,61" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="0,285,214,61" depth="0.83" />
-      <Body width="220" height="60" density="50" />
+      <Body customshape="table" 
+            width="214" 
+            height="18" 
+            density="200" 
+            leftlegwidth="3" leftlegheight="12" leftlegoffset="0"
+            rightlegwidth="5" rightlegheight="13" rightlegoffset="37"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="30,-15" aimpos="40,0" handle1="-10,-14" handle2="25,-5" holdangle="-40" msg="ItemMsgPickUpSelect" />
       <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite name="MP9 Worn" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="0,285,214,61" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" depth="0.6" limb="Torso" scale="0.35" origin="0.5,-0.2" />
@@ -1181,7 +1202,14 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="576,960,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="4,493,436,141" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="2,354,293,94" depth="0.83" />
-      <Body width="436" height="141" density="50" />
+      <Body customshape="table" 
+            width="432" 
+            height="44" 
+            density="200" 
+            leftlegwidth="9" leftlegheight="13" leftlegoffset="0"
+            rightlegwidth="9" rightlegheight="15" rightlegoffset="72"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-5" aimpos="60,0" handle1="-80,-24" handle2="150,0" holdangle="-40" msg="ItemMsgPickUpSelect" />
       <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite name="SCAR Worn" texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="4,493,436,141" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" depth="0.6" limb="Torso" scale="0.255" origin="0.45,-0.1" />
@@ -1263,7 +1291,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
     </Scar>
-    <ScarMag name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <ScarMag name="" identifier="mk17mag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="mk17" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1446,7 +1474,14 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="640,960,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="521,350,491,117" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="198,187,302,74" depth="0.83" />
-      <Body width="90" height="60" density="50" />
+      <Body customshape="table" 
+            width="470" 
+            height="25" 
+            density="300" 
+            leftlegwidth="11" leftlegheight="12" leftlegoffset="0"
+            rightlegwidth="9" rightlegheight="16" rightlegoffset="82"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="50,-10" aimpos="50,0" handle1="-80,-20" handle2="125,24" holdangle="-40" msg="ItemMsgPickUpSelect" />
       <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite name="AK Worn" texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="521,350,491,117" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" depth="0.6" limb="Torso" scale="0.255" origin="0.5,-0.2" />
@@ -1500,7 +1535,7 @@
       </RangedWeapon>
       <ItemContainer autofill="True" capacity="1" maxstacksize="1" canbeselected="false" hideitems="false" itempos="0,-15" containedstateindicatorslot="0">
         <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="16,64,120,24" />
-        <Containable identifier="ak47mag" itempos="0,-10"/>
+        <Containable identifier="ak47mag" itempos="0,-9"/>
         <SlotIcon slotindex="1" texture="Content/UI/CampaignUIAtlas2.png" sourcerect="896,536,128,64" origin="0.45,0.5" />
         <SubContainer capacity="1" maxstacksize="1">
           <Containable items="flashlight" hide="false" itempos="22,-1" setactive="true" />
@@ -1525,7 +1560,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
     </Item>
-    <Item name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
+    <AK47MAG name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
       <PreferredContainer primary="ak47" secondary="armcab" amount="2" notcampaign="True" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1547,9 +1582,16 @@
         <RequiredItem identifier="lead" />
         <RequiredItem identifier="steel" />
       </Fabricate>
-      <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" depth="0.56" sourcerect="746,242,57,96" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" depth="0.56" sourcerect="751,241,47,94" origin="0.5,0.5" />
       <ContainedSprite name="7.62x39mm AK-47 Magazine" allowedcontainertags="weapon" texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" depth="0.56" sourcerect="845,241,80,95" />
-      <Body width="57" height="96" density="50" />
+      <Body customshape="table" 
+            width="42" 
+            height="94" 
+            density="50" 
+            leftlegwidth="0" leftlegheight="0" leftlegoffset="0"
+            rightlegwidth="0" rightlegheight="0" rightlegoffset="0"
+            waterdragcoefficient="5"
+            friction="2.0"/>
       <Holdable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,0" holdangle="-5" aimable="false" msg="ItemMsgPickUpSelect" canBeCombined="true" />
       <ItemContainer hideitems="true" capacity="1" maxstacksize="1" removecontaineditemsondeconstruct="true" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" canbecombined="true" SpawnWithID="76239round">
         <Containable identifiers="76239round" />
@@ -1558,7 +1600,7 @@
           <SpawnItem identifiers="76239round" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </Item>
+    </AK47MAG>
     <Item name="7.62x39mm Round" identifier="76239round" category="Equipment" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="40,0.5" />
@@ -1633,7 +1675,7 @@
       <Body width="224" height="51" density="50" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </AK47Barrel>
-    <Item name="" identifier="pkm" aliases="pkm" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <PKM name="" identifier="pkm" aliases="pkm" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.5" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1653,7 +1695,14 @@
       </Deconstruct>
       <Sprite texture="%ModDir%/Items/Weapons/weapons2.png" sourcerect="6,750,586,216" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons2.png" sourcerect="6,750,586,216" depth="0.83" />
-      <Body width="586" height="216" density="50" />
+      <Body customshape="table" 
+            width="576" 
+            height="25" 
+            density="300" 
+            leftlegwidth="23" leftlegheight="12" leftlegoffset="0"
+            rightlegwidth="6" rightlegheight="33" rightlegoffset="35"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="65,-30" aimpos="70,-15" handle1="-105,15" handle2="-50,15" holdangle="-40" msg="ItemMsgPickUpSelect">
         <StatusEffect type="OnContained" target="Character" SpeedMultiplier="0.4" setvalue="true" />
       </Holdable>
@@ -1726,7 +1775,7 @@
       </Repairable>
       <SkillRequirementHint identifier="weapons" level="90" />
       <aitarget sightrange="2000" soundrange="8000" fadeouttime="5" />
-    </Item>
+    </PKM>
     <Item name="" identifier="pkmmag" aliases="pkmmag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" health="200" subcategory="small arms">
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="703,0,64,64" origin="0.5,0.5"/>
       <PreferredContainer primary="PKM" amount="1" notcampaign="True" />
@@ -1797,7 +1846,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <FAL name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1818,7 +1867,14 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="576,832,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="2,461,419,75" depth="0.55" />
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="2,461,419,75" depth="0.83" />
-      <Body width="420" height="75" density="50" />
+      <Body customshape="table" 
+            width="419" 
+            height="22" 
+            density="200" 
+            leftlegwidth="23" leftlegheight="11" leftlegoffset="0"
+            rightlegwidth="9" rightlegheight="14" rightlegoffset="104"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="65,-10" aimpos="65,-5" handle1="-80,-10" handle2="150,-5" holdangle="-40" msg="ItemMsgPickUpSelect" />
       <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
         <sprite name="FAL Worn" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="2,461,419,75" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" depth="0.6" limb="Torso" scale="0.35" origin="0.35,0" />
@@ -1888,8 +1944,8 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="60" />
-    </Item>
-    <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+    </FAL>
+    <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="fal" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1959,7 +2015,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="G19" description="[AP: 30%][9x19 Glock 19 Magazine]" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable" Scale="0.255" impactsoundtag="impact_handguns" HideConditionBar="true">
+    <G19 name="" identifier="G19" description="[AP: 30%][9x19 Glock 19 Magazine]" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable" Scale="0.255" impactsoundtag="impact_handguns" HideConditionBar="true">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -1980,7 +2036,9 @@
       <Sprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="524,716,142,92" depth="0.55" />
       <BrokenSprite texture="%ModDir%/Items/Weapons/weapons_high_resolution.png" sourcerect="509,823,130,92" depth="0.55" maxcondition="98"/>
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="64,16,86,59" depth="0.83" />
-      <Body width="90" height="60" density="50" />
+      <Body customshape="table" width="110" height="16" density="25" 
+            leftlegwidth="8" leftlegheight="15" leftlegoffset="0"
+            rightlegwidth="7" rightlegheight="5" rightlegoffset="11"/>
       <Holdable slots="Any,RightHand,LeftHand" controlpose="true" aimpos="70,10" handle1="-40,-5" msg="ItemMsgPickUpSelect" />
       <RangedWeapon barrelpos="50,25" spread="6" unskilledspread="30" reload="0.25" combatPriority="85" drawhudwhenequipped="true" crosshairscale="0.2" reloadskillrequirement="27">
         <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
@@ -2033,7 +2091,7 @@
       </ItemContainer>
       <SkillRequirementHint identifier="weapons" level="55" />
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
-    </Item>
+    </G19>
     <Item name="" identifier="g19mag" description="17 round 9x19 magazine for Glock 19" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="G19" amount="1" notcampaign="true" />
       <PreferredContainer primary="armcab" minamount="0" maxamount="1" spawnprobability="0.25" />
@@ -2069,7 +2127,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="underwatergun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.225" impactsoundtag="impact_metal_light" health="100" description="" subcategory="small arms">
+    <APSUNDERWATER name="" identifier="underwatergun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.225" impactsoundtag="impact_metal_light" health="100" description="" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.4" />
       <PreferredContainer secondary="secarmcab" maxamount="1" spawnprobability="0.1" />
@@ -2094,7 +2152,14 @@
       </Deconstruct>
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="896,960,64,64" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons2.png" sourcerect="0,451,463,115" depth="0.55" origin="0.5,0.5" />
-      <Body width="463" height="115" density="50" />
+      <Body customshape="table" 
+            width="460" 
+            height="18" 
+            density="200" 
+            leftlegwidth="3" leftlegheight="13" leftlegoffset="0"
+            rightlegwidth="9" rightlegheight="13" rightlegoffset="71"
+            waterdragcoefficient="20"
+            friction="10.0"/>
       <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="35,-10" aimpos="50,0" handle1="-45,-10" handle2="150,-5" holdangle="-40" msg="ItemMsgPickUpSelect">
         <StatusEffect type="OnBroken" target="This" duration="5" lifetime="5">
           <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="0.1" scalemax="0.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
@@ -2175,8 +2240,8 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
       <SkillRequirementHint identifier="weapons" level="35" />
-    </Item>
-    <Item name="" identifier="apsmag" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" linkable="true" tags="smallitem,collidable" impactsoundtag="impact_metal_light" health="26" maxstacksize="2" subcategory="small arms">
+    </APSUNDERWATER>
+    <Item name="" identifier="apsmag" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" linkable="true" tags="smallitem,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" health="26" maxstacksize="2" subcategory="small arms">
       <PreferredContainer primary="underwatergun" secondary="armcab" amount="1" notcampaign="true"/>
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="3" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="1" maxamount="2" spawnprobability="0.4" />

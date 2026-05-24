@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <infotexts language="Russian" nowhitespace="false" translatedname="Russian">
   <Affliction.fatigue.description>Бег снижает вашу выносливость. Отдохните, если устали.</Affliction.fatigue.description>
-  <coldwater>Холодная вода постепенно вас убивает. Выйдете из воды, чтобы восстановить температуру тела.</coldwater>
-  <coldwater1>Оставатся в воде слишком долго может быть опасно.</coldwater1>
+  <afflictiondescription.sonardamage>Сонар может вызвать серьёзные внутренние повреждения</afflictiondescription.sonardamage>
+  <afflictionname.sonardamage>Повреждение сонаром</afflictionname.sonardamage>
+  <coldwater>Холодная вода постепенно вас убивает. Выйдите из воды, чтобы восстановить температуру тела.</coldwater>
+  <coldwater1>Оставаться в воде слишком долго может быть опасно.</coldwater1>
   <dh_hypothermia>Вы сейчас замерзнете!</dh_hypothermia>
   <brainshot>Выстрел в мозг. Смерть неминуема. Хотя бы жертва ничего не чувствует.</brainshot>
   <pain>Используйте морфин чтобы остановить боль</pain>
-  <bodyarmorI>[Множитель скорости пробития: 40%]</bodyarmorI>
+  <afflictionname.pressurizedhull>Герметизированный корпус</afflictionname.pressurizedhull>
+  <afflictiondescription.pressurizedhull>Корпус, в котором вы находитесь, герметизирован!</afflictiondescription.pressurizedhull>
+  <afflictioncauseofdeath.pressurizedhull>Умер от внутренних травм.</afflictioncauseofdeath.pressurizedhull>
+  <afflictioncauseofdeathself.pressurizedhull>Вас раздавило воздухом.</afflictioncauseofdeathself.pressurizedhull>
   <eventtext.clownbomb.c>Клоун хихикает над вами.</eventtext.clownbomb.c>
   <eventtext.clownbomb.c1>"Это очень красивый корабль." Клоун начинает хихикать сильнее</eventtext.clownbomb.c1>
   <eventtext.clownbomb.c2>"Я сделал небольшой подарок вашему кораблю. Надеюсь вам понравится."</eventtext.clownbomb.c2>
@@ -58,7 +63,7 @@
   <EventText.dhhuskcultambush.c.o2.c>"Моя жизнь просто ужасна, лучше бы я жил без нужны волноваться о чем либо. Помогите мне."
 Мужчина вытащил шприц и ввел вам что-то в руку. Вы почувствовали очень странное ощущение.</EventText.dhhuskcultambush.c.o2.c>
   <EventText.dhhuskcultambush.aft>"Не могу понять, как они позволили таким людям попасть на станцию, куда вообще СБ смотрит?"</EventText.dhhuskcultambush.aft>
-  <EventText.checkevidence.c>"Я принимаю добычу с молтоглавов. Я куплю только одну вещь, ибо я не приношу много денег."</EventText.checkevidence.c>
+  <EventText.checkevidence.c>"Я принимаю добычу с молотоглавов. Я куплю только одну вещь, ибо я не приношу много денег."</EventText.checkevidence.c>
   <EventText.checkcrawlers.c>"Я принимаю добычу с ползунов. Я куплю только одну вещь, так как я не приношу много денег."</EventText.checkcrawlers.c>
   <EventText.checkmolochs.c>"Я принимаю добычу с Молохов. Я куплю только одну вещь, так как я не приношу много денег."</EventText.checkmolochs.c>
   <EventText.checkfish.c>"Я принимаю добычу с акульих тигров и шипостаев. Я куплю только одну вещь, так как я не приношу много денег."</EventText.checkfish.c>
@@ -243,8 +248,8 @@
   <Storytext.managertalk.c6>"Как вы уже видели, лучший корабль, который я могу для вас организовать, уже пришвартован. Плата, конечно, на вас. Вы можете купить другие корабли, если заработаете больше кредитов в путешествии. Это все, что Коалиция может сделать для вас."</Storytext.managertalk.c6>
   <Storytext.managertalk.c7>"Вы мне не можете сказать нашу цель?"</Storytext.managertalk.c7>
   <Storytext.managertalk.c8>"Ох, нет. Это... засекречено. Так что я ничего не могу вам сказать, ибо я сам знаю немного. Я несу ответственность за свои слова."</Storytext.managertalk.c8>
-  <Storytext.managertalk.c9>"Carry this to the nearby colony. Give it to the local manager and she will know what to do."</Storytext.managertalk.c9>
-  <Storytext.managertalk.c9.o>"Ok."</Storytext.managertalk.c9.o>
+  <Storytext.managertalk.c9>"Отвези это в ближайшую колонию. Передай местному менеджеру, и она будет знать, что делать."</Storytext.managertalk.c9>
+  <Storytext.managertalk.c9.o>"Хорошо."</Storytext.managertalk.c9.o>
   <Storytext.managertalk.c10>"Следи за собой, будь осторожен."</Storytext.managertalk.c10>
   <!--The Delivery-->
   <Storytext.receive.c>"Первый раз в море?"</Storytext.receive.c>
@@ -344,7 +349,7 @@
   <Storytext.theftincity_saved.c5>"Мне некуда идти."</Storytext.theftincity_saved.c5>
   <Storytext.theftincity_saved.c6>"Я хороша в оружии. Вы можете меня взять?"</Storytext.theftincity_saved.c6>
   <Storytext.theftincity_saved.c6.o1>"Ну, ладно."</Storytext.theftincity_saved.c6.o1>
-  <Storytext.theftincity_saved.c6.o1.c>"Классно, вы не пожалете."</Storytext.theftincity_saved.c6.o1.c>
+  <Storytext.theftincity_saved.c6.o1.c>"Классно, вы не пожалеете."</Storytext.theftincity_saved.c6.o1.c>
   <Storytext.theftincity_saved.c6.o2>"Я не хочу связываться с ворами."</Storytext.theftincity_saved.c6.o2>
   <Storytext.theftincity_saved.c6.o2.c1>"Тогда почему ты меня спас?"</Storytext.theftincity_saved.c6.o2.c1>
   <Storytext.theftincity_saved.c6.o2.c2>"Я не знаю."</Storytext.theftincity_saved.c6.o2.c2>
@@ -399,21 +404,27 @@
   <DHMissionMessage.towsub>Коалиция должна проанализировать причины бедствия. Если вы сможете отбуксировать обломки к месту назначения, вы будете вознаграждены.</DHMissionMessage.towsub>
   <DHMissionHeader.towsubcompleted>Побочная миссия выполнена: вы будете вознаграждены.</DHMissionHeader.towsubcompleted>
   <missionname.fetch_broodmother>Убить мать роя ползунов</missionname.fetch_broodmother>
-  <missiondescription.fetch_broodmother>Группа ползунов была замечена между [location1] и [location2]. У них можно украть что-то ценное. Отнесите добычу к следующему аванпосту, чтобы продать ее.</missiondescription.fetch_broodmother>
+  <missiondescription.fetch_broodmother>Группа ползунов была замечена между [location1] и [location2]. У них можно украсть что-то ценное. Отнесите добычу к следующему аванпосту, чтобы продать ее.</missiondescription.fetch_broodmother>
   <missionsonarlabel.fetch_broodmother>Мать роя полузнов</missionsonarlabel.fetch_broodmother>
   <missionsuccess.fetch_broodmother>Мать роя ползунов была убита.</missionsuccess.fetch_broodmother>
   <missionheader0.fetch_broodmother>Цель уничтожена</missionheader0.fetch_broodmother>
   <missionmessage0.fetch_broodmother>Мать роя ползунов мерта. Добудьте глаз монстра и выведите подводную лодку из пещеры, чтобы получить награду..</missionmessage0.fetch_broodmother>
-  <missiondescription.fetch_hammerhead>Группа молотоглавов была замечена между [location1] и [location2]. У них можно украть что-то ценное. Отнесите добычу к следующему аванпосту, чтобы продать ее.</missiondescription.fetch_hammerhead>
+  <missiondescription.fetch_hammerhead>Группа молотоглавов была замечена между [location1] и [location2]. У них можно украсть что-то ценное. Отнесите добычу к следующему аванпосту, чтобы продать ее.</missiondescription.fetch_hammerhead>
   <missionsonarlabel.fetch_hammerhead>Молотоглав</missionsonarlabel.fetch_hammerhead>
   <missionsuccess.fetch_hammerhead>Молотоглав был убит.</missionsuccess.fetch_hammerhead>
   <missionheader0.fetch_hammerhead>Цель уничтожена</missionheader0.fetch_hammerhead>
   <missionmessage0.fetch_hammerhead>Молотоглав убит. Добудьте плавник монстра и выведите подводную лодку из пещеры, чтобы получить награду.</missionmessage0.fetch_hammerhead>
-  <missiondescription.fetch_hammerhead_gold>Группа молотоглавов была замечена между [location1] и [location2]. У них можно украть что-то ценное. Отнесите добычу к следующему аванпосту, чтобы продать ее.</missiondescription.fetch_hammerhead_gold>
+  <missiondescription.fetch_hammerhead_gold>Группа молотоглавов была замечена между [location1] и [location2]. У них можно украсть что-то ценное. Отнесите добычу к следующему аванпосту, чтобы продать ее.</missiondescription.fetch_hammerhead_gold>
   <missionsonarlabel.fetch_hammerhead_gold>Золотой молотоглав</missionsonarlabel.fetch_hammerhead_gold>
   <missionsuccess.fetch_hammerhead_gold>Золотой молотоглав был убит.</missionsuccess.fetch_hammerhead_gold>
   <missionheader0.fetch_hammerhead_gold>Цель уничтожена</missionheader0.fetch_hammerhead_gold>
-  <missionmessage0.fetch_hammerhead_gold>Золтой молотоглав убит. Добудьте плавник монстра и выведите подводную лодку из пещеры, чтобы получить награду.</missionmessage0.fetch_hammerhead_gold>
+  <missionmessage0.fetch_hammerhead_gold>Золотой молотоглав убит. Добудьте плавник монстра и выведите подводную лодку из пещеры, чтобы получить награду.</missionmessage0.fetch_hammerhead_gold>
+  <missionname.drycavemudraptor>Заброшенная шахта</missionname.drycavemudraptor>
+  <missiondescription.drycavemudraptor>Заброшенная шахта. Внутри могли остаться ценности.</missiondescription.drycavemudraptor>
+  <missionsuccess.drycavemudraptor>Монстры уничтожены.</missionsuccess.drycavemudraptor>
+  <missionfailure.drycavemudraptor>Вы ушли, не навредив существам, обитающим внутри.</missionfailure.drycavemudraptor>
+  <missionheader0.drycavemudraptor>Гнездо уничтожено</missionheader0.drycavemudraptor>
+  <missionmessage0.drycavemudraptor>Угроза устранена, по крайней мере, пока.</missionmessage0.drycavemudraptor>
   <missionname.familytransport>Скорая помощь</missionname.familytransport>
   <missiondescription.familytransport>Перевезти мужа и его больную жену на ближайшую станцию.</missiondescription.familytransport>
   <missionheader0.familytransport>Пассажир умер</missionheader0.familytransport>
@@ -443,22 +454,29 @@
   <missionname.story_nocargo_beacon>Восстановите маяк</missionname.story_nocargo_beacon>
   <missiondescription.story_nocargo_beacon>Маяк между [location1] и [location2] не работает — войдите туда, восстановите его работу и включите активный сонар.</missiondescription.story_nocargo_beacon>
   <missionsuccess.story_nocargo_beacon>Работа маяка восстановлена.</missionsuccess.story_nocargo_beacon>
-  <missionmessage0.story_nocargo_beacon>Связь между [location1] и Coalition Engineering Company восстановлена. Убедитесь, что сигнал постоянный и не прирывается, после чего направьте подводную лодку к [location2].</missionmessage0.story_nocargo_beacon>
+  <missionmessage0.story_nocargo_beacon>Связь между [location1] и Coalition Engineering Company восстановлена. Убедитесь, что сигнал постоянный и не прерывается, после чего направьте подводную лодку к [location2].</missionmessage0.story_nocargo_beacon>
+  <entityname.dhwaterpump>Насос</entityname.dhwaterpump>
+  <entitydescription.dhwaterpump>Attach the water pump to a nozzle through a wire to pump water out through the nozzle.</entitydescription.dhwaterpump>
+  <entityname.attachablepumpnozzle>Насадка водяного насоса</entityname.attachablepumpnozzle>
+  <entitydescription.attachablepumpnozzle>Подсоединённая насадка позволяет воде вытекать.</entitydescription.attachablepumpnozzle>
+  <entityname.radiationsuit>Радиационный костюм</entityname.radiationsuit>
+  <entitydescription.radiationsuit>Свинцовый костюм защищает от радиации и других опасностей.</entitydescription.radiationsuit>
+  <entityname.fuelrodholder>Держатель топливного стержня</entityname.fuelrodholder>
+  <entitydescription.fuelrodholder>Используется для удержания горячего топливного стержня.</entitydescription.fuelrodholder>
   <entityname.hullscanner>Сканер корпуса</entityname.hullscanner>
   <entitydescription.hullscanner>Используется для определения состояния целевого корпуса. \nЭффективный диапазон: 5 метров.</entitydescription.hullscanner>
   <entityname.fuelrodcase>Чемодан для транспортировки горячих топливных стержней</entityname.fuelrodcase>
   <entitydescription.fuelrodcase>Используется для защиты от излучения, испускаемого неизрасходованным топливным стержнем..</entitydescription.fuelrodcase>
   <entityname.recycledfuelrod>Переработанный топливный стержень</entityname.recycledfuelrod>
   <entitydescription.recycledfuelrod>Переработан из отработавших топливных стержней. Опасный. Работать с осторожностью.</entitydescription.recycledfuelrod>
-  <Terminal.reactormanual>Очень важно ---- Работа реактора: Если реактор поврежден до критического состояния. Выключите реактор, чтобы предотвратить дальнейшую катастрофу. \nКоэффициент деления должен быть ниже 5, чтобы обеспечить безопасность всей подводной лодки. Если реактор неисправен, включить резервную сеть на субмарине!\n Не извлекать из реактора топливный стержень, не отработавший свой ресурс до конца. Радиация может быть смертельной. Если вам это очень надо, используйте подходящий контейнер! \nИнженерное руководство Коалиции 101</Terminal.reactormanual>
-  <entityname.oxygencandle>oxygencandle</entityname.oxygencandle>
-  <entitydescription.oxygencandle>Обработанная вода для кислородного генератора.</entitydescription.oxygencandle>
+  <entityname.oxygencandle>Кислородная свеча</entityname.oxygencandle>
+  <entitydescription.oxygencandle>Высокотехнологичная кислородная свеча, которая позволяет вырабатывать кислород для выполнения различных задач по подаче воздуха.</entitydescription.oxygencandle>
   <entityname.controlrod>Охладитель реактора</entityname.controlrod>
   <entitydescription.controlrod>Охладитель, предотвращающий перегрев реактора</entitydescription.controlrod>
   <entityname.lightfuse>Предохранитель</entityname.lightfuse>
   <entitydescription.lightfuse>Важная часть любой лампы, за счет которой она светит.</entitydescription.lightfuse>
-  <entityname.smallpumpmotor>Мотор маленького насоса</entityname.smallpumpmotor>
-  <entitydescription.smallpumpmotor>Нужен маленькому насосу для работы</entitydescription.smallpumpmotor>
+  <entityname.pumppart>Часть насоса</entityname.pumppart>
+  <entitydescription.pumppart>Деталь для работы насоса.</entitydescription.pumppart>
   <entityname.bigpumpmotor>Мотор насоса</entityname.bigpumpmotor>
   <entitydescription.bigpumpmotor>Нужен большому насосу для штатной работы.</entitydescription.bigpumpmotor>
   <entityname.smallpumpII>М-II</entityname.smallpumpII>
@@ -470,71 +488,89 @@
   <entityname.junctionboxfuse>Предохранитель кабельной коробки</entityname.junctionboxfuse>
   <entitydescription.junctionboxfuse>Важная часть кабельных коробок</entitydescription.junctionboxfuse>
   <entityname.revolvernew>Револьвер</entityname.revolvernew>
-  <entitydescription.revolvernew>[Темп стрельбы: Низко]\n[Аккуратность:Низко]</entitydescription.revolvernew>
+  <entitydescription.revolvernew>[Темп стрельбы: Низко]\n[Точность:Низко]</entitydescription.revolvernew>
   <entityname.revolverroundnew>Патрон револьвера</entityname.revolverroundnew>
   <entitydescription.revolverroundnew>[Пробитие: 60%]</entitydescription.revolverroundnew>
-  <entityname.57>FN Five Seven</entityname.57>
-  <entitydescription.57>[Темп стрельбы: Средне]\n[Аккуратность:Низко]</entitydescription.57>
-  <entityname.57mag>5.7x28mm Five Seven</entityname.57mag>
+  <entityname.FNFive-seven>FN Five-seven</entityname.FNFive-seven>
+  <entitydescription.FNFive-seven>[Темп стрельбы: Средне]\n[Точность:Низко]</entitydescription.FNFive-seven>
+  <entityname.57mag>Магазин 5.7x28mm Five Seven</entityname.57mag>
   <entitydescription.57mag>[Вместимость: 20]\n[Пробитие: 30%]</entitydescription.57mag>
   <entityname.g19>Glock 19</entityname.g19>
-  <entitydescription.g19>[Темп стрельбы: Низко]\n[Аккуратность:Высоко-Низко]</entitydescription.g19>
-  <entityname.g19mag> 9x19 магазин от Glock 19</entityname.g19mag>
+  <entitydescription.g19>[Темп стрельбы: Высокая]\n[Точность:Низко]</entitydescription.g19>
+  <entityname.g19mag>Магазин 9x19 Glock 19</entityname.g19mag>
   <entitydescription.g19mag>[Вместимость: 30]\n[Пробитие: 30%]</entitydescription.g19mag>
   <entityname.MPX>Sig Sauer MPX</entityname.MPX>
-  <entitydescription.MPX>[Темп стрельбы: Высоко]\n[Аккуратность:Средне]</entitydescription.MPX>
-  <entityname.mpx_magazine>9x19 магазин от MPX </entityname.mpx_magazine>
+  <entitydescription.MPX>[Темп стрельбы: Высоко]\n[Точность:Средне]</entitydescription.MPX>
+  <entityname.mpx_magazine>Магазин 9x19 MPX</entityname.mpx_magazine>
   <entitydescription.mpx_magazine>[Вместимость: 30]\n[Пробитие: 30%]</entitydescription.mpx_magazine>
   <entityname.MCX>Sig Sauer MCX</entityname.MCX>
-  <entitydescription.MCX>[Темп стрельбы: Высоко]\n[Аккуратность:High]</entitydescription.MCX>
-  <entityname.mcx_magazine>.300 магазин от AAC</entityname.mcx_magazine>
+  <entitydescription.MCX>[Темп стрельбы: Высоко]\n[Точность:Высоко]</entitydescription.MCX>
+  <entityname.M16>M16</entityname.M16>
+  <entitydescription.M16>[Темп стрельбы: Высокий]\n[Точность: Высокая]</entitydescription.M16>
+  <entityname.M16Mag>Магазин M16</entityname.M16Mag>
+  <entitydescription.M16Mag>Магазин 5.56x45mm </entitydescription.M16Mag>
+  <entityname.M16Receiver>Ствольная коробка M16</entityname.M16Receiver>
+  <entitydescription.M16Receiver>Ствольная часть M16</entitydescription.M16Receiver>
+  <entityname.M16Barrel>Ствол M16</entityname.M16Barrel>
+  <entitydescription.M16Barrel>Ствол M16</entitydescription.M16Barrel>
+  <entityname.M16Stock>Приклад M16</entityname.M16Stock>
+  <entitydescription.M16Stock>Приклад M16</entitydescription.M16Stock>
+  <entityname.AK47Barrel>Ствол АК-47</entityname.AK47Barrel>
+  <entityname.AK47Receiver>Ствольная коробка АК-47</entityname.AK47Receiver>
+  <entityname.mcx_magazine>.300 AAC Магазин</entityname.mcx_magazine>
   <entitydescription.mcx_magazine>[Вместимость: 30]\n[Пробитие: 60%]</entitydescription.mcx_magazine>
   <entityname.MP9>MP9 Suppressed</entityname.MP9>
-  <entitydescription.MP9>[Темп стрельбы: Высоко]\n[Аккуратность:Низко]</entitydescription.MP9>
-  <entityname.mp9mag>9x19 магазин от  MP9</entityname.mp9mag>
+  <entitydescription.MP9>[Темп стрельбы: Высоко]\n[Точность:Низко]</entitydescription.MP9>
+  <entityname.mp9mag>Магазин 9x19 MP9</entityname.mp9mag>
   <entitydescription.mp9mag>[Вместимость: 30]\n[Пробитие: 30%]</entitydescription.mp9mag>
   <entityname.P90>P90</entityname.P90>
-  <entitydescription.P90>[Темп стрельбы: Очень Высоко]\n[Аккуратность:Средне-Низко]</entitydescription.P90>
-  <entityname.p90mag>5.7x28mm магазин от P90</entityname.p90mag>
+  <entitydescription.P90>[Темп стрельбы: Очень Высоко]\n[Точность:Средне-Низко]</entitydescription.P90>
+  <entityname.p90mag>Магазин 5.7x28mm P90</entityname.p90mag>
   <entitydescription.p90mag>[Вместимость: 50]\n[Пробитие: 30%]</entitydescription.p90mag>
   <entityname.mk17>FN SCAR-H</entityname.mk17>
-  <entitydescription.mk17>[Темп стрельбы: Средне]\n[Аккуратность:High-Средне]</entitydescription.mk17>
-  <entityname.mk17mag>7.62x51mm магазин от SCAR-H</entityname.mk17mag>
+  <entitydescription.mk17>[Темп стрельбы: Средне]\n[Точность:Средне]</entitydescription.mk17>
+  <entityname.MK17Barrel>Ствол SCAR</entityname.MK17Barrel>
+  <entitydescription.MK17Barrel>Ствол SCAR</entitydescription.MK17Barrel>
+  <entityname.MK17Receiver>Ствольная коробка SCAR</entityname.MK17Receiver>
+  <entityname.MK17Stock>Приклад SCAR</entityname.MK17Stock>
+  <entityname.MK17Scope>Прицел SCAR</entityname.MK17Scope>
+  <entitydescription.MK17Scope>Повышает точность оружия.</entitydescription.MK17Scope>
+  <entityname.mk17mag>Магазин 7.62x51mm SCAR-H</entityname.mk17mag>
   <entitydescription.mk17mag>[Вместимость: 20]\n[Пробитие: 70%]</entitydescription.mk17mag>
   <entityname.ak47>АК-47</entityname.ak47>
-  <entitydescription.ak47>[Темп стрельбы: Средне]\n[Аккуратность:Средне-Низко]</entitydescription.ak47>
-  <entityname.ak47mag>7.62x39mm магазин от АК-47</entityname.ak47mag>
+  <entitydescription.ak47>[Темп стрельбы: Средне]\n[Точность:Средне-Низко]</entitydescription.ak47>
+  <entityname.ak47mag>Магазин 7.62x39mm AK-47</entityname.ak47mag>
   <entitydescription.ak47mag>[Вместимость: 30]\n[Пробитие: 50%]</entitydescription.ak47mag>
-  <entityname.pkm>РПК</entityname.pkm>
-  <entitydescription.pkm>[Темп стрельбы: Очень Высоко]\n[Аккуратность:Средне-Очень Низко]</entitydescription.pkm>
-  <entityname.pkmmag>7.62x54mm магазин от РПК </entityname.pkmmag>
+  <entityname.pkm>PKM</entityname.pkm>
+  <entitydescription.pkm>[Темп стрельбы: Очень Высоко]\n[Точность:Низко-Очень Низко]</entitydescription.pkm>
+  <entityname.pkmmag>Магазин 7.62x54mm PKM</entityname.pkmmag>
   <entitydescription.pkmmag>[Вместимость: 200]\n[Пробитие: 95%]</entitydescription.pkmmag>
   <entityname.fal>FN FAL</entityname.fal>
-  <entitydescription.fal>[Темп стрельбы: Очень Низко]\n[Аккуратность:Очень High-High]</entitydescription.fal>
-  <entityname.falmag>7.62x51mm магазин от FN FAL</entityname.falmag>
+  <entitydescription.fal>[Темп стрельбы: Очень Низко]\n[Точность:Очень Высоко]</entitydescription.fal>
+  <entityname.falmag>Магазин 7.62x51mm FN FAL</entityname.falmag>
   <entitydescription.falmag>[Вместимость: 20]\n[Пробитие: 90%]</entitydescription.falmag>
-  <entityname.underwatergun>Автомат Подводный Специальный</entityname.underwatergun>
-  <entitydescription.underwatergun>[Темп стрельбы: Средне]\n[Аккуратность:Средне]</entitydescription.underwatergun>
-  <entityname.apsmag>Магазин от АПС</entityname.apsmag>
+  <entityname.underwatergun>APS Подводная винтовка</entityname.underwatergun>
+  <entitydescription.underwatergun>[Темп стрельбы: Средне]\n[Точность:Средне]</entitydescription.underwatergun>
+  <entityname.apsmag>APS Магазин</entityname.apsmag>
   <entitydescription.apsmag>[Вместимость: 26]\n[Пробитие: 40%]</entitydescription.apsmag>
   <entityname.gasgrenade>Газовая граната</entityname.gasgrenade>
   <entitydescription.gasgrenade>Используется для оглушения противников</entitydescription.gasgrenade>
   <entityname.reactorslot>Слот под реактор</entityname.reactorslot>
   <entitydescription.reactorslot>Слот, в который можно установить реактор.</entitydescription.reactorslot>
-  <entityname.reactorrs107>РБМК5000</entityname.reactorrs107>
+  <entityname.reactorrs107>RS107</entityname.reactorrs107>
   <entitydescription.reactorrs107>[Макс.выход:5000]\n[Задержка до пожара:20]\n[Время плавления:120]\n[Расход топлива:0.2]\n[Защита от ЭМИ: Да]</entitydescription.reactorrs107>
-  <entityname.reactormrmxi>РА-400</entityname.reactormrmxi>
+  <entityname.reactormrmxi>MR-MXI</entityname.reactormrmxi>
   <entitydescription.reactormrmxi>[Макс.выход:6550]\n[Задержка до пожара:45]\n[Время плавления:200]\n[Расход топлива:0.2]\n[Защита от ЭМИ: Да]</entitydescription.reactormrmxi>
-  <entityname.reactorccsv>РХУ-Я</entityname.reactorccsv>
+  <entityname.reactorccsv>CCS-V</entityname.reactorccsv>
   <entitydescription.reactorccsv>[Макс.выход:7000]\n[Задержка до пожара:30]\n[Время плавления:140]\n[Расход топлива:0.4]\n[Защита от ЭМИ: Нет]</entitydescription.reactorccsv>
-  <entityname.reactorfac900>РАНТ15</entityname.reactorfac900>
-  <entitydescription.reactorfac900>[Макс.выход:8000]\n[Задержка до пожара:60]\n[Время плавления:200]\n[Расход топлива:0.2]\n[Защита от ЭМИ: Нет]</entitydescription.reactorfac900>
-  <entityname.reactorgb099>ААЭС-099</entityname.reactorgb099>
+  <entityname.reactorfac900>FAC900</entityname.reactorfac900>
+  <entitydescription.reactorfac900>[Макс.выход:8000]\n[Задержка до пожара:60]\n[Время плавления:200]\n[Расход топлива:0.2]\n[Защита от ЭМИ: Да]</entitydescription.reactorfac900>
+  <entityname.reactorgb099>GB-099</entityname.reactorgb099>
   <entitydescription.reactorgb099>[Макс.выход:9500]\[Задержка до пожара:30]\n[Время плавления:150]\n[Расход топлива:0.6]\n[Защита от ЭМИ: Да]</entitydescription.reactorgb099>
-  <entityname.reactortype2053>Тип2053</entityname.reactortype2053>
+  <entityname.reactortype2053>Type2053</entityname.reactortype2053>
   <entitydescription.reactortype2053>[Макс.выход:12000]\n[Задержка до пожара:10]\n[Время плавления:50]\n[Расход топлива:0.9]\n[Защита от ЭМИ: Нет]</entitydescription.reactortype2053>
-  <entityname.reactormanual>Примечание к реактору</entityname.reactormanual>
-  <entitydescription.reactormanual>Мануал по основной работе с реактором</entitydescription.reactormanual>
+  <entityname.helperlogbook>Справочный журнал</entityname.helperlogbook>
+  <entitydescription.helperlogbook>Руководство с общей информацией об игре.</entitydescription.helperlogbook>
   <entityname.subdoc>Документ на подлодку</entityname.subdoc>
   <entitydescription.subdoc>Электронный журнал, регистрирующий владельца подлодки. Необходим для покупки топливных стержней.</entitydescription.subdoc>
   <entityname.weaponrepairkit>Комплект для ремонта оружия</entityname.weaponrepairkit>
@@ -543,11 +579,9 @@
   <entitydescription.dhheavywrench>Большой и тяжелый титановый гаечный ключ. Используется для починки внешних устройств подлодки.</entitydescription.dhheavywrench>
   <entityname.weaponparts>Детали оружия</entityname.weaponparts>
   <entitydescription.weaponparts>Запчасти для ремонта различных видов оружия.</entitydescription.weaponparts>
-  <entityname.containerkey>Ключ</entityname.containerkey>
-  <entitydescription.containerkey>Может открыть или закрыть шкафчик</entitydescription.containerkey>
-  <entityname.keymaster>Омни-ключ</entityname.keymaster>
-  <entitydescription.keymaster>Этот ключ может открыть любую дверь или шкаф</entitydescription.keymaster>
-  <entityname.keyorganzier>Кейс для ключей</entityname.keyorganzier>
+  <entityname.keymaster>Мастер-ключ</entityname.keymaster>
+  <entitydescription.keymaster>Мастер-ключ может открыть любую дверь или шкаф</entitydescription.keymaster>
+  <entityname.keyorganzier>Органайзер для ключей</entityname.keyorganzier>
   <entitydescription.keyorganzier>Кейс, в который можно сложить все ключи</entitydescription.keyorganzier>
   <entityname.flamethrowerfueltank>Топливный бак огнемета</entityname.flamethrowerfueltank>
   <entitydescription.flamethrowerfueltank>Тяжелый бак, содержащий топливо для огнемета</entitydescription.flamethrowerfueltank>
@@ -561,54 +595,106 @@
   <entitydescription.bodyarmorIII>[Множитель пробития:10%]</entitydescription.bodyarmorIII>
   <entityname.mechanicalparts>Механические детали</entityname.mechanicalparts>
   <entitydescription.mechanicalparts>Используются для различных механических ремонтных работ.</entitydescription.mechanicalparts>
+  <entityname.ElectricalParts>Электрические детали</entityname.ElectricalParts>
+  <entitydescription.ElectricalParts>Детали для различных электромонтажных работ.</entitydescription.ElectricalParts>
   <entityname.divingwatch>Дайверские часы</entityname.divingwatch>
   <entitydescription.divingwatch>Используются водолазами для отслеживания времени.</entitydescription.divingwatch>
   <entityname.hypothalamusstimulator>Таблетка стимулятора гипоталамуса</entityname.hypothalamusstimulator>
   <entitydescription.hypothalamusstimulator>Таблетка стимулирует гипоталамус и вызывает опасный внутренний перегрев.</entitydescription.hypothalamusstimulator>
   <entityname.diversbackpack>Рюкзак водолаза</entityname.diversbackpack>
   <entitydescription.diversbackpack>Прочный рюкзак для переноски вещей. Замедляет при ношении.</entitydescription.diversbackpack>
-  <uilabel.controlrod>Охлождение</uilabel.controlrod>
-  <uilabel.oxygencandle>oxygencandle</uilabel.oxygencandle>
-  <uilabel.lock>Замок</uilabel.lock>
-  <displayname.divingwatch>Дайверские часы</displayname.divingwatch>
-  <cursorhover.repair.heavywrench>[[use]] Починить (Тяжелый гаечный ключ)</cursorhover.repair.heavywrench>
-  <cursorhover.repair.guns>[[use]] Починить (Комплект для ремонта оружия)</cursorhover.repair.guns>
+  <entityname.rebreather>Ребризер</entityname.rebreather>
+  <entitydescription.rebreather>Ребризер перерабатывает воздух и удаляет CO2, удваивая эффективность кислородного баллона. Запускается автоматически при обнаружении надетого водолазного снаряжения. Также может пополнять кислородный баллон в подключённом костюме.</entitydescription.rebreather>
+  <entityname.rebreathertank>Баллон ребризера</entityname.rebreathertank>
+  <entitydescription.rebreathertank>Тяжёлый кислородный баллон позволяет ребризеру пополнять кислород в подключённом водолазном костюме.</entitydescription.rebreathertank>
+  <entityname.grapplegun>Гарпун с лебёдкой</entityname.grapplegun>
+  <entitydescription.grapplegun>Используется для преодоления сложной местности.\nПробел — притянуться\nПрисесть — оборвать трос.</entitydescription.grapplegun>
+  <entityname.grapplesmall>Гарпунный крюк</entityname.grapplesmall>
+  <entitydescription.grapplesmall>Боеприпас для гарпунной пушки.</entitydescription.grapplesmall>
+  <entityname.gastank>Газовый баллон</entityname.gastank>
+  <entitydescription.gastank>Газовый баллон для гарпунной пушки.</entitydescription.gastank>
+  <entityname.CaveLamp1>Пещерная лампа</entityname.CaveLamp1>
+  <entityname.CaveLamp2>Пещерная лампа</entityname.CaveLamp2>
+  <entityname.bloodlantern>Кровавый фонарь</entityname.bloodlantern>
+  <entitydescription.bloodlantern>Сжигает инопланетную кровь, излучая тёмно-красный свет.</entitydescription.bloodlantern>
+  <entityname.reinforceddoor>Укреплённая дверь</entityname.reinforceddoor>
+  <entityname.lifttopstop>Верхний ограничитель лифта</entityname.lifttopstop>
+  <entityname.liftbottomstop>Нижний ограничитель лифта</entityname.liftbottomstop>
+  <entityname.lift>Лифт</entityname.lift>
+  <entityname.buttonchangedirection>Кнопка смены направления</entityname.buttonchangedirection>
+  <entitydescription.buttonchangedirection>Нажмите, чтобы инициировать смену направления движения подводной лодки.</entitydescription.buttonchangedirection>
+  <entityname.airmonitor>Монитор воздуха</entityname.airmonitor>
+  <entitydescription.airmonitor>Ручное устройство для контроля состояния воздуха.</entitydescription.airmonitor>
+  <entityname.APIshell>Бронебойно-зажигательный снаряд</entityname.APIshell>
+  <entitydescription.APIshell>Снаряд, пробивающий несколько корпусов. С небольшой задержкой после удара воспламеняется.</entitydescription.APIshell>
+  <entityname.torpedo>Торпеда</entityname.torpedo>
+  <entitydescription.torpedo>Торпеда, запускаемая из торпедного аппарата.</entitydescription.torpedo>
+  <entityname.firecontrolsonar>Сонар управления огнём</entityname.firecontrolsonar>
+  <entitydescription.firecontrolsonar>Направляет торпеду.</entitydescription.firecontrolsonar>
+  <entityname.lubricationoil>Смазочное масло</entityname.lubricationoil>
+  <entitydescription.lubricationoil>Используется для смазки двигателя. Нажмите ПКМ для использования на двигателе.</entitydescription.lubricationoil>
+  <entityname.jbslot>Слот распределительной коробки</entityname.jbslot>
+  <entityname.pressurizedgastank>Баллон со сжатым газом</entityname.pressurizedgastank>
+  <entitydescription.pressurizedgastank>Хранит газ под высоким давлением для насосов балластных отсеков.</entitydescription.pressurizedgastank>
+  <entityname.meltdownfuelrod>Остаток расплавленного топливного стержня</entityname.meltdownfuelrod>
+  <entitydescription.meltdownfuelrod>Радиоактивный остаток топливного стержня.</entitydescription.meltdownfuelrod>
+  <entityname.keymediumcab>Ключ от среднего шкафа</entityname.keymediumcab>
+  <entitydescription.keymediumcab>Используется для запирания шкафов.</entitydescription.keymediumcab>
+  <entityname.keylargecab>Ключ от большого шкафа</entityname.keylargecab>
+  <entitydescription.keylargecab>Используется для запирания больших шкафов.</entitydescription.keylargecab>
+  <entityname.keymedical>Ключ от медицинского шкафа</entityname.keymedical>
+  <entitydescription.keymedical>Используется для запирания медицинских шкафов.</entitydescription.keymedical>
+  <connection.moveup>Движение вверх</connection.moveup>
+  <connection.movedown>Движение вниз</connection.movedown>
+  <connection.Dock_State>Состояние стыковки</connection.Dock_State>
+  <connection.vertical_engine_power_out>Выход мощности вертикального двигателя</connection.vertical_engine_power_out>
+  <connection.powerconsumptionout>Выход потребления энергии</connection.powerconsumptionout>
+  <connection.VentIn>Вход вентиляции</connection.VentIn>
+  <connection.VentOut>Выход вентиляции</connection.VentOut>
+  <Terminal.reactormanual>Очень важно ---- Работа реактора: Если реактор поврежден до критического состояния. Выключите реактор, чтобы предотвратить дальнейшую катастрофу. \nКоэффициент деления должен быть ниже 5, чтобы обеспечить безопасность всей подводной лодки. Если реактор неисправен, включить резервную сеть на субмарине!\n Не извлекать из реактора топливный стержень, не отработавший свой ресурс до конца. Радиация может быть смертельной. Если вам это очень надо, используйте подходящий контейнер! \nИнженерное руководство Коалиции 101</Terminal.reactormanual>
+  <Terminal.helermanualstart>Добро пожаловать в помощник. Выберите соответствующий номер для просмотра.\n1 Реактор\n2 Насосы\n3 Турели и подводный бой\n4 Бой внутри помещений\nдомой</Terminal.helermanualstart>
+  <Terminal.subdocstart>Информация о подводной лодке\n Выберите номер для просмотра.\n1 Состояние груза судна\n2 Конструкция и эффективность\n3 Регистрационный номер\n4 Основные активы\nдомой</Terminal.subdocstart>
+  <afflictionname.coldwater>Низкая температура</afflictionname.coldwater>
   <afflictionname.coldwaterresistance>Перегрев тела</afflictionname.coldwaterresistance>
   <afflictiondescription.coldwaterresistance>Таблетки стимулируют гипоталамус и вызывают опасный внутренний перегрев.</afflictiondescription.coldwaterresistance>
+  <afflictiondename.chlorine_poisoning>Отравление хлором</afflictiondename.chlorine_poisoning>
+  <afflictiondescription.chlorine_poisoning>Разбитая батарея выделяет токсичные химикаты.</afflictiondescription.chlorine_poisoning>
   <!--location-->
-  <locationname.EuropanRidge_Outpost>Жилой аванпост Европеского Кряжа</locationname.EuropanRidge_Outpost>
-  <locationnameformat.EuropanRidge_Outpost>[name] Жилой аванпост</locationnameformat.EuropanRidge_Outpost>
-  <locationnameformat.EuropanRidge_Outpost>[name] Колония</locationnameformat.EuropanRidge_Outpost>
-  <locationname.EuropanRidge_Military>Военный аванпост Европейского Кряжа</locationname.EuropanRidge_Military>
-  <locationnameformat.EuropanRidge_Military>[name] База</locationnameformat.EuropanRidge_Military>
-  <locationnameformat.EuropanRidge_Military>[name] База</locationnameformat.EuropanRidge_Military>
-  <locationname.EuropanRidge_Research>Исследовательская станция Европейского Кряжа</locationname.EuropanRidge_Research>
-  <locationnameformat.EuropanRidge_Research>[name] Исследовательский аванпост</locationnameformat.EuropanRidge_Research>
-  <locationnameformat.EuropanRidge_Research>[name] Колония</locationnameformat.EuropanRidge_Research>
-  <locationname.EuropanRidge_Mine>Исследовательская станция Европейского Кряжа</locationname.EuropanRidge_Mine>
-  <locationnameformat.EuropanRidge_Mine>[name] Горнодобывающий аванпост</locationnameformat.EuropanRidge_Mine>
-  <locationnameformat.EuropanRidge_Mine>[name] Колония</locationnameformat.EuropanRidge_Mine>
-  <locationname.AphoticPlateau_Outpost>Жилой аванпост Темного плато</locationname.AphoticPlateau_Outpost>
-  <locationnameformat.AphoticPlateau_Outpost>[name] Жилой аванпост</locationnameformat.AphoticPlateau_Outpost>
-  <locationnameformat.AphoticPlateau_Outpost>[name] Колония</locationnameformat.AphoticPlateau_Outpost>
-  <locationname.AphoticPlateau_military>Военный аванпост Темного плато</locationname.AphoticPlateau_military>
-  <locationnameformat.AphoticPlateau_military>[name] База</locationnameformat.AphoticPlateau_military>
-  <locationnameformat.AphoticPlateau_military>[name] База</locationnameformat.AphoticPlateau_military>
-  <locationname.AphoticPlateau_Research>Исследовательская станция Темного плато</locationname.AphoticPlateau_Research>
-  <locationnameformat.AphoticPlateau_Research>[name] Исследовательский аванпост</locationnameformat.AphoticPlateau_Research>
+  <locationname.EuropanRidge_Outpost>Habitation Outpost of Europan Ridge</locationname.EuropanRidge_Outpost>
+  <locationnameformat.EuropanRidge_Outpost>[name] Habitation Outpost</locationnameformat.EuropanRidge_Outpost>
+  <locationnameformat.EuropanRidge_Outpost>[name] Outpost</locationnameformat.EuropanRidge_Outpost>
+  <locationname.EuropanRidge_Military>Military Base of Europan Ridge</locationname.EuropanRidge_Military>
+  <locationnameformat.EuropanRidge_Military>[name] Base</locationnameformat.EuropanRidge_Military>
+  <locationnameformat.EuropanRidge_Military>[name] Base</locationnameformat.EuropanRidge_Military>
+  <locationname.EuropanRidge_Research>Research Outpost of Europan Ridge</locationname.EuropanRidge_Research>
+  <locationnameformat.EuropanRidge_Research>[name] Research Outpost</locationnameformat.EuropanRidge_Research>
+  <locationnameformat.EuropanRidge_Research>[name] Outpost</locationnameformat.EuropanRidge_Research>
+  <locationname.EuropanRidge_Mine>Mining Outpost of Europan Ridge</locationname.EuropanRidge_Mine>
+  <locationnameformat.EuropanRidge_Mine>[name] Mining Outpost</locationnameformat.EuropanRidge_Mine>
+  <locationnameformat.EuropanRidge_Mine>[name] Outpost</locationnameformat.EuropanRidge_Mine>
+  <locationname.AphoticPlateau_Outpost>Habitation Outpost of Aphotic Plateau</locationname.AphoticPlateau_Outpost>
+  <locationnameformat.AphoticPlateau_Outpost>[name] Habitation Outpost</locationnameformat.AphoticPlateau_Outpost>
+  <locationnameformat.AphoticPlateau_Outpost>[name] Outpost</locationnameformat.AphoticPlateau_Outpost>
+  <locationname.AphoticPlateau_military>Military Base of Aphotic Plateau</locationname.AphoticPlateau_military>
+  <locationnameformat.AphoticPlateau_military>[name] Base</locationnameformat.AphoticPlateau_military>
+  <locationnameformat.AphoticPlateau_military>[name] Base</locationnameformat.AphoticPlateau_military>
+  <locationname.AphoticPlateau_Research>Research Outpost of Aphotic Plateau</locationname.AphoticPlateau_Research>
+  <locationnameformat.AphoticPlateau_Research>[name] Research Outpost</locationnameformat.AphoticPlateau_Research>
   <locationnameformat.AphoticPlateau_Research>[name] Outpost</locationnameformat.AphoticPlateau_Research>
-  <locationname.AphoticPlateau_Mine>Исследовательская станция Темного плато</locationname.AphoticPlateau_Mine>
-  <locationnameformat.AphoticPlateau_Mine>[name] Горнодобывающий аванпост</locationnameformat.AphoticPlateau_Mine>
-  <locationnameformat.AphoticPlateau_Mine>[name] Колония</locationnameformat.AphoticPlateau_Mine>
-  <locationname.Greatsea_Outpost>Жилой аванпост Великого Моря</locationname.Greatsea_Outpost>
-  <locationnameformat.Greatsea_Outpost>[name] Жилой аванпост</locationnameformat.Greatsea_Outpost>
-  <locationnameformat.Greatsea_Outpost>[name] Колония</locationnameformat.Greatsea_Outpost>
-  <locationname.Greatsea_military>Военный аванпост Великого Моря</locationname.Greatsea_military>
-  <locationnameformat.Greatsea_military>[name] База</locationnameformat.Greatsea_military>
-  <locationnameformat.Greatsea_military>[name] База</locationnameformat.Greatsea_military>
-  <locationname.Greatsea_Research>Исследовательская станция Великого Моря</locationname.Greatsea_Research>
-  <locationnameformat.Greatsea_Research>[name] Исследовательский аванпост</locationnameformat.Greatsea_Research>
-  <locationnameformat.Greatsea_Research>[name] Колония</locationnameformat.Greatsea_Research>
+  <locationname.AphoticPlateau_Mine>Mining Outpost of Aphotic Plateau</locationname.AphoticPlateau_Mine>
+  <locationnameformat.AphoticPlateau_Mine>[name] Mining Outpost of Aphotic Plateau</locationnameformat.AphoticPlateau_Mine>
+  <locationnameformat.AphoticPlateau_Mine>[name] Outpost</locationnameformat.AphoticPlateau_Mine>
+  <locationname.Greatsea_Outpost>Habitation Outpost of The Great Sea</locationname.Greatsea_Outpost>
+  <locationnameformat.Greatsea_Outpost>[name] Habitation Outpost</locationnameformat.Greatsea_Outpost>
+  <locationnameformat.Greatsea_Outpost>[name] Outpost</locationnameformat.Greatsea_Outpost>
+  <locationname.Greatsea_military>Military Base of The Great Sea</locationname.Greatsea_military>
+  <locationnameformat.Greatsea_military>[name] Base</locationnameformat.Greatsea_military>
+  <locationnameformat.Greatsea_military>[name] Base</locationnameformat.Greatsea_military>
+  <locationname.Greatsea_Research>Research Outpost of The Great Sea</locationname.Greatsea_Research>
+  <locationnameformat.Greatsea_Research>[name] Research Outpost</locationnameformat.Greatsea_Research>
+  <locationnameformat.Greatsea_Research>[name] Outpost</locationnameformat.Greatsea_Research>
+  <locationname.Cave>Пещера шахты</locationname.Cave>
+  <locationnameformat.Cave>[name] Шахта</locationnameformat.Cave>
   <Sildeshow.DHStorybegin1>"В 2035 году люди впервые оставили свой след на поверхности Европы в качестве международной экспедиции в поисках свидетельств сложной жизни на планете. За 10 лет Новый Свет превратился в стабильную колонию, обеспечивающую Землю необходимыми материалами."</Sildeshow.DHStorybegin1>
   <Sildeshow.DHStorybegin2>"В 2050 году интенсивные гамма-лучи Крабовидной туманности задели этот регион, прервав связь между Европой и Землей. Последняя попытка Земли пополнить запасы Европы потерпела неудачу в 2051 году.“</Sildeshow.DHStorybegin2>
   <Sildeshow.DHStorybegin3>“С существующими ресурсами колония все еще могла работать на низком уровне. Но из-за отсутствия необходимых ресурсов Европейский союз давно понял, что колонии нежизнеспособны. В 2053 году грузовая подводная лодка улавливает энергетический импульс инопланетного сигнала, и с тех пор новости об инопланетной энергии были повсюду. Человечество возлагало свои надежды на эту новую энергию, но ее использование никогда не предавалось огласке. На самом деле, никогда не подтверждалось, может ли эта энергия использоваться людьми.”</Sildeshow.DHStorybegin3>
@@ -616,4 +702,116 @@
   <Botai_getdivingmask>"Вода поступает внутрь!"</Botai_getdivingmask>
   <Botai_getdivingmask>"Нужно найти кислородную маску!"</Botai_getdivingmask>
   <Botai_getdivingmask>"Корпус поврежден! Корпус поврежден!"</Botai_getdivingmask>
+  <LockDirectionalSonar>Заблокировать направление сонара</LockDirectionalSonar>
+  <Arm>Взвести</Arm>
+  <TorpedoDisarm>Обезвредить</TorpedoDisarm>
+  <TorpedoArm>Взвести</TorpedoArm>
+  <TorpedoTubeEmpty>Торпедный аппарат пуст</TorpedoTubeEmpty>
+  <LaunchTorpedo>Запустить торпеду</LaunchTorpedo>
+  <hertz>кГц</hertz>
+  <EngineStatus>Состояние двигателя</EngineStatus>
+  <EnginePowerConsumption>Потребляемая мощность</EnginePowerConsumption>
+  <KW>кВт</KW>
+  <O2>кислород</O2>
+  <oxygeneratornui.powerslidertext>Скорость рециркуляции воздуха</oxygeneratornui.powerslidertext>
+  <oxygeneratornui.refill>Заправить</oxygeneratornui.refill>
+  <prograssbar.Lubricating>Смазка</prograssbar.Lubricating>
+  <turbineoutput>Выход турбины</turbineoutput>
+  <TurbineRateSliderText>Скорость турбины</TurbineRateSliderText>
+  <dialogcheckfirearms>«Такое оружие здесь не разрешено!»</dialogcheckfirearms>
+  <dialogcheckfirearms.Drop>«Бросай оружие!»</dialogcheckfirearms.Drop>
+  <MiniMapCO2>Уровень CO2</MiniMapCO2>
+  <MiniMapCO>Уровень CO</MiniMapCO>
+  <MiniMapChlorine>Уровень хлора</MiniMapChlorine>
+  <MiniMapLockRoomHit>Нажмите, чтобы заблокировать комнату. Ctrl + нажмите, чтобы разблокировать.</MiniMapLockRoomHit>
+  <MiniMapTemperature>Температура</MiniMapTemperature>
+  <jobname.navigator>Штурман</jobname.navigator>
+  <jobdescription.navigator>Мореплаватель на борту. Проводит судно через самые трудные места.</jobdescription.navigator>
+  <jobname.gunner>Наводчик</jobname.gunner>
+  <jobdescription.gunner>Отлично обращается с тяжёлым вооружением на палубе.</jobdescription.gunner>
+  <dialoggetdivinggear>Нужно найти водолазное снаряжение!</dialoggetdivinggear>
+  <dialoggetdivinggear>Нужно найти водолазное снаряжение!</dialoggetdivinggear>
+  <dialoggetdivinggear>Нужно найти водолазное снаряжение!</dialoggetdivinggear>
+  <dialoggetdivinggear>Нужно найти водолазное снаряжение!</dialoggetdivinggear>
+  <dialoggetdivinggear>Нужно найти водолазное снаряжение!</dialoggetdivinggear>
+  <dialogclimbladderwithfullhanditem>Мне нужно освободить руки для подъёма.</dialogclimbladderwithfullhanditem>
+  <dialog.bots.dangerousfuelrod>Ёлки-палки! Горящий топливный стержень!</dialog.bots.dangerousfuelrod>
+  <dialog.bots.dangerousfuelrod>Топливный стержень без защиты!</dialog.bots.dangerousfuelrod>
+  <dialog.bots.dangerousfuelrod>У нас тут горячий топливный стержень!</dialog.bots.dangerousfuelrod>
+  <dialog.bots.dangerousfuelrod>Какого чёрта! Радиоактивный стержень!</dialog.bots.dangerousfuelrod>
+  <dialog.bots.cannotrepairpowereddevice>Я не могу ремонтировать включённое устройство!</dialog.bots.cannotrepairpowereddevice>
+  <dialog.bots.powereddeviceisbroken> сломан</dialog.bots.powereddeviceisbroken>
+  <dialog.bots.powereddeviceisbroken_in> в </dialog.bots.powereddeviceisbroken_in>
+  <dialog.bots.cannotrepairpoweredreactor>Я не могу это починить, реактор ещё работает!</dialog.bots.cannotrepairpoweredreactor>
+  <dialog.bots.brokendeviceconnectedtopoweredjunctionbox>Не могу починить! Устройство [itemname] всё ещё подключено к работающей распределительной коробке!</dialog.bots.brokendeviceconnectedtopoweredjunctionbox>
+  <dialog.bots.findradiationsuit>Мне нужен радиационный костюм!</dialog.bots.findradiationsuit>
+  <dialog.bots.findradiationsuit.failure>Не могу найти радиационный костюм.</dialog.bots.findradiationsuit.failure>
+  <dialog.bots.cannotaccesswetroomdoor>Не могу открыть люк балластной цистерны, так как отсек находится под давлением!</dialog.bots.cannotaccesswetroomdoor>
+  <dialog.bots.spottedenemybehinddoor>Вижу движение за дверью!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Эй! Кто-то за дверью!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Кто там!?</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Чёрт! За дверью!</dialog.bots.spottedenemybehinddoor>
+  <dialog.bots.spottedenemybehinddoor>Враг за дверью!</dialog.bots.spottedenemybehinddoor>
+  <skillname.ondeckweapon>Палубное вооружение</skillname.ondeckweapon>
+  <itemmsg.repair.screwdriver_mechanicalparts>[[использовать]] Починить (Отвёртка + Механические детали)</itemmsg.repair.screwdriver_mechanicalparts>
+  <itemmsg.repair.wrench_mechanicalparts>[[использовать]] Починить (Гаечный ключ + Механические детали)</itemmsg.repair.wrench_mechanicalparts>
+  <itemmsg.repair.screwdriver_electricalparts>[[использовать]] Починить (Отвёртка + Электрические детали)</itemmsg.repair.screwdriver_electricalparts>
+  <ordername.findandequipradiationsuit>Найти и надеть радиационный костюм</ordername.findandequipradiationsuit>
+  <orderdialog.findandequipradiationsuit>[name], найди и надень радиационный костюм!</orderdialog.findandequipradiationsuit>
+  <orderdialogself.findandequipradiationsuit>Мне нужен радиационный защитный костюм.</orderdialogself.findandequipradiationsuit>
+  <ordername.retrievefuelrod>Извлечь топливный стержень</ordername.retrievefuelrod>
+  <orderdialog.retrievefuelrod>[name], извлеки топливный стержень из реактора!</orderdialog.retrievefuelrod>
+  <dialog.bots.missingequipment>У меня недостаточно оборудования для этого!</dialog.bots.missingequipment>
+  <dialog.bots.retrievefuelrod.failure>Не могу найти подходящее снаряжение. Отказ от миссии!</dialog.bots.retrievefuelrod.failure>
+  <dialog.bots.retrievefuelrod.nofuelrod_inreactor>В реакторе нет отработанных стержней.</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
+  <dialog.bots.retrievefuelrod.colling_and_putting>Осторожно. Остужаю в держателе...</dialog.bots.retrievefuelrod.colling_and_putting>
+  <dialog.bots.retrievefuelrod.success>Радиоактивный стержень зафиксирован.</dialog.bots.retrievefuelrod.success>
+  <ordername.operatejunctionbox>Переключить состояние распределительной коробки</ordername.operatejunctionbox>
+  <orderdialog.operatejunctionbox>[name], переключи состояние распределительной коробки!</orderdialog.operatejunctionbox>
+  <dialog.bot.operatedjunctionbox>Рычаг распределительной коробки переключён!</dialog.bot.operatedjunctionbox>
+  <ordername.repairwithdisconnect>Ремонт с отключением питания</ordername.repairwithdisconnect>
+  <orderdialog.repairwithdisconnect>[name], отключи кабель питания и почини!</orderdialog.repairwithdisconnect>
+  <dialog.bot.repairwithdisconnect.complete>Устройство отремонтировано и снова включено!</dialog.bot.repairwithdisconnect.complete>
+  <dialog.bot.repairwithdisconnect.canfindrepairtarget>Нет устройств, требующих ремонта.</dialog.bot.repairwithdisconnect.canfindrepairtarget>
+  <dialog.bot.repairwithdisconnect.disconnectingpowerwires>Отключение питания...</dialog.bot.repairwithdisconnect.disconnectingpowerwires>
+  <hint.electricalrepair>Обязательно отключите питание для безопасного ремонта.</hint.electricalrepair>
+  <hint.bugvent>Из вентиляции выполз жук, потребляющий электричество. Убейте его, чтобы восстановить питание.</hint.bugvent>
+  <hint.qteinsufficientskilllevel>Ваш уровень навыка ниже требуемого для быстрого ремонта.</hint.qteinsufficientskilllevel>
+  <hint.half_opened_door_turtorial>Нажмите клавишу приседания, чтобы приоткрыть дверь наполовину.</hint.half_opened_door_turtorial>
+  <hint.touch_hot_fuelrod_with_bare_hands>Используйте держатель стержня для безопасной переноски!</hint.touch_hot_fuelrod_with_bare_hands>
+  <VerticalEngineDisplayTip>Коэффициент тяги вертикального движителя.</VerticalEngineDisplayTip>
+  <SonarHertzTip>Частота сонара. Более высокая частота даёт большую дальность, но меньший радиус обнаружения. Более мощный сонар также опаснее для человека.</SonarHertzTip>
+  <lowoxygencandleheader>Мало кислородных свечей</lowoxygencandleheader>
+  <lowoxygencandlewarning>На подводной лодке менее двух полностью исправных кислородных свечей. Дальнейшее плавание без достаточного количества свечей может привести к неработоспособности кислородного генератора.</lowoxygencandlewarning>
+  <lowreactorcontrolrodheader>Мало стержней управления реактором</lowreactorcontrolrodheader>
+  <lowreactorcontrolrodwarning>На подводной лодке менее двух полностью исправных стержней управления реактором. Недостаток стержней может привести к расплавлению реактора.</lowreactorcontrolrodwarning>
+  <lowrepairconsumableheader>Мало расходных материалов для ремонта</lowrepairconsumableheader>
+  <lowrepairconsumablewarning>У вас меньше 15 единиц ремонтных расходников (механические и электрические детали). Без достаточного количества запасных частей оборудование подводной лодки нельзя будет починить.</lowrepairconsumablewarning>
+  <VerticalEngineForce>Сила вертикального двигателя</VerticalEngineForce>
+  <EngineUpwards>Вверх</EngineUpwards>
+  <EngineDownwards>Вниз</EngineDownwards>
+  <KeepDepth>Удержание глубины</KeepDepth>
+  <AutomaticControlled>Автоматическое\nуправление</AutomaticControlled>
+  <TurrentUIWeaponSkill>Навык оружия: </TurrentUIWeaponSkill>
+  <FirerateBonus>Бонус к скорострельности: </FirerateBonus>
+  <FireratePenalty>Штраф к скорострельности: </FireratePenalty>
+  <Upgradename.enginecangovertical>Векторный движитель</Upgradename.enginecangovertical>
+  <Upgradedescription.enginecangovertical>Модернизация двигателя позволяет гребному винту изменять угол и создавать вертикальную тягу для подводной лодки.</Upgradedescription.enginecangovertical>
+  <CustomJunctionBoxSwitchTip>Нажмите, чтобы включить/выключить распределительную коробку.</CustomJunctionBoxSwitchTip>
+  <campaigninteractiontype.monster_merchant.onselect>«Хотите продать какие-нибудь отвратительные части монстров? У меня разумные цены.»</campaigninteractiontype.monster_merchant.onselect>
+  <creature_loot_store.stock>На складе: </creature_loot_store.stock>
+  <creature_loot_store.sellprice>Цена продажи: </creature_loot_store.sellprice>
+  <creature_loot_store.specailoffer>Особая цена: </creature_loot_store.specailoffer>
+  <creature_loot_store.originalprice>Исходная цена: </creature_loot_store.originalprice>
+  <creature_loot_store.sellbuttontext>Продать</creature_loot_store.sellbuttontext>
+  <creature_loot_store.sellerpersonality>Личность продавца</creature_loot_store.sellerpersonality>
+  <creature_loot_store.sellerpersonalitypositive>Более высокая цена из-за личности</creature_loot_store.sellerpersonalitypositive>
+  <creature_loot_store.sellerpersonalitynegative>Более низкая цена из-за личности</creature_loot_store.sellerpersonalitynegative>
+  <creature_loot_store.sellerpersonalitynutruel>Нейтральная личность</creature_loot_store.sellerpersonalitynutruel>
+  <progressbar.scavenging>Поиск полезного</progressbar.scavenging>
+  <progressbar.cutting>Резка</progressbar.cutting>
+  <progressbar.keyunlocking>Отпирание ключом</progressbar.keyunlocking>
+  <progressbar.keylocking>Запирание ключом</progressbar.keylocking>
+  <item.interactve.hint.lock>[[использовать]] Использовать ключ</item.interactve.hint.lock>
+  <itemmsgscavengeuse>[[использовать]] Обыскать</itemmsgscavengeuse>
 </infotexts>

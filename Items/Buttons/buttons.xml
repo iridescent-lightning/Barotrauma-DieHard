@@ -80,7 +80,7 @@
         <requireditem identifier="wrench" type="Equipped" />
       </Holdable>
     </Item>
-    <Item name="" identifier="lever" category="Electrical" tags="smallitem,switch" allowedlinks="door,lift1" linkable="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+    <Item name="" identifier="lever" category="Electrical" tags="smallitem,switch" allowedlinks="door" linkable="true" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
       <Price baseprice="125" minavailable="4">
         <Price storeidentifier="merchantoutpost" />
         <Price storeidentifier="merchantcity" sold="false" />
