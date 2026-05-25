@@ -118,6 +118,17 @@ namespace BarotraumaDieHard
                 }
             }
 #endif
+            if (character?.AnimController != null && Rand.Range(0f, 1f) < 0.5f)
+                {
+                    // 顺着骨骼系统寻找角色的右手或持物手，动态灌入一个瞬时推力（Impulse）
+                    var handLimb = character.AnimController.GetLimb(LimbType.RightHand) ?? character.AnimController.GetLimb(LimbType.LeftHand);
+                    if (handLimb?.body != null)
+                    {
+                        // 施加一个极小、高频方向交替的仿真力，让手臂看起来因为反冲力而在痉挛、麻木
+                        Vector2 armJolt = Rand.Vector(0.5f); 
+                        handLimb.body.ApplyLinearImpulse(armJolt);
+                    }
+                }
 
             // ------------------------------------------------====================
             // 5. 核心修复：服务器权威实体生成（网络安全）
