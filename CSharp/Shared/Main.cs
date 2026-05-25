@@ -61,6 +61,7 @@ namespace BarotraumaDieHard
 
                 NetUtil.Register(NetEvent.SYNC_DOOR_HALF_OPEN, DoorPatch.OnReceiveDoorHalfOpenMessage);
                 NetUtil.Register(NetEvent.CONTAINER_LOCK_STATE, KeyLock.OnReceiveContainerLockStateMessage);
+                NetUtil.Register(NetEvent.DESTROY_MAIN_WALL, ExplosionDamageWallPatch.OnReceiveDestroyWallMessage);
 
             }
 

@@ -45,6 +45,7 @@ namespace Networking
         STORE_SELL,
         WIRE_DISCONNECT_SYNC,
         SYNC_DOOR_HALF_OPEN,
-        CONTAINER_LOCK_STATE
+        CONTAINER_LOCK_STATE,
+        DESTROY_MAIN_WALL
     }
 }

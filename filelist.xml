@@ -172,6 +172,6 @@
   <OutpostModule file="%ModDir%/EngineeringModule_01DH.sub" />
   <OutpostModule file="%ModDir%/EngineeringModule_02DH.sub" />
   <OutpostModule file="%ModDir%/Cave_Room_1.sub" />
-  <Submarine file="%ModDir%/0test.sub" />
   <Submarine file="%ModDir%/./0Mod Play Yard.sub" />
+  <Submarine file="%ModDir%/0test.sub" />
 </contentpackage>
