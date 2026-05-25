@@ -146,13 +146,13 @@
       <Sprite texture="containers.png" depth="0.84" sourcerect="348,2,364,373" origin="0.5,0.5" />
       <BrokenSprite texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="348,2,364,373" depth="0.84" origin="0.5,0.5" maxcondition="30" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="350,11,386,365" depth="0.9" origin="0.41,0.47" />
-      <Body customshape="table" 
+      <!--<Body customshape="table" 
             width="330" 
             height="50" 
             density="9000" 
             legwidth="12" 
             legheight="150" 
-            legoffset="150"/>
+            legoffset="150"/>-->
       <ItemContainer capacity="35" slotsperrow="7" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem,mediumitem" />

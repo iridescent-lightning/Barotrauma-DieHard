@@ -1448,7 +1448,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <AK47 name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1559,7 +1559,7 @@
         </StatusEffect>
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
-    </Item>
+    </AK47>
     <AK47MAG name="" identifier="ak47mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" health="30" subcategory="small arms">
       <PreferredContainer primary="ak47" secondary="armcab" amount="2" notcampaign="True" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />

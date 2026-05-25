@@ -374,7 +374,7 @@
         <QualityStat stattype="ExplosionDamage" value="0.1" />
       </Quality>
     </Item>
-    <Item name="" identifier="fraggrenade" category="Weapon" maxstacksize="8" cargocontaineridentifier="explosivecrate" tags="smallitem,weapon,explosive,demolitionsexpert,grenade_midaircollide, collideable" scale="0.255" impactsoundtag="impact_metal_heavy" isshootable="true">
+    <Item name="" identifier="fraggrenade" category="Weapon" maxstacksize="8" cargocontaineridentifier="explosivecrate" tags="smallitem,weapon,explosive,demolitionsexpert,grenade_midaircollide, collideable, VoronoiDestroyer" scale="0.255" impactsoundtag="impact_metal_heavy" isshootable="true">
       <PreferredContainer primary="secarmcab" minamount="1" maxamount="3" spawnprobability="0.75" notcampaign="true" />
       <PreferredContainer secondary="wreckarmcab,abandonedarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
       <PreferredContainer secondary="armcab" />
@@ -405,7 +405,7 @@
         <StatusEffect type="OnBroken" target="This">
           <sound file="Content/Items/Weapons/ExplosionMedium1.ogg" type="OnUse" range="10000" selectionmode="All" />
           <sound file="Content/Items/Weapons/ExplosionDebris1.ogg" type="OnUse" range="10000" />
-          <Explosion range="600.0" structuredamage="2000" ballastfloradamage="120" itemdamage="500" force="10" severlimbsprobability="0.5" decal="explosion" decalsize="0.5" levelwalldamage="5000">
+          <Explosion range="600.0" structuredamage="100" ballastfloradamage="120" itemdamage="500" force="10" severlimbsprobability="0.5" decal="explosion" decalsize="0.5">
             <Affliction identifier="bleeding" strength="80" />
             <Affliction identifier="explosiondamage" strength="180" />
             <Affliction identifier="stun" strength="5" />

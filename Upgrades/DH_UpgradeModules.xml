@@ -59,5 +59,13 @@
       <!--<DecorativeSprite texture="Content/Items/InventoryIconAtlas.png" sourcerect="63,320,64,64" depth="0.75" origin="0.5,0.5"/>-->
       <Sprite texture="Content/UI/CampaignUIAtlas2.png" sourcerect="128,640,128,128" origin="0.5,0.5"/>
     </UpgradeModule>
+
+
+    <!--A fix to make submarine hull twice the thick than vanilla-->
+    <!--defualt health is 400-->
+    <UpgradeModule identifier="doublewallhealth" maxlevel="1" categories="" increaseontooltip="20">
+    <Price baseprice="0" increaselow="+0%" increasehigh="+100%"/>
+    <Structure maxhealth="+50%" />
+  </UpgradeModule>
   </UpgradeModules>
 </Override>

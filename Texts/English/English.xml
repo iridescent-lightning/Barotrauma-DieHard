@@ -640,7 +640,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.pressurizedgastank>Stores high pressure gas for ballast room pumps.</entitydescription.pressurizedgastank>
   <entityname.meltdownfuelrod>Meltdown Fuelrod</entityname.meltdownfuelrod>
   <entitydescription.meltdownfuelrod>Radioactive leftover of a fuelrod</entitydescription.meltdownfuelrod>
-  
+  <entityname.handdrill>Hand Drill</entityname.handdrill>
+  <entitydescription.handdrill>Drilling tool that can bore through hard cliffs</entitydescription.handdrill>
   <entityname.keymediumcab>Medium Cabinet Key</entityname.keymediumcab>
   <entitydescription.keymediumcab>Use to lock cabinets</entitydescription.keymediumcab>
   <entityname.keylargecab>Large Cabinet Key</entityname.keylargecab>

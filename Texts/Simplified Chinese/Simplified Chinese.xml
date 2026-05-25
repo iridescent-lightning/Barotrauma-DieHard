@@ -644,6 +644,8 @@
   <entitydescription.keymedical>用来上锁/解锁柜子</entitydescription.keymedical>
   <entityname.keymaster>主管钥匙</entityname.keymaster>
   <entitydescription.keymaster>用来上锁/解锁所有儲物柜子</entitydescription.keymaster>
+  <entityname.handdrill>电钻</entityname.handdrill>
+  <entitydescription.handdrill>可以在坚硬的岩壁上打孔</entitydescription.handdrill>
 
 
 

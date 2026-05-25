@@ -89,15 +89,6 @@ namespace BarotraumaDieHard
             }
         }
 
-        [HarmonyPatch("OnMapLoaded")]
-        [HarmonyPostfix]
-        private static void OnMapLoadedPostfix(Structure __instance)
-        {
-            if (__instance == null) return;
-
-            __instance.MaxHealth *= 2f;
-
-            
-        }
+        
     }
 }

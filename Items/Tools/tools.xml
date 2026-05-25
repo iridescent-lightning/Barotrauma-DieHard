@@ -452,6 +452,71 @@
         </RepairTool>
       </Upgrade>
     </Item>
+    <Item name="" identifier="handdrill" category="Equipment" Tags="smallitem,cuttingequipment,tool,mountableweapon,collidable" cargocontaineridentifier="metalcrate" description="" Scale="0.45" impactsoundtag="impact_metal_light">
+      <Preferredcontainer secondary="respawncontainer" amount="1" spawnprobability="1" notcampaign="true" />
+      <PreferredContainer secondary="outpostcrewcabinet" amount="1" spawnprobability="0.05" />
+      <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab" amount="1" spawnprobability="0.05" />
+      <PreferredContainer primary="divingcab" secondary="engcab" />
+      <Price baseprice="150">
+        <Price storeidentifier="merchantoutpost" minavailable="3" />
+        <Price storeidentifier="merchantcity" minavailable="2" />
+        <Price storeidentifier="merchantresearch" multiplier="1.25" minavailable="2" />
+        <Price storeidentifier="merchantmilitary" multiplier="1.25" minavailable="2" />
+        <Price storeidentifier="merchantmine" multiplier="0.9" minavailable="10" />
+        <Price storeidentifier="merchantengineering" minavailable="5" multiplier="0.9" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="steel" />
+        <Item identifier="plastic" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="20">
+        <RequiredSkill identifier="mechanical" level="30" />
+        <RequiredItem identifier="steel" amount="2" />
+        <RequiredItem identifier="plastic" amount="2" />
+      </Fabricate>
+      <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="0,320,64,64" origin="0.5,0.5" />
+      <Sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="2,326,190,106" depth="0.55" origin="0.5,0.5" />
+      <Body width="190" height="106" density="75" />
+      <Holdable slots="RightHand+LeftHand" controlpose="true" aimpos="60,0" handle1="-60,-21" handle2="-21,-20" msg="ItemMsgPickUpSelect" />
+      <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
+        <sprite texture="%ModDir%/Items/Tools/DHtools.png" sourcerect="2,326,190,106" depth="0.55" origin="0.45,-0.1" canbehiddenbyotherwearables="false" rotation="-90" inheritlimbdepth="false" limb="Torso" scale="0.45" />
+      </Wearable>
+      <RepairTool firedamage="10.0" structurefixamount="-10" range="100" barrelpos="55,10" combatpriority="10" repairmultiple="true" repairthroughwalls="false" maxoverlappingwalldist="0.0" repairthroughholes="true" levelwallfixamount="-5.0" targetforce="10">
+        <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryRequired" />
+        <RequiredSkill identifier="mechanical" level="50" />
+        <StatusEffect type="OnUse" targettype="Contained" targets="mobilebattery" Condition="-1.0" />
+        <StatusEffect type="OnUse" target="This">
+          <Explosion range="15.0" force="0.1" flash="false" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="1.0" />
+        </StatusEffect>
+        <StatusEffect type="OnSuccess" targettype="UseTarget" targets="weldable" Stuck="-20.0" />
+        <StatusEffect type="OnSuccess" targettype="UseTarget" Condition="-15.0" />
+        <StatusEffect type="OnSuccess" targettype="Limb" severlimbsprobability="0.0001">
+          <Affliction identifier="lacerations" amount="4.0" />
+        </StatusEffect>
+        <ParticleEmitterHitStructure particle="spark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+        <ParticleEmitterHitStructure particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="20" />
+        <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="spark" particlespersecond="100" anglemin="-40" anglemax="40" velocitymin="100" velocitymax="800" />
+        <ParticleEmitterHitItem identifiers="door,hatch,ductblock" particle="plasmasmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="10" velocitymax="100" />
+        <ParticleEmitterHitItem identifiers="ore" particle="iceshards" particlespersecond="5" anglemin="-40" anglemax="40" velocitymin="10" velocitymax="300" scalemin="0.5" scalemax="1.0" />
+        <ParticleEmitterHitCharacter particle="fleshsmoke" particlespersecond="3" anglemin="-5" anglemax="5" velocitymin="0" velocitymax="50" />
+        <sound file="%ModDir%/Items/Tools/spinopel-hammer-drill-381906.ogg" type="OnUse" range="750.0" loop="true" volumenum="1"/>
+        <Fixable identifier="structure" />
+      </RepairTool>
+      <ItemContainer capacity="1" maxstacksize="1" hideitems="true" itempos="0,-39" containedspritedepth="0.56" containedstateindicatorstyle="battery">
+        <Containable items="mobilebattery" />
+      </ItemContainer>
+      <aitarget sightrange="2000" soundrange="500" fadeouttime="3" />
+      <Quality>
+        <QualityStat stattype="RepairToolStructureDamageMultiplier" value="0.1" />
+        <QualityStat stattype="RepairToolDeattachTimeMultiplier" value="0.1" />
+      </Quality>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
+      <Upgrade gameversion="0.14.0.0">
+        <RepairTool>
+          <RequiredItems identifier="oxygensource,weldingtoolfuel" type="Contained" msg="ItemMsgOxygenTankRequired" />
+        </RepairTool>
+      </Upgrade>
+    </Item>
     <Item name="" identifier="hullscanner" category="Equipment" Tags="smallitem,tool,collidable" cargocontaineridentifier="metalcrate" description="" Scale="0.35" impactsoundtag="impact_handguns">
       <Preferredcontainer secondary="respawncontainer" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostcrewcabinet" amount="1" spawnprobability="0.05" />

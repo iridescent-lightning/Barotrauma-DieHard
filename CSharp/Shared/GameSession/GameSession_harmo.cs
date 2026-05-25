@@ -42,6 +42,7 @@ namespace BarotraumaDieHard
         [HarmonyPostfix]
         public static void StartRound(LevelData levelData, bool mirrorLevel, SubmarineInfo startOutpost, SubmarineInfo endOutpost)
         {
+            
             //DebugConsole.NewMessage(Level.Loaded.StartLocation?.Type.ToString());
             pressurizedhullPrefab = AfflictionPrefab.Prefabs["pressurizedhull"];
             
@@ -69,12 +70,50 @@ namespace BarotraumaDieHard
                     }
                 }
             }
-
-#if CLIENT
-
             
+            Submarine submarine = GameMain.GameSession?.Submarine ?? Submarine.MainSub;
+            if (submarine is null) { return; }
 
-#endif
+
+            // 利用反射调用你贴出的原版 BuyUpgrade 私有方法
+            MethodInfo buyUpgradeMethod = typeof(UpgradeManager).GetMethod("BuyUpgrade", 
+                BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
+			
+            if (buyUpgradeMethod == null) return;
+
+            // 3. 寻找或准备好你的自定义升级 Prefab
+            // "increasewallhealth" 对应你写的 XML 里的 identifier
+            UpgradePrefab wallUpgradePrefab = UpgradePrefab.Prefabs.Find(p => p.Identifier == "doublewallhealth");
+            UpgradeCategory wallCategory = UpgradeCategory.Categories.Find(c => c.IsWallUpgrade);
+            if (wallUpgradePrefab != null )
+            {
+				
+                // 检测潜艇当前的墙壁是否已经有了这个升级，或者检查战役数据
+                // 你的 maxlevel 设定为 6（每次+20%）。如果我们一步到位直接刷满到 5 级（+100% 也就是两倍血）
+                int targetLevel = 2; 
+
+                // 获取主潜艇上现有的某个墙壁看看有没有升过级，如果没有，说明是新战役开局或者新换的潜艇
+                    var firstWall = Submarine.MainSub.GetWalls(alsoFromConnectedSubs: false).Find(w => w.MaxHealth > 0);
+                
+                    var existing = firstWall.GetUpgrade(wallUpgradePrefab.Identifier);
+                    
+                    // 核心保险：只有当当前等级低于目标等级时，才给买升级。这样绝对不会重复叠加！
+                    if (existing == null || existing.Level < targetLevel)
+                    {
+                        // 隐式调用原版的 BuyUpgrade(prefab, category, submarine, level, parentSub)
+                        buyUpgradeMethod.Invoke(null, new object[] { 
+                            wallUpgradePrefab, 
+                            wallCategory, 
+                            Submarine.MainSub, 
+                            targetLevel, 
+                            null 
+                        });
+
+                        //DebugConsole.NewMessage($"[DieHard] 战役检测：成功通过原生升级系统将外壳血量永久提升至 200%！");
+                    }
+                
+            }
+
 
         }
 

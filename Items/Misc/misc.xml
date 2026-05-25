@@ -974,5 +974,16 @@
             leftlegwidth="10" leftlegheight="30" leftlegoffset="-10"
             rightlegwidth="14" rightlegheight="60" rightlegoffset="30"/>
     </DebugTable>
+    <Bore name="bore" identifier="bore" scale="0.25" Tags="voidestroyerholder" hideinmenus="true" damagedbyexplosions="true" explosiondamagemultiplier="5">
+      <Sprite texture="%ModDir%/Items/Misc/DHMisc2.png" sourcerect="123,346,166,173" depth="0.7" origin="0.5,0.5" />
+      <ItemContainer capacity="1" maxstacksize="1" hideitems="false" canbeselected="true" >
+        <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="64,384,64,64" origin="0.5,0.5" />
+        <GuiFrame relativesize="0.11,0.17" anchor="Center" relativeoffset="0.006,0.016" minsize="140,170" maxsize="280,280" style="ItemUI" />
+        <Containable items="smallitem,explosive" itempos="24,-24"/>
+        <StatusEffect type="OnBroken" target="This">
+          <Remove/>
+        </StatusEffect>
+      </ItemContainer>
+    </Bore>
   </Items>
 </Override>
