@@ -33,6 +33,8 @@ namespace BarotraumaDieHard
             if (GameMain.Client != null) return; // 客户端不自发运行主逻辑，全部听从服务器指令
 #endif
             if (Level.Loaded == null) return;
+            Item realExplodeItem = null;
+            if (damageSource is Item sourceItem && sourceItem?.Prefab.Identifier != "c4block") return;
 
             float worldRange = 1000f; 
             Vector2 simStartPos = ConvertUnits.ToSimUnits(worldPosition);
@@ -292,6 +294,8 @@ namespace BarotraumaDieHard
 
             var sortedCandidates = candidateSubCells.OrderBy(c => c.Item2).ToList();
 
+            // 动态决定这发雷能炸飞多少比例的地形
+            // 基础摧毁阈值：根据波及碎片总数，结合随机骰子，确保威力范围在合理区间
             double totalDestroyRatio = rand.NextDouble() * 0.3 + 0.55; 
             int destroyCountThreshold = (int)(sortedCandidates.Count * totalDestroyRatio);
 

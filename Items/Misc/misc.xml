@@ -344,7 +344,7 @@
       <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.5" sourcerect="500,9,66,31" origin="0.5,0.5" />
       <Throwable slots="Any,RightHand,LeftHand" throwforce="1.5" aimpos="35,-10" handle1="-2,0" handle2="5,0" canbepicked="True" />
     </Item>
-    <Item name="" identifier="keyorganzier" scale="0.5" category="Equipment" tags="smallitem,midair_collide" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light">
+    <Item name="" identifier="keyorganzier" scale="0.5" category="Equipment" tags="smallitem,midair_collide" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_light" isshootable="true">
       <Price baseprice="40" minavailable="10">
         <Price storeidentifier="merchantoutpost" />
         <Price storeidentifier="merchantcity" minavailable="5" />
@@ -364,6 +364,7 @@
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="766,190,64,64" />
       <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.6" sourcerect="181,110,50,46" origin="0.5,0.5" />
       <Wearable slots="Any,Bag" handle1="-2,0" handle2="5,0" canbepicked="True" />
+      <Holdable selectkey="Select" slots="RightHand,LeftHand" holdangle="0" handle1="0,0" handle2="0,0" msg="ItemMsgPickUpSelect" aimable="true" attachable="true" aimpos="35,-10" />
       <ItemContainer capacity="5" canbeselected="true" hideitems="true" slotsperrow="1" ShowConditionInContainedStateIndicator="false">
         <Containable items="containerkey" />
       </ItemContainer>

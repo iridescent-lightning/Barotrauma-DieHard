@@ -412,9 +412,10 @@
             <Item identifier="weldingfueltank" />
           </Item>
           <Item identifier="divingknife" equip="false"/>
-          <Item identifier="machinepistol" equip="true">
-            <Item identifier="smgmagazine"/>
+          <Item identifier="MPX" equip="true">
+            <Item identifier="mpx_magazine"/>
           </Item>
+          <Item identifier="mpx_magazine" amount="2"/>
           <Item identifier="toolbelt" equip="true"/>
         </ItemSet>
         <ItemSet commonness="1">
@@ -479,13 +480,10 @@
             <Item identifier="weldingfueltank" />
           </Item>
           <Item identifier="divingknife" equip="false"/>
-          <Item identifier="smgmagazine" amount="2" />
-          <Item identifier="machinepistol" equip="true">
-            <Item identifier="smgmagazine"/>
+          <Item identifier="M16" equip="true">
+            <Item identifier="M16Mag"/>
           </Item>
-          <Item identifier="machinepistol" equip="true">
-            <Item identifier="smgmagazine"/>
-          </Item>
+          <Item identifier="M16Mag" amount="2"/>
           <Item identifier="toolbelt" equip="true"/>
         </ItemSet>
         <ItemSet commonness="1">
@@ -540,9 +538,10 @@
           </Item>
           <Item identifier="divingknife" equip="false"/>
           <Item identifier="toolbelt" equip="true"/>
-          <Item identifier="rifle" equip="true">
-            <Item identifier="riflebullet" amount="6"/>
+          <Item identifier="MPX" equip="true">
+            <Item identifier="mpx_magazine" amount="1"/>
           </Item>
+          <Item identifier="mpx_magazine" amount="3"/>
         </ItemSet>
       </npc>
       <npc identifier="hostage" job="assistant" moduleflags="none" behavior="Passive">

@@ -12,7 +12,7 @@ LuaUserData.MakeMethodAccessible(Descriptors["Barotrauma.ItemPrefab"], "set_Dama
 end--]]
 
 local function MakeItemCollide(item, notCollideCharacter)--The standard item collide for tag collidable
-    if (item.HasTag('collidable')) then
+    if (item.HasTag('collidable') and item.body ~= nil) then
         local collision = bit32.bor(Physics.CollisionWall, Physics.CollisionLevel)
         --collision = bit32.bor(collision, Physics.CollisionPlatform)
         if not notCollideCharacter  then
@@ -51,14 +51,20 @@ local function MakeItemCollideAlways(item, notCollideCharacter)--always collide 
     if (item.HasTag('collidable_always')) then
         local collision = bit32.bor(Physics.CollisionWall, Physics.CollisionLevel)
 
-        if not notCollideCharacter  then
+        -- 🌟 核心修改 1：如果这个物品是一个平台（比如桌子），绝对不要在 CollidesWith 里直接加 CollisionCharacter！
+        -- 如果加了，引擎会产生死碰撞，C# 的穿透逻辑就无法完全生效
+        if not notCollideCharacter and not item.HasTag("isitemplatform") then
             collision = bit32.bor(collision, Physics.CollisionCharacter)
         end
+        
         collision = bit32.bor(collision, Physics.CollisionItem)
         collision = bit32.bor(collision, Physics.CollisionProjectile)
-		collision = bit32.bor(collision, Physics.CollisionPlatform)
+        collision = bit32.bor(collision, Physics.CollisionPlatform)
+        
         item.body.CollidesWith = collision
-        item.body.CollisionCategories = Physics.CollisionWall
+        
+        -- 🌟 核心修改 2：分类保持为平台
+        item.body.CollisionCategories = Physics.CollisionPlatform
     end
 end
 
@@ -136,15 +142,19 @@ Hook.Patch("Barotrauma.Ragdoll", "UpdateCollisionCategories", function (self, pt
 
     local collision
 
+    -- 🌟 核心修改点：当角色死亡、昏迷或变成软体（Ragdoll）时
     if self.Character.IsDead or self.Character.IsUnconscious or self.Character.IsRagdolled then
         collision = bit32.bor(wall, Physics.CollisionProjectile)
         collision = bit32.bor(collision, Physics.CollisionStairs)
-		collision = bit32.bor(collision, Physics.CollisionItem)
-		collision = bit32.bor(collision, Physics.CollisionPlatform)
+        collision = bit32.bor(collision, Physics.CollisionItem)
+        -- 🌟 关键：在此处强行注入 Physics.CollisionPlatform！
+        -- 这样软体和尸体就会拥有平台的硬实体碰撞，可以稳稳地躺在/砸在桌子和平台上，不会穿透漏下去
+        collision = bit32.bor(collision, Physics.CollisionPlatform)
+        
     elseif self.IgnorePlatforms then
         collision = bit32.bor(wall, Physics.CollisionProjectile)
         collision = bit32.bor(collision, Physics.CollisionStairs)   
-	else
+    else
         collision = bit32.bor(wall, Physics.CollisionProjectile)
         collision = bit32.bor(collision, Physics.CollisionStairs)
         collision = bit32.bor(collision, Physics.CollisionPlatform)

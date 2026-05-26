@@ -138,49 +138,62 @@ namespace BarotraumaDieHard
 
 
 		// 提取声音播放为独立方法，避免重复代码
-private static void PlayContainerSound(ItemContainer container)
-{
-    if (DateTime.UtcNow - lastUpdateTime < updateInterval) return;
-    
-#if CLIENT
-    if (container.item.HasTag("steelcabinetsfx"))
-        SoundPlayer.PlaySound("interactive_large_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
-    else if (container.item.HasTag("mediumsteelcabinetsfx"))
-        SoundPlayer.PlaySound("interactive_medium_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
-    else if (container.item.HasTag("extinguisherholder"))
-        SoundPlayer.PlaySound("interactive_large_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
-    else if (container.item.HasTag("suppliescontainer"))
-        SoundPlayer.PlaySound("interactive_emergencycab", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
-    else if (container.item.HasTag("securecontainer"))
-        SoundPlayer.PlaySound("interactive_securitycab_open", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
-    else if (container.item.HasTag("medcontainer"))
-        SoundPlayer.PlaySound("interactive_med_container_open", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
-#endif
-    
-    lastUpdateTime = DateTime.UtcNow;
-}
-		//no use leftover
-		/*
-		[HarmonyPatch("Equip")]
-        [HarmonyPrefix]
-		public static bool Equip(Character character, ItemContainer  __instance)
+		private static void PlayContainerSound(ItemContainer container)
 		{
-			ItemContainer _ = __instance;
-			_.IsActive = true;
-			//slot => slot.only checks for equipping to hands, which is exactly what we want
-			if (character != null && character.HasEquippedItem(_.item, predicate: slot => slot.HasFlag(InvSlotType.LeftHand) || slot.HasFlag(InvSlotType.RightHand)))
-			{
-				_.SetContainedActive(true);
-				//a template will fill in sound effects here
-				//DebugConsole.NewMessage("Equip");
-			}
-			else
-			{
-				_.SetContainedActive(false);
-			}
-			return false;
+			if (DateTime.UtcNow - lastUpdateTime < updateInterval) return;
+			
+		#if CLIENT
+			if (container.item.HasTag("steelcabinetsfx"))
+				SoundPlayer.PlaySound("interactive_large_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+			else if (container.item.HasTag("mediumsteelcabinetsfx"))
+				SoundPlayer.PlaySound("interactive_medium_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+			else if (container.item.HasTag("extinguisherholder"))
+				SoundPlayer.PlaySound("interactive_large_container", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+			else if (container.item.HasTag("suppliescontainer"))
+				SoundPlayer.PlaySound("interactive_emergencycab", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+			else if (container.item.HasTag("securecontainer"))
+				SoundPlayer.PlaySound("interactive_securitycab_open", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+			else if (container.item.HasTag("medcontainer"))
+				SoundPlayer.PlaySound("interactive_med_container_open", container.item.WorldPosition, hullGuess: container.item.CurrentHull);
+		#endif
+			
+			lastUpdateTime = DateTime.UtcNow;
 		}
-		*/
+		
+		// 用来存储当前所有正被玩家打开、看着的容器物品
+        public static readonly HashSet<Item> OpenedContainers = new HashSet<Item>();
+
+        // 补丁：每帧更新容器状态时调用
+        [HarmonyPatch("Update")]
+        [HarmonyPostfix]
+        public static void UpdatePostfix(ItemContainer __instance, float deltaTime)
+        {
+            if (__instance?.Item == null) return;
+
+            // Barotrauma 原版逻辑：__instance.IsActive 且正在向某人显示界面
+            // 检查当前柜子是否真的被选中/打开
+            bool isOpen = __instance.IsActive && __instance.CanBeSelected;
+
+            
+            if (__instance.Locked)
+            {
+                isOpen = false;
+            }
+
+            lock (OpenedContainers)
+            {
+                if (isOpen)
+                {
+                    // 玩家开着界面，丢进“打开列表”
+                    OpenedContainers.Add(__instance.Item);
+                }
+                else
+                {
+                    // 玩家把界面关了，或者走远了，从“打开列表”中移除
+                    OpenedContainers.Remove(__instance.Item);
+                }
+            }
+        }
 		
 	}
 }

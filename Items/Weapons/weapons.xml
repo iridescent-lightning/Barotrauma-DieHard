@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Override>
   <Items>
-    <Item name="" identifier="spear" category="Weapon" maxstacksize="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="spear" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo,handheldammo" Scale="0.5" impactsoundtag="impact_metal_light">
       <PreferredContainer primary="harpoongun" amount="6" spawnprobability="1" />
-      <PreferredContainer primary="armcab" minamount="3" maxamount="6" spawnprobability="1" notcampaign="true" />
-      <PreferredContainer secondary="wreckarmcab,abandonedarmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
+      <PreferredContainer primary="armcab" minamount="3" maxamount="6" spawnprobability="1" notcampaign="true" notpvp="true" />
+      <PreferredContainer secondary="wreckarmcab,abandonedarmcab,piratearmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
       <PreferredContainer primary="secarmcab" />
+      <PreferredContainer secondary="respawncontainer_kingofthehull" amount="32" spawnprobability="1" notcampaign="true"/>
       <Price baseprice="7">
         <Price storeidentifier="merchantoutpost" minavailable="12" multiplier="1.5" />
         <Price storeidentifier="merchantcity" minavailable="12" multiplier="1.25" />
@@ -23,25 +24,27 @@
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="85,368,168,11" depth="0.55" origin="0.5,0.5" />
       <Body width="160" height="10" density="30" />
       <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
-      <Rope sourcepullforce="300" targetpullforce="2000" projectilepullforce="5" maxlength="5" snaponcollision="false" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="30" lerpforces="true" snapanimduration="0.5">
-        <Sprite texture="Content/Map/Thalamus/thalamus.png" sourcerect="617,352,174,32" depth="0.57" origin="0.5,0.5" />
-        <!-- Snap after 1 seconds if not stuck to anything -->
-        <StatusEffect type="OnUse" target="This" Snapped="true" delay="1" checkconditionalalways="true">
-          <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
-        </StatusEffect>
-      </Rope>
-      <Projectile characterusable="false" launchimpulse="5" sticktocharacters="true" sticktoitems="true" sticktostructures="true" sticktodoors="false">
-        <Attack structuredamage="15" itemdamage="30" targetforce="20" severlimbsprobability="0.1" stun="1.5">
-          <Affliction identifier="lacerations" strength="35" />
-          <Affliction identifier="bleeding" strength="35" />
-          <Affliction identifier="stun" strength="0.5" />
-        </Attack>
-        <StatusEffect type="OnActive" target="UseTarget,This" checkconditionalalways="true" comparison="And">
-          <Conditional Snapped="false" />
-          <Conditional mass="lt 30" />
-          <Affliction identifier="drag" strength="1" />
-        </StatusEffect>
-      </Projectile>
+    <Rope sourcepullforce="300" targetpullforce="150" projectilepullforce="5" maxlength="1500" snaponcollision="false" spritewidth="3" tile="true" origin="0.05,0.5" targetminmass="10" lerpforces="true" snapanimduration="0.5" ReelSoundPitchSlide="1.0,2.25">
+      <Sprite texture="Content/Map/Thalamus/thalamus.png" sourcerect="617,352,174,32" depth="0.57" origin="0.5,0.5" />
+      <SnapSound file="Content/Items/Weapons/HarpoonGun1.ogg" range="500" frequencymultiplier="3.0,4.0"/>
+      <ReelSound file="Content/Items/Weapons/WEAPON_harpoonGunReelLoop.ogg" range="1000" />
+      <!-- Snap after 1 seconds if not stuck to anything -->
+      <StatusEffect type="OnUse" target="This" Snapped="true" delay="1" checkconditionalalways="true">
+        <Conditional targetitemcomponent="Projectile" IsStuckToTarget="false" />
+      </StatusEffect>
+    </Rope>
+      <Projectile characterusable="false" launchimpulse="5" sticktocharacters="true" sticktoitems="true" sticktostructures="true" sticktodeflective="true" sticktodoors="false" sticktolighttargets="true">
+      <Attack structuredamage="15" itemdamage="15" targetforce="20" severlimbsprobability="0.1">
+        <Affliction identifier="lacerations" strength="35" />
+        <Affliction identifier="bleeding" strength="35" />
+        <Affliction identifier="stun" strength="0.5" />
+      </Attack>
+      <StatusEffect type="OnActive" target="UseTarget,This" checkconditionalalways="true" comparison="And" disabledeltatime="true">
+        <Conditional Snapped="false" />
+        <Conditional mass="lt 30" />
+        <Affliction identifier="drag" strength="1" />
+      </StatusEffect>
+    </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
     <Item name="" identifier="alienspear" category="Weapon,Alien" maxstacksize="6" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="mediumitem,harpoonammo" Scale="0.5" impactsoundtag="impact_metal_light">
@@ -907,6 +910,10 @@
       </SubContainer>
       <SubContainer capacity="1" maxstacksize="1">
         <Containable items="flashlight" hide="false" itempos="30,-3" setactive="true" />
+        <Containable items="scope" hide="false" itempos="-5,7">
+          <StatusEffect type="OnContaining" target="This" cameraaimoffset="500" setvalue="true" interval="1"/>
+          <StatusEffect type="OnRemoved" target="This" cameraaimoffset="0" setvalue="true"/>
+        </Containable>
       </SubContainer>
     </ItemContainer>
     <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
@@ -915,45 +922,32 @@
     </Quality>
     <SkillRequirementHint identifier="weapons" level="60" />
   </Item>
-    <Item name="" identifier="riflebullet" category="Weapon" maxstacksize="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,rifleammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light">
+    <Item name="" identifier="riflebullet" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,rifleammo,handheldammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light">
       <PreferredContainer primary="rifle" amount="6" spawnprobability="1" />
-      <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="6" spawnprobability="0.5" />
-      <PreferredContainer secondary="wreckarmcab,wrecksecarmcab,abandonedarmcab,abandonedsecarmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
-      <PreferredContainer secondary="secarmcab" />
-      <Price baseprice="30" minleveldifficulty="15">
-        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
-        <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="4" sold="true" />
-        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
-        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="12" />
-        <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
-        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="12" />
-      </Price>
-      <Fabricate suitablefabricators="fabricator" requiredtime="20" requiresrecipe="true" amount="12">
-        <RequiredSkill identifier="weapons" level="30" />
-        <RequiredItem identifier="magnesium" amount="2" />
-        <RequiredItem identifier="lead" amount="2" />
-        <RequiredItem identifier="plastic" />
-      </Fabricate>
       <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="128,832,64,64" origin="0.5,0.5" />
       <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="233,163,23,9" depth="0.55" origin="0.5,0.5" />
-      <Body width="23" height="9" density="40" />
+      <Body width="23" height="9" density="30" />
       <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
-      <Projectile characterusable="false" hitscan="true" removeonhit="true">
-        <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,200,200,175" scalemultiplier="1,0.8" />
-        <Attack structuredamage="10" targetforce="12" itemdamage="20" severlimbsprobability="0.5" penetration="0.45">
-          <Affliction identifier="gunshotwound" strength="55" />
-          <Affliction identifier="bleeding" strength="33" />
-          <Affliction identifier="stun" strength="0.1" />
-        </Attack>
-        <StatusEffect type="OnImpact" target="UseTarget">
-          <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" scalemultiplier="2,2" />
+      <Projectile launchimpulse="35.0" characterusable="false" hitscan="true" removeonhit="true">
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,200,200,175" scalemultiplier="1,0.8" />
+      <Attack structuredamage="15" targetforce="12" itemdamage="15" severlimbsprobability="0.5" penetration="0.6">
+        <Affliction identifier="gunshotwound" strength="55" />
+        <Affliction identifier="bleeding" strength="33" />
+        <Affliction identifier="stun" strength="0.6" />
+        <StatusEffect type="OnUse" target="Limb" targetLimbs="Head">
+          <Affliction identifier="gunshotwound" strength="10" />
+          <Affliction identifier="stun" strength="1.2" />
         </StatusEffect>
-        <StatusEffect type="OnImpact" target="UseTarget">
-          <Conditional entitytype="eq Structure" />
-          <Conditional hastag="eq door" />
-          <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
-        </StatusEffect>
-      </Projectile>
+      </Attack>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" scalemultiplier="2,2" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
+      </StatusEffect>
+    </Projectile>
     </Item>
     <Item name="" identifier="riotshield" category="Equipment" tags="mediumitem,shield" health="600" impactsoundtag="impact_metal_light" cargocontaineridentifier="metalcrate" damagedbyprojectiles="true" scale="1" allowasextracargo="true" deflectprojectiles="True">
     <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="703,318,66,68" origin="0.5,0.5" />

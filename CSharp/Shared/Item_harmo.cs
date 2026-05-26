@@ -1,5 +1,5 @@
 ﻿
-/*using Barotrauma.Items.Components;
+using Barotrauma.Items.Components;
 using Barotrauma.Networking;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
@@ -31,27 +31,11 @@ namespace BarotraumaDieHard
     [HarmonyPatch(typeof(Item))]
     partial class ItemPatch
     {
-        [HarmonyPatch(MethodType.Constructor)]
-        [HarmonyPatch(new Type[] { typeof(ItemPrefab), typeof(Vector2), typeof(Submarine), typeof(ushort), typeof(bool) })]
-        [HarmonyPostfix]
-        public static void ItemCOnstructorPostfix(Item __instance)
-        {
-            DebugConsole.NewMessage($"{__instance.MaxCondition}");
-            if (__instance == null) return;
-
-            if (__instance.Prefab.Identifier == "hatch" || __instance.Prefab.Identifier == "hatchwbuttons")
-            {
-                __instance.MaxCondition *= 3f;
-
-                DebugConsole.NewMessage($"{__instance.MaxCondition}");
-            }
-
-            
-        }
+        
 
                 
     }
 
 
         
-}*/
+}

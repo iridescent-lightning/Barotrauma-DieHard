@@ -38,7 +38,7 @@ namespace BarotraumaDieHard
                 SwapForCustomIconOnInit();
             
         }
-
+        
         private void RegisterSprites()
         {
             // 保持你原本的键值对，但建议真正用到的时候再去实例化 Sprite。

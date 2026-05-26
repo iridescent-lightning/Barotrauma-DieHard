@@ -88,7 +88,7 @@
       </ConnectionPanel>
       <Upgrade gameversion="1.1.4.0" allowingameediting="false" />
     </Item>
-    <Item name="" identifier="railgunloadersmall" nameidentifier="railgunloader" tags="railgunequipment,railgunammosource,turretammosource,railgunammoloader" category="Machine,Weapon" linkable="true" allowedlinks="railgun" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Item name="" identifier="railgunloadersmall" nameidentifier="railgunloader" tags="railgunequipment,railgunammosource,turretammosource,railgunammoloader,ItemsUseInventoryPlacement" category="Machine,Weapon" linkable="true" allowedlinks="railgun" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
       <SwappableItem canbebought="false" origin="110,353" spawnwithid="railgunshell,railgunshell,railgunshell,railgunshell,railgunshell" />
       <Sprite name="Railgun Loader Front" texture="Loaders.png" depth="0.78" sourcerect="709,370,220,353" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Subweapons/Loaders_shadows.png" depth="0.9" sourcerect="761,596,226,402" canflipy="false" scale="1" offset="60,-15" />

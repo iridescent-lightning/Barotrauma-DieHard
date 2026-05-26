@@ -280,7 +280,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="crateshelf" tags="container,cargocontainer" linkable="true" canflipx="false" pickdistance="150" scale="0.5">
+    <Item name="" identifier="crateshelf" tags="container,cargocontainer,ItemsUseInventoryPlacement" linkable="true" canflipx="false" pickdistance="150" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="1,657,185,366" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="3,654,214,337" depth="0.9" origin="0.45,0.47" />
       <ItemContainer capacity="4" maxstacksize="1" canbeselected="true" hideitems="false" itempos="92,-48" iteminterval="0,-92" msg="ItemMsgInteractSelect">

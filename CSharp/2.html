@@ -1,53 +1,46 @@
-<Item name="" identifier="arcemitter" tags="mediumitem,weapon,gun,mountableweapon,provocativetohumanai" category="Weapon" isshootable="true" Scale="0.5">
-    <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="207,430,131,61" depth="0.55" origin="0.5,0.5" />
-    <Price baseprice="740" sold="false">
-      <Price storeidentifier="merchantoutpost" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" />
-      <Price storeidentifier="merchantresearch" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.9" />
-      <Price storeidentifier="merchantmine" multiplier="1.25" />
+<Item name="" identifier="riflebullet" category="Weapon" maxstacksize="32" maxstacksizecharacterinventory="12" interactthroughwalls="true" cargocontaineridentifier="metalcrate" tags="smallitem,rifleammo,handheldammo,riflemanbonus" Scale="0.5" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="rifle" amount="6" spawnprobability="1" />
+    <PreferredContainer primary="armcab" minamount="6" maxamount="12" spawnprobability="1" notcampaign="true" notpvp="true" />
+    <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="6" spawnprobability="0.5" />
+    <PreferredContainer secondary="wreckarmcab,wrecksecarmcab,abandonedarmcab,piratearmcab,abandonedsecarmcab,piratesecarmcab" minamount="1" maxamount="3" spawnprobability="0.2" />
+    <PreferredContainer secondary="secarmcab" />
+    <Price baseprice="30" minleveldifficulty="15">
+      <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.5" />
+      <Price storeidentifier="merchantcity" multiplier="1.25" minavailable="4" sold="true" />
+      <Price storeidentifier="merchantresearch" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="12" />
+      <Price storeidentifier="merchantmine" sold="false" multiplier="1.25" />
+      <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="12" />
     </Price>
-    <Fabricate suitablefabricators="fabricator" requiredtime="75" requiresrecipe="true">
-      <RequiredSkill identifier="electrical" level="65" />
-      <RequiredItem identifier="fulgurium" amount="2" />
-      <RequiredItem identifier="titaniumaluminiumalloy" amount="3" />
-      <RequiredItem identifier="copper" />
+    <Fabricate suitablefabricators="fabricator" requiredtime="20" requiresrecipe="true" amount="6">
+      <RequiredSkill identifier="weapons" level="30" />
+      <RequiredItem tag="munition_propulsion" description="fabricationdescription.munition_propulsion" />
+      <RequiredItem tag="munition_core" description="fabricationdescription.munition_core" />
+      <RequiredItem tag="munition_jacket" description="fabricationdescription.munition_jacket" />
+      <RequiredItem tag="advmunition_tip" description="fabricationdescription.advmunition_tip" />
     </Fabricate>
-    <Deconstruct time="35">
-      <Item identifier="fulgurium" amount="2" />
-      <Item identifier="titaniumaluminiumalloy" amount="2" />
-      <Item identifier="copper" />
-    </Deconstruct>
-    <ElectricalDischarger duration="0.15" reload="5.0" ignoreuser="true" characterusable="true" raycastrange="500" range="150" rangemultiplierinwalls="1.25" outdoorsonly="false" powerconsumption="100" pickkey="Select">
-      <Attack targetimpulse="50">
-        <Affliction identifier="stun" strength="5"/>
-        <Affliction identifier="burn" strength="10"/>
-        <Affliction identifier="electricshock" strength="80"/>
+    <InventoryIcon texture="Content/Items/InventoryIconAtlas2.png" sourcerect="128,832,64,64" origin="0.5,0.5" />
+    <Sprite texture="Content/Items/Weapons/weapons_new.png" sourcerect="233,163,23,9" depth="0.55" origin="0.5,0.5" />
+    <Body width="23" height="9" density="30" />
+    <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+    <Projectile launchimpulse="35.0" characterusable="false" hitscan="true" removeonhit="true">
+      <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,200,200,175" scalemultiplier="1,0.8" />
+      <Attack structuredamage="15" targetforce="12" itemdamage="15" severlimbsprobability="0.5" penetration="0.6">
+        <Affliction identifier="gunshotwound" strength="55" />
+        <Affliction identifier="bleeding" strength="33" />
+        <Affliction identifier="stun" strength="0.6" />
+        <StatusEffect type="OnUse" target="Limb" targetLimbs="Head">
+          <Affliction identifier="gunshotwound" strength="10" />
+          <Affliction identifier="stun" strength="1.2" />
+        </StatusEffect>
       </Attack>
-      <StatusEffect target="This" type="OnUse" forceplaysounds="true">
-        <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge1.ogg" range="20000" selectionmode="random"/>
-        <sound file="Content/Items/Weapons/WEAPONS_electricalDischarge2.ogg" range="20000" />
-        <Explosion range="500.0" camerashake="15" stun="0" force="0.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" scalemultiplier="2,2" />
       </StatusEffect>
-      <StatusEffect type="OnUse" target="Contained" Condition="-25" disabledeltatime="true">
-        <RequiredItem items="mobilebattery" type="Contained" />
+      <StatusEffect type="OnImpact" target="UseTarget">
+        <Conditional entitytype="eq Structure" />
+        <Conditional hastag="eq door" />
+        <ParticleEmitter particle="spark" copyentityangle="true" anglemin="-10" anglemax="10" particleamount="5" velocitymin="-10" velocitymax="-200" scalemin="0.5" scalemax="1" />
       </StatusEffect>
-      <RequiredItems items="mobilebattery" type="Contained" msg="ItemMsgBatteryCellRequired" />
-    </ElectricalDischarger>
-    <RangedWeapon reload="5.0" barrelpos="118,14" combatPriority="80" spread="30" drawhudwhenequipped="true" crosshairscale="0.5">
-      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
-      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
-    </RangedWeapon>
-    <Body width="130" height="55" density="25" />
-    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="60,-15" aimpos="70,4" handle1="-50,-10" handle2="10,-3" holdangle="-25" />
-    <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
-      <sprite name="Arc Emitter Worn" texture="Content/Items/JobGear/TalentGear.png" canbehiddenbyotherwearables="false" rotation="90" inheritlimbdepth="false" depth="0.6" sourcerect="207,430,131,61" limb="Torso" scale="0.5" origin="0.5,0.9" />
-    </Wearable>
-    <ItemContainer itemrotation="90" capacity="1" maxstacksize="1" hideitems="false" itempos="10,-5" containedspritedepth="0.56" containedstateindicatorstyle="battery">
-      <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
-      <Containable items="mobilebattery">
-        <StatusEffect type="OnContaining" targettype="This" Voltage="1.0" setvalue="true" />
-      </Containable>
-    </ItemContainer>
-    <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
+    </Projectile>
   </Item>
