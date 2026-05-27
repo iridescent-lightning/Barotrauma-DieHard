@@ -83,11 +83,7 @@ end, Hook.HookMethodType.After)
 
 Hook.Add("item.drop", "ItemCollision.TemporaryCollision", function (item, dropper)
     if not dropper then return end
-
-    MakeItemCollideAlways(item, true)
-    Timer.Wait(function ()
-        MakeItemCollideAlways(item)
-    end, 500)
+    --MakeItemCollideAlways(item, true)
 end)
 
 

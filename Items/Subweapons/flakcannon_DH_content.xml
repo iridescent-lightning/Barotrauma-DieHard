@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <Items>
+    <Item name="flakboltflare" identifier="flakboltflare" category="Weapon" scale="0.5" sonarsize="2" tags="flakcannonequipment,flakcannonammo,ammobox" maxstacksize="10" hideinmenus="true">
+      <PreferredContainer primary="flakcannonammoloader" amount="25" />
+      <PreferredContainer primary="ammoboxcontainer" />
+      <PreferredContainer secondary="wreckflakcannonloader" amount="4" />
+      <PreferredContainer secondary="wreckammoboxcontainer" amount="7" spawnprobability="0.1" />
+      <Price baseprice="28" displaynonempty="true" minleveldifficulty="15">
+        <Price storeidentifier="merchantoutpost" multiplier="1.3" minavailable="3" />
+        <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="6" sold="false" />
+        <Price storeidentifier="merchantresearch" multiplier="1.3" minavailable="3" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="15" minleveldifficulty="10" />
+        <Price storeidentifier="merchantmine" multiplier="1.2" minavailable="3" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="15" minleveldifficulty="10" />
+      </Price>
+      <Deconstruct time="10">
+        <Item identifier="aluminium" />
+      </Deconstruct>
+      <Fabricate suitablefabricators="fabricator" requiredtime="8" amount="2">
+        <RequiredSkill identifier="weapons" level="50" />
+        <RequiredItem identifier="phosphorus" amount="2" />
+        <RequiredItem identifier="steel" />
+        <RequiredItem identifier="aluminium" />
+      </Fabricate>
+      <Sprite texture="%ModDir%/Items/SubWeapons/TurretsAndDepthCharges.png" sourcerect="402,522,106,17" depth="0.55" />
+      <Body width="106" height="17" density="20" />
+      <Holdable slots="RightHand, LeftHand" holdpos="0,-50" handle1="-10,0" handle2="10,0" aimable="false" />
+      <Projectile characterusable="false" launchimpulse="0.0" damagedoors="true">
+        <Attack structuredamage="30" itemdamage="15" severlimbsprobability="0.25" penetration="0.1">
+          <Affliction identifier="explosiondamage" strength="15" />
+          <Affliction identifier="bleeding" strength="4" />
+        </Attack>
+        <StatusEffect type="OnActive" target="This" lifetime="2">
+          <ParticleEmitter particle="ammotrailwater" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.9" scalemax="1.5" />
+        </StatusEffect>
+        <StatusEffect type="OnBroken" target="This">
+          <Explosion range="30.0" structuredamage="20" force="10.0" camerashake="50.0" camerashakerange="2000" itemdamage="15" severlimbsprobability="0.1" decal="explosion" decalsize="0.3">
+            <Affliction identifier="explosiondamage" strength="20" />
+          </Explosion>
+          <sound file="Content/Items/Weapons/ExplosionLarge1.ogg" volume="2" selectionmode="Random" range="20000" />
+          <sound file="Content/Items/Weapons/ExplosionLarge2.ogg" volume="2" selectionmode="Random" range="20000" />
+          <ParticleEmitter particle="shrapnel" copyentityangle="true" anglemin="0" anglemax="360" particleamount="20" velocitymin="100" velocitymax="2000" scalemin="1" scalemax="2" />
+          <Remove />
+        </StatusEffect>
+        <StatusEffect type="Always" target="This" Condition="0" setvalue="true" delay="0.5" stackable="false" />
+        <StatusEffect type="OnImpact" target="This" Condition="-100" stackable="false" />
+        <ItemContainer hideitems="true" drawinventory="false" capacity="1" maxstacksize="1" canbeselected="false" SpawnWithId="flakflare">
+          <Containable items="flakflare" />
+          <StatusEffect type="OnBroken" target="This">
+            <Dropcontaineditems />
+          </StatusEffect>
+        </ItemContainer>
+      </Projectile>
+    </Item>
+    <Item name="flakflare" identifier="flakflare" category="Equipment" maxstacksize="12" cargocontaineridentifier="metalcrate" Scale="0.5" tags="smallitem,light,provocative" impactsoundtag="impact_soft" isshootable="true" hideinmenus="true">
+      <Sprite texture="Content/Items/Tools/tools.png" sourcerect="227,205,1,1" depth="0.55" origin="0.5,0.5" />
+      <Body width="50" height="15" density="2.51" />
+      <Throwable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,0" holdangle="90" throwforce="4.0" aimpos="35,-10" msg="ItemMsgPickUpSelect" />
+      <LightComponent LightColor="255,255,255,255" Flicker="0.5" range="800" IsOn="true">
+        <LightTexture texture="Content/Lights/pointlight_bounce.png" origin="0.0, 0.5" size="1.0,1.0" />
+        <StatusEffect type="OnActive" targettype="This" Condition="-0.1" />
+        <StatusEffect type="OnBroken" targettype="This">
+          <Remove />
+        </StatusEffect>
+        <sound file="Content/Items/Tools/FlareLoop.ogg" type="OnActive" range="800.0" loop="true" />
+      </LightComponent>
+      <AiTarget sightrange="4000" />
+    </Item>
+    <Item name="Flare Flak Shells Box" identifier="flakcannonammoboxflare" scale="0.5" tags="flakcannonequipment,flakcannonammo,ammobox" category="Weapon" linkable="true" impactsoundtag="impact_metal_heavy" hideinmenus="true">
+      <PreferredContainer primary="flakcannonammoloader" mincondition="1" />
+      <PreferredContainer primary="ammoboxcontainer" mincondition="1" />
+      <PreferredContainer secondary="wreckflakcannonloader" />
+      <PreferredContainer secondary="wreckammoboxcontainer" amount="1" spawnprobability="0.01" />
+      <Price baseprice="200" displaynonempty="true" minleveldifficulty="30">
+        <Price storeidentifier="merchantoutpost" sold="false" multiplier="1.3" />
+        <Price storeidentifier="merchantcity" multiplier="1.2" minavailable="1" sold="false" />
+        <Price storeidentifier="merchantresearch" sold="false" multiplier="1.3" />
+        <Price storeidentifier="merchantmilitary" multiplier="0.9" minavailable="8" minleveldifficulty="15" />
+        <Price storeidentifier="merchantmine" sold="false" multiplier="1.2" />
+        <Price storeidentifier="merchantarmory" multiplier="0.9" minavailable="8" minleveldifficulty="15" />
+      </Price>
+      
+      <Fabricate suitablefabricators="fabricator" displayname="recycleitem" requiredtime="15">
+        <RequiredSkill identifier="weapons" level="40" />
+        <RequiredItem identifier="c4block" amount="2" />
+        <RequiredItem identifier="steel" />
+        <RequiredItem identifier="flakcannonammoboxflare" mincondition="0.0" maxcondition="0.1" usecondition="false" />
+      </Fabricate>
+      <Sprite texture="%ModDir%/Items/Containers/containers2.png" depth="0.54" sourcerect="681,878,95,78" origin="0.5,0.5" />
+      <Body width="115" height="88" density="50" />
+      <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-40,30" handle2="40,30" aimable="false" msg="ItemMsgPickUpSelect" />
+      <ItemContainer hideitems="true" capacity="1" drawinventory="false" canbeselected="false" canbecombined="true" ShowConditionInContainedStateIndicator="true" removecontaineditemsondeconstruct="true" containedstateindicatorstyle="bullet">
+        <!--  -1 per usage = 100 shots per box -->
+        <StatusEffect type="OnUse" target="This" disabledeltatime="true">
+          <SpawnItem identifiers="flakboltflare" spawnposition="ThisInventory" />
+        </StatusEffect>
+        <StatusEffect type="OnUse" target="This" condition="-4" disabledeltatime="true">
+          <RequiredItem items="flakboltflare" type="Contained" />
+          <SpawnItem identifiers="flakshell" spawnposition="This" aimspread="250" rotationtype="Random" />
+        </StatusEffect>
+        <Containable items="flakboltflare" />
+      </ItemContainer>
+    </Item>
+    <Item name="Empty Flak Shell" identifier="flakshellempty" category="Equipment" tags="mediumitem,collidable_always" impactsoundtag="impact_metal_heavy" scale="0.5" hideinmenus="true" maxstacksize="12" description="Used up shell.">
+      <PreferredContainer secondary="storagecab" />
+      <Sprite texture="%ModDir%/Items/SubWeapons/TurretsAndDepthCharges.png" sourcerect="526,94,74,18" depth="0.55" origin="0.5,0.5" />
+      <Body width="74" height="10" density="50" friction="10" waterdragcoefficient="2"/>
+      <Pickable slots="Any" msg="ItemMsgPickUpSelect" />
+      <ItemComponent characterusable="false" hitscan="false" removeonhit="false" launchimpulse="1.0">
+        <StatusEffect type="OnNotContained" target="This" stackable="false" lifetime="1" checkconditionalalways="false">
+          <Conditional InWater="false" />
+          <ParticleEmitter particle="smoke" particleburstamount="3" particleburstinterval="0.5" particlespersecond="2" scalemin="0.1" scalemax="0.5" anglemin="0" anglemax="359" velocitymin="-50" velocitymax="50" mincondition="15.0" maxcondition="50.0" />
+        </StatusEffect>
+        <!--This gives bubble effect when bullet travels though water-->
+        <StatusEffect type="OnNotContained" target="This" stackable="false" lifetime="1" checkconditionalalways="false">
+          <Conditional InWater="true" />
+          <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="1" particleamount="1" velocitymin="0" velocitymax="5" scalemin="0.02" scalemax="0.04" />
+        </StatusEffect>
+      </ItemComponent>
+    </Item>
+  </Items>

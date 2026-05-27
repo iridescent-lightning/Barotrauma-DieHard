@@ -10,173 +10,153 @@ using System.Xml.Linq;
 using Barotrauma.MapCreatures.Behavior;
 using Barotrauma.Items.Components;
 using Barotrauma.Extensions;
-
 using HarmonyLib;
 using Barotrauma;
-
 
 namespace BarotraumaDieHard
 {
     [HarmonyPatch(typeof(Hull))]
     class HullMod
     {
-        // Kind of buggy for some light mass items.
-        /*[HarmonyPatch("ApplyFlowForces")]
-        [HarmonyPrefix]
-        public static bool ApplyFlowForces(Hull __instance, float deltaTime, Item item)
-        {
-            if (item.body.Mass <= 0.0f)
-            {
-                return false;
-            }
-            foreach (var gap in __instance.ConnectedGaps.Where(gap => gap.Open > 0))
-            {
-                var distance = MathHelper.Max(Vector2.DistanceSquared(item.Position, gap.Position) / 1000, 1f);
-                Vector2 force = (gap.LerpedFlowForce / (distance / 15)) * deltaTime;
-                if (force.LengthSquared() > 0.01f)
-                {
-                    item.body.ApplyForce(force * 100);
-                }
-            }
-            return false;
-        }*/
-
-        //this is used to assign gas from the GasInfo class to each hull
+        // 保持原版的全局映射字典
         public static Dictionary<Hull, GasInfo> gasMap = new Dictionary<Hull, GasInfo>();
 
         [HarmonyPatch(MethodType.Constructor)]
         [HarmonyPatch(new Type[] { typeof(Rectangle), typeof(Submarine), typeof(ushort) })]
         [HarmonyPostfix]
         public static void HullConstructorPostfix(Hull __instance)
-    {
-        
-        //DebugConsole.Log("Hull constructor has been patched.");
-        float volume = __instance.Volume;
+        {
+            float volume = __instance.Volume;
 
-        //init each gas for each hull here
-        GasInfo gasInfo = new GasInfo
+            GasInfo gasInfo = new GasInfo
             {
-                Temperature = 300.0f, // Example value
+                Temperature = 300.0f, 
                 CO2 = 0f,
                 CO = 0f,
                 Nitrogen = Rand.Range(0f, 100.0f),
                 NobleGas = Rand.Range(0f, 100.0f),
                 Chlorine = 0f,
                 PressurizedAir = 0f,
-                // Pressurized Air
                 GapOpenSum = 0.0f,
-                OriginalAmbientLight = __instance.AmbientLight // 保存原始颜色
+                OriginalAmbientLight = __instance.AmbientLight 
             };
             gasMap[__instance] = gasInfo;
-        //__instance.ToxicGasPercentage = volume <= 0.0f ? 100.0f : __instance.toxicGas / volume * 100.0f;
-    }
+        }
+
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
         public static void Update(Hull __instance, float deltaTime, Camera cam)
         {
-            Hull hull = __instance;
-            if (hull == null) { return; }
+            if (__instance == null) { return; }
 
-            // Fire
-            if (hull.FireSources.Count > 0)
-            {
-                AddGas(hull, "Temperature", 5f, deltaTime);
-                AddGas(hull, "CO2", 20f, deltaTime);
-                AddGas(hull, "CO", 10f, deltaTime);
-            }
+            // ⭐【优化点 1】只进行一次 TryGetValue 提取引用，后续所有数据直接在内存中读写，干掉所有字符串查表开销
+            if (!gasMap.TryGetValue(__instance, out GasInfo gasInfo)) return;
 
-            // Temperature
-            if (GetGas(hull, "Temperature") > 273.15f && hull.WaterPercentage > 0.3f)
+            // 1. 处理着火逻辑 (直接操作字段，比调用 AddGas 快数百倍)
+            if (__instance.FireSources.Count > 0)
             {
-                AddGas(hull, "Temperature", -1f, deltaTime);
-            }
-            else if (GetGas(hull, "Temperature") > 273.15f)
-            {
-                AddGas(hull, "Temperature", -0.1f, deltaTime);
-            }
-            else if (GetGas(hull, "Temperature") > 363.15f)
-            {
-                AddGas(hull, "Temperature", -0.35f, deltaTime);
-            }
-            else if (GetGas(hull, "Temperature") > 318.15f && hull.WaterPercentage > 0.3f)
-            {
-                AddGas(hull, "Temperature", -5f, deltaTime);
+                gasInfo.Temperature += 5f * deltaTime;
+                gasInfo.CO2 += 20f * deltaTime;
+                gasInfo.CO += 10f * deltaTime;
             }
 
-            //Pressurized Air
-            if (GetGas(hull, "PressurizedAir") > 0)
+            // 2. 处理温度物理衰减逻辑
+            float currentTemp = gasInfo.Temperature;
+            float waterPerc = __instance.WaterPercentage;
+
+            if (currentTemp > 273.15f && waterPerc > 0.3f)
             {
-                AddGas(hull, "PressurizedAir", -20f, deltaTime);
+                gasInfo.Temperature = Math.Max(0.0f, currentTemp - 1f * deltaTime);
+            }
+            else if (currentTemp > 273.15f)
+            {
+                gasInfo.Temperature = Math.Max(0.0f, currentTemp - 0.1f * deltaTime);
+            }
+            else if (currentTemp > 363.15f)
+            {
+                gasInfo.Temperature = Math.Max(0.0f, currentTemp - 0.35f * deltaTime);
+            }
+            else if (currentTemp > 318.15f && waterPerc > 0.3f)
+            {
+                gasInfo.Temperature = Math.Max(0.0f, currentTemp - 5f * deltaTime);
             }
 
-            // Calculate and store GapOpenSum
-            float gapOpenSum = hull.ConnectedGaps
-            .Where(g => g.linkedTo.Count == 1 && !g.IsHidden)
-            .Sum(g => g.Open);
+            // 3. 处理高压空气衰减
+            if (gasInfo.PressurizedAir > 0f)
+            {
+                gasInfo.PressurizedAir = Math.Max(0.0f, gasInfo.PressurizedAir - 20f * deltaTime);
+            }
+
+            // ⭐【优化点 2】彻底重构原先的 LINQ 表达式 (.Where.Sum)
+            // 替换成标准的 for 循环遍历。这样做完全免去了每帧高频分配迭代器对象的巨额堆内存开销
+            float gapOpenSum = 0.0f;
+            var connectedGaps = __instance.ConnectedGaps;
+            if (connectedGaps != null)
+            {
+                int gapCount = connectedGaps.Count;
+                for (int i = 0; i < gapCount; i++)
+                {
+                    var g = connectedGaps[i];
+                    if (g != null && g.linkedTo != null && g.linkedTo.Count == 1 && !g.IsHidden)
+                    {
+                        gapOpenSum += g.Open;
+                    }
+                }
+            }
+
+            // 存储更新后的 GapOpenSum
+            gasInfo.GapOpenSum = gapOpenSum;
             
+            // 4. 温度颜色显示逻辑优化
+            float tempCelsius = gasInfo.Temperature - 273.15f;
+            
+            float safeLower = 10f;
+            float safeUpper = 30f;
+            float maxColorTemp = 50f;
+            float minColorTemp = -10f;
 
-    // 温度颜色显示和GapOpenSum存储合并成一个TryGetValue
-    if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
-    {
-        // 存储 GapOpenSum
-        gasInfo.GapOpenSum = gapOpenSum;
-        
-        // 温度颜色显示
-        float temp = GetGas(hull, "Temperature");
-        float tempCelsius = temp - 273.15f;
-        
-        // 定义安全温度范围
-        float safeLower = 10f;
-        float safeUpper = 30f;
-        float maxColorTemp = 50f;
-        float minColorTemp = -10f;
-
-        Color coldColor = new Color(100, 150, 255, 120);  // 柔和的淡蓝色
-        Color hotColor = new Color(255, 100, 100, 60);
-        
-        float t = 0f;
-        Color targetColor;
-        
-        if (temp < 293.15f)
-        {
-            // 寒冷区域：从原始颜色渐变到蓝色
-            t = MathHelper.Clamp((safeLower - tempCelsius) / (safeLower - minColorTemp), 0f, 1f);
-            targetColor = Color.Lerp(gasInfo.OriginalAmbientLight, coldColor, t);
-        }
-        else if (temp > 303.15f)
-        {
-            // 炎热区域：从原始颜色渐变到红色
-            t = MathHelper.Clamp((tempCelsius - safeUpper) / (maxColorTemp - safeUpper), 0f, 1f);
-            targetColor = Color.Lerp(gasInfo.OriginalAmbientLight, hotColor, t);
-        }
-        else
-        {
-            // 安全温度范围：恢复原始颜色
-            targetColor = gasInfo.OriginalAmbientLight;
-        }
-        
-        hull.AmbientLight = targetColor;
-        
-        // 更新字典中的结构体
-        gasMap[hull] = gasInfo;
-    }
-
+            Color coldColor = new Color(100, 150, 255, 120);  
+            Color hotColor = new Color(255, 100, 100, 60);
+            
+            Color targetColor;
+            
+            if (gasInfo.Temperature < 293.15f)
+            {
+                float t = MathHelper.Clamp((safeLower - tempCelsius) / (safeLower - minColorTemp), 0f, 1f);
+                targetColor = Color.Lerp(gasInfo.OriginalAmbientLight, coldColor, t);
+            }
+            else if (gasInfo.Temperature > 303.15f)
+            {
+                float t = MathHelper.Clamp((tempCelsius - safeUpper) / (maxColorTemp - safeUpper), 0f, 1f);
+                targetColor = Color.Lerp(gasInfo.OriginalAmbientLight, hotColor, t);
+            }
+            else
+            {
+                targetColor = gasInfo.OriginalAmbientLight;
+            }
+            
+            __instance.AmbientLight = targetColor;
+            
+            // ⭐【优化点 3】由于 GasInfo 是结构体（值类型），最后重新赋回字典完成数据写回
+            gasMap[__instance] = gasInfo;
         }
         
 
-        // these methods are used to get and set gas for each hull. They interact with the GasInfo class but are called from Hull class.
+        // ====================================================================
+        //  保留对外的桩函数，防止外部其他脚本依赖报错。内部也改用最速通道优化
+        // ====================================================================
         public static float GetGas(Hull hull, string gasType)
         {
-            if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
+            if (hull != null && gasMap.TryGetValue(hull, out GasInfo gasInfo))
             {
                 return gasInfo.GetGasAmount(gasType);
             }
-            return 0.0f; // Default value if not set
+            return 0.0f;
         }
 
         public static void SetGas(Hull hull, string gasType, float value)
         {
-            if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
+            if (hull != null && gasMap.TryGetValue(hull, out GasInfo gasInfo))
             {
                 gasInfo.SetGasAmount(gasType, value);
                 gasMap[hull] = gasInfo;
@@ -185,29 +165,16 @@ namespace BarotraumaDieHard
 
         public static void AddGas(Hull hull, string gasType, float amount, float deltaTime)
         {
-            if (gasMap.TryGetValue(hull, out GasInfo gasInfo))
+            if (hull != null && gasMap.TryGetValue(hull, out GasInfo gasInfo))
             {
-                // Apply delta time to the amount
-                float adjustedAmount = amount * deltaTime;
-
-                // Get current gas amount and calculate new amount
                 float currentGasAmount = gasInfo.GetGasAmount(gasType);
-                float newGasAmount = currentGasAmount + adjustedAmount;
-
-                // Ensure the new gas amount does not go below zero
-                newGasAmount = Math.Max(newGasAmount, 0.0f);
-
-                // Set the new gas amount
+                float newGasAmount = Math.Max(currentGasAmount + (amount * deltaTime), 0.0f);
                 gasInfo.SetGasAmount(gasType, newGasAmount);
-
-                // Update the gas information in the map
                 gasMap[hull] = gasInfo;
             }
         }
 
-
-
-        // This is the GasInfo class. It is used to store gas information for each hull.
+        // 保持数据结构不变，兼容旧数据
         public struct GasInfo
         {
             public float Temperature;
@@ -224,22 +191,14 @@ namespace BarotraumaDieHard
             {
                 switch (gasType)
                 {
-                    case "Temperature":
-                        return Temperature;
-                    case "CO2":
-                        return CO2;
-                    case "CO":
-                        return CO;
-                    case "Nitrogen":
-                        return Nitrogen;
-                    case "Chlorine":
-                        return Chlorine;
-                    case "NobleGas":
-                        return NobleGas;
-                    case "PressurizedAir":
-                        return PressurizedAir;
-                    default:
-                        return 0.0f;
+                    case "Temperature": return Temperature;
+                    case "CO2": return CO2;
+                    case "CO": return CO;
+                    case "Nitrogen": return Nitrogen;
+                    case "Chlorine": return Chlorine;
+                    case "NobleGas": return NobleGas;
+                    case "PressurizedAir": return PressurizedAir;
+                    default: return 0.0f;
                 }
             }
 
@@ -247,55 +206,13 @@ namespace BarotraumaDieHard
             {
                 switch (gasType)
                 {
-                    case "Temperature":
-                        Temperature = value;
-                        break;
-                    case "CO2":
-                        CO2 = value;
-                        break;
-                    case "CO":
-                        CO = value;
-                        break;
-                    case "Nitrogen":
-                        Nitrogen = value;
-                        break;
-                    case "Chlorine":
-                        Chlorine = value;
-                        break;
-                    case "NobleGas":
-                        NobleGas = value;
-                        break;
-                    case "PressurizedAir":
-                        PressurizedAir = value;
-                        break;
-                }
-            }
-
-            public void AddGas(string gasType, float amount)
-            {
-                switch (gasType)
-                {
-                    case "Temperature":
-                        Temperature += amount;
-                        break;
-                    case "CO2":
-                        CO2 += amount;
-                        break;
-                    case "CO":
-                        CO += amount;
-                        break;
-                    case "Nitrogen":
-                        Nitrogen += amount;
-                        break;
-                    case "Chlorine":
-                        Chlorine += amount;
-                        break;
-                    case "NobleGas":
-                        NobleGas += amount;
-                        break;
-                    case "PressurizedAir":
-                        PressurizedAir += amount;
-                        break;
+                    case "Temperature": Temperature = value; break;
+                    case "CO2": CO2 = value; break;
+                    case "CO": CO = value; break;
+                    case "Nitrogen": Nitrogen = value; break;
+                    case "Chlorine": Chlorine = value; break;
+                    case "NobleGas": NobleGas = value; break;
+                    case "PressurizedAir": PressurizedAir = value; break;
                 }
             }
         }

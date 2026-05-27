@@ -336,7 +336,7 @@
       </Controller>
       <Body width="152" height="240" density="100" friction="50" />
     </Item>
-    <Item name="" identifier="op_cafeteriatable" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable_always,isitemplatform" damagedbyprojectiles="true" deflectprojectiles="True">
+    <Item name="" identifier="op_cafeteriatable" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable" damagedbyprojectiles="true" deflectprojectiles="True">
       <Body customshape="table" 
             width="240" 
             height="23" 

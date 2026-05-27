@@ -188,7 +188,7 @@
     <Item name="" identifier="mechanicalparts" scale="0.5" category="Electricity" tags="smallitem, mechanicalparts,repairconsumable" description="" cargocontaineridentifier="metalcrate" impactsoundtag="impact_metal_light" maxstacksize="32">
       <PreferredContainer primary="engcab,reactorcab" amount="16"/>
       <PreferredContainer secondary="storagecab" />
-      <PreferredContainer primary="engcab,reactorcab" amount="32" notcampaign="true" />
+      <PreferredContainer primary="engcab,reactorcab" amount="16" notcampaign="true" />
       <PreferredContainer secondary="wreckcrewcab,abandonedcrewcab" minamount="2" maxamount="25" spawnprobability="0.75" />
       <Price baseprice="20" canbespecial="false">
         <Price storeidentifier="merchantoutpost" minavailable="5" />

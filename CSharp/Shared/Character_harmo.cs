@@ -99,7 +99,7 @@ namespace BarotraumaDieHard
 			
 				// 气体毒性检测
 				float co2 = HullMod.GetGas(__instance.CurrentHull, "CO2");
-				if (co2 > 1000f)
+				if (co2 > 400f)
 				{
 					__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["co_poisoning"].Instantiate(1f * accumulatedTime));
 				}

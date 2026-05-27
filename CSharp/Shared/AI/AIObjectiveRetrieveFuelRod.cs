@@ -15,8 +15,8 @@ namespace BarotraumaDieHard.AI
         private Item targetRod;
         private Item fuelRodCase;
         private Item fuelRodHolder;
-        private float waitTimer = 0f;
-        private const float DelayDuration = 5.0f; // 设置延迟时间（秒）
+        public float waitTimer = 0f;
+        private const float DelayDuration = 2.0f; // 设置延迟时间（秒）
         private bool isWaiting = false;
         private AIObjectiveGetItem getEquipmentObjective;
 
@@ -40,7 +40,7 @@ namespace BarotraumaDieHard.AI
                     // 提示缺少装备
                     if (character.IsOnPlayerTeam)
                     {
-                        character.Speak(TextManager.Get("dialog.bots.missingequipment").Value, ChatMessageType.Radio, 0.0f, "missingequipment".ToIdentifier(), 30.0f);
+                        character.Speak(TextManager.Get("dialog.bots.needequipment").Value, ChatMessageType.Radio, 0.0f, "needequipment".ToIdentifier(), 30.0f);
                     }
 
                     return new AIObjectiveGetItem(character, missingTag, objectiveManager, equip: true)
@@ -75,22 +75,28 @@ namespace BarotraumaDieHard.AI
             }
 
             // 3. 执行取出并放入 Case 的逻辑
-            // 检查身上（包括容器内）是否有这个特定的 targetRod
-            bool hasRod = character.Inventory.FindItem(it => it == targetRod, recursive: true) != null;
+            // 修复 2：全面检查（无论是在背包里，还是已经塞进夹子/箱子里，都算 hasRod）
+            fuelRodHolder = character.Inventory.FindItem(i => i.Prefab.Identifier == "fuelrodholder", recursive: true);
+            fuelRodCase = character.Inventory.FindItem(i => i.Prefab.Identifier == "fuelrodcase", recursive: true);
+
+            bool inInventory = character.Inventory.FindItem(it => it == targetRod, recursive: true) != null;
+            bool inHolder = fuelRodHolder != null && fuelRodHolder.GetComponent<ItemContainer>()?.Inventory.AllItems.Contains(targetRod) == true;
+            bool inCase = fuelRodCase != null && fuelRodCase.GetComponent<ItemContainer>()?.Inventory.AllItems.Contains(targetRod) == true;
+            bool hasRod = inInventory || inHolder || inCase;
+
+            
             if (!hasRod && !isWaiting) // 如果还没拿到棒子，且不在等待进入Case的过程中
             {
-                AddSubObjective(new AIObjectiveGetItem(character, targetRod, objectiveManager, equip: false));
+                AddSubObjective(new AIObjectiveGetItem(character, targetRod, objectiveManager, equip: true));
             }
             else
             {
                 // 既然已经在身上了，停止 GetItem 子目标
                 RemoveSubObjective(ref getEquipmentObjective);
 
-                fuelRodHolder = character.Inventory.FindItem(i => i.Prefab.Identifier == "fuelrodholder", recursive: true);
-                fuelRodCase = character.Inventory.FindItem(i => i.Prefab.Identifier == "fuelrodcase", recursive: true);
-
                 if (fuelRodCase == null)
                 {
+                    DebugConsole.NewMessage("case is null");
                     targetRod.Drop(character);
                     Abandon = true;
                     return;
@@ -102,6 +108,7 @@ namespace BarotraumaDieHard.AI
                 // --- 逻辑分段：第一步，放入 Holder ---
                 if (!isWaiting)
                 {
+                    DebugConsole.NewMessage("not waiting");
                     if (holderContainer != null && holderContainer.Inventory.CanBePut(targetRod))
                     {
                         holderContainer.Inventory.TryPutItem(targetRod, character);
@@ -113,23 +120,28 @@ namespace BarotraumaDieHard.AI
                     else
                     {
                         // 如果没有 Holder，直接跳过等待放入 Case (或者你可以设置必须有 Holder)
-                        isWaiting = true; 
+                        //isWaiting = true; 
+                        Abandon = true;
                     }
                 }
                 // --- 第二步：计时等待 ---
                 else if (waitTimer < DelayDuration)
                 {
+                    DebugConsole.NewMessage($"waitTimer: {waitTimer}");
                     waitTimer += deltaTime;
                     // 可以在这里添加等待时的动作，比如保持静止
                     character.AnimController.TargetMovement = Microsoft.Xna.Framework.Vector2.Zero;
                     // 2. 尝试将 Case 装备到手上（空闲的手）
                     if (fuelRodCase != null)
                     {
+                        DebugConsole.NewMessage("fuelRodCase != null");
                         // 只有当它还没被拿在手上时才尝试装备，避免每帧重复调用
                         if (!character.HasEquippedItem(fuelRodCase))
                         {
+                            DebugConsole.NewMessage("HasEquippedItem");
                             var rightHandSlot = character.Inventory.FindLimbSlot(InvSlotType.RightHand);
-                            character.Inventory.TryPutItem(fuelRodCase, rightHandSlot, true, false, Character.Controlled, true, true);
+                            var leftHandSlot = character.Inventory.FindLimbSlot(InvSlotType.LeftHand);
+                            character.Inventory.TryPutItem(fuelRodCase, rightHandSlot | leftHandSlot, true, false, Character.Controlled, true, true);
                             // TryEquip 会自动寻找合适的手部槽位
                             //fuelRodCase.Equip(character);
                         }
@@ -140,6 +152,7 @@ namespace BarotraumaDieHard.AI
                 {
                     if (caseContainer != null && caseContainer.Inventory.CanBePut(targetRod))
                     {
+                        DebugConsole.NewMessage("3rd step");
                         caseContainer.Inventory.TryPutItem(targetRod, character);
                         if (character.IsOnPlayerTeam) character.Speak(TextManager.Get("dialog.bots.retrievefuelrod.success").Value, ChatMessageType.Radio, identifier: "fuelrodsecured".ToIdentifier());
                         

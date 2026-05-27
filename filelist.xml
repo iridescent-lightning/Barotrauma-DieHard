@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Barotrauma Die Hard" modversion="4.6.430" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
+<contentpackage name="Barotrauma Die Hard" modversion="4.6.433" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
   <Item file="%ModDir%/Items/Diving/divinggear.xml" />
   <Item file="%ModDir%/Items/Weapons/weapons.xml" />
   <Item file="%ModDir%/Items/Weapons/small_arms.xml" />
@@ -38,6 +38,7 @@
   <Item file="%ModDir%/Items/Subweapons/railgun.xml" />
   <Item file="%ModDir%/Items/Subweapons/chaingun.xml" />
   <Item file="%ModDir%/Items/Subweapons/flakcannon.xml" />
+  <Item file="%ModDir%/Items/Subweapons/flakcannon_DH_content.xml" />
   <Character file="%ModDir%/Characters/Hammerhead/Hammerhead.xml" />
   <Character file="%ModDir%/Characters/Mudraptor/Mudraptor.xml" />
   <Character file="%ModDir%/Characters/Moloch/Moloch.xml" />

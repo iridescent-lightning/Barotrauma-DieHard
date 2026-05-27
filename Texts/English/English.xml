@@ -648,6 +648,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.keylargecab>Use to lock large cabinets</entitydescription.keylargecab>
   <entityname.keymedical>Medical Cabinet Key</entityname.keymedical>
   <entitydescription.keymedical>Use to lock medical cabinets</entitydescription.keymedical>
+  <entityname.flakshellempty>Shell</entityname.flakshellempty>
+  <entitydescription.flakshellempty>Used flakshell</entitydescription.flakshellempty>
 
   <connection.moveup>Move Up</connection.moveup>
   <connection.movedown>Move Down</connection.movedown>
@@ -793,7 +795,7 @@ The man pulled out a syringe and injected something into your arm. You felt some
 
   <ordername.retrievefuelrod>Retrieve Fuel Rod</ordername.retrievefuelrod>
   <orderdialog.retrievefuelrod>[name], Retrieve a fuel rod from the reactor!</orderdialog.retrievefuelrod>
-  <dialog.bots.missingequipment>I don't have enough equipments to do this!</dialog.bots.missingequipment>
+  <dialog.bots.needequipment>I need enough equipments to do this!</dialog.bots.needequipment>
   <dialog.bots.retrievefuelrod.failure>Can't find proper equipments. Abandon mission!</dialog.bots.retrievefuelrod.failure>
   <dialog.bots.retrievefuelrod.nofuelrod_inreactor>No spent fuel rods found in reactor.</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
   <dialog.bots.retrievefuelrod.colling_and_putting>Now careful. Cooling it down in the holder...</dialog.bots.retrievefuelrod.colling_and_putting>

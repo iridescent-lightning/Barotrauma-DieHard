@@ -646,6 +646,8 @@
   <entitydescription.keymaster>用来上锁/解锁所有儲物柜子</entitydescription.keymaster>
   <entityname.handdrill>电钻</entityname.handdrill>
   <entitydescription.handdrill>可以在坚硬的岩壁上打孔</entitydescription.handdrill>
+  <entityname.flakshellempty>弹壳</entityname.flakshellempty>
+  <entitydescription.flakshellempty>空弹壳</entitydescription.flakshellempty>
 
 
 
@@ -792,7 +794,7 @@
 
   <ordername.retrievefuelrod>Retrieve Fuel Rod</ordername.retrievefuelrod>
   <orderdialog.retrievefuelrod>[name], 从反应堆取出一根燃料棒!</orderdialog.retrievefuelrod>
-  <dialog.bots.missingequipment>我没有足够的设备取出燃料棒!</dialog.bots.missingequipment>
+  <dialog.bots.missingequipment>我需要足够的设备取出燃料棒!</dialog.bots.missingequipment>
   <dialog.bots.retrievefuelrod.failure>找不到装备。放弃任务!</dialog.bots.retrievefuelrod.failure>
   <dialog.bots.retrievefuelrod.nofuelrod_inreactor>反应堆里没有需要取出的燃料棒</dialog.bots.retrievefuelrod.nofuelrod_inreactor>
   <dialog.bots.retrievefuelrod.colling_and_putting>现在当心，让它慢慢冷却……</dialog.bots.retrievefuelrod.colling_and_putting>

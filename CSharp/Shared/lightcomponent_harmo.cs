@@ -17,34 +17,42 @@ namespace BarotraumaDieHard
     [HarmonyPatch(typeof(LightComponent))]
     class LightComponentPatch
     {
-        // 扩展数据，顺便记录上一次的“损坏状态”，避免重复赋值
         private class LightData
         {
             public float Flicker;
             public float FlickerSpeed;
-            public double RandomOffset;
-            public bool IsLamp;          // 缓存 Tag 检查结果，一劳永逸
-            public bool? LastIsDamaged;   // 记录上一次的状态（null: 未初始化, true: 坏了, false: 正常）
+            public float RandomOffset;   
+            public bool? LastIsDamaged;   
+            public float UpdateTimer;     // 错峰检测耐久的计时器
+            public Color OriginalColor;   // 用于备份灯泡最原始的颜色和亮度
+            public bool IsColorCached;    // 是否已经备份了原始颜色
+            
+            // ⭐ 新增：用于平滑无规律噪声的缓存变量
+            public float LastIntensity;   
         }
 
         private static readonly ConditionalWeakTable<LightComponent, LightData> OriginalSettings = new();
+        private static readonly System.Random _sharedRandom = new System.Random();
 
         [HarmonyPatch("OnItemLoaded")]
         [HarmonyPostfix]
         public static void Postfix_OnItemLoaded(LightComponent __instance)
         {
             if (__instance?.item == null) return;
+            if (!__instance.item.HasTag("lamp")) return;
 
             if (!OriginalSettings.TryGetValue(__instance, out _))
             {
-                var rand = new Random();
+                float initialDelay = (__instance.item.ID % 30) * 0.016f; 
                 OriginalSettings.Add(__instance, new LightData
                 {
                     Flicker = __instance.Flicker,
                     FlickerSpeed = __instance.FlickerSpeed,
-                    RandomOffset = rand.NextDouble(),
-                    IsLamp = __instance.item.HasTag("lamp"), // 在加载时就存好，避免 Update 频繁读取
-                    LastIsDamaged = null 
+                    RandomOffset = (float)_sharedRandom.NextDouble(),
+                    LastIsDamaged = null,
+                    UpdateTimer = initialDelay,
+                    IsColorCached = false,
+                    LastIntensity = 1.0f
                 });
             }
         }
@@ -53,57 +61,102 @@ namespace BarotraumaDieHard
         [HarmonyPostfix]
         public static void Postfix_Update(float deltaTime, Camera cam, LightComponent __instance)
         {
-            if (__instance == null) return;
+            // 极速原生标签拦截（非 lamp 瞬间放行，保持 0 开销）
+            if (__instance?.item == null || !__instance.item.HasTag("lamp")) return;
 
-            // 1. 优先查表。如果加载时没记录（比如动态生成的物品），先去查表初始化
             if (!OriginalSettings.TryGetValue(__instance, out var data))
             {
-                // 保底机制：如果没能在 OnItemLoaded 捕获，就在这里补上（Barotrauma 有时会有动态生成的物品）
-                if (__instance.item == null) return;
-                var rand = new Random();
+                float initialDelay = (__instance.item.ID % 30) * 0.016f;
                 data = new LightData
                 {
                     Flicker = __instance.Flicker,
                     FlickerSpeed = __instance.FlickerSpeed,
-                    RandomOffset = rand.NextDouble(),
-                    IsLamp = __instance.item.HasTag("lamp"),
-                    LastIsDamaged = null
+                    RandomOffset = (float)_sharedRandom.NextDouble(),
+                    LastIsDamaged = null,
+                    UpdateTimer = initialDelay,
+                    IsColorCached = false,
+                    LastIntensity = 1.0f
                 };
                 OriginalSettings.Add(__instance, data);
             }
 
-            // 2. 极其廉价的布尔值过滤，直接干掉非 lamp 物品的后续逻辑
-            if (!data.IsLamp) return;
-
-            // 3. 计算当前是否处于低耐久状态
-            bool isDamaged = (__instance.item.Condition / __instance.item.MaxCondition) < 0.3f;
-
-            // 4. 状态没变就直接跳过！只有在“刚坏掉”或“刚修好”的那一帧才执行赋值
-            if (data.LastIsDamaged == isDamaged) return;
-
-            // 5. 状态发生改变，更新属性
-            if (isDamaged)
+            // 【懒加载备份原始颜色】
+            if (!data.IsColorCached && __instance.lightColor.A > 0)
             {
-                __instance.Flicker = 0.2f + (float)(data.RandomOffset * 0.1 - 0.05);
-                __instance.FlickerSpeed = 0.3f + (float)(data.RandomOffset * 0.1 - 0.05);
-            }
-            else
-            {
-                __instance.Flicker = data.Flicker;
-                __instance.FlickerSpeed = data.FlickerSpeed;
+                data.OriginalColor = __instance.lightColor;
+                data.IsColorCached = true;
             }
 
-            // 6. 记录新状态
-            data.LastIsDamaged = isDamaged;
+            // --- 🤖 第一部分：低频耐久检测（每 0.5 秒错峰跑一次，节省 CPU） ---
+            data.UpdateTimer -= deltaTime;
+            if (data.UpdateTimer <= 0f)
+            {
+                data.UpdateTimer = 0.5f; 
+
+                bool isDamaged = __instance.item.Condition < (__instance.item.MaxCondition * 0.3f);
+
+                if (data.LastIsDamaged != isDamaged)
+                {
+                    if (isDamaged)
+                    {
+                        // 坏了：开启原版强烈的频率闪烁（开/关）
+                        __instance.Flicker = 0.4f + (data.RandomOffset * 0.2f - 0.1f);
+                        __instance.FlickerSpeed = 0.5f + (data.RandomOffset * 0.2f - 0.1f);
+                    }
+                    else
+                    {
+                        // 修好了：恢复原版正常的闪烁参数
+                        __instance.Flicker = data.Flicker;
+                        __instance.FlickerSpeed = data.FlickerSpeed;
+                        
+                        if (data.IsColorCached)
+                        {
+                            __instance.lightColor = data.OriginalColor;
+                        }
+                    }
+                    data.LastIsDamaged = isDamaged;
+                }
+            }
+
+            // --- 💡 第二部分：高频无规律亮度变化（仅在坏掉时每帧执行） ---
+            if (data.LastIsDamaged != true || !data.IsColorCached) return;
+
+            // 1. 模拟无规律噪声：下一帧的亮度基于当前亮度做随机震荡（一阶马尔可夫链），彻底打破正弦波的节奏感
+            // 每次目标在中等亮度（0.4~0.85）之间无序乱窜
+            float targetIntensity = 0.4f + (float)_sharedRandom.NextDouble() * 0.45f;
+            
+            // 使用 Lerp 进行平滑，防止由于纯随机导致光圈产生类似硬切的塑料感，保持有电流过渡的感觉
+            // 乘以较小的系数（如 0.25）可以让光晕产生神经质但连续的颤抖
+            float intensity = MathHelper.Lerp(data.LastIntensity, targetIntensity, 0.25f);
+
+            // 2. 注入突发闪烁截断（接触不良短路细节）
+            // 给予 3% 的纯随机概率，灯泡在这一帧发生剧烈短路，亮度瞬间跌落到 5% 变暗甚至全黑
+            if (_sharedRandom.NextDouble() < 0.03)
+            {
+                intensity = (float)_sharedRandom.NextDouble() * 0.05f; 
+            }
+
+            // 3. 注入超高频微小杂讯（光圈边缘滋滋颤抖效果）
+            intensity += (float)(_sharedRandom.NextDouble() * 0.08f - 0.04f);
+
+            // 确保安全边界，绝不溢出
+            intensity = MathHelper.Clamp(intensity, 0.0f, 1.0f);
+            data.LastIntensity = intensity; // 记录下来供下一帧平滑使用
+
+            // 将无规律计算出的亮度系数，应用到正确的 lightColor 上
+            __instance.lightColor = new Color(
+                (byte)(data.OriginalColor.R * intensity),
+                (byte)(data.OriginalColor.G * intensity),
+                (byte)(data.OriginalColor.B * intensity),
+                (byte)(data.OriginalColor.A * intensity)
+            );
         }
 
         [HarmonyPatch("ReceiveSignal")]
         [HarmonyPrefix]
         public static bool Prefix(LightComponent __instance)
         {
-            // 这里原代码没太大性能问题，做个简单的 null 检查即可
             if (__instance?.item == null) return true;
-
             if (__instance.item.HasTag("door"))
             {
                 return false;
