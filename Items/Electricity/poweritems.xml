@@ -25,7 +25,7 @@
         <output name="load_value_out" displayname="connection.loadvalueout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="junctionbox" tags="junctionbox, RequireWireToFix, playinteractsound, damage_by_passing_bullet" category="Electrical,Machine" description="" scale="0.5" allowedlinks="gap,door" linkable="true" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Item name="" identifier="junctionbox" tags="junctionbox, playinteractsound, damage_by_passing_bullet,DrawShadow" category="Electrical,Machine" description="" scale="0.5" allowedlinks="gap,door" linkable="true" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
       <Upgrade gameversion="0.10.0.0" scale="*0.667" />
       <Sprite texture="signalcomp.png" sourcerect="264,1,110,176" depth="0.8" canflipx="false" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Electricity/signalcomp_shadows.png" sourcerect="259,2,140,183" depth="0.9" origin="0.4,0.4" />
@@ -106,7 +106,7 @@
         <ParticleEmitter particle="fleshsmoke" particlespersecond="2" scalemin="1" scalemax="2" mincondition="0.0" maxcondition="50.0" />
       </Repairable>
     </Item>
-    <Item name="" identifier="battery" tags="battery,batterycellrecharger,playinteractsound" category="Electrical,Machine" Scale="0.5" description="" damagedbyexplosions="true" explosiondamagemultiplier="0.2" GrabWhenSelected="true">
+    <Item name="" identifier="battery" tags="battery,batterycellrecharger,playinteractsound,DrawShadow" category="Electrical,Machine" Scale="0.5" description="" damagedbyexplosions="true" explosiondamagemultiplier="0.2" GrabWhenSelected="true">
     <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="64,961,32,22" origin="0.5,0.45" />
     <Sprite texture="signalcomp.png" sourcerect="604,0,118,159" depth="0.8" />
     <BrokenSprite texture="signalcomp.png" sourcerect="722,0,118,159" depth="0.8" maxcondition="80" fadein="true" />
@@ -165,9 +165,6 @@
         <Affliction identifier="stun" strength="4" />
         <Affliction identifier="burn" strength="5" />
       </StatusEffect>
-      <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
     </Repairable>
     <BrokenBattery/>
   </Item>
@@ -229,7 +226,7 @@
         <output name="power_value_out" displayname="connection.powervalueout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="supercapacitor" tags="supercapacitor" category="Electrical,Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="[Cpacity:20] [Output:20000000] [Recharge Speed:0~1000]">
+    <Item name="" identifier="supercapacitor" tags="supercapacitor,DrawShadow" category="Electrical,Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="[Cpacity:20] [Output:20000000] [Recharge Speed:0~1000]">
       <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="102,997,22,27" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.2.0" indicatorposition="53,11" indicatorsize="47,10" />
       <Sprite texture="signalcomp.png" depth="0.8" sourcerect="512,334,154,160" />

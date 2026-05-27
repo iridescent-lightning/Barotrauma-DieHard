@@ -222,6 +222,17 @@
     <interactive_AK_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_AK.ogg" volume="0.7" range="500" />
     <interactive_SCAR_equip file="%ModDir%/Sounds/InteractiveSounds/gundraw_scar.ogg" volume="0.7" range="500" />
     <interactive_lift_moving file="%ModDir%/Items/Doors/platform1_startmove.ogg" volume="0.7" range="1500" />
+
+
+    <sfx_largesteelcab_close file="%ModDir%/Items/Containers/Entities_Station#117_suit_locked_closed_01.ogg" range="500" volume="0.7" />
+    <sfx_mediumsteelcab_close file="%ModDir%/Items/Containers/Entities_Station#118_suit_locked_closed_02.ogg" range="500" volume="0.7" />
+    <sfx_sec_idcardclose file="%ModDir%/Items/Containers/Entities_Station#648_omnitool_door_hack_01.ogg" range="500" volume="0.4" />
+    <sfx_medcontainer_close file="%ModDir%/Items/Containers/Entities_Station#282_bin_close_med_06.ogg" range="500" volume="1" />
+    <sfx_crate_oninteract file="%ModDir%/Items/Containers/Entities_Station#178_locker_close_gentle_01.ogg" range="500" volume="0.7" />
+    <sfx_terminalinteract file="%ModDir%/Items/Electricity/Entities_Station#680_terminal_forward.ogg" range="500" volume="0.6" />
+    <sfx_divinglockerinteract file="%ModDir%/Items/Containers/Entities_Station#605_diving_suit_power_on_01.ogg" range="500" volume="0.6" />
+
+
     <use_lubricate file="%ModDir%/Items/Tools/LubricatingOil.ogg" range="500" />
     <Electrocution1 file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
     <rope_slide file="%ModDir%/Sounds/Item/rope_silde.ogg" volume="2" range="1000" />

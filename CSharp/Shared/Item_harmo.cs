@@ -32,6 +32,63 @@ namespace BarotraumaDieHard
     partial class ItemPatch
     {
         
+        [HarmonyPatch(MethodType.Constructor)]
+        [HarmonyPatch(new Type[] { typeof(Rectangle), typeof(ItemPrefab), typeof(Submarine), typeof(bool), typeof(ushort) })]
+        [HarmonyPostfix]
+        public static void Postfix(Item __instance)
+        {
+            if (__instance == null) return;          
+               
+            __instance.OnDeselect = (character) =>
+            {                    
+                __instance.RemoveTag("draw_container_open");
+                __instance.RemoveTag("junctionbox_openlid");
+
+                if (__instance.Prefab.Identifier == "steelcabinet")
+                {
+                    //DebugConsole.NewMessage("removed");
+                    #if CLIENT
+                        SoundPlayer.PlaySound("sfx_largesteelcab_close", __instance.WorldPosition, hullGuess: __instance.CurrentHull);
+                    #endif
+                }
+                else if (__instance.Prefab.Identifier == "mediumsteelcabinet" || __instance.Prefab.Identifier == "mediumwindowedsteelcabinet" )
+                {
+                    #if CLIENT
+                        SoundPlayer.PlaySound("sfx_mediumsteelcab_close", __instance.WorldPosition, hullGuess: __instance.CurrentHull);
+                    #endif
+                }
+                else if (__instance.Prefab.Identifier == "securesteelcabinet" )
+                {
+                    #if CLIENT
+                        SoundPlayer.PlaySound("sfx_sec_idcardclose", __instance.WorldPosition, hullGuess: __instance.CurrentHull);
+                    #endif
+                }
+                else if (__instance.Prefab.Identifier == "medcabinet" )
+                {
+                    #if CLIENT
+                        SoundPlayer.PlaySound("sfx_medcontainer_close", __instance.WorldPosition, hullGuess: __instance.CurrentHull);
+                    #endif
+                }
+                else if (__instance.Prefab.Identifier == "medcabinet" )
+                {
+                    #if CLIENT
+                        SoundPlayer.PlaySound("sfx_medcontainer_close", __instance.WorldPosition, hullGuess: __instance.CurrentHull);
+                    #endif
+                }
+                
+            };
+
+            __instance.OnInteract = () =>
+            {
+                DebugConsole.NewMessage("interact");
+                __instance.AddTag("draw_container_open");
+
+            };
+
+            
+            
+        }
+    
 
                 
     }

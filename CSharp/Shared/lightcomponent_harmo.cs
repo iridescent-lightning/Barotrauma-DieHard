@@ -14,24 +14,27 @@ using HarmonyLib;
 
 namespace BarotraumaDieHard
 {
-	[HarmonyPatch(typeof(LightComponent))]
-	class LightComponentPatch
-	{
-		// 为每个 LightComponent 实例存储其原始值
-        private static readonly ConditionalWeakTable<LightComponent, LightData> OriginalSettings = new();
-
+    [HarmonyPatch(typeof(LightComponent))]
+    class LightComponentPatch
+    {
+        // 扩展数据，顺便记录上一次的“损坏状态”，避免重复赋值
         private class LightData
         {
             public float Flicker;
             public float FlickerSpeed;
             public double RandomOffset;
+            public bool IsLamp;          // 缓存 Tag 检查结果，一劳永逸
+            public bool? LastIsDamaged;   // 记录上一次的状态（null: 未初始化, true: 坏了, false: 正常）
         }
 
-        // 在初始化时记录原始值
-        [HarmonyPatch("OnItemLoaded")] // 建议用 OnItemLoaded，比 OnMapLoaded 更早且更针对实例
+        private static readonly ConditionalWeakTable<LightComponent, LightData> OriginalSettings = new();
+
+        [HarmonyPatch("OnItemLoaded")]
         [HarmonyPostfix]
         public static void Postfix_OnItemLoaded(LightComponent __instance)
         {
+            if (__instance?.item == null) return;
+
             if (!OriginalSettings.TryGetValue(__instance, out _))
             {
                 var rand = new Random();
@@ -39,7 +42,9 @@ namespace BarotraumaDieHard
                 {
                     Flicker = __instance.Flicker,
                     FlickerSpeed = __instance.FlickerSpeed,
-                    RandomOffset = rand.NextDouble()
+                    RandomOffset = rand.NextDouble(),
+                    IsLamp = __instance.item.HasTag("lamp"), // 在加载时就存好，避免 Update 频繁读取
+                    LastIsDamaged = null 
                 });
             }
         }
@@ -48,44 +53,62 @@ namespace BarotraumaDieHard
         [HarmonyPostfix]
         public static void Postfix_Update(float deltaTime, Camera cam, LightComponent __instance)
         {
-            if(__instance == null) return;
+            if (__instance == null) return;
 
-            // 只处理带有 lamp 标签的物品
-            if (!__instance.item.HasTag("lamp")) return;
-
-            if (OriginalSettings.TryGetValue(__instance, out var data))
+            // 1. 优先查表。如果加载时没记录（比如动态生成的物品），先去查表初始化
+            if (!OriginalSettings.TryGetValue(__instance, out var data))
             {
-                if (__instance.item.Condition / __instance.item.MaxCondition < 0.3f)
+                // 保底机制：如果没能在 OnItemLoaded 捕获，就在这里补上（Barotrauma 有时会有动态生成的物品）
+                if (__instance.item == null) return;
+                var rand = new Random();
+                data = new LightData
                 {
-                    // 使用该实例特有的随机偏移，让不同灯泡闪烁感不同
-                    __instance.Flicker = 0.2f + (float)(data.RandomOffset * 0.1 - 0.05);
-                    __instance.FlickerSpeed = 0.3f + (float)(data.RandomOffset * 0.1 - 0.05);
-                }
-                else
-                {
-                    // 恢复到该实例自己的原始值，而不是全局值
-                    __instance.Flicker = data.Flicker;
-                    __instance.FlickerSpeed = data.FlickerSpeed;
-                }
+                    Flicker = __instance.Flicker,
+                    FlickerSpeed = __instance.FlickerSpeed,
+                    RandomOffset = rand.NextDouble(),
+                    IsLamp = __instance.item.HasTag("lamp"),
+                    LastIsDamaged = null
+                };
+                OriginalSettings.Add(__instance, data);
             }
 
+            // 2. 极其廉价的布尔值过滤，直接干掉非 lamp 物品的后续逻辑
+            if (!data.IsLamp) return;
+
+            // 3. 计算当前是否处于低耐久状态
+            bool isDamaged = (__instance.item.Condition / __instance.item.MaxCondition) < 0.3f;
+
+            // 4. 状态没变就直接跳过！只有在“刚坏掉”或“刚修好”的那一帧才执行赋值
+            if (data.LastIsDamaged == isDamaged) return;
+
+            // 5. 状态发生改变，更新属性
+            if (isDamaged)
+            {
+                __instance.Flicker = 0.2f + (float)(data.RandomOffset * 0.1 - 0.05);
+                __instance.FlickerSpeed = 0.3f + (float)(data.RandomOffset * 0.1 - 0.05);
+            }
+            else
+            {
+                __instance.Flicker = data.Flicker;
+                __instance.FlickerSpeed = data.FlickerSpeed;
+            }
+
+            // 6. 记录新状态
+            data.LastIsDamaged = isDamaged;
         }
 
-        //让门关闭时感应灯不要灭
         [HarmonyPatch("ReceiveSignal")]
         [HarmonyPrefix]
         public static bool Prefix(LightComponent __instance)
         {
-            if(__instance == null) return false;
+            // 这里原代码没太大性能问题，做个简单的 null 检查即可
+            if (__instance?.item == null) return true;
 
-            if(__instance.item.HasTag("door"))
+            if (__instance.item.HasTag("door"))
             {
                 return false;
             }
             return true;
         }
-
-        
-
-	}
+    }
 }

@@ -1,3 +1,5 @@
+/*楼梯异常减速
+
 using System;
 using HarmonyLib;
 using Barotrauma;
@@ -171,4 +173,4 @@ namespace BarotraumaDieHard
             return false; // 拦截成功
         }
     }
-}
+}*/

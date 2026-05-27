@@ -100,12 +100,12 @@ end)
 
 
 
-Hook.Add("AddTagForOpen","AddTagForOpen",function(effect, deltaTime, item, targets, worldPosition)
+--[[Hook.Add("AddTagForOpen","AddTagForOpen",function(effect, deltaTime, item, targets, worldPosition)
 	local container = item:GetComponentString("ItemContainer")
 	if container ~= nil and container.Locked == false then
 		item.AddTag("draw_container_open")
 	end
-end)
+end)--]]
 
 Hook.Add("JunctionboxOpen","JunctionboxOpen",function(effect, deltaTime, item, targets, worldPosition)
 

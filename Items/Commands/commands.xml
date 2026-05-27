@@ -31,7 +31,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="navterminal" tags="command,navterminal,primarynavterminal" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-1 [Range:10000] [Water Resistance:-0.5/time] [Power Consumption:10/100] [Min Voltage:0.5]">
+    <Item name="" identifier="navterminal" tags="command,navterminal,primarynavterminal,DrawShadow" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-1 [Range:10000] [Water Resistance:-0.5/time] [Power Consumption:10/100] [Min Voltage:0.5]">
       <UpgradePreviewSprite scale="2.5" texture="Content/UI/WeaponUI.png" sourcerect="128,960,64,64" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.0.0" scale="*0.5" />
       <Upgrade gameversion="0.14.4.0" positiony="+30" />

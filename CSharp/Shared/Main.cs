@@ -5,6 +5,8 @@ using HarmonyLib;
 using Microsoft.Xna.Framework.Input;
 #endif
 using Networking;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace BarotraumaDieHard
 {
@@ -21,6 +23,7 @@ namespace BarotraumaDieHard
 
             // 调用部分方法（如果客户端文件存在，就会执行那边的逻辑）
             InitClient();
+            ModProfiler.AutoHookAllUpdates(HarmonyInstance);
 
 #if SERVER
     // 服务器启动时注册网络监听。只写在server里

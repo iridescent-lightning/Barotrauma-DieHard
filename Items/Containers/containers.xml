@@ -24,16 +24,13 @@
         </ItemContainer>
       </Upgrade>
     </Item>
-    <Item name="" identifier="suppliescabinet" tags="container,suppliescontainer,upgradablecontainer,playinteractsound" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
+    <Item name="" identifier="suppliescabinet" tags="container,suppliescontainer,upgradablecontainer,playinteractsound,DrawShadow" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="889,349,120,132" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="549,431,175,134" depth="0.9" origin="0.55,0.5" />
       <SwappableItem price="100" origin="60,66" swapidentifier="smallcontainers" replacementonuninstall="smallcontainerslot"></SwappableItem>
       <ItemContainer capacity="6" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem" />
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
       </ItemContainer>
     </Item>
     <Item name="" identifier="toxcabinet" tags="container,toxcontainer,upgradablecontainer,playinteractsound" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
@@ -44,9 +41,6 @@
         <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <RequiredItem items="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" ignoreineditor="true" />
         <Containable items="smallitem,chem,medical,mediumitem" />
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
       </ItemContainer>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
@@ -83,7 +77,7 @@
         <ItemContainer maxstacksize="64" />
       </Upgrade>
     </Item>
-    <Item name="" identifier="mediumsteelcabinet" tags="locker,container,mediumsteelcabinetsfx,playinteractsound,damage_by_passing_bullet" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
+    <Item name="" identifier="mediumsteelcabinet" tags="locker,container,mediumsteelcabinetsfx,playinteractsound,damage_by_passing_bullet,DrawShadow" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
       <Sprite texture="containers.png" depth="0.84" sourcerect="1,1,175,374" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="12,11,171,372" depth="0.9" origin="0.43,0.47" />
       <BrokenSprite texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="1,1,175,374" depth="0.84" origin="0.5,0.5" maxcondition="30" />
@@ -93,9 +87,6 @@
         <!--<StatusEffect type="OnBroken" target="This">
           <DropContainedItems aimspread="250" rotationtype="Random"/>
         </StatusEffect>-->
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
         <SubContainer capacity="3" maxstacksize="1">
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="mobilecontainer" />
@@ -114,7 +105,7 @@
 		</StatusEffect>-->
       </Repairable>
     </Item>
-    <Item name="" aliases="Diving Gear Cabinet" identifier="mediumwindowedsteelcabinet" category="Diving" tags="locker,container,mediumwindowedsteelcabinet,playinteractsound,mediumsteelcabinetsfx, damage_by_passing_bullet" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
+    <Item name="" aliases="Diving Gear Cabinet" identifier="mediumwindowedsteelcabinet" category="Diving" tags="locker,container,mediumwindowedsteelcabinet,playinteractsound,mediumsteelcabinetsfx, damage_by_passing_bullet,DrawShadow" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
       <Sprite texture="containers.png" depth="0.84" sourcerect="178,1,168,377" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="183,11,178,371" depth="0.9" origin="0.43,0.47" />
       <BrokenSprite texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="178,1,168,377" depth="0.84" origin="0.5,0.5" maxcondition="30" />
@@ -124,9 +115,6 @@
         <!--<StatusEffect type="OnBroken" target="This">
 	  <DropContainedItems aimspread="250" rotationtype="Random"/>
 	  </StatusEffect>-->
-      <StatusEffect type="OnPicked" target="This">
-            <LuaHook name="AddTagForOpen" />
-          </StatusEffect>
         <SubContainer capacity="3" maxstacksize="1">
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="mobilecontainer" />
@@ -142,7 +130,7 @@
         <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
     </Item>
-    <Item name="" identifier="steelcabinet" tags="locker,container,steelcabinetsfx,playinteractsound, damage_by_passing_bullet, collidable" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
+    <Item name="" identifier="steelcabinet" tags="locker,container,steelcabinetsfx,playinteractsound, damage_by_passing_bullet, collidable,DrawShadow" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
       <Sprite texture="containers.png" depth="0.84" sourcerect="348,2,364,373" origin="0.5,0.5" />
       <BrokenSprite texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="348,2,364,373" depth="0.84" origin="0.5,0.5" maxcondition="30" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="350,11,386,365" depth="0.9" origin="0.41,0.47" />
@@ -156,9 +144,6 @@
       <ItemContainer capacity="35" slotsperrow="7" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem,mediumitem" />
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
         <!--<StatusEffect type="OnBroken" target="This">
 	  <DropContainedItems aimspread="250" rotationtype="Random"/>
 	  </StatusEffect>-->
@@ -177,7 +162,7 @@
         <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
     </Item>
-    <Item name="" identifier="medcabinet" tags="container,medcontainer,playinteractsound" category="Medical" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
+    <Item name="" identifier="medcabinet" tags="container,medcontainer,playinteractsound,DrawShadow" category="Medical" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="815,1,208,346" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="752,662,228,333" depth="0.9" origin="0.43,0.47" />
       <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keymedical" WindowedCabinet="false" />
@@ -188,9 +173,6 @@
           <SlotIcon texture="Content/UI/CommandUIAtlas.png" sourcerect="639,926,128,80" origin="0.5,0.5" />
           <Containable items="mobilecontainer" />
         </SubContainer>
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
       </ItemContainer>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
@@ -204,7 +186,7 @@
       </ItemContainer>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="coilgunammoshelf" tags="container,ammoboxcontainer" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
+    <Item name="" identifier="coilgunammoshelf" tags="container,ammoboxcontainer,DrawShadow" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="188,717,140,306" canflipx="false" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="251,719,159,305" depth="0.9" origin="0.45,0.47" />
       <ItemContainer capacity="3" canbeselected="true" hideitems="false" itempos="70,-52" iteminterval="0,-96" msg="ItemMsgInteractSelect">
@@ -212,7 +194,7 @@
         <Containable items="ammobox,coilgunammo,depthchargeammo" />
       </ItemContainer>
     </Item>
-    <Item name="" identifier="divingsuitlocker" category="Diving" tags="container,divingsuitcontainer,divingsuitcontainerwindow,playinteractsound" pickdistance="50" scale="0.5">
+    <Item name="" identifier="divingsuitlocker" category="Diving" tags="container,divingsuitcontainer,divingsuitcontainerwindow,playinteractsound,DrawShadow" pickdistance="50" scale="0.5">
       <Sprite name="Diving Suit Locker Vertical" texture="containers.png" depth="0.84" sourcerect="714,1,99,256" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="834,4,126,264" depth="0.9" origin="0.45,0.47" />
       <!--TODO: add light textures for powered-on state?-->
@@ -238,7 +220,7 @@
         <Containable items="deepdiving" excludeditems="deepdivinglarge" />
       </ItemContainer>
     </Item>
-    <Item name="" identifier="oxygentankshelf2" nameidentifier="oxygentankshelf" category="Diving" tags="container,oxygentankcontainer,oxygentankrefiller,oxygentankshelf_2capacity" pickdistance="50" scale="0.5">
+    <Item name="" identifier="oxygentankshelf2" nameidentifier="oxygentankshelf" category="Diving" tags="container,oxygentankcontainer,oxygentankrefiller,oxygentankshelf_2capacity,DrawShadow" pickdistance="50" scale="0.5">
       <Sprite name="Diving Suit Locker Small" texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="714,259,99,82" depth="0.84" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="800,296,115,96" depth="0.9" origin="0.43,0.47" />
       <!--TODO: add light textures for powered-on state?-->
@@ -275,12 +257,9 @@
         <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <RequiredItem items="idcard" type="Picked" msg="ItemMsgUnauthorizedAccess" ignoreineditor="true" />
         <Containable items="smallitem,mediumitem" />
-        <StatusEffect type="OnPicked" target="This">
-          <LuaHook name="AddTagForOpen" />
-        </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="crateshelf" tags="container,cargocontainer,ItemsUseInventoryPlacement" linkable="true" canflipx="false" pickdistance="150" scale="0.5">
+    <Item name="" identifier="crateshelf" tags="container,cargocontainer,ItemsUseInventoryPlacement,DrawShadow" linkable="true" canflipx="false" pickdistance="150" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="1,657,185,366" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="3,654,214,337" depth="0.9" origin="0.45,0.47" />
       <ItemContainer capacity="4" maxstacksize="1" canbeselected="true" hideitems="false" itempos="92,-48" iteminterval="0,-92" msg="ItemMsgInteractSelect">
