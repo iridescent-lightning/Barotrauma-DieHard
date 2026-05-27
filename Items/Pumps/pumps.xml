@@ -23,7 +23,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="pump" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" GrabWhenSelected="true" description="P-I [Max Flow:600] [Power Consumption:300] [Min Voltage:0.3]">
+    <Item name="" identifier="pump" tags="pump,playinteractsound,cspump,DrawShadow" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" GrabWhenSelected="true" description="P-I [Max Flow:600] [Power Consumption:300] [Min Voltage:0.3]">
       <UpgradePreviewSprite scale="2.0" texture="Content/UI/WeaponUI.png" sourcerect="448,960,64,64" origin="0.5,0.45" />
       <SwappableItem price="1000" origin="200,96" swapidentifier="lpump" replacementonuninstall="lpumpslot" />
       <Upgrade gameversion="0.10.0.0" scale="*0.5" />
@@ -93,7 +93,7 @@
         </SubContainer>
       </ItemContainer>
     </Item>
-    <Item name="P-II" identifier="pumpII" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="P-II [Max Flow:700] [Power Consumption:450] [Min Voltage:0.3]" variantof="pump">
+    <Item name="P-II" identifier="pumpII" tags="pump,playinteractsound,cspump,DrawShadow" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="P-II [Max Flow:700] [Power Consumption:450] [Min Voltage:0.3]" variantof="pump">
       <SwappableItem price="2250" origin="200,96" swapidentifier="lpump" replacementonuninstall="lpumpslot"></SwappableItem>
       <Pump canbeselected="true" maxflow="700" PowerConsumption="450.0" MinVoltage="0.3" IsOn="true" msg="ItemMsgInteractSelect">
         <!-- TODO: define max size-->
@@ -108,7 +108,7 @@
         <IsActive targetcontaineditem="true" condition="gt 0" />
       </Pump>
     </Item>
-    <Item name="P-III" identifier="pumpIII" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="P-III [Max Flow:800] [Power Consumption:560] [Min Voltage:0.3]" variantof="pump">
+    <Item name="P-III" identifier="pumpIII" tags="pump,playinteractsound,cspump,DrawShadow" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="P-III [Max Flow:800] [Power Consumption:560] [Min Voltage:0.3]" variantof="pump">
       <SwappableItem price="3500" origin="200,96" swapidentifier="lpump" replacementonuninstall="lpumpslot"></SwappableItem>
       <Pump canbeselected="true" maxflow="800" PowerConsumption="560.0" MinVoltage="0.3" IsOn="true" msg="ItemMsgInteractSelect">
         <!-- TODO: define max size-->
@@ -145,7 +145,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="smallpump" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" GrabWhenSelected="true" description="M-I [Max Flow:100] [Power Consumption:60] [Min Voltage:0.3]">
+    <Item name="" identifier="smallpump" tags="pump,playinteractsound,cspump,DrawShadow" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" GrabWhenSelected="true" description="M-I [Max Flow:100] [Power Consumption:60] [Min Voltage:0.3]">
       <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="448,960,64,64" origin="0.5,0.45" />
       <SwappableItem price="600" origin="66,49" swapidentifier="spump" replacementonuninstall="spumpslot" />
       <Sprite texture="Pumps.png" depth="0.8" sourcerect="1,264,133,89" origin="0.5,0.5" />
@@ -206,7 +206,7 @@
         </SubContainer>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="smallpumpII" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="" variantof="smallpump">
+    <Item name="" identifier="smallpumpII" tags="pump,playinteractsound,cspump,DrawShadow" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="" variantof="smallpump">
       <SwappableItem price="1000" origin="66,49" swapidentifier="spump" replacementonuninstall="spumpslot" />
       <Pump canbeselected="true" maxflow="150" PowerConsumption="90.0" MinVoltage="0.3" IsOn="true" msg="ItemMsgInteractSelect">
         <!-- TODO: define max size-->
@@ -219,7 +219,7 @@
         <IsActive targetcontaineditem="true" condition="gt 0" />
       </Pump>
     </Item>
-    <Item name="M-III" identifier="smallpumpIII" tags="pump,playinteractsound,cspump" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="" variantof="smallpump">
+    <Item name="M-III" identifier="smallpumpIII" tags="pump,playinteractsound,cspump,DrawShadow" linkable="true" category="Machine" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" allowrotatingineditor="true" description="" variantof="smallpump">
       <SwappableItem price="2300" origin="66,49" swapidentifier="spump" replacementonuninstall="spumpslot"></SwappableItem>
       <Pump canbeselected="true" maxflow="200" PowerConsumption="140.0" MinVoltage="0.3" IsOn="true" msg="ItemMsgInteractSelect">
         <!-- TODO: define max size-->

@@ -135,7 +135,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="C-2" identifier="navterminalc2" tags="command,navterminal,primarynavterminal" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:12000] [Water Resistance:-0.2/time] [Power Consumption:10/190] [Min Voltage:0.5]" variantof="navterminal">
+    <Item name="C-2" identifier="navterminalc2" tags="command,navterminal,primarynavterminal,DrawShadow" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:12000] [Water Resistance:-0.2/time] [Power Consumption:10/190] [Min Voltage:0.5]" variantof="navterminal">
       <SwappableItem price="3000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot" />
       
       <aitarget sightrange="200" soundrange="12000" staticsight="true" fadeouttime="5" />
@@ -179,7 +179,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="C-2M" identifier="navterminalc2M" tags="command,navterminal,primarynavterminal,mineralscanner_sonar" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:12500] [Water Resistance:-0.2/time] [Power Consumption:10/190] [Min Voltage:0.5]" variantof="navterminal">
+    <Item name="C-2M" identifier="navterminalc2M" tags="command,navterminal,primarynavterminal,mineralscanner_sonar,DrawShadow" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:12500] [Water Resistance:-0.2/time] [Power Consumption:10/190] [Min Voltage:0.5]" variantof="navterminal">
       <SwappableItem price="4000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot"></SwappableItem>
       
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
@@ -223,7 +223,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="C-3" identifier="navterminalc3" tags="command,navterminal,primarynavterminal" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:14500] [Water Resistance:-0.2/time] [Power Consumption:10/240] [Min Voltage:0.5]" variantof="navterminal">
+    <Item name="C-3" identifier="navterminalc3" tags="command,navterminal,primarynavterminal,DrawShadow" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:14500] [Water Resistance:-0.2/time] [Power Consumption:10/240] [Min Voltage:0.5]" variantof="navterminal">
       <SwappableItem price="5000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot"></SwappableItem>
       
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
@@ -267,7 +267,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="C-4" identifier="navterminalc4" tags="command,navterminal,primarynavterminal" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:16000] [Water Resistance:-0.8/time] [Power Consumption:10/400] [Min Voltage:0.5]" variantof="navterminal">
+    <Item name="C-4" identifier="navterminalc4" tags="command,navterminal,primarynavterminal,DrawShadow" linkable="true" allowedlinks="statusmonitor" scale="0.5" category="Machine,Electrical" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="C-2 [Range:16000] [Water Resistance:-0.8/time] [Power Consumption:10/400] [Min Voltage:0.5]" variantof="navterminal">
       <SwappableItem price="7000" origin="192,152" swapidentifier="navterminals" replacementonuninstall="navitslot"></SwappableItem>
       
       <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
@@ -331,7 +331,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="statusmonitor" tags="command,statusmonitor" aliases="MiniMap" category="Machine,Electrical" linkable="true" scale="0.5" allowedlinks="navtermina" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="S-1 [Power Consumption:100] [Min Voltage:0.5]">
+    <Item name="" identifier="statusmonitor" tags="command,statusmonitor,DrawShadow" aliases="MiniMap" category="Machine,Electrical" linkable="true" scale="0.5" allowedlinks="navtermina" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="S-1 [Power Consumption:100] [Min Voltage:0.5]">
       <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="64,987,28,20" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.0.0" scale="*0.5" />
       <Upgrade gameversion="0.14.4.0" positiony="+38" />
@@ -383,7 +383,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="S-2" identifier="statusmonitor2" tags="command,statusmonitor" aliases="MiniMap" category="Machine,Electrical" linkable="true" scale="0.5" allowedlinks="navterminal" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="S-2 [Power Consumption:50] [Min Voltage:0.5]" variantof="statusmonitor">
+    <Item name="S-2" identifier="statusmonitor2" tags="command,statusmonitor,DrawShadow" aliases="MiniMap" category="Machine,Electrical" linkable="true" scale="0.5" allowedlinks="navterminal" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="S-2 [Power Consumption:50] [Min Voltage:0.5]" variantof="statusmonitor">
       <SwappableItem price="1500" origin="80,64" swapidentifier="statusmonitors" replacementonuninstall="smslot"></SwappableItem>
       <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.15" mindeteriorationdelay="120" maxdeteriorationdelay="480" MinDeteriorationCondition="0" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
@@ -403,7 +403,7 @@
         </StatusEffect>
       </Repairable>
     </Item>
-    <Item name="S-3" identifier="statusmonitor3" tags="command,statusmonitor" aliases="MiniMap" category="Machine,Electrical" linkable="true" scale="0.5" allowedlinks="navterminal" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="S-3 [Power Consumption:25] [Min Voltage:0.5]" variantof="statusmonitor">
+    <Item name="S-3" identifier="statusmonitor3" tags="command,statusmonitor,DrawShadow" aliases="MiniMap" category="Machine,Electrical" linkable="true" scale="0.5" allowedlinks="navterminal" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="S-3 [Power Consumption:25] [Min Voltage:0.5]" variantof="statusmonitor">
       <SwappableItem price="2000" origin="80,64" swapidentifier="statusmonitors" replacementonuninstall="smslot"></SwappableItem>
       <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.15" mindeteriorationdelay="120" maxdeteriorationdelay="480" MinDeteriorationCondition="0" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
@@ -456,87 +456,87 @@
         <Containable items="fpgacircuit" />
       </ItemContainer>
     </Item>
-    <Item name="" identifier="firecontrolsonar" tags="command,navterminal,secondarynavterminal" linkable="true" allowedlinks="torpedotube" category="Machine,Electrical" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" GrabWhenSelected="true">
-    <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="128,960,64,64" origin="0.5,0.45" />
-    <Sprite texture="Content/Items/Command/CommandDevices.png" depth="0.8" sourcerect="400,0,288,240" origin="0.5,0.5" />
-    <BrokenSprite texture="Content/Items/Command/CommandDevices.png" sourcerect="400,256,288,240" depth="0.8" maxcondition="80" fadein="true" origin="0.5,0.5" />
-    <BrokenSprite texture="Content/Items/Command/CommandDevices.png" sourcerect="400,512,288,240" depth="0.8" maxcondition="0" origin="0.5,0.5" />
-    <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="5" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
-      <Upgrade gameversion="0.9.600.0" lightcolor="255,255,255,0"/>
-      <sprite texture="Content/Items/Command/navigatorLights.png" depth="0.025" sourcerect="256,320,288,240" origin="0.5,0.5" alpha="1.0" />
-    </LightComponent>
-    <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
-    <FireControlSonar canbeselected="true" powerconsumption="100" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2">
-      <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
-      <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
-      <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />
-      <StatusEffect type="OnUse" target="This">
-        <sound file="Content/Items/Command/SonarPingFar.ogg"  type="OnUse" range="6000.0" volume="0.8" />
-        <sound file="Content/Items/Command/SonarPingFar2.ogg" type="OnUse" range="6000.0" volume="0.8" />
-      </StatusEffect>
-      <PingCircle texture="Content/Items/Command/pingCircle.png" origin="0.5,0.5" />
-      <DirectionalPingCircle texture="Content/Items/Command/directionalPingCircle.png" origin="0.0,0.5" />
-      <ScreenOverlay texture="Content/Items/Command/sonarOverlay.png" origin="0.5,0.5" />
-      <ScreenBackground texture="Content/Items/Command/sonarBackground.png" origin="0.5,0.5" />
-      <DirectionalPingBackground texture="Content/Items/Command/directionalPingBackground.png" origin="0.5,0.5" />
-      <DirectionalPingButton index="0" texture="Content/Items/Command/directionalPingButton.png" sourcerect="0,0,91,266" origin="-4.5275,0.5" />
-      <DirectionalPingButton index="1" texture="Content/Items/Command/directionalPingButton.png" sourcerect="133,0,91,266" origin="-4.5275,0.5" />
-      <DirectionalPingButton index="2" texture="Content/Items/Command/directionalPingButton.png" sourcerect="266,0,91,266" origin="-4.5275,0.5" />
-      <Blip texture="Content/Items/Command/sonarBlip.png" origin="0.5,0.5" />
-      <LineSprite texture="Content/Items/Command/NavUI.png" sourcerect="181,141,109,4" origin="0,0.5"/>
-      <icon identifier="outpost" texture="Content/UI/MainIconsAtlas.png" sourcerect="352,398,16,8" origin="0.5,0.5"/>
-      <icon identifier="submarine" texture="Content/UI/MainIconsAtlas.png" sourcerect="353,407,14,6" origin="0.5,0.5"/>
-      <icon identifier="shuttle" texture="Content/UI/MainIconsAtlas.png" sourcerect="336,407,8,6" origin="0.5,0.5"/>
-      <icon identifier="artifact" texture="Content/UI/MainIconsAtlas.png" sourcerect="336,414,8,8" origin="0.5,0.5"/>
-      <icon identifier="location" texture="Content/UI/MainIconsAtlas.png" sourcerect="349,435,11,11" origin="0.5,0.5"/>
-      <icon identifier="mineral" texture="Content/UI/MainIconsAtlas.png" sourcerect="336,434,7,12" origin="0.5,0.5"/>
-      <icon identifier="" texture="Content/UI/MainIconsAtlas.png" sourcerect="346,416,4,4" origin="0.5,0.5"/>
-    </FireControlSonar>
-    <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false">
-      <GuiFrame relativesize="0.35,0.35" relativeoffset="-0.1,-0.2" anchor="Center" style="ItemUI" />
-    </Terminal>
-    <CustomInterface canbeselected="true" allowuioverlap="true">
-      <GuiFrame relativesize="0.15,0.1" anchor="CenterLeft" pivot="TopLeft" relativeoffset="0.1125,0.001" style="ItemUI" />
-      <Button text="Signal out #1" connection="signal_out1" />
-    </CustomInterface>
-    <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
-      <GuiFrame relativesize="0.25,0.4" minsize="400,450" maxsize="480,500" anchor="Center" style="ConnectionPanel" />
-      <RequiredSkill identifier="electrical" level="40" />
-      <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
-        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
-        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
-        <Affliction identifier="stun" strength="4" />
-        <Affliction identifier="burn" strength="5" />
-      </StatusEffect>
-      <requireditem items="screwdriver" type="Equipped" />
-      <input name="power_in" displayname="connection.powerin" />
-      <input name="transducer_in" displayname="connection.sonartransducerin" />
-      <input name="signal_in" displayname="connection.signalin" />
-      <output name="signal_out" displayname="connection.signalout" />
-      <input name="set_text_color" displayname="connection.settextcolor" />
-      <input name="clear_text" displayname="connection.cleartext" />
-      <output name="signal_out1" displayname="connection.signaloutx~[num]=1" />
-      <output name="current_velocity_x" displayname="connection.currentvelocityx" />
-      <output name="current_velocity_y" displayname="connection.currentvelocityy" />
-      <output name="current_position_x" displayname="connection.currentpositionx" />
-      <output name="current_position_y" displayname="connection.currentpositiony" />
-      <output name="condition_out" displayname="connection.conditionout" />
-    </ConnectionPanel>
-    <Repairable selectkey="Action" header="electricalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
-      <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
-      <RequiredSkill identifier="electrical" level="40" />
-      <RequiredItem items="screwdriver" type="equipped" />
-      <ParticleEmitter particle="damagebubbles" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemax="360" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
-      <ParticleEmitter particle="spark" particlespersecond="5" anglemax="360" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
-      <ParticleEmitter particle="fleshsmoke" particlespersecond="2" scalemin="1" scalemax="2" anglemax="360" distancemax="20" mincondition="0.0" maxcondition="50.0" />
-      <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
-        <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
-        <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
-        <Affliction identifier="stun" strength="4" />
-        <Affliction identifier="burn" strength="5" />
-      </StatusEffect>
-    </Repairable>
-    <Upgrade gameversion="0.10.0.0" scale="0.5" />
+    <Item name="" identifier="firecontrolsonar" tags="command,navterminal,secondarynavterminal,DrawShadow" linkable="true" allowedlinks="torpedotube" category="Machine,Electrical" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" GrabWhenSelected="true">
+      <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="128,960,64,64" origin="0.5,0.45" />
+      <Sprite texture="Content/Items/Command/CommandDevices.png" depth="0.8" sourcerect="400,0,288,240" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Items/Command/CommandDevices.png" sourcerect="400,256,288,240" depth="0.8" maxcondition="80" fadein="true" origin="0.5,0.5" />
+      <BrokenSprite texture="Content/Items/Command/CommandDevices.png" sourcerect="400,512,288,240" depth="0.8" maxcondition="0" origin="0.5,0.5" />
+      <LightComponent range="10.0" lightcolor="255,255,255,0" powerconsumption="5" IsOn="true" castshadows="false" alphablend="false" allowingameediting="false">
+        <Upgrade gameversion="0.9.600.0" lightcolor="255,255,255,0"/>
+        <sprite texture="Content/Items/Command/navigatorLights.png" depth="0.025" sourcerect="256,320,288,240" origin="0.5,0.5" alpha="1.0" />
+      </LightComponent>
+      <aitarget sightrange="200" soundrange="8000" staticsight="true" fadeouttime="5" />
+      <FireControlSonar canbeselected="true" powerconsumption="100" displaybordersize="-0.1" allowuioverlap="true" hudlayer="-2">
+        <GuiFrame relativesize="0.55,0.59" anchor="Center" relativeoffset="0.1,-0.05" draggable="false" />
+        <sound file="Content/Items/Command/SonarPing.ogg" type="OnUse" range="1000.0" />
+        <sound file="Content/Items/Command/SonarPing2.ogg" type="OnUse" range="1000.0" />
+        <StatusEffect type="OnUse" target="This">
+          <sound file="Content/Items/Command/SonarPingFar.ogg"  type="OnUse" range="6000.0" volume="0.8" />
+          <sound file="Content/Items/Command/SonarPingFar2.ogg" type="OnUse" range="6000.0" volume="0.8" />
+        </StatusEffect>
+        <PingCircle texture="Content/Items/Command/pingCircle.png" origin="0.5,0.5" />
+        <DirectionalPingCircle texture="Content/Items/Command/directionalPingCircle.png" origin="0.0,0.5" />
+        <ScreenOverlay texture="Content/Items/Command/sonarOverlay.png" origin="0.5,0.5" />
+        <ScreenBackground texture="Content/Items/Command/sonarBackground.png" origin="0.5,0.5" />
+        <DirectionalPingBackground texture="Content/Items/Command/directionalPingBackground.png" origin="0.5,0.5" />
+        <DirectionalPingButton index="0" texture="Content/Items/Command/directionalPingButton.png" sourcerect="0,0,91,266" origin="-4.5275,0.5" />
+        <DirectionalPingButton index="1" texture="Content/Items/Command/directionalPingButton.png" sourcerect="133,0,91,266" origin="-4.5275,0.5" />
+        <DirectionalPingButton index="2" texture="Content/Items/Command/directionalPingButton.png" sourcerect="266,0,91,266" origin="-4.5275,0.5" />
+        <Blip texture="Content/Items/Command/sonarBlip.png" origin="0.5,0.5" />
+        <LineSprite texture="Content/Items/Command/NavUI.png" sourcerect="181,141,109,4" origin="0,0.5"/>
+        <icon identifier="outpost" texture="Content/UI/MainIconsAtlas.png" sourcerect="352,398,16,8" origin="0.5,0.5"/>
+        <icon identifier="submarine" texture="Content/UI/MainIconsAtlas.png" sourcerect="353,407,14,6" origin="0.5,0.5"/>
+        <icon identifier="shuttle" texture="Content/UI/MainIconsAtlas.png" sourcerect="336,407,8,6" origin="0.5,0.5"/>
+        <icon identifier="artifact" texture="Content/UI/MainIconsAtlas.png" sourcerect="336,414,8,8" origin="0.5,0.5"/>
+        <icon identifier="location" texture="Content/UI/MainIconsAtlas.png" sourcerect="349,435,11,11" origin="0.5,0.5"/>
+        <icon identifier="mineral" texture="Content/UI/MainIconsAtlas.png" sourcerect="336,434,7,12" origin="0.5,0.5"/>
+        <icon identifier="" texture="Content/UI/MainIconsAtlas.png" sourcerect="346,416,4,4" origin="0.5,0.5"/>
+      </FireControlSonar>
+      <Terminal canbeselected="true" msg="ItemMsgInteractSelect" AllowInGameEditing="false">
+        <GuiFrame relativesize="0.35,0.35" relativeoffset="-0.1,-0.2" anchor="Center" style="ItemUI" />
+      </Terminal>
+      <CustomInterface canbeselected="true" allowuioverlap="true">
+        <GuiFrame relativesize="0.15,0.1" anchor="CenterLeft" pivot="TopLeft" relativeoffset="0.1125,0.001" style="ItemUI" />
+        <Button text="Signal out #1" connection="signal_out1" />
+      </CustomInterface>
+      <ConnectionPanel selectkey="Action" canbeselected="true" msg="ItemMsgRewireScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.25,0.4" minsize="400,450" maxsize="480,500" anchor="Center" style="ConnectionPanel" />
+        <RequiredSkill identifier="electrical" level="40" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+        <requireditem items="screwdriver" type="Equipped" />
+        <input name="power_in" displayname="connection.powerin" />
+        <input name="transducer_in" displayname="connection.sonartransducerin" />
+        <input name="signal_in" displayname="connection.signalin" />
+        <output name="signal_out" displayname="connection.signalout" />
+        <input name="set_text_color" displayname="connection.settextcolor" />
+        <input name="clear_text" displayname="connection.cleartext" />
+        <output name="signal_out1" displayname="connection.signaloutx~[num]=1" />
+        <output name="current_velocity_x" displayname="connection.currentvelocityx" />
+        <output name="current_velocity_y" displayname="connection.currentvelocityy" />
+        <output name="current_position_x" displayname="connection.currentpositionx" />
+        <output name="current_position_y" displayname="connection.currentpositiony" />
+        <output name="condition_out" displayname="connection.conditionout" />
+      </ConnectionPanel>
+      <Repairable selectkey="Action" header="electricalrepairsheader" fixDurationHighSkill="10" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
+        <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+        <RequiredSkill identifier="electrical" level="40" />
+        <RequiredItem items="screwdriver" type="equipped" />
+        <ParticleEmitter particle="damagebubbles" particlespersecond="2" scalemin="0.5" scalemax="1.5" anglemax="360" velocitymin="-10" velocitymax="10" mincondition="0.0" maxcondition="50.0" />
+        <ParticleEmitter particle="spark" particlespersecond="5" anglemax="360" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
+        <ParticleEmitter particle="fleshsmoke" particlespersecond="2" scalemin="1" scalemax="2" anglemax="360" distancemax="20" mincondition="0.0" maxcondition="50.0" />
+        <StatusEffect type="OnFailure" target="Character" targetlimbs="LeftHand,RightHand" AllowWhenBroken="true">
+          <Sound file="Content/Sounds/Damage/Electrocution1.ogg" range="1000" />
+          <Explosion range="100.0" force="1.0" flames="false" shockwave="false" sparks="true" underwaterbubble="false" />
+          <Affliction identifier="stun" strength="4" />
+          <Affliction identifier="burn" strength="5" />
+        </StatusEffect>
+      </Repairable>
+      <Upgrade gameversion="0.10.0.0" scale="0.5" />
   </Item>
   </Items>
 </Override>

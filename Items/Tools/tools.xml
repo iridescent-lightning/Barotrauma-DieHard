@@ -1179,7 +1179,7 @@
       </ItemContainer>
       <aitarget sightrange="3000" soundrange="5000" fadeouttime="5" />
     </Item>
-    <Item name="" identifier="extinguisher" category="Equipment" Tags="mediumitem,fireextinguisher,provocative" cargocontaineridentifier="metalcrate" description="" Scale="0.5" impactsoundtag="impact_extinguisher" donttransferbetweensubs="true">
+    <Item name="" identifier="extinguisher" category="Equipment" Tags="mediumitem,fireextinguisher,provocative,DrawShadow" cargocontaineridentifier="metalcrate" description="" Scale="0.5" impactsoundtag="impact_extinguisher" donttransferbetweensubs="true">
       <Upgrade gameversion="0.9.600.0" Tags="mediumitem,fireextinguisher,provocative" />
       <PreferredContainer primary="extinguisherholder" spawnprobability="1.0" />
       <PreferredContainer secondary="engcab,reactorcab" />

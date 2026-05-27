@@ -266,7 +266,7 @@
         <output name="signal_out1" displayname="connection.signaloutx~[num]=1" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="terminal" category="Electrical" Tags="smallitem,logic,playinteractsound" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
+    <Item name="" identifier="terminal" category="Electrical" Tags="smallitem,logic,playinteractsound,DrawShadow" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light" isshootable="true">
       <Upgrade gameversion="0.10.0" scale="*0.5" />
       <Sprite texture="Content/Items/Electricity/signalcomp.png" depth="0.8" sourcerect="0,368,144,128" origin="0.5,0.3" canflipx="false" />
       <DecorativeSprite texture="%ModDir%/Items/Electricity/signalcomp_shadows.png" depth="0.9" sourcerect="7,373,153,117" origin="0.4,0.3" />

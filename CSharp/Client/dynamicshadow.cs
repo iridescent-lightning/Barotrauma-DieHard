@@ -1,6 +1,4 @@
-﻿/*
-
-way too lag 
+﻿
 using Barotrauma.Extensions;
 using Barotrauma.Items.Components;
 using Microsoft.Xna.Framework;
@@ -134,10 +132,10 @@ namespace BarotraumaDieHard
             if (cache.IsSplitShadow)
             {
                 // 分裂效果绘制：叠加时稍微调低透明度防止影子死黑
-                sprite.Draw(spriteBatch, pos: baseDrawPos + cache.SplitOffsetL, color: shadowColor * 0.65f, 
+                sprite.Draw(spriteBatch, pos: baseDrawPos + cache.SplitOffsetL, color: shadowColor * 0.75f, 
                             rotate: item.Rotation, scale: item.Scale, origin: sprite.Origin, depth: shadowDepth);
 
-                sprite.Draw(spriteBatch, pos: baseDrawPos + cache.SplitOffsetR, color: shadowColor * 0.65f, 
+                sprite.Draw(spriteBatch, pos: baseDrawPos + cache.SplitOffsetR, color: shadowColor * 0.75f, 
                             rotate: item.Rotation, scale: item.Scale, origin: sprite.Origin, depth: shadowDepth);
             }
             else
@@ -192,4 +190,4 @@ namespace BarotraumaDieHard
             ShadowCache.Clear();
         }
     }
-}*/
+}

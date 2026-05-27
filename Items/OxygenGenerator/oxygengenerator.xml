@@ -4,7 +4,7 @@
     <Item 
     name="" 
     identifier="oxygenerator" 
-    tags="oxygengenerator,oxygentankrefiller,oxygentankrefiller,oxygengenerator_submarine,ItemsUseInventoryPlacement" 
+    tags="oxygengenerator,oxygentankrefiller,oxygentankrefiller,oxygengenerator_submarine,ItemsUseInventoryPlacement,DrawShadow" 
     category="Machine" 
     linkable="true" 
     allowedlinks="vent" 
@@ -100,7 +100,7 @@
     <Item 
     name="" 
     identifier="shuttleoxygenerator" 
-    tags="oxygengenerator,oxygentankrefiller,oxygengenerator_submarine"
+    tags="oxygengenerator,oxygentankrefiller,oxygengenerator_submarine,DrawShadow"
         category="Machine"
         linkable="true"
         allowedlinks="vent"

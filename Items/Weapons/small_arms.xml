@@ -638,7 +638,7 @@
             waterdragcoefficient="5"
             friction="2.0"/>
       <Holdable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,0" holdangle="-5" aimable="false" msg="ItemMsgPickUpSelect" canBeCombined="true" />
-      <ItemContainer hideitems="true" capacity="1" maxstacksize="1" removecontaineditemsondeconstruct="true" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" canbecombined="true" SpawnWithID="300acc">
+      <ItemContainer hideitems="true" capacity="1" maxstacksize="1" removecontaineditemsondeconstruct="true" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" canbecombined="true" SpawnWithID="556x45mm">
         <Containable identifiers="556x45mm" />
         <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="16,64,120,24" />
         <StatusEffect type="OnUse" target="This" condition="-3.3333" disabledeltatime="true">
@@ -788,7 +788,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
     </MCX>
-    <MCX_MAG name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <MCX_MAG name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms" health="30">
       <PreferredContainer primary="MCX" amount="1" spawnprobability="1"/>
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -822,10 +822,10 @@
             waterdragcoefficient="5"
             friction="2.0"/>
       <Holdable slots="Any,RightHand,LeftHand" holdpos="0,0" handle1="0,0" holdangle="-5" aimable="false" msg="ItemMsgPickUpSelect" canBeCombined="true" />
-      <ItemContainer hideitems="true" capacity="1" maxstacksize="1" removecontaineditemsondeconstruct="true" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" canbecombined="true" SpawnWithID="300acc">
+      <ItemContainer hideitems="true" capacity="1" maxstacksize="1" removecontaineditemsondeconstruct="true" drawinventory="false" canbeselected="false" ShowConditionInContainedStateIndicator="true" canbecombined="true" SpawnWithID="300aac">
         <Containable identifiers="300aac" />
         <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="16,64,120,24" />
-        <StatusEffect type="OnUse" target="This" condition="-3.3333" disabledeltatime="true">
+        <StatusEffect type="OnUse" target="This" condition="-1" disabledeltatime="true">
           <SpawnItem identifiers="300aac" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
@@ -1441,10 +1441,13 @@
         </StatusEffect>
         <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          
+        </StatusEffect>
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
     </Item>
@@ -1985,7 +1988,7 @@
       <Body width="20" height="20" density="40" />
       <Projectile characterusable="false" hitscan="false" removeonhit="true" launchimpulse="150">
         <ParticleEmitter particle="tracerfirearm" particleamount="1" velocitymin="0" velocitymax="0" colormultiplier="255,255,115,175" scalemultiplier="1,0.6" />
-        <Attack structuredamage="0.9" itemdamage="40" targetforce="6" penetration="0.9" severlimbsprobability="0.6" stun="0.1">
+        <Attack structuredamage="0.9" itemdamage="40" targetforce="6" penetration="1.5" severlimbsprobability="0.6" stun="0.1">
           <Affliction identifier="bleeding" strength="3" />
           <Affliction identifier="gunshotwound" strength="45" />
         </Attack>

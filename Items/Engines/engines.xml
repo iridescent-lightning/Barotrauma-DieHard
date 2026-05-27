@@ -20,7 +20,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="engine" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" >
+    <Item name="" identifier="engine" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" >
       <UpgradePreviewSprite scale="3.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,0,659,317" canflipx="true" origin="0.5,0.5" />
       <!-- vibrating decorative sprite that activates when the engine is broken -->
@@ -123,7 +123,7 @@
         <Upgrade gameversion="0.20.7.0" RepairThreshold="80" />
       </Repairable>
     </Item>
-    <Item name="Blue Star" identifier="enginebluestar" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="Blue Star [Max Force:400] [Power Consumption:2400] [Noise Range: 6000] [Min Voltage:0.5]" variantof="engine">
+    <Item name="Blue Star" identifier="enginebluestar" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="Blue Star [Max Force:400] [Power Consumption:2400] [Noise Range: 6000] [Min Voltage:0.5]" variantof="engine">
       <UpgradePreviewSprite scale="3.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,0,659,317" canflipx="true" origin="0.5,0.5" />
       <!-- vibrating decorative sprite that activates when the engine is broken -->
@@ -166,7 +166,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="Quick Boy" identifier="engineqb" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="Quick Boy [Max Force:500] [Power Consumption:3000] [Noise Range:6000] [Min Voltage:0.5]" variantof="engine">
+    <Item name="Quick Boy" identifier="engineqb" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="Quick Boy [Max Force:500] [Power Consumption:3000] [Noise Range:6000] [Min Voltage:0.5]" variantof="engine">
       <UpgradePreviewSprite scale="3.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,0,659,317" canflipx="true" origin="0.5,0.5" />
       <!-- vibrating decorative sprite that activates when the engine is broken -->
@@ -209,7 +209,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="Large Engine Slot" description="" identifier="largeengineslot" Tags="engine" showinstatusmonitor="false" category="Machine,Weapon" interactthroughwalls="true" Scale="0.65" interactdistance="50" spritecolor="1.0,1.0,1.0,1.0">
+    <Item name="Large Engine Slot" description="" identifier="largeengineslot" Tags="engine,DrawShadow" showinstatusmonitor="false" category="Machine,Weapon" interactthroughwalls="true" Scale="0.65" interactdistance="50" spritecolor="1.0,1.0,1.0,1.0">
       <Sprite texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="337,652,146,149" depth="0.86" />
       <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="141,968,38,28" origin="0.5,0.45" />
       <SwappableItem price="0" origin="-650,-100" swapidentifier="lengine"></SwappableItem>
@@ -228,7 +228,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="largeengine" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Item name="" identifier="largeengine" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
       <UpgradePreviewSprite scale="5.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.0.0" scale="*0.625" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,317,1613,592" canflipx="true" origin="0.5,0.5" />
@@ -291,7 +291,7 @@
         <Upgrade gameversion="0.20.7.0" RepairThreshold="80" />
       </Repairable>
     </Item>
-    <Item name="A Jet-07" identifier="largeengineajet07" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="A Jet-07 [Max Force:600] [Power Consumption:5000] [Noise Range:7000] [Min Voltage:0.5]" variantof="largeengine">
+    <Item name="A Jet-07" identifier="largeengineajet07" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="A Jet-07 [Max Force:600] [Power Consumption:5000] [Noise Range:7000] [Min Voltage:0.5]" variantof="largeengine">
       <UpgradePreviewSprite scale="5.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.0.0" scale="*0.625" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,317,1613,592" canflipx="true" origin="0.5,0.5" />
@@ -339,7 +339,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="M496" identifier="largeenginem496" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="M496 [Max Force:700] [Power Consumption:6200] [Noise Range:7000] [Min Voltage:0.5]" variantof="largeengine">
+    <Item name="M496" identifier="largeenginem496" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="M496 [Max Force:700] [Power Consumption:6200] [Noise Range:7000] [Min Voltage:0.5]" variantof="largeengine">
       <UpgradePreviewSprite scale="5.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.0.0" scale="*0.625" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,317,1613,592" canflipx="true" origin="0.5,0.5" />
@@ -387,7 +387,7 @@
         <output name="condition_out" displayname="connection.conditionout" />
       </ConnectionPanel>
     </Item>
-    <Item name="Jumbo" identifier="largeenginejumbo" tags="engine" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="Jumbo [Max Force:800] [Power Consumption:7200] [Noise Range:8000] [Min Voltage:0.5]" variantof="largeengine">
+    <Item name="Jumbo" identifier="largeenginejumbo" tags="engine,DrawShadow" category="Machine" Scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="Jumbo [Max Force:800] [Power Consumption:7200] [Noise Range:8000] [Min Voltage:0.5]" variantof="largeengine">
       <UpgradePreviewSprite scale="5.0" texture="Content/UI/WeaponUI.png" sourcerect="512,960,64,64" origin="0.5,0.45" />
       <Upgrade gameversion="0.10.0.0" scale="*0.625" />
       <Sprite texture="Engines.png" depth="0.8" sourcerect="0,317,1613,592" canflipx="true" origin="0.5,0.5" />

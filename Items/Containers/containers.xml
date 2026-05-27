@@ -44,7 +44,7 @@
       </ItemContainer>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Item>
-    <Item name="" identifier="extinguisherbracket" category="Equipment" tags="extinguisherholder,playinteractsound" canflipx="false" canflipy="false" scale="0.5" pickdistance="75" damagedbyexplosions="true" damagedbyprojectiles="true">
+    <Item name="" identifier="extinguisherbracket" category="Equipment" tags="extinguisherholder,playinteractsound,DrawShadow" canflipx="false" canflipy="false" scale="0.5" pickdistance="75" damagedbyexplosions="true" damagedbyprojectiles="true">
       <Body width="72" height="204" />
       <Sprite texture="containers.png" depth="0.84" sourcerect="815,349,72,204" origin="0.5,0.5" />
       <ItemContainer hideitems="false" drawinventory="true" capacity="1" maxstacksize="1" slotsperrow="1" itempos="35,-130" iteminterval="0,0" itemrotation="0" canbeselected="true" msg="ItemMsgInteractSelect" autointeractwithcontained="true">

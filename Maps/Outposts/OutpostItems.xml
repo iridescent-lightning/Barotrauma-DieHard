@@ -346,7 +346,7 @@
             legoffset="5"/>
       <sprite texture="Content/Map/Outposts/Art/CafeteriaGardenAssets.png" sourcerect="338,223,252,172" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
     </Item>
-    <Item name="" identifier="op_vendingmachine1" tags="vendingmachine, damage_by_passing_bullet" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true">
+    <Item name="" identifier="op_vendingmachine1" tags="vendingmachine, damage_by_passing_bullet,DrawShandow" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true">
       <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="1,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <BrokenSprite texture="%ModDir%/Maps/Outposts/MedBayAssets.png" sourcerect="1,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" maxcondition="0" />
       <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect" createbuttontext="campaignstoretab.buy">
@@ -384,7 +384,7 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
-    <Item name="" identifier="op_vendingmachine2" nameidentifier="op_vendingmachine1" tags="vendingmachine, damage_by_passing_bullet" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative">
+    <Item name="" identifier="op_vendingmachine2" nameidentifier="op_vendingmachine1" tags="vendingmachine,damage_by_passing_bullet,DrawShandow" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative">
       <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="481,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <BrokenSprite texture="%ModDir%/Maps/Outposts/MedBayAssets.png" sourcerect="481,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" maxcondition="0" />
       <Fabricator canbeselected="true" powerconsumption="0.0" msg="ItemMsgInteractSelect" createbuttontext="campaignstoretab.buy">
@@ -711,12 +711,12 @@
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1529,654,210,238" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="208" height="236" density="100" friction="30" />
     </OpDeco>
-    <OpDeco name="" identifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="false" category="Decorative" Tags="collidable">
+    <OpDeco name="" identifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="false" category="Decorative" Tags="collidable,DrawShandow">
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1788,912,237,124" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="237" height="124" bodytype="static" />
       <Scavengeable selectkey="Action" scavengeduration="3.0" canbeselected="true" msg="itemmsgscavengeuse"/>
     </OpDeco>
-    <OpDeco name="" identifier="opdeco_boxes2" nameidentifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="false" category="Decorative" Tags="collidable">
+    <OpDeco name="" identifier="opdeco_boxes2" nameidentifier="opdeco_boxes1" texturescale="1.0,1.0" scale="0.5" noninteractable="false" category="Decorative" Tags="collidable,DrawShandow">
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1789,1042,208,61" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="205" height="61" bodytype="static" />
       <Scavengeable selectkey="Action" scavengeduration="3.0" canbeselected="true" msg="itemmsgscavengeuse"/>

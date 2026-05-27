@@ -100,7 +100,7 @@
         <output name="fuel_percentage_left" displayname="connection.fuelpercentageout" />
       </ConnectionPanel>
     </Item>
-    <Item name="" identifier="reactor1" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Item name="" identifier="reactor1" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
       <Upgrade gameversion="0.10.0.0" scale="*0.5" />
       <trigger />
       <Sprite texture="reactor.png" sourcerect="0,0,528,336" origin="0.5,0.45" depth="0.8" />
@@ -260,7 +260,7 @@
       </Upgrade>
     </Item>
   </Override>
-  <Item name="" identifier="reactorrs107" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
+  <Item name="" identifier="reactorrs107" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
     <aitarget sightrange="500" soundrange="4000" />
     <SwappableItem price="5160" origin="264,168" swapidentifier="reactors" replacementonuninstall="reactorslot"></SwappableItem>
     <Reactor canbeselected="true" firedelay="20" meltdowndelay="120" maxpoweroutput="5000" fuelconsumptionrate="0.05" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
@@ -334,7 +334,7 @@
       <StatusEffect type="OnFire" target="This" Condition="-2" />
     </Repairable>
   </Item>
-  <Item name="" identifier="reactormrmxi" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
+  <Item name="" identifier="reactormrmxi" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
     <aitarget sightrange="500" soundrange="4000" />
     <SwappableItem price="6600" origin="264,168" swapidentifier="reactors" replacementonuninstall="reactorslot"></SwappableItem>
     <Reactor canbeselected="true" firedelay="20" meltdowndelay="120" maxpoweroutput="6550" fuelconsumptionrate="0.05" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
@@ -413,7 +413,7 @@
       </Repairable>
     </Upgrade>
   </Item>
-  <Item name="" identifier="reactorccsv" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
+  <Item name="" identifier="reactorccsv" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
     <aitarget sightrange="500" soundrange="4000" />
     <SwappableItem price="8000" origin="264,168" swapidentifier="reactors" replacementonuninstall="reactorslot"></SwappableItem>
     <Reactor canbeselected="true" firedelay="30" meltdowndelay="140" maxpoweroutput="7000" fuelconsumptionrate="0.1" vulnerabletoemp="true" msg="ItemMsgInteractSelect">
@@ -492,7 +492,7 @@
       </Repairable>
     </Upgrade>
   </Item>
-  <Item name="" identifier="reactorfac900" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
+  <Item name="" identifier="reactorfac900" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
     <aitarget sightrange="500" soundrange="4000" />
     <SwappableItem price="8000" origin="264,168" swapidentifier="reactors" replacementonuninstall="reactorslot"></SwappableItem>
     <Reactor canbeselected="true" firedelay="60" meltdowndelay="200" maxpoweroutput="8000" fuelconsumptionrate="0.05" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
@@ -571,7 +571,7 @@
       </Repairable>
     </Upgrade>
   </Item>
-  <Item name="" identifier="reactorgb099" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
+  <Item name="" identifier="reactorgb099" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
     <aitarget sightrange="500" soundrange="4000" />
     <SwappableItem price="10000" origin="264,168" swapidentifier="reactors" replacementonuninstall="reactorslot"></SwappableItem>
     <Reactor canbeselected="true" firedelay="30" meltdowndelay="150" maxpoweroutput="9500" fuelconsumptionrate="0.05" vulnerabletoemp="false" msg="ItemMsgInteractSelect">
@@ -650,7 +650,7 @@
       </Repairable>
     </Upgrade>
   </Item>
-  <Item name="" identifier="reactortype2053" tags="reactor,radiationshield" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
+  <Item name="" identifier="reactortype2053" tags="reactor,radiationshield,DrawShadow" type="Reactor" scale="0.5" linkable="true" category="Machine" damagedbyexplosions="true" explosiondamagemultiplier="0.2" description="" variantof="reactor1">
     <aitarget sightrange="500" soundrange="4000" />
     <SwappableItem price="13000" origin="264,168" swapidentifier="reactors" replacementonuninstall="reactorslot"></SwappableItem>
     <Reactor canbeselected="true" firedelay="10" meltdowndelay="50" maxpoweroutput="12000" fuelconsumptionrate="0.5" vulnerabletoemp="true" msg="ItemMsgInteractSelect">
