@@ -1,52 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <prefabs>
   <decal name="Plant1 Decal 1" identifier="Plant1Decal1" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="34,643,462,369" depth="0.98" origin="0.5,0.5" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="34,643,462,369" depth="0.98" origin="0.5,0.5" />
   </decal>
   <decal name="Plant1 Decal 2" identifier="Plant1Decal2" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="502,526,531,491" depth="0.98" origin="0.54748684,0.63627476" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="502,526,531,491" depth="0.98" origin="0.54748684,0.63627476" />
   </decal>
   <decal name="Plant1 Decal 3" identifier="Plant1Decal3" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="518,51,513,463" depth="0.98" origin="0.5083982,0.62790924" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="518,51,513,463" depth="0.98" origin="0.5083982,0.62790924" />
   </decal>
   <decal name="Plant1 Decal 4" identifier="Plant1Decal4" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1591,228,399,262" depth="0.98" origin="0.49891448,0.6539615" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1591,228,399,262" depth="0.98" origin="0.49891448,0.6539615" />
   </decal>
   <decal name="Plant1 Decal 5" identifier="Plant1Decal5" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1539,1672,515,378" depth="0.98" origin="0.5,0.5" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1539,1672,515,378" depth="0.98" origin="0.5,0.5" />
   </decal>
   <decal name="Plant1 Decal 6" identifier="Plant1Decal6" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1541,701,515,314" depth="0.98" origin="0.5,0.5" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1541,701,515,314" depth="0.98" origin="0.5,0.5" />
   </decal>
   <decal name="Plant1 Decal 7" identifier="Plant1Decal7" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1012,1047,546,478" depth="0.98" origin="0.5047269,0.6643427" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1012,1047,546,478" depth="0.98" origin="0.5047269,0.6643427" />
   </decal>
   <decal name="Plant1 Decal 8" identifier="Plant1Decal8" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="506,1044,513,474" depth="0.98" origin="0.50049067,0.6467518" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="506,1044,513,474" depth="0.98" origin="0.50049067,0.6467518" />
   </decal>
   <decal name="Plant1 Decal 9" identifier="Plant1Decal9" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="-9,1040,517,483" depth="0.98" origin="0.5,0.5" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="-9,1040,517,483" depth="0.98" origin="0.5,0.5" />
   </decal>
   <decal name="Plant1 Decal 10" identifier="Plant1Decal10" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="508,1537,529,511" depth="0.98" origin="0.48157227,0.6622104" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="508,1537,529,511" depth="0.98" origin="0.48157227,0.6622104" />
   </decal>
   <decal name="Plant1 Decal 11" identifier="Plant1Decal11" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="-16,1534,529,511" depth="0.98" origin="0.50205183,0.722858" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="-16,1534,529,511" depth="0.98" origin="0.50205183,0.722858" />
   </decal>
   <decal name="Plant1 Decal 12" identifier="Plant1Decal12" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1033,1539,511,504" depth="0.98" origin="0.51189554,0.797027" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1033,1539,511,504" depth="0.98" origin="0.51189554,0.797027" />
   </decal>
   <decal name="Plant1 Decal 13" identifier="Plant1Decal13" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1539,1044,529,511" depth="0.98" origin="0.49479616,0.7049112" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1539,1044,529,511" depth="0.98" origin="0.49479616,0.7049112" />
   </decal>
   <decal name="Plant1 Decal 14" identifier="Plant1Decal14" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1024,515,529,511" depth="0.98" origin="0.48503432,0.7724146" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1024,515,529,511" depth="0.98" origin="0.48503432,0.7724146" />
   </decal>
   <decal name="Plant1 Decal 15" identifier="Plant1Decal15" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="1030,23,529,511" depth="0.98" origin="0.48157227,0.6622104" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="1030,23,529,511" depth="0.98" origin="0.48157227,0.6622104" />
   </decal>
   <decal name="Plant1 Decal 16" identifier="Plant1Decal16" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants1.png" sourcerect="-4,51,517,487" depth="0.98" origin="0.4950058,0.7430506" />
+    <sprite texture="Content/Map/Biomes/AphoticPlateau/LevelObjects.png" sourcerect="-4,51,517,487" depth="0.98" origin="0.4950058,0.7430506" />
   </decal>
   <!--PLANT2-->
   <decal name="Plant2 Decal 1" identifier="Plant2Decal1" category="Misc">
@@ -183,31 +183,31 @@
   </decal>
   <!--PLANT6-->
   <decal name="Plant6 Decal 1" identifier="Plant6Decal1" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="6,15,329,334" depth="0.98" origin="0.47994563,0.71076715" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="6,15,329,334" depth="0.98" origin="0.47994563,0.71076715" />
   </decal>
   <decal name="Plant6 Decal 2" identifier="Plant6Decal2" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="343,-5,334,358" depth="0.98" origin="0.50512415,0.7119452" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="343,-5,334,358" depth="0.98" origin="0.50512415,0.7119452" />
   </decal>
   <decal name="Plant6 Decal 3" identifier="Plant6Decal3" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="691,20,334,330" depth="0.98" origin="0.51016617,0.6946722" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="691,20,334,330" depth="0.98" origin="0.51016617,0.6946722" />
   </decal>
   <decal name="Plant6 Decal 4" identifier="Plant6Decal4" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="4,364,341,323" depth="0.98" origin="0.48214006,0.65913635" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="4,364,341,323" depth="0.98" origin="0.48214006,0.65913635" />
   </decal>
   <decal name="Plant6 Decal 5" identifier="Plant6Decal5" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="350,373,329,319" depth="0.98" origin="0.48675793,0.6485588" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="350,373,329,319" depth="0.98" origin="0.48675793,0.6485588" />
   </decal>
   <decal name="Plant6 Decal 6" identifier="Plant6Decal6" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="695,374,325,311" depth="0.98" origin="0.49391004,0.664736" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="695,374,325,311" depth="0.98" origin="0.49391004,0.664736" />
   </decal>
   <decal name="Plant6 Decal 7" identifier="Plant6Decal7" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="8,714,327,312" depth="0.98" origin="0.5047269,0.6643427" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="8,714,327,312" depth="0.98" origin="0.5047269,0.6643427" />
   </decal>
   <decal name="Plant6 Decal 8" identifier="Plant6Decal8" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="347,764,339,266" depth="0.98" origin="0.50049067,0.6467518" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="347,764,339,266" depth="0.98" origin="0.50049067,0.6467518" />
   </decal>
   <decal name="Plant6 Decal 9" identifier="Plant6Decal9" category="Misc">
-    <sprite texture="%ModDir%/Maps/Outposts/Plants6.png" sourcerect="693,730,339,300" depth="0.98" origin="0.5269657,0.59834856" />
+    <sprite texture="Content/Map/Biomes/MushroomCave/LevelObjects.png" sourcerect="693,730,339,300" depth="0.98" origin="0.5269657,0.59834856" />
   </decal>
   <!--PLANT7-->
   <decal name="Plant7 Decal 1" identifier="Plant7Decal1" category="Misc">

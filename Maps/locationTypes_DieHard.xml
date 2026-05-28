@@ -143,7 +143,7 @@
       <Portrait texture="%ModDir%/Maps/LocationPortraits/reactorbay.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/divingsuit.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/coldcavebio.png" premultiplyalpha="false" />
-      <Portrait texture="%ModDir%/Maps/LocationPortraits/science.png" premultiplyalpha="false" />
+      <Portrait texture="%ModDir%/Maps/LocationPortraits/Colony.png" premultiplyalpha="false" />
 
       <Hireable identifier="assistant" commonness="10" />
       <Hireable identifier="engineer" commonness="3" />
@@ -239,7 +239,7 @@
     <Research identifier="Research" replaceinradiation="Abandoned" namefile="Content/Map/locationNames.txt,Content/Map/cityNames.txt" commonnessperzone="1: 0.3, 2: 0, 3: 0, 4: 0">
       <Symbol texture="%ModDir%/Maps/MapAtlas.png" sourcerect="254,382,128,128" color="0,139,139,255" />
       <RadiationSymbol texture="Content/Map/MapAtlas.png" sourcerect="896,512,128,128" color="245,105,105" />
-      <Portrait texture="%ModDir%/Maps/LocationPortraits/science.png" premultiplyalpha="false" />
+      <Portrait texture="%ModDir%/Maps/LocationPortraits/Colony.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/WorkCampResearchFacility2.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/WorkCampResearchFacility3.png" premultiplyalpha="false" />
       <Hireable identifier="engineer" commonness="5" />
@@ -297,7 +297,7 @@
     <ResearchER identifier="EuropanRidge_Research" replaceinradiation="Abandoned" namefile="Content/Map/locationNames.txt,Content/Map/cityNames.txt" commonnessperzone="1: 0, 2: 0.75, 3: 0, 4: 0">
       <Symbol texture="%ModDir%/Maps/MapAtlas.png" sourcerect="640,896,128,128" color="127,255,212,255" />
       <RadiationSymbol texture="Content/Map/MapAtlas.png" sourcerect="896,512,128,128" color="245,105,105" />
-      <Portrait texture="%ModDir%/Maps/LocationPortraits/science.png" premultiplyalpha="false" />
+      <Portrait texture="%ModDir%/Maps/LocationPortraits/Colony.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/europanridge.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/europanridgebio.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/WorkCampResearchFacility1.png" premultiplyalpha="false" />
@@ -437,7 +437,7 @@
     <GSResearch identifier="Greatsea_Research" replaceinradiation="Abandoned" namefile="Content/Map/locationNames.txt,Content/Map/cityNames.txt" commonnessperzone="1: 0, 2: 0, 3: 0, 4: 0.75">
       <Symbol texture="%ModDir%/Maps/MapAtlas.png" sourcerect="128,256,128,128" color="128,206,175,255" />
       <RadiationSymbol texture="Content/Map/MapAtlas.png" sourcerect="896,512,128,128" color="245,105,105" />
-      <Portrait texture="%ModDir%/Maps/LocationPortraits/science.png" premultiplyalpha="false" />
+      <Portrait texture="%ModDir%/Maps/LocationPortraits/Colony.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/europanridge.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/europanridgebio.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/WorkCampResearchFacility1.png" premultiplyalpha="false" />
@@ -502,7 +502,7 @@
     <APResearch identifier="AphoticPlateau_Research" replaceinradiation="Abandoned" namefile="Content/Map/locationNames.txt,Content/Map/cityNames.txt" commonnessperzone="1: 0, 2: 0, 3: 1.0, 4: 0">
       <Symbol texture="%ModDir%/Maps/MapAtlas.png" sourcerect="256,256,128,128" color="255,106,106,255" />
       <RadiationSymbol texture="Content/Map/MapAtlas.png" sourcerect="896,512,128,128" color="245,105,105" />
-      <Portrait texture="%ModDir%/Maps/LocationPortraits/science.png" premultiplyalpha="false" />
+      <Portrait texture="%ModDir%/Maps/LocationPortraits/Colony.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/reactorbay.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/divingsuit.png" premultiplyalpha="false" />
       <Portrait texture="%ModDir%/Maps/LocationPortraits/coldcavebio.png" premultiplyalpha="false" />

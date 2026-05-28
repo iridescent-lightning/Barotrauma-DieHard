@@ -6,13 +6,13 @@
         <Portrait texture="%ModDir%/Maps/LocationPortraits/dst_europa_base.png" sourcerect="0,0,1260,710" premultiplyalpha="false" />
       </Slide>
       <Slide text="Sildeshow.DHStorybegin2">
-        <Portrait texture="%ModDir%/Maps/LocationPortraits/gamma.png" sourcerect="0,0,3840,2160" premultiplyalpha="false" />
+        <Portrait texture="%ModDir%/Maps/LocationPortraits/gamma.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
       </Slide>
       <Slide text="Sildeshow.DHStorybegin3">
         <Portrait texture="%ModDir%/Maps/LocationPortraits/dst_fortress.png" sourcerect="0,0,2520,1560" premultiplyalpha="false" />
       </Slide>
       <Slide text="Sildeshow.DHStorybegin4">
-        <Portrait texture="%ModDir%/Maps/LocationPortraits/science.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
+        <Portrait texture="%ModDir%/Maps/LocationPortraits/Colony.png" sourcerect="0,0,2160,1080" premultiplyalpha="false" />
       </Slide>
     </Slideshow>
     <Slideshow identifier="campaignending">

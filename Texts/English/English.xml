@@ -650,6 +650,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.keymedical>Use to lock medical cabinets</entitydescription.keymedical>
   <entityname.flakshellempty>Shell</entityname.flakshellempty>
   <entitydescription.flakshellempty>Used flakshell</entitydescription.flakshellempty>
+  <entityname.shootingrangetarget>Shooting Range Target</entityname.shootingrangetarget>
+  <entitydescription.shootingrangetarget>For shooting practice</entitydescription.shootingrangetarget>
 
   <connection.moveup>Move Up</connection.moveup>
   <connection.movedown>Move Down</connection.movedown>

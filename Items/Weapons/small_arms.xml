@@ -3,7 +3,7 @@
   <Items>
     <Item name="bulletcase" identifier="bulletcase" category="Equipment" tags="bulletcase" impactsoundtag="case_impact" scale="0.2" hideinmenus="true">
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="294,1,29,12" depth="0.55" origin="0.5,0.5" />
-      <Body width="1" height="1" density="10" angulardamping="1.0" waterdragcoefficient="10"/>
+      <Body width="3" height="2" density="10" angulardamping="1.0" waterdragcoefficient="10" friction="4"/>
       <ItemComponent>
         <!--This gives bubble effect when bullet travels though water-->
         <StatusEffect type="Always" target="This" lifetime="3" interval="0.1">
@@ -140,7 +140,7 @@
         </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Revolverround>
-    <FNFiveSeven name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms">
+    <FNFiveSeven name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms" HideConditionBar="true">
       <PreferredContainer primary="secarmcab" secondary="armcab" minamount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -158,15 +158,8 @@
         <Item identifier="plastic" />
       </Deconstruct>
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="576,896,64,64" />
-      <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="187,147,86,59" depth="0.55" />
-      <DecorativeSprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="674,131,86,20" depth="0.54" origin="0.49,1.488" offset="-15,0" offsetanim="Sine" offsetanimspeed="150">
-        <AnimationConditional IsActive="True" targetitemcomponent="RangedWeapon" />
-        <IsActiveConditional IsActive="True" targetitemcomponent="RangedWeapon" />
-      </DecorativeSprite>
-      <DecorativeSprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="674,131,86,20" depth="0.54" origin="0.49,1.488">
-        <IsActiveConditional IsActive="False" targetitemcomponent="RangedWeapon" />
-      </DecorativeSprite>
-      <DecorativeSprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="363,16,86,59" depth="0.55" />
+      <Sprite texture="%ModDir%/Items/Weapons/weapons_handgunbackup.png" sourcerect="516,193,95,57" depth="0.55" />
+      <BrokenSprite texture="%ModDir%/Items/Weapons/weapons_handgunbackup.png" sourcerect="355,17,95,57" depth="0.55" maxcondition="98"/>
       <ContainedSprite name="Depth Fix" allowedcontainertags="weapons_cabinet" texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="64,16,86,59" depth="0.83" />
       <Body customshape="table" width="110" height="16" density="25" 
             leftlegwidth="8" leftlegheight="15" leftlegoffset="0"
@@ -177,6 +170,9 @@
         <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
         <ParticleEmitter particle="muzzleflash" particleamount="1" velocitymin="0" velocitymax="0" />
         <Sound file="%ModDir%/Items/Weapons/glock19.ogg" type="OnUse" range="3000" />
+        <!--Recoil animation-->
+        <StatusEffect type="OnUse" target="this" Condition="100" stackable="false" delay="0.225" SetValue="true" />
+        <StatusEffect type="OnUse" target="this" Condition="95" stackable="false" SetValue="true" />
         <StatusEffect type="OnUse" target="This">
           <Explosion range="150.0" force="1" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="12.0" />
         </StatusEffect>

@@ -269,9 +269,9 @@ end)
 local densityUpdateTimer = 0
 totalDensity = 0 --global so monitor can display on client
 
-Hook.Patch("Barotrauma.SubmarineBody", "Update", function(instance,patable)
+--[[Hook.Patch("Barotrauma.SubmarineBody", "Update", function(instance,patable)
 
-	
+	if Submarine.MainSub == nil then end
     if Timer.GetTime() > densityUpdateTimer then
         local itemsInSub = Submarine.MainSub.GetItems(true)
 
@@ -289,4 +289,4 @@ Hook.Patch("Barotrauma.SubmarineBody", "Update", function(instance,patable)
 
         densityUpdateTimer = Timer.GetTime() + 2 -- updates run at 1 time per second
     end
-end,Hook.HookMethodType.After)
+end,Hook.HookMethodType.After)--]]

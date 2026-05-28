@@ -648,6 +648,8 @@
   <entitydescription.handdrill>可以在坚硬的岩壁上打孔</entitydescription.handdrill>
   <entityname.flakshellempty>弹壳</entityname.flakshellempty>
   <entitydescription.flakshellempty>空弹壳</entitydescription.flakshellempty>
+  <entityname.shootingrangetarget>靶场靶子</entityname.shootingrangetarget>
+  <entitydescription.shootingrangetarget>用来练习射击</entitydescription.shootingrangetarget>
 
 
 

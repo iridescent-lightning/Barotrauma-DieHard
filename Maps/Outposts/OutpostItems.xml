@@ -726,5 +726,10 @@
       <DecorativeSprite texture="Content/Map/Outposts/Art/AdminResidentAssets.png" sourcerect="848,627,99,99" depth="0.98" premultiplyalpha="false" origin="0.5,0.5" rotationspeed="-715" />
       <Body width="99" height="99" density="100" friction="100" />
     </Item>
+    <Target name="" identifier="shootingrangetarget" nameidentifier="Target" width="136" height="182" scale="0.5" noninteractable="true" category="Decorative" subcategory="shop" damagedbyprojectiles="true" health="300">
+      <sprite texture="Content/Map/Outposts/Art/ArmoryColonyModule.png" sourcerect="819,184,136,182" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <ShootingRangeTarget/>
+      <Body width="136" height="182" bodytype="static" />
+    </Target>
   </Items>
 </Override>
