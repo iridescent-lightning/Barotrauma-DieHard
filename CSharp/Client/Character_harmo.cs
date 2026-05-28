@@ -72,7 +72,19 @@ namespace BarotraumaDieHard
 					bool isInWater = __instance.Submarine == null;
 					
 					// 潜艇内用 3.5f，水里用较小值（例如 1.0f），你可以根据需要调整
-					float targetGlobalScale = isInWater ? 1.5f : 2f;
+					float targetGlobalScale = isInWater ? 1.5f : 2.2f;
+
+					if (__instance.Submarine == Submarine.MainSub && __instance.Submarine.Info.Name != "0Mod Play Yard")
+					{
+						targetGlobalScale = 2.6f;
+					}
+
+					if (__instance.CurrentHull != null && __instance.CurrentHull.RoomName == "RoomName.Bedroom")
+					{
+						
+						targetGlobalScale = 3f;
+					}
+						
 					
 					// 使用 Lerp 平滑过渡缩放感，避免瞬间切镜头的眩晕
 					float currentGlobalScale = (float)globalZoomScaleField.GetValue(cam);

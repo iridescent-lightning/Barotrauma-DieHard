@@ -92,6 +92,15 @@ namespace BarotraumaDieHard
                 }
             }
 
+            if (__instance.ParentInventory?.Owner is Character c)
+            {
+                // 直接判断当前物品 (this/__instance) 是不是在玩家的 Bag (背部) 槽位
+                if (c.Inventory != null && c.Inventory.IsInLimbSlot(__instance, InvSlotType.Bag))
+                {
+                    return; // 直接拦截，不画影子
+                }
+            }
+
             if (__instance.HasTag("DrawShadow") && __instance.Sprite != null)
             {
                 double currentTime = Timing.TotalTime;

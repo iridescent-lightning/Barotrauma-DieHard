@@ -80,7 +80,7 @@ namespace BarotraumaDieHard
 
             __instance.OnInteract = () =>
             {
-                DebugConsole.NewMessage("interact");
+                
                 __instance.AddTag("draw_container_open");
 
             };

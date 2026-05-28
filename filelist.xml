@@ -159,13 +159,11 @@
   <OutpostModule file="%ModDir%/AdminModule_02LDH.sub" />
   <OutpostModule file="%ModDir%/AdminModule_04DH.sub" />
   <OutpostModule file="%ModDir%/AdminModule_05DH.sub" />
-  <OutpostModule file="%ModDir%/CrewModule_01DH.sub" />
   <OutpostModule file="%ModDir%/MedicalModule_01DH.sub" />
   <OutpostModule file="%ModDir%/CrewModule_02DH.sub" />
   <OutpostModule file="%ModDir%/MedicalModule_ER.sub" />
   <OutpostModule file="%ModDir%/./CreatureLoot_Module_CC_01.sub" />
   <OutpostModule file="%ModDir%/./CreatureLootModule_ER.sub" />
-  <OutpostModule file="%ModDir%/CrewModule_03DH.sub" />
   <OutpostModule file="%ModDir%/AphoticPlateau_crewmodule_01.sub" />
   <OutpostModule file="%ModDir%/Maps/DryCaves/Cave_Dock.sub" />
   <OutpostModule file="%ModDir%/Cave_Dock_01.sub" />
@@ -174,5 +172,7 @@
   <OutpostModule file="%ModDir%/EngineeringModule_02DH.sub" />
   <OutpostModule file="%ModDir%/Cave_Room_1.sub" />
   <Submarine file="%ModDir%/0test.sub" />
+  <OutpostModule file="%ModDir%/CrewModule_01DH.sub" />
+  <OutpostModule file="%ModDir%/CrewModule_03DH.sub" />
   <Submarine file="%ModDir%/./0Mod Play Yard.sub" />
 </contentpackage>
