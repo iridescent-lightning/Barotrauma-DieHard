@@ -292,7 +292,7 @@
       </Repairable>
     </Item>
     
-    <OutpostOxygenerator name="" nameidentifier="oxygenerator" identifier="outpostoxygenerator" tags="oxygengenerator,outpostoxygengenerator,ItemsUseInventoryPlacement" category="Machine" linkable="true" allowedlinks="vent" damagedbyexplosions="true" scale="0.5" explosiondamagemultiplier="0.2">
+    <OutpostOxygenerator name="" nameidentifier="oxygenerator" identifier="outpostoxygenerator" tags="oxygengenerator,outpostoxygengenerator,ItemsUseInventoryPlacement,DrawShadow" category="Machine" linkable="true" allowedlinks="vent" damagedbyexplosions="true" scale="0.5" explosiondamagemultiplier="0.2">
       <Sprite texture="Content/Map/Outposts/Art/GenericAssets2.png" depth="0.8" sourcerect="52,1197,360,410" origin="0.5,0.5" />
       <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="2,1607,240,302" depth="0.79" origin="0.5,0.5" offset="100,0" maxcondition="80" fadein="true" />
       <BrokenSprite texture="Content/Map/Outposts/Art/GenericAssets2.png" sourcerect="243,1629,213,286" depth="0.79" origin="0.5,0.5" offset="100,0" maxcondition="10" fadein="true" />

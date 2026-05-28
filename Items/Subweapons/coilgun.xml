@@ -121,7 +121,7 @@
       </Repairable>
       <SkillRequirementHint identifier="weapons" level="50" />
     </Item>
-    <Item name="" identifier="coilgunloader" tags="coilgunequipment,coilgunammosource,turretammosource,coilgunammoloader" category="Machine,Weapon" linkable="true" allowedlinks="coilgun" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Item name="" identifier="coilgunloader" tags="coilgunequipment,coilgunammosource,turretammosource,coilgunammoloader,DrawShadow" category="Machine,Weapon" linkable="true" allowedlinks="coilgun" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
       <Upgrade gameversion="0.14.7.0" rectwidth="82" rectheight="176" itempos="82,-270" />
       <SwappableItem canbebought="false" origin="82,352" spawnwithid="coilgunammobox" />
       <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="208,968,32,46" origin="0.5,0.5" />

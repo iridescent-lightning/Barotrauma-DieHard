@@ -15,7 +15,7 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
-    <Revolver name="" identifier="revolver" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,pistolitem,gunsmith,mountableweapon,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" description="" subcategory="small arms" nameidentifier="revolvernew">
+    <Revolver name="" identifier="revolver" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,pistolitem,gunsmith,mountableweapon,collidable,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_handguns" description="" subcategory="small arms" nameidentifier="revolvernew">
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
       <PreferredContainer primary="secarmcab" secondary="armcab" />
@@ -140,7 +140,7 @@
         </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Revolverround>
-    <FNFiveSeven name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms" HideConditionBar="true">
+    <FNFiveSeven name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms" HideConditionBar="true">
       <PreferredContainer primary="secarmcab" secondary="armcab" minamount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -241,7 +241,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <MPX name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MPX name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" secondary="armcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.35" />
@@ -485,7 +485,7 @@
       <Body width="131" height="83" density="50" />
       <Holdable slots="RightHand, LeftHand" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </M16Stock>
-    <M16 name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <M16 name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" secondary="armcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -678,7 +678,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <MCX name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MCX name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -859,7 +859,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="MP9" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="MP9" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab, weaponholder" amount="1" spawnprobability="0.25" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.01" />
@@ -995,7 +995,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="P90" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="P90" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.15" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.1" />
@@ -1172,7 +1172,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <Scar name="" identifier="mk17" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Scar name="" identifier="mk17" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="1" spawnprobability="0.2" />
@@ -1447,7 +1447,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <AK47 name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <AK47 name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1674,7 +1674,7 @@
       <Body width="224" height="51" density="50" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </AK47Barrel>
-    <PKM name="" identifier="pkm" aliases="pkm" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <PKM name="" identifier="pkm" aliases="pkm" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" minamount="0" maxamount="1" spawnprobability="0.5" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -1845,7 +1845,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <FAL name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <FAL name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -2126,7 +2126,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <APSUNDERWATER name="" identifier="underwatergun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai" Scale="0.225" impactsoundtag="impact_metal_light" health="100" description="" subcategory="small arms">
+    <APSUNDERWATER name="" identifier="underwatergun" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.225" impactsoundtag="impact_metal_light" health="100" description="" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.4" />
       <PreferredContainer secondary="secarmcab" maxamount="1" spawnprobability="0.1" />
