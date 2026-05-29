@@ -443,7 +443,7 @@
       </ItemComponent>
     </Item>
     <!--double bunk-->
-    <Item name="" identifier="opdeco_bunks1" nameidentifier="opdeco_bunks1" allowattachitems="false" width="463" height="398" texturescale="1.0,1.0" scale="0.5" category="Decorative" Tags="bed,collidable,damage_by_passing_bullet">
+    <Item name="" identifier="opdeco_bunks1" nameidentifier="opdeco_bunks1" allowattachitems="false" width="463" height="398" texturescale="1.0,1.0" scale="0.5" category="Decorative" Tags="bed,collidable,damage_by_passing_bullet,DrawShadow">
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1296,1289,463,387" depth="0.85" premultiplyalpha="false" origin="0.5,0.5" />
       <Body width="463" height="398" density="1000" friction="1000" />
       <DecorativeSprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1390,1126,320,160" depth="0.86" origin="0.5,0.5" offset="40,-95" />
@@ -477,7 +477,7 @@
         <StatusEffect type="OnFire" target="This" Condition="-1" />
       </ItemComponent>
     </Item>
-    <Item name="" identifier="opdeco_trashcan" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true" Tags="trashcan,collidable, damage_by_passing_bullet" damagedbyprojectiles="true" >
+    <Item name="" identifier="opdeco_trashcan" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true" Tags="trashcan,collidable,damage_by_passing_bullet,DrawShadow" damagedbyprojectiles="true" >
       <Body width="122" height="201" density="40" />
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1662,914,125,205" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <ItemContainer capacity="3" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">

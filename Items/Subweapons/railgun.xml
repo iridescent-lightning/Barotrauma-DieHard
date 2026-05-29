@@ -88,14 +88,14 @@
       </ConnectionPanel>
       <Upgrade gameversion="1.1.4.0" allowingameediting="false" />
     </Item>
-    <Item name="" identifier="railgunloadersmall" nameidentifier="railgunloader" tags="railgunequipment,railgunammosource,turretammosource,railgunammoloader,ItemsUseInventoryPlacement" category="Machine,Weapon" linkable="true" allowedlinks="railgun" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
+    <Item name="" identifier="railgunloadersmall" nameidentifier="railgunloader" tags="railgunequipment,railgunammosource,turretammosource,railgunammoloader" category="Machine,Weapon" linkable="true" allowedlinks="railgun" scale="0.5" damagedbyexplosions="true" explosiondamagemultiplier="0.2">
       <SwappableItem canbebought="false" origin="110,353" spawnwithid="railgunshell,railgunshell,railgunshell,railgunshell,railgunshell" />
       <Sprite name="Railgun Loader Front" texture="Loaders.png" depth="0.78" sourcerect="709,370,220,353" origin="0.5,0.5" />
       <DecorativeSprite texture="%ModDir%/Items/Subweapons/Loaders_shadows.png" depth="0.9" sourcerect="761,596,226,402" canflipy="false" scale="1" offset="60,-15" />
       <BrokenSprite texture="Content/Items/Weapons/Loaders.png" sourcerect="163,563,153,351" origin="0.5,0.5" offset="35,4" depth="0.77" fadein="true" maxcondition="99" />
       <UpgradePreviewSprite texture="Content/UI/WeaponUI.png" sourcerect="208,968,32,46" origin="0.5,0.5" />
       <DecorativeSprite name="Railgun Loader Frame Front" texture="Loaders.png" depth="0.8" sourcerect="31,569,117,200" origin="0.5,0.5" offset="0,-30" />
-      <ItemContainer hideitems="false" drawinventory="true" capacity="6" slotsperrow="6" itempos="58,-200" iteminterval="20,0" itemrotation="90" canbeselected="true" msg="ItemMsgInteractSelect" containedspritedepths="0.79,0.791,0.792,0.793,0.794,0.795">
+      <ItemContainer hideitems="false" drawinventory="true" capacity="6" slotsperrow="6" itempos="58,-200" iteminterval="20,0" itemrotation="90" canbeselected="true" msg="ItemMsgInteractSelect" containedspritedepths="0.79,0.791,0.792,0.793,0.794,0.795" ItemsUseInventoryPlacement="true">
         <GuiFrame relativesize="0.25,0.2" anchor="Center" style="ItemUI" />
         <Containable items="railgunammo" />
       </ItemContainer>

@@ -87,11 +87,11 @@ namespace BarotraumaDieHard
                 data.IsColorCached = true;
             }
 
-            // --- 🤖 第一部分：低频耐久检测（每 0.5 秒错峰跑一次，节省 CPU） ---
+            // --- 🤖 第一部分：低频耐久检测（每 1.5 秒错峰跑一次，节省 CPU） ---
             data.UpdateTimer -= deltaTime;
             if (data.UpdateTimer <= 0f)
             {
-                data.UpdateTimer = 0.5f; 
+                data.UpdateTimer = 1.5f; 
 
                 bool isDamaged = __instance.item.Condition < (__instance.item.MaxCondition * 0.3f);
 
