@@ -107,42 +107,67 @@ namespace BarotraumaDieHard
 
 
 
+
+
 		[HarmonyPatch("AddLimbAffliction")]
-		[HarmonyPatch( new Type[] {typeof(Limb), typeof(Affliction), typeof(bool), typeof(bool) })]
+		[HarmonyPatch(new Type[] { typeof(Limb), typeof(Affliction), typeof(bool), typeof(bool) })]
 		[HarmonyPrefix]
 		// 使用 Prefix 在伤害结算前动态修改其倍率
-        public static void Prefix(CharacterHealth __instance, Limb limb, Affliction newAffliction, bool allowStacking, bool recalculateVitality)
-        {
-            // 1. 基础安全检查
+		public static void Prefix(CharacterHealth __instance, Limb limb, Affliction newAffliction, bool allowStacking, bool recalculateVitality)
+		{
+			// 1. 基础安全检查
 			if (__instance.Character == null || limb == null || newAffliction == null) return;
 			
 			// 2. 核心物种过滤：只允许普通人类(human)、人型画皮(humanhusk)和普通画皮(husk)
-			// Barotrauma 的 SpeciesName 默认是小写形式的 Identifier，使用 .Value 获取纯文本
 			string species = __instance.Character.SpeciesName.Value.ToLower();
-			
 			bool isValidTarget = species == "human" || species == "humanhusk" || species == "husk";
 			if (!isValidTarget) return;
 
 			// 3. 检查伤害类型是否是原版的枪伤 (gunshotwound)
+			// （注意：如果防弹衣成功完全拦截了子弹，原版会将其转化为 blunttrauma 钝伤，能走到这里的说明未拦截或已被击穿）
 			if (newAffliction.Prefab.Identifier == "gunshotwound")
 			{
-				//DebugConsole.NewMessage($"[DieHard] 捕获合法的目标枪伤 ({species}): {limb.type}");
-				
-				// 获取当前命中的肢体类型
 				LimbType type = limb.type;
 				
-				// 4. 核心倍率逻辑
-				if (type == LimbType.Head)
+				// 4. 检查是否穿着防弹衣
+				bool hasBodyArmor = false;
+				var inventory = __instance.Character.Inventory;
+				if (inventory != null)
 				{
-					//DebugConsole.NewMessage("amplifying");
-					newAffliction.Strength *= 5.0f;
+					// 获取外衣槽位（防弹衣、潜水服等通常在 OuterClothes 槽）
+					Item outerClothes = inventory.GetItemInLimbSlot(InvSlotType.OuterClothes);
+					if (outerClothes != null)
+					{
+						// 检查物品的 Identifier 或者 Tags 是否包含防弹衣特征
+						// 原版防弹衣是 "bodyarmor"，帮派防弹衣是 "banditarmor" 等，通常带有 "armor" 标签
+						string itemIdentifier = outerClothes.Prefab.Identifier.Value.ToLower();
+						if (itemIdentifier.Contains("armor") || outerClothes.HasTag("armor"))
+						{
+							hasBodyArmor = true;
+						}
+					}
 				}
-				else if (type == LimbType.Torso)
+
+				// 5. 核心倍率逻辑
+				if (!hasBodyArmor)
 				{
-					//DebugConsole.NewMessage("amplifyingT");
-					newAffliction.Strength *= 9.0f;
+					// 【情况 A：完全没穿防弹衣】 施加巨大的额外伤害乘数
+					if (type == LimbType.Head)
+					{
+						newAffliction.Strength *= 5.0f;
+					}
+					else if (type == LimbType.Torso)
+					{
+						newAffliction.Strength *= 9.0f; 
+					}
+				}
+				else
+				{
+					// 【情况 B：穿了防弹衣，但弹头打穿了防弹衣】 
+					// 保持原样（不施加额外乘数），或者你也可以根据需要给一个微小的修正（例如 *= 1.0f）
+					// DebugConsole.NewMessage($"[DieHard] 弹头击穿了 ({species}) 的防弹衣，未施加额外加成。");
 				}
 			}
-        }
+		}
   	}
 }

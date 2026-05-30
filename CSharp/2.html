@@ -1,66 +1,71 @@
-<Item name="" identifier="assaultrifle" category="Weapon" cargocontaineridentifier="metalcrate" allowasextracargo="true" tags="mediumitem,weapon,gun,gunsmith,mountableweapon,provocativetohumanai" Scale="0.5" impactsoundtag="impact_metal_light">
-    <PreferredContainer primary="secarmcab" secondary="armcab,weaponholder"/>
-    <Price baseprice="720" sold="false">
-      <Price storeidentifier="merchantoutpost" multiplier="1.5" />
-      <Price storeidentifier="merchantcity" multiplier="1.25" />
-      <Price storeidentifier="merchantresearch" multiplier="1.25" />
-      <Price storeidentifier="merchantmilitary" multiplier="0.9" />
-      <Price storeidentifier="merchantmine" multiplier="1.25" />
-    </Price>
-    <Fabricate suitablefabricators="fabricator" requiredtime="75" requiresrecipe="true">
-      <RequiredSkill identifier="weapons" level="65" />
-      <RequiredItem identifier="physicorium" amount="2" />
-      <RequiredItem identifier="titaniumaluminiumalloy" amount="3" />
-      <RequiredItem identifier="rubber" />
-    </Fabricate>
-    <Deconstruct time="35">
-      <Item identifier="physicorium" amount="2" />
-      <Item identifier="titaniumaluminiumalloy" amount="2" />
-      <Item identifier="rubber" />
-    </Deconstruct>
-    <InventoryIcon texture="Content/Items/JobGear/TalentGear.png" sourcerect="276,63,233,62" origin="0.5,0.5" />
-    <Sprite texture="Content/Items/JobGear/TalentGear.png" sourcerect="276,63,233,62" depth="0.55" origin="0.5,0.5" />
-    <Body width="220" height="50" density="25" />
-    <Holdable slots="RightHand+LeftHand" controlpose="true" holdpos="45,-20" aimpos="57,-5" handle1="-35,-10" handle2="26,10" holdangle="-30">
-      <StatusEffect type="OnActive" target="Character" SpeedMultiplier="0.9" setvalue="true" />
-    </Holdable>
-    <Wearable slots="Bag" msg="ItemMsgEquipSelect" canbeselected="false" canbepicked="true" pickkey="Select">
-      <sprite name="Assault Rifle Worn" texture="Content/Items/JobGear/TalentGear.png" canbehiddenbyotherwearables="false" rotation="90" depth="0.6" sourcerect="276,63,233,62" limb="Torso" depthlimb="LeftArm" scale="0.5" origin="0.5,0.8" />
-    </Wearable>
-    <RangedWeapon reload="0.24" holdtrigger="true" barrelpos="100,20" spread="4" unskilledspread="16" combatPriority="80" drawhudwhenequipped="true" crosshairscale="0.2">
-      <Crosshair texture="Content/Items/Weapons/Crosshairs.png" sourcerect="0,256,256,256" />
-      <CrosshairPointer texture="Content/Items/Weapons/Crosshairs.png" sourcerect="256,256,256,256" />
-      <ParticleEmitter particle="impactfirearm" particleamount="1" velocitymin="0" velocitymax="0" scalemultiplier="4.0,4.0" colormultiplier="255,200,200,200" />
-      <Sound file="Content/Items/JobGear/Security/WEAPONS_assaultRifle_1.ogg" type="OnUse" range="3000" selectionmode="Random" />
-      <Sound file="Content/Items/JobGear/Security/WEAPONS_assaultRifle_2.ogg" type="OnUse" range="3000" />
-      <Sound file="Content/Items/JobGear/Security/WEAPONS_assaultRifle_3.ogg" type="OnUse" range="3000" />
-      <Sound file="Content/Items/JobGear/Security/WEAPONS_assaultRifle_4.ogg" type="OnUse" range="3000" />
-      <Sound file="Content/Items/JobGear/Security/WEAPONS_assaultRifle_5.ogg" type="OnUse" range="3000" />
-      <StatusEffect type="OnUse" target="This">
-        <ParticleEmitter particle="casingfirearm" particleamount="1" anglemin="90" anglemax="150" velocitymin="50" velocitymax="250" CopyEntityAngle="true" />
-        <Explosion range="150.0" force="1" shockwave="false" smoke="false" flames="false" sparks="false" underwaterbubble="false" camerashake="12.0" />
-      </StatusEffect>
-      <StatusEffect type="OnUse" target="Contained">
-        <Use />
-      </StatusEffect>
-      <RequiredItems items="assaultrifleammo" type="Contained" msg="ItemMsgAmmoRequired" />
-      <RequiredSkill identifier="weapons" level="50" />
-    </RangedWeapon>
-    <ItemContainer capacity="1" maxstacksize="1" hideitems="false" containedstateindicatorslot="0" containedstateindicatorstyle="bullet" containedspritedepth="0.56">
-      <Containable items="assaultrifleammo" itempos="4,-12" />
-      <SlotIcon slotindex="0" texture="Content/UI/StatusMonitorUI.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
-      <SlotIcon slotindex="1" texture="Content/UI/StatusMonitorUI.png" sourcerect="320,448,64,64" origin="0.5,0.5" />   
-      <SubContainer capacity="1" maxstacksize="1">
-        <Containable items="flashlight" hide="false" itempos="24,4" setactive="true"/>
-        <Containable items="scope" hide="false" itempos="-7,17.5">
-          <StatusEffect type="OnContaining" target="This" cameraaimoffset="500" setvalue="true" interval="1"/>
-          <StatusEffect type="OnRemoved" target="This" cameraaimoffset="0" setvalue="true"/>
-        </Containable>
-      </SubContainer>
-    </ItemContainer> 
-    <aitarget sightrange="2000" soundrange="4000" fadeouttime="5" />
-    <Quality>
-      <QualityStat stattype="FirepowerMultiplier" value="0.1" />
-    </Quality>
-    <SkillRequirementHint identifier="weapons" level="50" />
-  </Item>
+        public const float MinImpactToDestroyWall = 12.0f; 
+
+        [HarmonyPatch("HandleLevelCollision")]
+        [HarmonyPostfix]
+        public static void Postfix(object __instance, object impact, VoronoiCell cell)
+        {
+#if CLIENT
+            // 依旧是网络同步核心原则：客户端不自发运行主破坏逻辑，全听服务器的
+            if (GameMain.Client != null) return;
+#endif
+            if (Level.Loaded == null || cell == null) return;
+
+            // 1. 利用反射或由于依赖项直接获取 impact 对象的属性
+            // 考虑到不同开发环境里 Impact 可能是嵌套结构，我们通过反射安全获取其物理数据
+            var impactType = impact.GetType();
+            Vector2 velocity = (Vector2)(impactType.GetField("Velocity")?.GetValue(impact) ?? Vector2.Zero);
+            Vector2 normal = (Vector2)(impactType.GetField("Normal")?.GetValue(impact) ?? Vector2.Zero);
+            Vector2 impactPosSim = (Vector2)(impactType.GetField("ImpactPos")?.GetValue(impact) ?? Vector2.Zero);
+
+            // 2. 模拟原版的 wallImpact 计算公式
+            float wallImpact = Vector2.Dot(velocity, -normal);
+            const float WallImpactMultiplier = 3.0f;
+            wallImpact *= WallImpactMultiplier;
+
+            // 冲击力不够，不把墙撞出坑
+            if (wallImpact < MinImpactToDestroyWall) return;
+
+            // 3. 将物理引擎的 Sim 单位坐标转换为游戏渲染的 Display/World 坐标
+            Vector2 worldPosition = ConvertUnits.ToDisplayUnits(impactPosSim);
+
+            // 4. 根据撞击力度动态决定“撞出来的坑”的大小（半径）
+            // 比如：最少 300 像素半径，最多 800 像素半径
+            float worldRange = MathHelper.Clamp(wallImpact * 30f, 300f, 800f);
+
+            // 5. 借用你在 ExplosionDamageWallPatch 里写好的权威切分逻辑
+            // 反射或直接调用（如果它们在同一个命名空间下且是 public/internal）
+            var cellsToDestroy = ExplosionDamageWallPatchInvoke(worldPosition, worldRange);
+            if (cellsToDestroy == null || cellsToDestroy.Count == 0) return;
+
+            // 6. 执行服务器/单机本地的地形重建
+            ExplosionDamageWallPatch.ExecuteTerrainDestruction(cellsToDestroy, worldPosition);
+
+#if SERVER
+            // 7. 【网络同步】：通知全房间客户端，在这个坐标发生了多大半径的潜艇撞击，让他们本地切分
+            if (GameMain.Server != null)
+            {
+                IWriteMessage msg = NetUtil.CreateNetMsg(NetEvent.DESTROY_MAIN_WALL); // 复用爆炸的网络事件 ID
+                msg.WriteSingle(worldPosition.X);
+                msg.WriteSingle(worldPosition.Y);
+                msg.WriteSingle(worldRange); 
+                NetUtil.SendAll(msg, DeliveryMethod.Reliable);
+            }
+#endif
+        }
+
+        /// <summary>
+        /// 私有辅助方法：通过反射或直接访问安全调用你之前写好的 Subdivision 逻辑
+        /// </summary>
+        private static List<VoronoiCell> ExplosionDamageWallPatchInvoke(Vector2 worldPos, float range)
+        {
+            // 如果你的 ServerOrLocalTriggerSubdivision 改为 public，这里可以直接安全调用：
+            // return ExplosionDamageWallPatch.ServerOrLocalTriggerSubdivision(worldPos, range);
+
+            // 如果保持 private，则使用下方反射：
+            var method = typeof(ExplosionDamageWallPatch).GetMethod("ServerOrLocalTriggerSubdivision", 
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            return method?.Invoke(null, new object[] { worldPos, range }) as List<VoronoiCell>;
+        }
+    
+    }
+}

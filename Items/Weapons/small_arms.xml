@@ -15,6 +15,10 @@
         </StatusEffect>
       </ItemComponent>
     </Item>
+    <Item name="bulletwarhead" identifier="bulletwarhead" category="Equipment" tags="bulletcase" impactsoundtag="case_impact" scale="0.2" hideinmenus="true">
+      <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="141,1012,20,8" depth="0.55" origin="0.5,0.5" />
+      <Body width="3" height="2" density="10" angulardamping="1.0" waterdragcoefficient="10" friction="4"/>
+    </Item>
     <Revolver name="" identifier="revolver" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,pistolitem,gunsmith,mountableweapon,collidable,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_handguns" description="" subcategory="small arms" nameidentifier="revolvernew">
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -135,6 +139,7 @@
         <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" anglemin="0" anglemax="360" particlespersecond="80" particleamount="5" velocitymin="0" velocitymax="50" scalemin="0.2" scalemax="0.3"/>
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
           <Remove />
         </StatusEffect>
         </Projectile>
@@ -410,12 +415,16 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
     </Item>
@@ -485,7 +494,7 @@
       <Body width="131" height="83" density="50" />
       <Holdable slots="RightHand, LeftHand" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </M16Stock>
-    <Item name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <M16 name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" secondary="armcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -601,8 +610,8 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
-    </Item>
-    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
+    </M16>
+    <M16Mag name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="M16" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -641,7 +650,7 @@
           <SpawnItem identifiers="556x45mm" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </Item>
+    </M16Mag>
     <Item name="556x45mm" identifier="556x45mm" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,0,1,1" depth="0.55" origin="0.5,0.5" />
@@ -669,16 +678,20 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
     </Item>
-    <Item name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <MCX name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -783,7 +796,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
-    </Item>
+    </MCX>
     <MCX_MAG name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms" health="30">
       <PreferredContainer primary="MCX" amount="1" spawnprobability="1"/>
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
@@ -826,7 +839,7 @@
         </StatusEffect>
       </ItemContainer>
     </MCX_MAG>
-    <Item name=".300 AAC Round" identifier="300aac" category="Equipment" interactthroughwalls="true" tags="" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
+    <MCXRound name=".300 AAC Round" identifier="300aac" category="Equipment" interactthroughwalls="true" tags="" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
       <Body width="20" height="20" density="40" />
@@ -850,16 +863,20 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
-    </Item>
-    <Item name="" identifier="MP9" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    </MCXRound>
+    <MP9 name="" identifier="MP9" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab, weaponholder" amount="1" spawnprobability="0.25" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.01" />
@@ -959,7 +976,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
-    </Item>
+    </MP9>
     <Item name="" identifier="mp9mag" description="" maxstacksize="3" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MP9" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
@@ -995,7 +1012,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <Item name="" identifier="P90" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <P90 name="" identifier="P90" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.15" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.1" />
@@ -1097,7 +1114,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
-    </Item>
+    </P90>
     <Item name="" identifier="p90mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="P90" amount="1" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
@@ -1163,12 +1180,16 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
     </Item>
@@ -1408,7 +1429,7 @@
       <Body width="323" height="62" density="33" />
       <Holdable slots="RightHand, LeftHand,Any" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </MK17Barrel>
-    <Item name="7.62x51mm Round" identifier="76251round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
+    <ScarRound name="7.62x51mm Round" identifier="76251round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="50,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
       <Body width="20" height="15" density="20" />
@@ -1435,18 +1456,19 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
         <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
         </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <StatusEffect type="OnActive" target="This" delay="0.1">
           <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
           <Remove/>
         </StatusEffect>
       </Projectile>
-    </Item>
+    </ScarRound>
     <AK47 name="" identifier="ak47" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
@@ -1600,7 +1622,7 @@
         </StatusEffect>
       </ItemContainer>
     </AK47MAG>
-    <Item name="7.62x39mm Round" identifier="76239round" category="Equipment" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
+    <AKRound name="7.62x39mm Round" identifier="76239round" category="Equipment" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="40,0.5" />
       <Body width="20" height="20" density="20" />
@@ -1623,15 +1645,19 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
-    </Item>
+    </AKRound>
     <AK47Receiver name="" identifier="AK47Receiver" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" Scale="0.28" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab"/>
       <PreferredContainer secondary="storagecab" />
@@ -1775,7 +1801,7 @@
       <SkillRequirementHint identifier="weapons" level="90" />
       <aitarget sightrange="2000" soundrange="8000" fadeouttime="5" />
     </PKM>
-    <Item name="" identifier="pkmmag" aliases="pkmmag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" health="200" subcategory="small arms">
+    <PKMMag name="" identifier="pkmmag" aliases="pkmmag" description="" maxstacksize="4" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" health="200" subcategory="small arms">
       <InventoryIcon texture="%ModDir%/Items/InventoryIconAtlas.png" sourcerect="703,0,64,64" origin="0.5,0.5"/>
       <PreferredContainer primary="PKM" amount="1" notcampaign="True" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1809,8 +1835,8 @@
           <SpawnItem identifiers="76254round" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </Item>
-    <Item name="7.62x54mm Round" identifier="76254round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
+    </PKMMag>
+    <PKMRound name="7.62x54mm Round" identifier="76254round" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="40,0.5" />
       <Body width="20" height="20" density="20" />
@@ -1836,15 +1862,19 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
-    </Item>
+    </PKMRound>
     <FAL name="" identifier="fal" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
@@ -1944,7 +1974,7 @@
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="60" />
     </FAL>
-    <Item name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
+    <FALMag name="" identifier="falmag" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="fal" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
@@ -1977,7 +2007,7 @@
           <SpawnItem identifiers="76251roundFAL" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </Item>
+    </FALMag>
     <Item name="7.62x51mm Round" identifier="76251roundFAL" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" scale="0.5" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="50,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,1,1,1" depth="0.55" origin="0.5,0.5" />
@@ -2005,12 +2035,16 @@
           <Sound file="%ModDir%/Items/Weapons/bullethit3.ogg" type="OnImpact" volumenum="2" Range="1000" />
           <Sound file="%ModDir%/Items/Weapons/bullethit4.ogg" type="OnImpact" volumenum="2" Range="1000" />
         </StatusEffect>
-        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
         <!--This makes bullet has bubble effect in water-->
-        <StatusEffect type="OnActive" target="This" delay="0.1">
+        <StatusEffect type="OnActive" target="This">
           <Conditional InWater="true" />
           <ParticleEmitter particle="bubbles" copyentityangle="true" anglemin="-5" anglemax="5" particleamount="5" velocitymin="-10" velocitymax="-100" scalemin="0.2" scalemax="0.3"/>
-          <Remove />
+        </StatusEffect>
+        <!--This makes bullet disappear after traveling though water outside the hull for a short time-->
+        <StatusEffect type="OnActive" target="This" delay="0.1">
+          <Conditional InWater="true" />
+          <SpawnItem identifiers="bulletwarhead" spawnposition="This" />
+          <Remove/>
         </StatusEffect>
       </Projectile>
     </Item>

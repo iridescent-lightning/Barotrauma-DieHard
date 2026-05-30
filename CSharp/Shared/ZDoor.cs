@@ -32,8 +32,8 @@ namespace BarotraumaDieHard
 
             if (targetGate != null)
             {
-                
-                Vector2 destination = targetGate.WorldPosition;
+                Vector2 yAdjust = new Vector2(0, 7f);
+                Vector2 destination = targetGate.WorldPosition + yAdjust;
                 //延迟一帧执行，不如AI在计算GetDiffAndAdvance时会导致游戏崩溃
                 CoroutineManager.Invoke(() =>
                 {

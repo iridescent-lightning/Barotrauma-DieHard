@@ -456,32 +456,33 @@ namespace BarotraumaDieHard
                 
                 float ballastWaterVolume = 0f;
                 float ballastVolume = 0f;
-                float nonBallastVolume = 0f;
-                float realNonBallastWaterVolume = 0f;
+                
+                // 【核心修正】：统一使用“总常规舱数据”进行全局折算，杜绝单房间数据污染
+                float totalNonBallastVolume = 0f;
+                float totalRealNonBallastWater = 0f;
                 float nonBallastEffectiveWater = 0f;
 
                 float floodTolerance = 0.15f; 
-                
 
                 if (item.Submarine.Info.SubmarineClass == SubmarineClass.Scout)
                 {
-                    floodTolerance = 0.17f;
+                    floodTolerance = 0.25f; // 同步 Patch 的配置阈值
                 }
                 else if (item.Submarine.Info.SubmarineClass == SubmarineClass.Attack)
                 {
-                    floodTolerance = 0.15f;
+                    floodTolerance = 0.2f;  // 同步 Patch 的配置阈值
                 }
                 else if (item.Submarine.Info.SubmarineClass == SubmarineClass.Transport)
                 {
-                    floodTolerance = 0.25f;
+                    floodTolerance = 0.35f; // 同步 Patch 的配置阈值
                 }
                 else if (item.Submarine.Info.SubmarineClass == SubmarineClass.Undefined)
                 {
-                    floodTolerance = 0.1f;
+                    floodTolerance = 0.15f; // 同步 Patch 的配置阈值
                 }
                 else
                 {
-                    floodTolerance = 0f;
+                    floodTolerance = 0.15f;
                 }
 
                 float nonBallastMultiplier = BarotraumaDieHard.BuoyancyConfig.NonBallastFloodMultiplier; 
@@ -500,24 +501,24 @@ namespace BarotraumaDieHard
                     }
                     else
                     {
-                        nonBallastVolume += hull.Volume;
-                        realNonBallastWaterVolume += hull.WaterVolume;
-                        
-                        float floodRatio = hull.Volume > 0 ? hull.WaterVolume / hull.Volume : 0;
-                        if (floodRatio > floodTolerance)
-                        {
-                            float excessFloodVolume = (floodRatio - floodTolerance) * hull.Volume;
-                            nonBallastEffectiveWater += excessFloodVolume * nonBallastMultiplier;
-                        }
+                        totalNonBallastVolume += hull.Volume;
+                        totalRealNonBallastWater += hull.WaterVolume;
                     }
                 }
 
+                // 【核心算法修正】：计算常规舱整体真实进水率后再进行折算
+                float realNonBallastWaterPercentage = totalNonBallastVolume > 0f ? totalRealNonBallastWater / totalNonBallastVolume : 0f;
+                if (realNonBallastWaterPercentage > floodTolerance)
+                {
+                    float excessWaterVolume = (realNonBallastWaterPercentage - floodTolerance) * totalNonBallastVolume;
+                    nonBallastEffectiveWater = excessWaterVolume * nonBallastMultiplier;
+                }
+
                 float totalEffectiveWater = ballastWaterVolume + nonBallastEffectiveWater;
-                float totalEffectiveVolume = ballastVolume + nonBallastVolume;
+                float totalEffectiveVolume = ballastVolume + totalNonBallastVolume;
 
                 if (totalEffectiveVolume > 0f)
                 {
-                    float realNonBallastWaterPercentage = nonBallastVolume > 0f ? realNonBallastWaterVolume / nonBallastVolume : 0f;
                     float waterPercentage = totalEffectiveWater / totalEffectiveVolume;
                     float buoyancy = Barotrauma.SubmarineBody.NeutralBallastPercentage - waterPercentage;
                     buoyancy = MathHelper.Clamp(buoyancy, -0.5f, 0.2f);
@@ -526,7 +527,7 @@ namespace BarotraumaDieHard
                     float massRatio = submarine.SubBody != null ? submarine.SubBody.Body.Mass / (totalMass > 0 ? totalMass : 1f) : 1f;
                     float forceY = buoyancy * totalMass * 10f * massRatio;
 
-                    // --- 多语言状态诊断文本处理 ---
+                    // --- 多语言状态诊断文本处理 (保持原样) ---
                     string statusString;
                     Color statusColor;
                     if (forceY < -1200f)
@@ -550,7 +551,7 @@ namespace BarotraumaDieHard
                         statusColor = Color.LightGreen;
                     }
 
-                    // --- 多语言排版拼接 ---
+                    // --- 多语言排版拼接 (保持原样) ---
                     string textHeader = $"=== [ {TextManager.Get("MiniMapBuoyancyHeader").Value} ] ===";
                     
                     string textShipInfo = TextManager.Get("MiniMapBuoyancyShipInfo").Value
@@ -561,7 +562,7 @@ namespace BarotraumaDieHard
                     
                     string textData1 = $" [ {TextManager.Get("MiniMapBuoyancyCategoryTitle").Value} ]\n" +
                                     TextManager.Get("MiniMapBuoyancyBallastWater").Value.Replace("[water]", ballastWaterVolume.ToString("F0")).Replace("[vol]", ballastVolume.ToString("F0")) + "\n" +
-                                    TextManager.Get("MiniMapBuoyancyNonBallastWater").Value.Replace("[pct]", (realNonBallastWaterPercentage * 100).ToString("F1")).Replace("[water]", realNonBallastWaterVolume.ToString("F0")).Replace("[vol]", nonBallastVolume.ToString("F0")) + "\n" +
+                                    TextManager.Get("MiniMapBuoyancyNonBallastWater").Value.Replace("[pct]", (realNonBallastWaterPercentage * 100).ToString("F1")).Replace("[water]", totalRealNonBallastWater.ToString("F0")).Replace("[vol]", totalNonBallastVolume.ToString("F0")) + "\n" +
                                     TextManager.Get("MiniMapBuoyancyEffectiveWater").Value.Replace("[water]", nonBallastEffectiveWater.ToString("F0"));
                     
                     string textData2 = $" [ {TextManager.Get("MiniMapBuoyancyResultTitle").Value} ]\n" +
@@ -573,25 +574,28 @@ namespace BarotraumaDieHard
                     Vector2 basePos = GuiFrame.Rect.Location.ToVector2() + new Vector2(35f, 75f);
                     float lineSpacing = 26f * GUI.Scale;
 
-                    // 1. 绘制标题
+                    // 1. 绘制标题 (1行占位)
                     DrawStringWithShadow(spriteBatch, basePos, textHeader, Color.Green, GUIStyle.SmallFont);
                     basePos.Y += lineSpacing * 1.5f;
 
-                    // 2. 绘制基础状态
+                    // 2. 绘制基础状态 (1行占位)
                     DrawStringWithShadow(spriteBatch, basePos, textShipInfo, Color.Green, GUIStyle.SmallFont);
-                    basePos.Y += lineSpacing * 2.5f;
+                    basePos.Y += lineSpacing * 1.5f; // 修正：原为 2.5f，稍微收紧防止往下溢出
 
-                    // 3. 绘制详细数据
+                    // 3. 绘制详细数据 (包含标题加3行内容，总计4行)
                     DrawStringWithShadow(spriteBatch, basePos, textData1, Color.Green, GUIStyle.SmallFont);
-                    basePos.Y += lineSpacing * 2.5f;
+                    basePos.Y += lineSpacing * 4.5f; // 【修正】：包含换行符共有4行文本，必须下移4.5倍行高，否则后续文本会重叠
 
+                    // 4. 绘制结算数据 (包含标题加3行内容，总计4行)
                     DrawStringWithShadow(spriteBatch, basePos, textData2, Color.Green, GUIStyle.SmallFont);
-                    basePos.Y += lineSpacing * 2.5f;
+                    basePos.Y += lineSpacing * 4.5f; // 【修正】：同理下移4.5倍行高
 
-                    // 4. 绘制最底部的状态评级提示
+                    // 5. 绘制最底部的状态评级提示
                     DrawStringWithShadow(spriteBatch, basePos, "--------------------------------------------------------", Color.Green, GUIStyle.SmallFont);
                     basePos.Y += lineSpacing;
-                    //DrawStringWithShadow(spriteBatch, basePos, $"{TextManager.Get("MiniMapBuoyancyDiagnosis").Value} : {statusString}", statusColor, GUIStyle.SmallFont);
+                    
+                    // 如果你想把最底部的状态评级反注释出来，它会在这个完美的、不重叠的位置渲染：
+                    // DrawStringWithShadow(spriteBatch, basePos, $"{TextManager.Get("MiniMapBuoyancyDiagnosis").Value} : {statusString}", statusColor, GUIStyle.SmallFont);
                 }
             }
         }

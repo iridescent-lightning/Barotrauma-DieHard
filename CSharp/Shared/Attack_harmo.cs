@@ -38,15 +38,15 @@ namespace BarotraumaDieHard
 
             if (targetLimb.type == LimbType.Torso && armor != null)
             {
-                ApplyDamage(armor, 10f, 40f);
+                ApplyDamage(armor, 10f, 15f);
             }
             else if (targetLimb.type == LimbType.Torso && armor == null && innerCloth != null && innerCloth.HasTag("clothing"))
             {
-                ApplyDamage(innerCloth, 10f, 40f);
+                ApplyDamage(innerCloth, 10f, 15f);
             }
             else if (targetLimb.type == LimbType.Head && headWear != null)
             {
-                ApplyDamage(headWear, 10f, 100f);
+                ApplyDamage(headWear, 10f, 30f);
             }
         }
 
