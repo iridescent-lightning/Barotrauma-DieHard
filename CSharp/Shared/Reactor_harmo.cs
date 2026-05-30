@@ -25,6 +25,9 @@ namespace BarotraumaDieHard
         public static Dictionary<int, ReactorCacheData> ReactorDataCache = new Dictionary<int, ReactorCacheData>();
         private static bool inEditor;
         private const float UPDATE_INTERVAL = 0.2f;  // 每秒更新5次
+        // === 新增配置参数 ===
+        // 控制裂变率没有控制棒时的每秒上涨速度。例如 15f 意味着从 0 上涨到 100 需要大约 6.6 秒。
+        private const float FISSION_RISE_SPEED = 5f;
 
         [HarmonyPatch("Update")]
         [HarmonyPostfix]
@@ -79,7 +82,7 @@ namespace BarotraumaDieHard
                     else if (__instance.item.InPlayerSubmarine)
                     {
                         // 正常消耗控制棒（联机模式下加个同步脏标记，确保通知到服务器/客户端）
-                        controlrod.Condition -= 0.05f * UPDATE_INTERVAL;
+                        controlrod.Condition -= 0.02f * UPDATE_INTERVAL;
                     }
                 }
                 else
@@ -89,8 +92,13 @@ namespace BarotraumaDieHard
                     {
                         // 联机环境下可以用这条，但注意别刷屏控制台
                         // DebugConsole.NewMessage($"[DieHard] 反应堆 {reactorId} 缺失控制棒！");
-                        __instance.fissionRate = 100f;
-                        __instance.Item.Condition -= 1.5f * UPDATE_INTERVAL;
+                        __instance.AutoTemp = false;
+                        __instance.TargetFissionRate = 100f;
+                        __instance.fissionRate = Microsoft.Xna.Framework.MathHelper.Min(
+                        100f, 
+                        __instance.fissionRate + (FISSION_RISE_SPEED * UPDATE_INTERVAL)
+                    );
+                        __instance.Item.Condition -= 1f * UPDATE_INTERVAL;
                     }
                 }
             }

@@ -491,10 +491,10 @@
   <entitydescription.revolvernew>[Темп стрельбы: Низко]\n[Точность:Низко]</entitydescription.revolvernew>
   <entityname.revolverroundnew>Патрон револьвера</entityname.revolverroundnew>
   <entitydescription.revolverroundnew>[Пробитие: 60%]</entitydescription.revolverroundnew>
-  <entityname.FNFive-seven>FN Five-seven</entityname.FNFive-seven>
-  <entitydescription.FNFive-seven>[Темп стрельбы: Средне]\n[Точность:Низко]</entitydescription.FNFive-seven>
-  <entityname.57mag>Магазин 5.7x28mm Five Seven</entityname.57mag>
-  <entitydescription.57mag>[Вместимость: 20]\n[Пробитие: 30%]</entitydescription.57mag>
+  <entityname.FiveSeven>FN Five-seven</entityname.FiveSeven>
+  <entitydescription.FiveSeven>[Темп стрельбы: Средне]\n[Точность:Низко]</entitydescription.FiveSeven>
+  <entityname.FiveSevenMag>Магазин 5.7x28mm Five Seven</entityname.FiveSevenMag>
+  <entitydescription.FiveSevenMag>[Вместимость: 20]\n[Пробитие: 30%]</entitydescription.FiveSevenMag>
   <entityname.g19>Glock 19</entityname.g19>
   <entitydescription.g19>[Темп стрельбы: Высокая]\n[Точность:Низко]</entitydescription.g19>
   <entityname.g19mag>Магазин 9x19 Glock 19</entityname.g19mag>

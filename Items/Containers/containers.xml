@@ -30,7 +30,7 @@
       <SwappableItem price="100" origin="60,66" swapidentifier="smallcontainers" replacementonuninstall="smallcontainerslot"></SwappableItem>
       <ItemContainer capacity="6" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
-        <Containable items="smallitem" />
+        <Containable items="smallitem" excludedidentifiers="longarm"/>
       </ItemContainer>
     </Item>
     <Item name="" identifier="toxcabinet" tags="container,toxcontainer,upgradablecontainer,playinteractsound" linkable="true" pickdistance="150" waterproof="true" scale="0.5">

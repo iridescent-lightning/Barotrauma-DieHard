@@ -140,7 +140,7 @@
         </Projectile>
       <Upgrade gameversion="0.10.0.0" scale="0.5" />
     </Revolverround>
-    <FNFiveSeven name="" identifier="FNFive-seven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms" HideConditionBar="true">
+    <FNFiveSeven name="" identifier="FiveSeven" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_handguns" subcategory="small arms" HideConditionBar="true">
       <PreferredContainer primary="secarmcab" secondary="armcab" minamount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />
@@ -187,10 +187,10 @@
           <ReduceAffliction identifier="crouch" amount="100" />
         </StatusEffect>
         <StatusEffect type="OnUse" target="Contained">
-          <RequiredItem identifier="57mag" type="Contained" />
+          <RequiredItem identifier="FiveSevenMag" type="Contained" />
           <Use />
         </StatusEffect>
-        <RequiredItems identifier="57mag" type="Contained" msg="ItemMsgAmmoRequired" />
+        <RequiredItems identifier="FiveSevenMag" type="Contained" msg="ItemMsgAmmoRequired" />
         <StatusEffect type="OnUse" target="This">
           <SpawnItem identifiers="bulletcase" spawnposition="This" aimspread="500" rotationtype="Collider" />
         </StatusEffect>
@@ -198,17 +198,17 @@
       </RangedWeapon>
       <ItemContainer autofill="True" capacity="1" maxstacksize="1" canbeselected="false" hideitems="false" itempos="-25,-5">
         <ContainedStateIndicator texture="Content/UI/ContainerIndicators.png" sourcerect="16,64,120,24" />
-        <Containable identifier="57mag" />
+        <Containable identifier="FiveSevenMag" />
         <StatusEffect type="OnUse" target="Contained">
-          <RequiredItem identifiers="57mag" type="Contained" />
+          <RequiredItem identifiers="FiveSevenMag" type="Contained" />
           <Use />
         </StatusEffect>
       </ItemContainer>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="80" />
     </FNFiveSeven>
-    <Item name="" identifier="57mag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
-      <PreferredContainer primary="FNFive-seven" minamount="1" notcampaign="true" />
+    <Item name="" identifier="FiveSevenMag" description="" maxstacksize="4" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,collidable" impactsoundtag="impact_metal_light" subcategory="small arms">
+      <PreferredContainer primary="FiveSeven" minamount="1" notcampaign="true" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <PreferredContainer primary="abandonedsecarmcab" minamount="0" maxamount="2" spawnprobability="0.25" />
       <Price baseprice="25">
@@ -241,7 +241,7 @@
         </StatusEffect>
       </ItemContainer>
     </Item>
-    <MPX name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="MPX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="secarmcab" secondary="armcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.35" />
@@ -346,7 +346,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="65" />
-    </MPX>
+    </Item>
     <Item name="" identifier="mpx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="MPX" amount="1"/>
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
@@ -485,7 +485,7 @@
       <Body width="131" height="83" density="50" />
       <Holdable slots="RightHand, LeftHand" holdpos="0,0" aimpos="60,0" handle1="-60,-16" handle2="50,-4" holdangle="-40"/>
     </M16Stock>
-    <M16 name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="M16" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.255" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" secondary="armcab" amount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -601,8 +601,8 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="55" />
-    </M16>
-    <M16Mag name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
+    </Item>
+    <Item name="" identifier="M16Mag" description="" maxstacksize="2" scale="0.255" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable, Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms">
       <PreferredContainer primary="M16" amount="1" spawnprobability="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab" minamount="1" maxamount="2" spawnprobability="0.2" />
@@ -641,7 +641,7 @@
           <SpawnItem identifiers="556x45mm" spawnposition="ThisInventory" />
         </StatusEffect>
       </ItemContainer>
-    </M16Mag>
+    </Item>
     <Item name="556x45mm" identifier="556x45mm" category="Equipment" interactthroughwalls="true" tags="smallitem" impactsoundtag="impact_metal_light" hideinmenus="true">
       <InventoryIcon texture="%ModDir%/Items/Weapons/InventoryWeaponsIcon.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
       <Sprite texture="%ModDir%/Items/Weapons/weapons.png" sourcerect="1,0,1,1" depth="0.55" origin="0.5,0.5" />
@@ -678,7 +678,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <MCX name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
+    <Item name="" identifier="MCX" description="" category="Weapon" cargocontaineridentifier="metalcrate" tags="mediumitem,weapon,gun,mountableweapon,collidable,longarm,provocativetohumanai,DrawShadow" Scale="0.35" impactsoundtag="impact_largeguns" subcategory="small arms">
       <PreferredContainer primary="secarmcab" minamount="1" notcampaign="true" />
       <PreferredContainer primary="weaponholder" spawnprobability="0.1" />
       <PreferredContainer primary="wrecksecarmcab" minamount="0" maxamount="2" spawnprobability="0.2" />
@@ -783,7 +783,7 @@
       </Repairable>
       <aitarget sightrange="2000" soundrange="1000" fadeouttime="5" />
       <SkillRequirementHint identifier="weapons" level="75" />
-    </MCX>
+    </Item>
     <MCX_MAG name="" identifier="mcx_magazine" description="" maxstacksize="2" scale="0.35" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,refilereloadsfx,collidable,Enable_contained_physics" impactsoundtag="impact_metal_light" subcategory="small arms" health="30">
       <PreferredContainer primary="MCX" amount="1" spawnprobability="1"/>
       <PreferredContainer secondary="outpostsecarmcab" minamount="1" maxamount="2" spawnprobability="0.5" />
@@ -2014,7 +2014,7 @@
         </StatusEffect>
       </Projectile>
     </Item>
-    <G19 name="" identifier="G19" description="[AP: 30%][9x19 Glock 19 Magazine]" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable" Scale="0.255" impactsoundtag="impact_handguns" HideConditionBar="true">
+    <G19 name="" identifier="G19" description="[AP: 30%][9x19 Glock 19 Magazine]" category="Weapon" cargocontaineridentifier="metalcrate" tags="smallitem,weapon,gun,collidable,DrawShadow" Scale="0.255" impactsoundtag="impact_handguns" HideConditionBar="true">
       <PreferredContainer primary="secarmcab" amount="1" notcampaign="true" />
       <PreferredContainer secondary="outpostsecarmcab" amount="1" spawnprobability="0.5" />
       <PreferredContainer secondary="wrecksecarmcab,abandonedsecarmcab" amount="1" spawnprobability="0.25" />

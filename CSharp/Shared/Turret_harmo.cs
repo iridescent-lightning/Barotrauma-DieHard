@@ -143,11 +143,6 @@ namespace BarotraumaDieHard
                             SkillSettings.Current.SkillIncreasePerSecondWhenOperatingTurret * deltaTime);
                     }
                 }
-
-                
-                    
-                
-
             }
         }
 

@@ -493,8 +493,8 @@
   <entitydescription.revolverroundnew>[穿甲系数: 60%]</entitydescription.revolverroundnew>
   <entityname.57>57式FN手枪</entityname.57>
   <entitydescription.57>[射速: 中]\n[准确性:低]</entitydescription.57>
-  <entityname.57mag>5.7x28mm 57式FN手枪弹匣</entityname.57mag>
-  <entitydescription.57mag>[容量: 20]\n[穿甲系数: 30%]</entitydescription.57mag>
+  <entityname.FiveSevenMag>5.7x28mm 57式FN手枪弹匣</entityname.FiveSevenMag>
+  <entitydescription.FiveSevenMag>[容量: 20]\n[穿甲系数: 30%]</entitydescription.FiveSevenMag>
   <entityname.g19>格洛克19</entityname.g19>
   <entitydescription.g19>[射速: Low]\n[准确性:高-低]</entitydescription.g19>
   <entityname.g19mag>9x19 格洛克19弹匣</entityname.g19mag>
@@ -650,6 +650,10 @@
   <entitydescription.flakshellempty>空弹壳</entitydescription.flakshellempty>
   <entityname.shootingrangetarget>靶场靶子</entityname.shootingrangetarget>
   <entitydescription.shootingrangetarget>用来练习射击</entitydescription.shootingrangetarget>
+  <entityname.weaponhostler>武装带</entityname.weaponhostler>
+  <entitydescription.weaponhostler>一个可以携带各类小武器的皮带</entitydescription.weaponhostler>
+  <entityname.gunneruniform>炮手制服</entityname.gunneruniform>
+  <entitydescription.gunneruniform>炮手的制服</entitydescription.gunneruniform>
 
 
 

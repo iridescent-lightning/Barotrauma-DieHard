@@ -477,10 +477,10 @@
         <StatusEffect type="OnFire" target="This" Condition="-1" />
       </ItemComponent>
     </Item>
-    <Item name="" identifier="opdeco_trashcan" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true" Tags="trashcan,collidable,damage_by_passing_bullet,DrawShadow" damagedbyprojectiles="true" >
+    <Item name="" identifier="opdeco_trashcan" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true" Tags="trashcan,collidable,damage_by_passing_bullet,DrawShadow" damagedbyprojectiles="true" AllowStealingContainedItems="true">
       <Body width="122" height="201" density="40" />
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1662,914,125,205" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
-      <ItemContainer capacity="3" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+      <ItemContainer capacity="3" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect" >
         <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" />
         <Containable items="smallitem,mediumitem" />
       </ItemContainer>

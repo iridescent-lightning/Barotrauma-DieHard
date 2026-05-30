@@ -453,34 +453,34 @@
         <Label name="cleartogo" />
       </CheckItemAction>
     </ScriptedEvent>
-    <ScriptedEvent identifier="checkweapon">
-      <TagAction criteria="player" tag="visitor" />
+    <ScriptedEvent identifier="checkweapon">      
       <SpawnAction npcsetidentifier="outpostnpcs1" npcidentifier="securitynpccoalition" targettag="weaponchecker" spawnlocation="Outpost" targetmoduletags="airlock" />
+      <TagAction criteria="player" tag="visitor" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
       <Label name="checkstart" />
-      <TriggerAction target1tag="weaponchecker" target2tag="visitor" radius="200" waitforinteraction="false" />
+      <TriggerAction target1tag="weaponchecker" target2tag="visitor" applytotarget2="triggerer_player" radius="150" waitforinteraction="false" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
-      <CheckItemAction targettag="visitor" ItemTags="longarm">
+      <CheckItemAction targettag="triggerer_player" ItemTags="longarm">
         <Success>
-          <ConversationAction targettag="visitor" text="EventText.checkweapon.c" eventsprite="Stuckinthemiddle1" />
-          <ConversationAction targettag="visitor" text="EventText.checkweapon.c1" />
-          <ConversationAction targettag="visitor" text="EventText.checkweapon.c2" eventsprite="Stuckinthemiddle1">
+          <ConversationAction targettag="triggerer_player" text="EventText.checkweapon.c" eventsprite="Stuckinthemiddle1" />
+          <ConversationAction targettag="triggerer_player" text="EventText.checkweapon.c1" />
+          <ConversationAction targettag="triggerer_player" text="EventText.checkweapon.c2" eventsprite="Stuckinthemiddle1">
             <Option text="EventText.checkweapon.c2.o1">
               <ConversationAction text="EventText.checkweapon.c2.o1.c" endconversation="true" />
               <WaitAction time="60" />
               <GoTo name="checkstart2" />
             </Option>
             <Option text="EventText.checkweapon.c2.o2">
-              <RemoveItemAction targettag="visitor" itemidentifiers="P90" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="MP9" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="ak47" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="MPX" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="MCX" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="pkm" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="mk17" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="fal" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="underwatergun" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="shotgun" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="P90" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="MP9" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="ak47" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="MPX" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="MCX" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="pkm" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="mk17" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="fal" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="underwatergun" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="shotgun" />
               <MoneyAction amount="-1000" />
               <ConversationAction text="EventText.checkweapon.c2.o2.c1" eventsprite="Stuckinthemiddle1" />
               <ConversationAction text="EventText.checkweapon.c2.o2.c2" />
@@ -488,29 +488,29 @@
               <GoTo name="checkstart" />
             </Option>
             <Option text="EventText.checkweapon.c2.o3" endconversation="true">
-              <CombatAction combatmode="Arrest" npctag="weaponchecker" enemytag="visitor" isinstigator="true" guardreaction="none" witnessreaction="retreat" />
+              <CombatAction combatmode="Arrest" npctag="weaponchecker" enemytag="triggerer_player" isinstigator="true" guardreaction="none" witnessreaction="retreat" />
               <TriggerEventAction identifier="weaponcarrier_violation_heavy" />
             </Option>
             <Option text="EventText.checkweapon.c3.o1">
               <CheckItemAction targettag="visitor" itemidentifiers="warrant_of_violence">
                 <Success>
-                  <ConversationAction text="EventText.checkweapon.c3.o1.c" targettag="visitor" endconversation="true" />
+                  <ConversationAction text="EventText.checkweapon.c3.o1.c" targettag="triggerer_player" endconversation="true" />
                   <Goto name="cleartogo" />
                 </Success>
                 <Failure>
                   <ConversationAction text="EventText.checkweapon.c3.o1.c1" eventsprite="Stuckinthemiddle1" />
                   <ConversationAction text="EventText.checkweapon.c3.o1.c2" eventsprite="Stuckinthemiddle1" />
                   <ConversationAction text="EventText.checkweapon.c3.o1.c3" eventsprite="Stuckinthemiddle1" endconversation="true" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="P90" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="MP9" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="ak47" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="MPX" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="MCX" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="pkm" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="mk17" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="fal" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="underwatergun" />
-                  <RemoveItemAction targettag="visitor" itemidentifiers="shotgun" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="P90" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="MP9" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="ak47" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="MPX" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="MCX" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="pkm" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="mk17" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="fal" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="underwatergun" />
+                  <RemoveItemAction targettag="triggerer_player" itemidentifiers="shotgun" />
                   <MoneyAction amount="-1500" />
                   <GoTo name="checkstart" />
                 </Failure>
@@ -523,28 +523,28 @@
         </Failure>
       </CheckItemAction>
       <Label name="checkstart2" />
-      <TriggerAction target1tag="weaponchecker" target2tag="visitor" radius="200" waitforinteraction="false" />
+      <TriggerAction target1tag="weaponchecker" target2tag="visitor" applytotarget2="triggerer_player" radius="150" waitforinteraction="false" />
       <NPCWaitAction npctag="weaponchecker" wait="true" />
-      <CheckItemAction targettag="visitor" ItemTags="longarm">
+      <CheckItemAction targettag="triggerer_player" ItemTags="longarm">
         <Success>
           <ConversationAction targettag="visitor" text="EventText.checkweapon2.c" eventsprite="Stuckinthemiddle1">
             <Option text="EventText.checkweapon2.c.o1" endconversation="true">
-              <RemoveItemAction targettag="visitor" itemidentifiers="P90" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="MP9" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="ak47" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="MPX" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="MCX" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="pkm" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="mk17" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="fal" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="underwatergun" />
-              <RemoveItemAction targettag="visitor" itemidentifiers="shotgun" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="P90" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="MP9" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="ak47" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="MPX" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="MCX" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="pkm" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="mk17" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="fal" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="underwatergun" />
+              <RemoveItemAction targettag="triggerer_player" itemidentifiers="shotgun" />
               <MoneyAction amount="-1500" />
               <GoTo name="checkstart" />
             </Option>
             <Option text="EventText.checkweapon2.c.o2" endconversation="true">
-              <ConversationAction targettag="visitor" text="EventText.checkweapon3.c" eventsprite="Stuckinthemiddle1" endconversation="true" />
-              <CombatAction combatmode="Arrest" npctag="weaponchecker" enemytag="visitor" isinstigator="true" guardreaction="none" witnessreaction="retreat" />
+              <ConversationAction targettag="triggerer_player" text="EventText.checkweapon3.c" eventsprite="Stuckinthemiddle1" endconversation="true" />
+              <CombatAction combatmode="Arrest" npctag="weaponchecker" enemytag="triggerer_player" isinstigator="true" guardreaction="none" witnessreaction="retreat" />
               <TriggerEventAction identifier="weaponcarrier_violation_heavy" />
             </Option>
           </ConversationAction>

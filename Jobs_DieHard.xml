@@ -13,7 +13,7 @@
         <Skill identifier="mechanical" level="0,5" />
         <Skill identifier="electrical" level="0,5" />
         <Skill identifier="medical" level="0,5" />
-        <Skill identifier="ondeckweapon" level="5,10" />
+        <Skill identifier="ondeckweapon" level="15,40" />
       </Skills>
       <ItemSet>
         <Item identifier="idcard" equip="true" showpreview="false" />
@@ -49,9 +49,14 @@
       </Skills>
       <ItemSet>
         <Item identifier="idcard" equip="true" showpreview="false" />
-        <Item identifier="assistantclothes" equip="true" outfit="true"/>
+        <Item identifier="gunneruniform" equip="true" outfit="true"/>
         <Item identifier="headset" equip="true" showpreview="false" />
         <Item identifier="ballistichelmet2" equip="true" showpreview="true" outfit="false" />
+        <Item identifier="divingknife" equip="false"/>
+        <Item identifier="handcuffs"/>
+        <Item identifier="stunbaton">
+        <Item identifier="batterycell" showpreview="false"/>
+      </Item>
       </ItemSet>
       <AutonomousObjectives>
         <Order identifier="operateweapons" option="powerup" prioritymodifier="2" />

@@ -338,7 +338,7 @@ namespace BarotraumaDieHard
                                 
                             }
                             activeRefillSlots++;  // Count the active refill slot
-                            oxygenCandle.Condition -= 0.1f * deltaTime; // Candle burns down gradually
+                            oxygenCandle.Condition -= 0.2f * deltaTime; // Candle burns down gradually
                         }
                     }
 

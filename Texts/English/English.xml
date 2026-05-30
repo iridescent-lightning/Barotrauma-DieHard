@@ -493,10 +493,10 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.revolvernew>[ROF: Low]\n[ACC:Low]</entitydescription.revolvernew>
   <entityname.revolverroundnew>Revolver Round</entityname.revolverroundnew>
   <entitydescription.revolverroundnew>[Penetration: 60%]</entitydescription.revolverroundnew>
-  <entityname.FNFive-seven>FN Five-seven</entityname.FNFive-seven>
-  <entitydescription.FNFive-seven>[ROF: Medium]\n[ACC:Low]</entitydescription.FNFive-seven>
-  <entityname.57mag>5.7x28mm Five Seven Magazine</entityname.57mag>
-  <entitydescription.57mag>[Capacity: 20]\n[Penetration: 30%]</entitydescription.57mag>
+  <entityname.FiveSeven>FN Five-seven</entityname.FiveSeven>
+  <entitydescription.FiveSeven>[ROF: Medium]\n[ACC:Low]</entitydescription.FiveSeven>
+  <entityname.FiveSevenMag>5.7x28mm Five Seven Magazine</entityname.FiveSevenMag>
+  <entitydescription.FiveSevenMag>[Capacity: 20]\n[Penetration: 30%]</entitydescription.FiveSevenMag>
   <entityname.g19>Glock 19</entityname.g19>
   <entitydescription.g19>[ROF: Low]\n[ACC:High-Low]</entitydescription.g19>
   <entityname.g19mag>9x19 Glock 19 Magazine</entityname.g19mag>
@@ -652,6 +652,10 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.flakshellempty>Used flakshell</entitydescription.flakshellempty>
   <entityname.shootingrangetarget>Shooting Range Target</entityname.shootingrangetarget>
   <entitydescription.shootingrangetarget>For shooting practice</entitydescription.shootingrangetarget>
+  <entityname.weaponhostler>Weapon Hostler</entityname.weaponhostler>
+  <entitydescription.weaponhostler>A belt that can carry various small arms</entitydescription.weaponhostler>
+  <entityname.gunneruniform>Gunner Uniform</entityname.gunneruniform>
+  <entitydescription.gunneruniform>Gunner's uniform</entitydescription.gunneruniform>
 
   <connection.moveup>Move Up</connection.moveup>
   <connection.movedown>Move Down</connection.movedown>

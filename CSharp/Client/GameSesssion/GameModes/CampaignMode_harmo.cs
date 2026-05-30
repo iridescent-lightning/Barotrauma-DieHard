@@ -130,7 +130,7 @@ namespace BarotraumaDieHard
         public static bool CheckOxygenCandle()
         {
             float oxygenCandle = Submarine.MainSub.GetItems(true).Where(i => i.HasTag("oxygencandle")).Sum(i => i.Condition);
-            lowOxygenCandles = oxygenCandle < 200;
+            lowOxygenCandles = oxygenCandle < 100;
             return !lowOxygenCandles;
         }
         public static bool Checkcontrolrod()

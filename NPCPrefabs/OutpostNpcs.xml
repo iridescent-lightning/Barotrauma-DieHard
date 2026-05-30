@@ -115,10 +115,10 @@
             <Item identifier="oxygentank" />
           </Item>
           <Item identifier="divingknife" equip="false" />
-          <Item identifier="FNFive-seven">
-            <Item identifier="57mag" />
+          <Item identifier="FiveSeven">
+            <Item identifier="FiveSevenMag" />
           </Item>
-          <Item identifier="57mag" />
+          <Item identifier="FiveSevenMag" />
         </ItemSet>
         <ItemSet commonness="10">
           <Item identifier="idcard" equip="true" />
@@ -266,10 +266,10 @@
             <Item identifier="oxygentank" />
           </Item>
           <Item identifier="divingknife" equip="false" />
-          <Item identifier="FNFive-seven">
-            <Item identifier="57mag" />
+          <Item identifier="FiveSeven">
+            <Item identifier="FiveSevenMag" />
           </Item>
-          <Item identifier="57mag" />
+          <Item identifier="FiveSevenMag" />
         </ItemSet>
         <ItemSet commonness="1">
           <Item identifier="idcard" equip="true" />
@@ -301,7 +301,7 @@
             <Item identifier="oxygentank" />
           </Item>
           <Item identifier="crowbar" equip="true" />
-          <Item identifier="MPX" equip="true">
+          <Item identifier="MPX" equip="false">
             <Item identifier="mpx_magazine" amount="1" />
           </Item>
         </ItemSet>
@@ -412,7 +412,7 @@
             <Item identifier="weldingfueltank" />
           </Item>
           <Item identifier="divingknife" equip="false"/>
-          <Item identifier="MPX" equip="true">
+          <Item identifier="MPX" equip="false">
             <Item identifier="mpx_magazine"/>
           </Item>
           <Item identifier="mpx_magazine" amount="2"/>
@@ -480,7 +480,7 @@
             <Item identifier="weldingfueltank" />
           </Item>
           <Item identifier="divingknife" equip="false"/>
-          <Item identifier="M16" equip="true">
+          <Item identifier="M16" equip="false">
             <Item identifier="M16Mag"/>
           </Item>
           <Item identifier="M16Mag" amount="2"/>
@@ -538,7 +538,7 @@
           </Item>
           <Item identifier="divingknife" equip="false"/>
           <Item identifier="toolbelt" equip="true"/>
-          <Item identifier="MPX" equip="true">
+          <Item identifier="MPX" equip="false">
             <Item identifier="mpx_magazine" amount="1"/>
           </Item>
           <Item identifier="mpx_magazine" amount="3"/>

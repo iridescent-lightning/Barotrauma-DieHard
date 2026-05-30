@@ -26,6 +26,7 @@ using Barotrauma;
 using HarmonyLib;
 using System.Globalization;
 using System.Reflection;
+//using System.Numerics;
 
 
 namespace BarotraumaDieHard
@@ -125,7 +126,30 @@ namespace BarotraumaDieHard
 			}
 			else if (currentTemp > 323.15f)
 			{
-				__instance.CharacterHealth.ApplyAffliction(__instance.AnimController.MainLimb, AfflictionPrefab.Prefabs["burn"].Instantiate((currentTemp - 318.15f) * accumulatedTime / 4f));
+				// 1. 计算原始伤害强度
+				float rawDamage = (currentTemp - 318.15f) * accumulatedTime / 4f;
+				
+				// 2. 创建一个攻击数据对象 (AttackContext 可以根据你的 Hook 来源选择，比如 Environment)
+				// 这里使用原生的 Attack 构造函数，传入烧伤的 Prefab 关联的数据
+				var burnPrefab = AfflictionPrefab.Prefabs["burn"];
+				
+				// 创建一个临时的攻击信息对象
+				Attack attack = new Attack(
+					damage: 0, 
+					bleedingDamage: 0, 
+					burnDamage: rawDamage, // 确保触发烧伤类型的抗性
+					structureDamage: 0, 
+					itemDamage: 0);
+
+				// 3. 调用 Character 的 ApplyAttack 方法
+				// 这个方法内部会自动进行护甲（Wearable）减伤计算，并最终应用到 CharacterHealth
+				__instance.ApplyAttack(attacker: null,
+					worldPosition: __instance.WorldPosition,
+					deltaTime: deltaTime,
+					impulseDirection: Vector2.Zero,
+					attack: attack,
+					targetLimb: __instance.AnimController.MainLimb
+				);
 			}
 			else if (currentTemp > 293.15f)
 			{

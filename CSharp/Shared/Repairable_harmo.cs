@@ -130,18 +130,37 @@ namespace BarotraumaDieHard
         [HarmonyPostfix]
         public static void UpdatePostfix(float deltaTime, Camera cam, Repairable __instance)
         {
-            if (__instance.CurrentFixer == null) return;
-            if (__instance.item.GetComponent<Powered>() is Powered powered) 
+            // 如果当前没有人正在维修，或者设备根本没有通电危险，直接跳过
+            if (__instance.CurrentFixer == null || !IsDeviceElectrified(__instance)) return;
+
+            Character fixer = __instance.CurrentFixer;
+
+            // 1. 施加惩罚效果（这里由于是在 Update 触发，原版一般在服务器执行）
+            __instance.ApplyStatusEffects(ActionType.OnFailure, 1.0f, fixer);
+
+            // 2. 关键：如果是服务器，必须创建网络事件同步这个惩罚特效，否则联机会出 Bug
+            if (GameMain.NetworkMember is { IsServer: true } && __instance.statusEffectLists != null && __instance.statusEffectLists.ContainsKey(ActionType.OnFailure))
             {
-                if (powered == null || powered.powerIn == null || powered.powerIn.Grid == null) // Check for devices that don't have powered component.
+                GameMain.NetworkMember.CreateEntityEvent(__instance.Item, new Item.ApplyStatusEffectEventData(ActionType.OnFailure, __instance, fixer));
+            }
+
+            
+
+            #if CLIENT
+            // 4. 客户端提示
+            BarotraumaDieHard.CustomHintManager.DisplayHint("electricalrepair".ToIdentifier());
+            #endif
+
+            // 5. 如果是 Bot 正在修理，顺便清除其 AI 目标（防止 Bot 傻傻地又秒点上去修理）
+            if (fixer.AIController is HumanAIController humanAI)
+            {
+                // 触发 Bot 说话
+                fixer.Speak(TextManager.Get("dialog.bot.safetywarning").Value, null, 0.0f, "safetywarning".ToIdentifier(), 10.0f);
+                
+                var currentObjective = humanAI.ObjectiveManager.GetCurrentObjective();
+                if (currentObjective != null)
                 {
-                    return;
-                }
-                else if (powered.powerIn.Grid.Power > 1f)
-                {
-                    
-                    __instance.ApplyStatusEffects(ActionType.OnFailure, 1.0f, __instance.CurrentFixer);
-                    return;
+                    currentObjective.Abandon = true; 
                 }
             }
         }

@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Barotrauma Die Hard" modversion="4.6.437" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
+<contentpackage name="Barotrauma Die Hard" modversion="4.6.439" corepackage="False" steamworkshopid="2679111898" gameversion="1.12.7.0">
   <Item file="%ModDir%/Items/Diving/divinggear.xml" />
   <Item file="%ModDir%/Items/Weapons/weapons.xml" />
   <Item file="%ModDir%/Items/Weapons/small_arms.xml" />
   <Item file="%ModDir%/Items/Jobgear/misc.xml" />
   <Item file="%ModDir%/Items/Misc/misc.xml" />
   <Item file="%ModDir%/Items/Jobgear/Security/securityofficer_talent_items.xml" />
+  <Item file="%ModDir%/Items/Jobgear/Gunner/gunner_gear.xml" />
   <Item file="%ModDir%/Items/Tools/tools.xml" />
   <Item file="%ModDir%/Items/Jobgear/Captain/captain_gear.xml" />
   <Item file="%ModDir%/Items/Jobgear/Captain/captain_talent_items.xml" />

@@ -48,10 +48,10 @@
           <Item identifier="divingmask">
             <Item identifier="oxygentank" />
           </Item>
-          <Item identifier="FNFive-seven">
-            <Item identifier="57mag" />
+          <Item identifier="FiveSeven">
+            <Item identifier="FiveSevenMag" />
           </Item>
-          <Item identifier="57mag" />
+          <Item identifier="FiveSevenMag" />
         </ItemSet>
         <ItemSet commonness="0.5">
           <Item identifier="pirateclothesnovice" equip="true" />
