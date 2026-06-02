@@ -43,48 +43,6 @@
       <LocationType from="Any" to="Any" />
       <message header="DHMissionHeader.towsubcompleted" text="DHMissionHeader.towsubcompleted" />
     </TowsubMissionHint>
-    <SalvageMission identifier="salvagewreck1" tags="salvage,salvagewreck" type="Salvage" difficulty="3" commonness="100" reward="2800" achievementidentifier="salvagewreckmission" spawntype="wreck" showmessagewhenpickedup="true" itemidentifier="handheldterminal" containertag="locker" requirewreck="true">
-      <Reputation identifier="location" amount="10" />
-      <Reputation identifier="coalition" amount="5" />
-      <chooserandom>
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: cbspusbvnbhbnf.dpn/efsfmjdu/[ERR:_INSERT_PASS].htm" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_1]beweht" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_2]108 101 116 109 101 105 110" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_3]LLL SLS SL LS LLS S LSSS LLL LSLL" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_4]zorxv" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_5]s_m_l_t_d_ _i_i_i_u_e" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_6]DSPERiapa" />
-        <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_7]4 5 1 4 13 5 14" />
-      </chooserandom>
-      <Icon texture="Content/UI/MissionIcons2.png" sourcerect="0,512,256,256" color="49,93,233" />
-      <LocationType from="City" to="None" />
-      <LocationType from="City" to="City" />
-      <LocationType from="City" to="Outpost" />
-      <LocationType from="City" to="Military" />
-      <LocationType from="City" to="Research" />
-      <LocationType from="City" to="Mine" />
-      <LocationType from="Outpost" to="None" />
-      <LocationType from="Outpost" to="City" />
-      <LocationType from="Outpost" to="Outpost" />
-      <LocationType from="Outpost" to="Military" />
-      <LocationType from="Outpost" to="Research" />
-      <LocationType from="Outpost" to="Mine" />
-      <LocationType from="Research" to="None" />
-      <LocationType from="Research" to="City" />
-      <LocationType from="Research" to="Outpost" />
-      <LocationType from="Research" to="Military" />
-      <LocationType from="Research" to="Research" />
-      <LocationType from="Research" to="Mine" />
-      <LocationType from="Military" to="None" />
-      <LocationType from="Military" to="City" />
-      <LocationType from="Military" to="Outpost" />
-      <LocationType from="Military" to="Military" />
-      <LocationType from="Military" to="Research" />
-      <LocationType from="Military" to="Mine" />
-      <message header="missionheader0.salvagewreck1" text="missionmessage0.salvagewreck1" />
-      <TriggerEvent state="1" delay="0" eventidentifier="towsub" />
-      <TriggerEvent state="0" delay="5" eventidentifier="towsubcompleted" />
-    </SalvageMission>
     <EscortMission identifier="familytransport" tags="familytransport" type="Escort" difficulty="2" commonness="20" reward="500" achievementidentifier="escortmission" textidentifier="familytransport">
       <Characters>
         <Item from="outpostnpcs_DieHard" identifier="husband" />
@@ -153,9 +111,17 @@
       <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
       <message header="missionheader0.abandonedoutposthumans" text="missionmessage0.abandonedoutposthumans" />
     </OutpostDestroyMission>
-    <OutpostDestroyMission identifier="abandonedoutpostassassinate" tags="abandonedoutpost" type="OutpostDestroy" reward="3000" difficulty="4" commonness="100" allowretry="true" sonarlabel="target" unhideentitysubcategories="abandonedhuman">
-      <Reputation identifier="location" amount="10" />
-      <Reputation identifier="coalition" amount="5" />
+    <AbandonedOutpostMission identifier="abandonedoutpostassassinate" 
+        tags="abandonedoutpost"
+        achievementidentifier="abandonedoutpostassassinate" 
+        type="AbandonedOutpostAssassinate"
+        reward="3000" 
+        difficulty="4" 
+        commonness="100" 
+        allowretry="true" 
+        sonarlabel="target" 
+        unhideentitysubcategories="abandonedhuman"
+      maxleveldifficulty="65">
       <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48" />
       <LocationType identifier="Abandoned" />
       <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
@@ -167,15 +133,15 @@
         <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" />
         <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
         <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule" />
-        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
+        <Character identifier="bandit_heavy" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
         <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule" />
         <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
-        <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
+        <Character identifier="bandit_heavy" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" />
         <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" asfaraspossible="true" requirekill="true" />
       </Characters>
       <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true" />
       <message header="missionheader0.abandonedoutpostassassinate" text="missionmessage0.abandonedoutpostassassinate" />
-    </OutpostDestroyMission>
+    </AbandonedOutpostMission>
     <OutpostCauptureMission identifier="abandonedoutpostcapture" name="Law Enforcement" tags="abandonedoutpost" type="OutpostDestroy" reward="0" difficulty="4" commonness="5" allowretry="true" sonarlabel="target" hostageskilledmessage="One of the suspects is dead. There will be some secrets that never be revealed. Coalition will not tolerate such deed." unhideentitysubcategories="abandonedhuman" description="Coalition demands to bring all of the five suspects to the court alive. Reward will be high for anyone who can do it.">
       <Reputation identifier="location" amount="10" />
       <Reputation identifier="coalition" amount="5" />
@@ -344,5 +310,34 @@
     </Items>
     <message header="missionheader0.abandonedoutpostmonsters" text="missionmessage0.abandonedoutpostmonsters" />
   </DryCaveMission>
-  
+  <SalvageMission
+      identifier="salvagewreck_light"
+      tags="salvage,salvagewreck,DieHardreclaimwreck" 
+      type="ReclaimSinkedSubmarine"
+      difficulty="4"
+      reward="7000"
+      spawntype="wreck"
+      requirewreck="true"
+      itemidentifier="wrench"
+      containertag="locker"
+      commonness="100">
+    <Icon texture="%ModDir%/UI/DHMissionIcons.png" sourcerect="0,256,256,256" color="243,146,55"/>
+    <Reputation identifier="location" amount="10" amountforopposingfaction="-5" />
+    <Items>
+      <Item identifier="grapple" amount="10"/>
+      <Item identifier="depthchargegrapple" amount="10"/>
+    </Items>
+    <chooserandom>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: cbspusbvnbhbnf.dpn/efsfmjdu/[ERR:_INSERT_PASS].htm"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_1]beweht"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_2]108 101 116 109 101 105 110"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_3]LLL SLS SL LS LLS S LSSS LLL LSLL"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_4]zorxv"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_5]s_m_l_t_d_ _i_i_i_u_e"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_6]DSPERiapa"/>
+      <StatusEffect target="This" showmessage="Receiving encrypted transmission: [PASS_7]4 5 1 4 13 5 14"/>
+    </chooserandom>
+    <message header="missionheader0.reclaimwreckage" text="missionmessage0.reclaimwreckage"/>
+    <LocationType from="AnyOutpost" to="AnyOutpost" />
+  </SalvageMission>
 </Missions>

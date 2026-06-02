@@ -56,6 +56,12 @@ namespace BarotraumaDieHard
         [HarmonyPostfix]
         public static void DrawShadow(SpriteBatch spriteBatch, bool editing, bool back, Color? overrideColor, Item __instance)
         {
+            // 🌟 新增安全拦截：如果后台线程还没初始化完毕，直接返回，避免主线程读取未构建完的字典
+            if (!Main.IsShadowConfigInitialized) return;
+
+            // 🌟 核心优化 1：如果 Prefab 连基础贴图都没有，直接拦截
+            if (__instance?.Prefab?.Sprite == null) return;
+            
             if (__instance == null || spriteBatch == null || __instance.Sprite == null) return;
 
             // 🌟 核心改动 1：根据载入时做好的字典进行精准拦截！

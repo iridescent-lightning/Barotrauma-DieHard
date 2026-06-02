@@ -1,47 +1,28 @@
-       public const float MinImpactToDestroyWall = 12.0f; 
-
-        [HarmonyPatch("HandleLevelCollision")]
-        [HarmonyPostfix]
-        public static void Postfix(object __instance, object impact, VoronoiCell cell)
-        {
-#if CLIENT
-            if (GameMain.Client != null) return;
-#endif
-            if (Level.Loaded == null || cell == null) return;
-
-            var impactType = impact.GetType();
-            Vector2 velocity = (Vector2)(impactType.GetField("Velocity")?.GetValue(impact) ?? Vector2.Zero);
-            Vector2 normal = (Vector2)(impactType.GetField("Normal")?.GetValue(impact) ?? Vector2.Zero);
-            Vector2 impactPosSim = (Vector2)(impactType.GetField("ImpactPos")?.GetValue(impact) ?? Vector2.Zero);
-
-            float wallImpact = Vector2.Dot(velocity, -normal) * 3.0f;
-            if (wallImpact < MinImpactToDestroyWall) return;
-
-            Vector2 worldPosition = ConvertUnits.ToDisplayUnits(impactPosSim);
-            float worldRange = MathHelper.Clamp(wallImpact * 30f, 300f, 800f);
-
-            var cellsToDestroy = ExplosionDamageWallPatchInvoke(worldPosition, worldRange);
-            if (cellsToDestroy == null || cellsToDestroy.Count == 0) return;
-
-            ExplosionDamageWallPatch.ExecuteTerrainDestruction(cellsToDestroy, worldPosition);
-
-#if SERVER
-            if (GameMain.Server != null)
-            {
-                var msg = Barotrauma.Networking.NetUtil.CreateNetMsg(Barotrauma.Networking.NetEvent.DESTROY_MAIN_WALL); 
-                msg.WriteSingle(worldPosition.X);
-                msg.WriteSingle(worldPosition.Y);
-                msg.WriteSingle(worldRange); 
-                Barotrauma.Networking.NetUtil.SendAll(msg, DeliveryMethod.Reliable);
-            }
-#endif
-        }
-
-        private static List<VoronoiCell> ExplosionDamageWallPatchInvoke(Vector2 worldPos, float range)
-        {
-            var method = typeof(ExplosionDamageWallPatch).GetMethod("ServerOrLocalTriggerSubdivision", 
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-            return method?.Invoke(null, new object[] { worldPos, range }) as List<VoronoiCell>;
-        }
-    }
-}
+<AbandonedOutpostMission
+    identifier="abandonedoutpostassassinate"
+    tags="abandonedoutpost"
+    achievementidentifier="abandonedoutpostassassinate"
+    type="AbandonedOutpostAssassinate"
+    reward="3000"
+    difficulty="3"
+    commonness="100"
+    allowretry="true"
+    sonarlabel="target"
+    unhideentitysubcategories="abandonedhuman"
+    maxleveldifficulty="65">
+    <Icon texture="Content/UI/MissionIcons.png" sourcerect="0,512,256,256" color="214,50,48"/>
+    <LocationType identifier="Abandoned" />
+    <LocationTypeChange from="Abandoned" to="Outpost" requireddurationrange="2,3" cooldownafterchange="5" />
+    <Characters>
+      <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="crewmodule"/>
+      <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="researchmodule" multiplayeronly="true"/>
+      <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="engineeringmodule"/>
+      <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="securitymodule"/>
+      <Character identifier="bandit_heavy" from="abandonedoutpostnpcs" moduleflags="securitymodule" multiplayeronly="true"/>
+      <Character identifier="bandit" from="abandonedoutpostnpcs" moduleflags="seccrewmodule"/>
+      <Character identifier="bandit_heavy" from="abandonedoutpostnpcs" moduleflags="seccrewmodule" multiplayeronly="true"/>
+      <Character identifier="banditleader_heavy" from="abandonedoutpostnpcs" asfaraspossible="true" requirekill="true"/>
+    </Characters>
+    <TriggerEvent state="0" delay="5" eventidentifier="heartofgold" campaignonly="true"/>
+    <message header="missionheader0.abandonedoutpostassassinate" text="missionmessage0.abandonedoutpostassassinate"/>
+  </AbandonedOutpostMission>

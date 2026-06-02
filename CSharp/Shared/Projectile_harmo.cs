@@ -30,6 +30,7 @@ namespace BarotraumaDieHard
         #endif
 
         private static Dictionary<Projectile, HashSet<Item>> processedItems = new Dictionary<Projectile, HashSet<Item>>();
+        private static readonly Identifier DamageByBulletTag = "damage_by_passing_bullet".ToIdentifier();
 
         // ⭐【性能核心优化点 1】⭐
         // 建立一个专属的、只存放带有 "damage_by_passing_bullet" 标签物品的精简列表
@@ -59,7 +60,7 @@ namespace BarotraumaDieHard
                 for (int i = 0; i < Item.ItemList.Count; i++)
                 {
                     var it = Item.ItemList[i];
-                    if (it != null && !it.Removed && it.HasTag("damage_by_passing_bullet"))
+                    if (it != null && !it.Removed && it.HasTag(DamageByBulletTag))
                     {
                         BulletDamageableItems.Add(it);
                     }

@@ -366,7 +366,7 @@ namespace BarotraumaDieHard
                     UpdateVents(CurrFlow, CurrRecycleFlow, CurrPurifyingFlow, CurrHeatingFlow, CurrAirPressureRegulatingFlow, deltaTime);
 
 
-                if (item.InPlayerSubmarine)
+                if (item.InPlayerSubmarine && !Level.IsLoadedOutpost)
                 {
                     oxygenCandle.Condition = oxygenCandle.Condition - 0.01f * newGeneratedAmountFactor * deltaTime;
                 }

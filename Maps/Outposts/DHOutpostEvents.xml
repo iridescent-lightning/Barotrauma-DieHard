@@ -18,7 +18,7 @@
       <SpawnAction npcsetidentifier="outpostnpcs_DieHard" npcidentifier="theman" targettag="clownvictimnpc" spawnlocation="Outpost" targetmoduletags="crewmodule" />
     </ScriptedEvent>
     <ScriptedEvent identifier="testmission">
-      <MissionAction missionidentifier="killhammerhead" unlockfurtheronmap="true" />
+      <MissionAction missionidentifier="salvagewreck_light" unlockfurtheronmap="true" />
     </ScriptedEvent>
     <ScriptedEvent identifier="genericmissioncomplete">
       <MissionAction missionidentifier="missioncomplete" />
@@ -2056,6 +2056,9 @@
 	    <ScriptedEvent identifier="Story.beginning.managertalk" />
 	    <ScriptedEvent identifier="Story.chapter1.nocargo" />
 	  </EventSet>-->
+    <EventSet identifier="DHMissionevents" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="true">
+      <ScriptedEvent identifier="missionevent_reclaimwreck" commonness="25"/>
+    </EventSet>
     <EventSet identifier="dhoutpostevents.story.milispecific" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" additive="true" locationtype="military">
       <ScriptedEvent identifier="Story.chapter1.cargoatmili_part1" />
     </EventSet>
@@ -2180,7 +2183,13 @@
       <ScriptedEvent identifier="waytoascension5" commonness="100" />
     </EventSet>
   </EventSet>
+
+
+  
+<!--  ............................................................   <<EuropaRidge Events>>  ....................................................    -->
+
   <EventSet identifier="EuropaRidge.Events" leveltype="outpost" locationtype="EuropanRidge_Outpost,EuropanRidge_military,EuropanRidge_Research,EuropanRidge_Mine" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true">
+    <!--  .......................       <Fixed Events>         ..................................... -->
     <EventSet identifier="dhoutpostevents.fixedevents" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false">
       <ScriptedEvent identifier="checkweapon" faction="coalition" />
       <!--<ScriptedEvent identifier="dockingfee" faction="coalition"/>-->
@@ -2192,6 +2201,11 @@
       <ScriptedEvent identifier="fuelrod_husk" faction="huskcult" />
       <ScriptedEvent identifier="fuelroddoc_clown" faction="clowns" />
     </EventSet>
+    <!--  ....................... <Outpost Mission Events> ..................................... -->
+    <EventSet identifier="DHMissionevents" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="true">
+      <ScriptedEvent identifier="missionevent_reclaimwreck" commonness="25"/>
+    </EventSet>
+    <!--  ....................... <Outpost NPC Conversation Events> ..................................... -->
     <EventSet identifier="dhoutpostevents.npcconversation" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="1" onceperoutpost="true">
       <ScriptedEvent identifier="Npc.conversation1" />
       <ScriptedEvent identifier="Npc.conversation2" />
@@ -2362,172 +2376,7 @@
       <ScriptedEvent identifier="occupationalhazards" commonness="150" probability="0.5" />
     </EventSet>
   </EventSet>
-  <EventSet identifier="TheGreatSea.Events" leveltype="outpost" locationtype="Greatsea_Outpost,Greatsea_military,Greatsea_Research" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true">
-    <EventSet identifier="dhoutpostevents.fixedevents" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false">
-      <ScriptedEvent identifier="checkweapon" faction="coalition" />
-      <!--<ScriptedEvent identifier="dockingfee" faction="coalition"/>-->
-      <ScriptedEvent identifier="debtcollector" faction="coalition" />
-      <!--<ScriptedEvent identifier="dockingfeese" faction="separatists"/>-->
-      <ScriptedEvent identifier="debtcollectorse" faction="separatists" />
-      <ScriptedEvent identifier="fuelrod_coalition" faction="coalition" />
-      <ScriptedEvent identifier="fuelrod_separatists" faction="separatists" />
-      <ScriptedEvent identifier="fuelrod_husk" faction="huskcult" />
-      <ScriptedEvent identifier="fuelroddoc_clown" faction="clowns" />
-    </EventSet>
-    <EventSet identifier="dhoutpostevents.npcconversation" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="2" onceperoutpost="true">
-      <ScriptedEvent identifier="Npc.conversation1" />
-      <ScriptedEvent identifier="Npc.conversation2" />
-      <ScriptedEvent identifier="Npc.conversation3" />
-      <ScriptedEvent identifier="Npc.conversation4" />
-      <ScriptedEvent identifier="Npc.conversation5" />
-      <ScriptedEvent identifier="Npc.conversation6" />
-      <ScriptedEvent identifier="Npc.conversation7" />
-      <ScriptedEvent identifier="Npc.conversation8" />
-      <ScriptedEvent identifier="DHNpcMission.fetchmonsters" commonness="110" />
-    </EventSet>
-    <EventSet identifier="dhoutpostevents.monstercollecters" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="3">
-      <ScriptedEvent identifier="checkloot_harmmerheads" />
-      <ScriptedEvent identifier="checkloot_crawlers" />
-      <ScriptedEvent identifier="checkloot_molochs" />
-      <ScriptedEvent identifier="checkloot_raptors" />
-      <ScriptedEvent identifier="checkloot_fish" />
-      <ScriptedEvent identifier="checkloot_abyssloot" />
-    </EventSet>
-    <EventSet identifier="dhoutpostevents.colation" minleveldifficulty="5" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="1">
-      <ScriptedEvent identifier="coalitionmanagerwantstoseeyou" probability="0.4" faction="coalition" />
-    </EventSet>
-    <EventSet identifier="dhoutpostevents.separatists" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="1">
-      <ScriptedEvent identifier="separatists.leftlogbook" probability="0.6" faction="coalition" />
-    </EventSet>
-    <EventSet identifier="outpostevent.difficult.generic.randomevents" minleveldifficulty="30" maxleveldifficulty="80" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="3">
-      <!-- events that can occur in both low and high difficulty, commoness reduced here to favor the more difficult ones-->
-      <ScriptedEvent identifier="givingdirections" commonness="50" />
-      <ScriptedEvent identifier="goodsamaritan" commonness="50" />
-      <ScriptedEvent identifier="miketheidiot1" commonness="12" />
-      <ScriptedEvent identifier="Engineers_are_special" commonness="50" />
-      <ScriptedEvent identifier="fanclub" commonness="50" />
-      <ScriptedEvent identifier="shockjock" commonness="40" />
-      <ScriptedEvent identifier="manandhisraptor1" commonness="60" />
-      <ScriptedEvent identifier="assassinationofjacovsubra2" commonness="100" />
-      <ScriptedEvent identifier="assassinationofjacovsubra3" commonness="100" />
-      <ScriptedEvent identifier="nothingtoseehere" commonness="50" faction="coalition" />
-      <ScriptedEvent identifier="propaganda" commonness="50" faction="coalition" />
-      <!-- technically a separatist event, but takes place in coalition outposts -->
-      <ScriptedEvent identifier="bombscare" commonness="40" faction="coalition" />
-      <ScriptedEvent identifier="terrorism101" commonness="40" faction="coalition" />
-      <!-- technically a separatist event, but takes place in coalition outposts -->
-      <ScriptedEvent identifier="separatistrelations" commonness="50" />
-      <!-- technically a separatist event, but can happen in any type of outpost -->
-      <ScriptedEvent identifier="clownrelations1" commonness="50" faction="clowns" />
-      <ScriptedEvent identifier="huskcultist" commonness="50" faction="huskcult" />
-      <!-- events that only occur in high difficulty-->
-      <ScriptedEvent identifier="blackmarket" commonness="100" />
-      <ScriptedEvent identifier="mediator" commonness="100" />
-      <ScriptedEvent identifier="firefighting" commonness="100" />
-      <ScriptedEvent identifier="sleightofhand" commonness="100" />
-      <ScriptedEvent identifier="miketheidiot2" commonness="25" />
-      <ScriptedEvent identifier="goblincooking1" commonness="50" />
-      <ScriptedEvent identifier="soundinthevent" commonness="100" />
-      <ScriptedEvent identifier="badvibrations1" commonness="80" />
-      <ScriptedEvent identifier="stuckinthemiddle" commonness="50" faction="coalition" />
-      <!-- technically a separatist event, but happens in a coalition outpost -->
-      <ScriptedEvent identifier="outbreak" commonness="100" faction="huskcult" />
-      <ScriptedEvent identifier="huskcultambush" commonness="50" faction="huskcult" />
-      <ScriptedEvent identifier="huskcultrelations" commonness="100" faction="huskcult" />
-      <ScriptedEvent identifier="clownbrutality" commonness="100" faction="clowns" />
-      <ScriptedEvent identifier="clownrelations2" commonness="100" faction="clowns" />
-      <ScriptedEvent identifier="returner" commonness="50" />
-      <ScriptedEvent identifier="bugseverhwere" commonness="40" />
-      <!--dhevent-->
-      <ScriptedEvent identifier="dhhuskcult_ambush" commonness="50" />
-      <!--dhevent-->
-      <ScriptedEvent identifier="clownbomb" commonness="60" />
-      <!--dhevent-->
-      <ScriptedEvent identifier="dhprostitute_part2" commonness="60" />
-      <!--dhevent-->
-      <ScriptedEvent identifier="dhpowerissue" commonness="10" />
-      <!--dhevent-->
-      <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
-      <!--dhevent-->
-    </EventSet>
-    <EventSet identifier="outpostevent.difficult.generic.missionevents" minleveldifficulty="50" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
-      <!-- same missions as in the previous tier, but with adjusted probabilities to favor more difficult ones -->
-      <ScriptedEvent identifier="missionevent_cargoany" commonness="10" />
-      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="100" faction="coalition" />
-      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="100" faction="separatists" />
-      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="5" />
-      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="60" />
-      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="5" />
-      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
-      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="60" />
-      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="120" />
-      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
-      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
-      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
-      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="5" />
-      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="5" />
-      <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="75" />
-      <ScriptedEvent identifier="missionevent_collectminerals_set4" commonness="75" />
-      <ScriptedEvent identifier="missionevent_escort2coalition,missionevent_escort3coalition,missionevent_escort4coalition" commonness="160" faction="coalition" />
-      <ScriptedEvent identifier="missionevent_escort2separatists,missionevent_escort3separatists,missionevent_escort4separatists" commonness="160" faction="separatists" />
-      <ScriptedEvent identifier="missionevent_jailbreak_separatists" commonness="50" faction="separatists" />
-      <ScriptedEvent identifier="missionevent_jailbreak_coalition" commonness="50" faction="coalition" />
-      <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
-      <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
-      <ScriptedEvent identifier="missionevent_scanruin" commonness="100" />
-      <ScriptedEvent identifier="missionevent_clearruin" commonness="120" />
-      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
-      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
-    </EventSet>
-    <!-- Events specific to military outposts -->
-    <EventSet identifier="outpostevent.military.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="military" allowatstart="true" chooserandom="true" onceperoutpost="true">
-      <!-- 50% chance of getting a military-specific event (TODO: increase if/when we have more of these available?) -->
-      <ScriptedEvent identifier="bigbrother" commonness="150" probability="0.5" faction="coalition" />
-      <ScriptedEvent identifier="explosivemishap" commonness="50" probability="0.5" />
-    </EventSet>
-    <!-- Events specific to research outposts -->
-    <EventSet identifier="outpostevent.research.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="research" allowatstart="true" chooserandom="true" onceperoutpost="true">
-      <!-- 50% chance of getting a research-specific event (TODO: increase if/when we have more of these available?) -->
-      <ScriptedEvent identifier="tastetest" commonness="150" probability="0.5" />
-      <ScriptedEvent identifier="crawleroutbreak" commonness="150" probability="0.5" />
-      <ScriptedEvent identifier="impromptuengineering" commonness="150" probability="0.5" />
-      <ScriptedEvent identifier="captivesouls" commonness="50" probability="0.5" />
-      <ScriptedEvent identifier="researcherescort" commonness="50" />
-    </EventSet>
-    <!--  Faction-specific events that can only occur once. 
-        In a separate set to make these very common (when they are valid for the situation) -->
-    <EventSet identifier="outpostevents.clowns" allowatstart="true" chooserandom="true" eventcount="3" faction="clowns">
-      <ScriptedEvent identifier="clownspecialhire1" commonness="100" />
-      <ScriptedEvent identifier="pathofthebikehorn1" commonness="100" />
-      <ScriptedEvent identifier="pathofthebikehorn2" commonness="100" />
-      <ScriptedEvent identifier="pathofthebikehorn3" commonness="100" />
-      <ScriptedEvent identifier="pathofthebikehorn4" commonness="100" />
-      <ScriptedEvent identifier="pathofthebikehorn5" commonness="100" />
-    </EventSet>
-    <EventSet identifier="outpostevents.separatists" allowatstart="true" chooserandom="true" eventcount="2" faction="separatists">
-      <ScriptedEvent identifier="separatistspecialhire1" commonness="100" />
-      <ScriptedEvent identifier="separatistspecialhire2" commonness="100" />
-      <ScriptedEvent identifier="missionevent_tormsdalereport" commonness="100" />
-      <ScriptedEvent identifier="missionevent_jailbreak_sootman" commonness="10" faction="separatists" />
-    </EventSet>
-    <EventSet identifier="outpostevents.separatists.triggeralways" allowatstart="true" eventcount="1" faction="separatists">
-      <ScriptedEvent identifier="tormsdalereport_complete" commonness="100" />
-    </EventSet>
-    <EventSet identifier="outpostevents.coalition" allowatstart="true" chooserandom="true" eventcount="1" faction="coalition">
-      <ScriptedEvent identifier="coalitionspecialhire1" commonness="50" />
-      <ScriptedEvent identifier="coalitionspecialhire2" commonness="50" />
-    </EventSet>
-    <EventSet identifier="outpostevents.huskcult" allowatstart="true" chooserandom="true" eventcount="4" faction="huskcult">
-      <ScriptedEvent identifier="huskcultspecialhire1" commonness="100" />
-      <ScriptedEvent identifier="youngcultists" commonness="100" />
-      <ScriptedEvent identifier="waytoascension1" commonness="100" />
-      <ScriptedEvent identifier="waytoascension2" commonness="100" />
-      <ScriptedEvent identifier="waytoascension3" commonness="100" />
-      <ScriptedEvent identifier="waytoascension4" commonness="100" />
-      <ScriptedEvent identifier="waytoascension5" commonness="100" />
-    </EventSet>
-  </EventSet>
+
   <EventSet identifier="AphoticPlateau.Events" leveltype="outpost" locationtype="AphoticPlateau_Outpost,AphoticPlateau_military,AphoticPlateau_Research,AphoticPlateau_Mine" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true">
     <EventSet identifier="dhoutpostevents.fixedevents" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false">
       <ScriptedEvent identifier="checkweapon" faction="coalition" />
@@ -2540,6 +2389,12 @@
       <ScriptedEvent identifier="fuelrod_husk" faction="huskcult" />
       <ScriptedEvent identifier="fuelroddoc_clown" faction="clowns" />
     </EventSet>
+    
+    <!--  ....................... <Outpost Mission Events> ..................................... -->
+    <EventSet identifier="DHMissionevents" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="true">
+      <ScriptedEvent identifier="missionevent_reclaimwreck" commonness="25"/>
+    </EventSet>
+
     <EventSet identifier="dhoutpostevents.npcconversation" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="1" onceperoutpost="true">
       <ScriptedEvent identifier="Npc.conversation1" />
       <ScriptedEvent identifier="Npc.conversation2" />
@@ -2730,4 +2585,178 @@
       <ScriptedEvent identifier="waytoascension5" commonness="100" />
     </EventSet>
   </EventSet>
+
+  <EventSet identifier="TheGreatSea.Events" leveltype="outpost" locationtype="Greatsea_Outpost,Greatsea_military,Greatsea_Research" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="false" ignorecooldown="true">
+    <EventSet identifier="dhoutpostevents.fixedevents" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="false">
+      <ScriptedEvent identifier="checkweapon" faction="coalition" />
+      <!--<ScriptedEvent identifier="dockingfee" faction="coalition"/>-->
+      <ScriptedEvent identifier="debtcollector" faction="coalition" />
+      <!--<ScriptedEvent identifier="dockingfeese" faction="separatists"/>-->
+      <ScriptedEvent identifier="debtcollectorse" faction="separatists" />
+      <ScriptedEvent identifier="fuelrod_coalition" faction="coalition" />
+      <ScriptedEvent identifier="fuelrod_separatists" faction="separatists" />
+      <ScriptedEvent identifier="fuelrod_husk" faction="huskcult" />
+      <ScriptedEvent identifier="fuelroddoc_clown" faction="clowns" />
+    </EventSet>
+
+    <!--  ....................... <Outpost Mission Events> ..................................... -->
+    <EventSet identifier="DHMissionevents" allowatstart="true" minleveldifficulty="0" maxleveldifficulty="80" chooserandom="true">
+      <ScriptedEvent identifier="missionevent_reclaimwreck" commonness="25"/>
+    </EventSet>
+
+    <EventSet identifier="dhoutpostevents.npcconversation" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="2" onceperoutpost="true">
+      <ScriptedEvent identifier="Npc.conversation1" />
+      <ScriptedEvent identifier="Npc.conversation2" />
+      <ScriptedEvent identifier="Npc.conversation3" />
+      <ScriptedEvent identifier="Npc.conversation4" />
+      <ScriptedEvent identifier="Npc.conversation5" />
+      <ScriptedEvent identifier="Npc.conversation6" />
+      <ScriptedEvent identifier="Npc.conversation7" />
+      <ScriptedEvent identifier="Npc.conversation8" />
+      <ScriptedEvent identifier="DHNpcMission.fetchmonsters" commonness="110" />
+    </EventSet>
+    <EventSet identifier="dhoutpostevents.monstercollecters" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="3">
+      <ScriptedEvent identifier="checkloot_harmmerheads" />
+      <ScriptedEvent identifier="checkloot_crawlers" />
+      <ScriptedEvent identifier="checkloot_molochs" />
+      <ScriptedEvent identifier="checkloot_raptors" />
+      <ScriptedEvent identifier="checkloot_fish" />
+      <ScriptedEvent identifier="checkloot_abyssloot" />
+    </EventSet>
+    <EventSet identifier="dhoutpostevents.colation" minleveldifficulty="5" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="1">
+      <ScriptedEvent identifier="coalitionmanagerwantstoseeyou" probability="0.4" faction="coalition" />
+    </EventSet>
+    <EventSet identifier="dhoutpostevents.separatists" minleveldifficulty="0" maxleveldifficulty="100" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="1">
+      <ScriptedEvent identifier="separatists.leftlogbook" probability="0.6" faction="coalition" />
+    </EventSet>
+    <EventSet identifier="outpostevent.difficult.generic.randomevents" minleveldifficulty="30" maxleveldifficulty="80" allowatstart="true" chooserandom="true" onceperoutpost="true" eventcount="3">
+      <!-- events that can occur in both low and high difficulty, commoness reduced here to favor the more difficult ones-->
+      <ScriptedEvent identifier="givingdirections" commonness="50" />
+      <ScriptedEvent identifier="goodsamaritan" commonness="50" />
+      <ScriptedEvent identifier="miketheidiot1" commonness="12" />
+      <ScriptedEvent identifier="Engineers_are_special" commonness="50" />
+      <ScriptedEvent identifier="fanclub" commonness="50" />
+      <ScriptedEvent identifier="shockjock" commonness="40" />
+      <ScriptedEvent identifier="manandhisraptor1" commonness="60" />
+      <ScriptedEvent identifier="assassinationofjacovsubra2" commonness="100" />
+      <ScriptedEvent identifier="assassinationofjacovsubra3" commonness="100" />
+      <ScriptedEvent identifier="nothingtoseehere" commonness="50" faction="coalition" />
+      <ScriptedEvent identifier="propaganda" commonness="50" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="bombscare" commonness="40" faction="coalition" />
+      <ScriptedEvent identifier="terrorism101" commonness="40" faction="coalition" />
+      <!-- technically a separatist event, but takes place in coalition outposts -->
+      <ScriptedEvent identifier="separatistrelations" commonness="50" />
+      <!-- technically a separatist event, but can happen in any type of outpost -->
+      <ScriptedEvent identifier="clownrelations1" commonness="50" faction="clowns" />
+      <ScriptedEvent identifier="huskcultist" commonness="50" faction="huskcult" />
+      <!-- events that only occur in high difficulty-->
+      <ScriptedEvent identifier="blackmarket" commonness="100" />
+      <ScriptedEvent identifier="mediator" commonness="100" />
+      <ScriptedEvent identifier="firefighting" commonness="100" />
+      <ScriptedEvent identifier="sleightofhand" commonness="100" />
+      <ScriptedEvent identifier="miketheidiot2" commonness="25" />
+      <ScriptedEvent identifier="goblincooking1" commonness="50" />
+      <ScriptedEvent identifier="soundinthevent" commonness="100" />
+      <ScriptedEvent identifier="badvibrations1" commonness="80" />
+      <ScriptedEvent identifier="stuckinthemiddle" commonness="50" faction="coalition" />
+      <!-- technically a separatist event, but happens in a coalition outpost -->
+      <ScriptedEvent identifier="outbreak" commonness="100" faction="huskcult" />
+      <ScriptedEvent identifier="huskcultambush" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="huskcultrelations" commonness="100" faction="huskcult" />
+      <ScriptedEvent identifier="clownbrutality" commonness="100" faction="clowns" />
+      <ScriptedEvent identifier="clownrelations2" commonness="100" faction="clowns" />
+      <ScriptedEvent identifier="returner" commonness="50" />
+      <ScriptedEvent identifier="bugseverhwere" commonness="40" />
+      <!--dhevent-->
+      <ScriptedEvent identifier="dhhuskcult_ambush" commonness="50" />
+      <!--dhevent-->
+      <ScriptedEvent identifier="clownbomb" commonness="60" />
+      <!--dhevent-->
+      <ScriptedEvent identifier="dhprostitute_part2" commonness="60" />
+      <!--dhevent-->
+      <ScriptedEvent identifier="dhpowerissue" commonness="10" />
+      <!--dhevent-->
+      <ScriptedEvent identifier="DHNpcMission.familytransport" commonness="40" />
+      <!--dhevent-->
+    </EventSet>
+    <EventSet identifier="outpostevent.difficult.generic.missionevents" minleveldifficulty="50" maxleveldifficulty="100" allowatstart="true" chooserandom="true" eventcount="4" exhaustible="true">
+      <!-- same missions as in the previous tier, but with adjusted probabilities to favor more difficult ones -->
+      <ScriptedEvent identifier="missionevent_cargoany" commonness="10" />
+      <ScriptedEvent identifier="missionevent_cargoweaponscoalition" commonness="100" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_cargoexplosiveseparatists" commonness="100" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_killswarm_set2" commonness="5" />
+      <ScriptedEvent identifier="missionevent_killswarm_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killswarm_set4" commonness="60" />
+      <ScriptedEvent identifier="missionevent_killmonster_set2" commonness="5" />
+      <ScriptedEvent identifier="missionevent_killmonster_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_killmonster_set4" commonness="60" />
+      <ScriptedEvent identifier="missionevent_salvageartifact" commonness="120" />
+      <ScriptedEvent identifier="missionevent_salvagewreck" commonness="100" />
+      <ScriptedEvent identifier="missionevent_mudraptornest" commonness="70" />
+      <ScriptedEvent identifier="missionevent_tigerthreshernest" commonness="80" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set1" commonness="5" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set2" commonness="5" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set3" commonness="75" />
+      <ScriptedEvent identifier="missionevent_collectminerals_set4" commonness="75" />
+      <ScriptedEvent identifier="missionevent_escort2coalition,missionevent_escort3coalition,missionevent_escort4coalition" commonness="160" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_escort2separatists,missionevent_escort3separatists,missionevent_escort4separatists" commonness="160" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_separatists" commonness="50" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_jailbreak_coalition" commonness="50" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1" commonness="80" faction="coalition" />
+      <ScriptedEvent identifier="missionevent_pirate1separatists" commonness="80" faction="separatists" />
+      <ScriptedEvent identifier="missionevent_scanruin" commonness="100" />
+      <ScriptedEvent identifier="missionevent_clearruin" commonness="120" />
+      <ScriptedEvent identifier="missionevent_escort1huskcult" commonness="50" faction="huskcult" />
+      <ScriptedEvent identifier="missionevent_escort1clowns" commonness="50" faction="clowns" />
+    </EventSet>
+    <!-- Events specific to military outposts -->
+    <EventSet identifier="outpostevent.military.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="military" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <!-- 50% chance of getting a military-specific event (TODO: increase if/when we have more of these available?) -->
+      <ScriptedEvent identifier="bigbrother" commonness="150" probability="0.5" faction="coalition" />
+      <ScriptedEvent identifier="explosivemishap" commonness="50" probability="0.5" />
+    </EventSet>
+    <!-- Events specific to research outposts -->
+    <EventSet identifier="outpostevent.research.randomevents" minleveldifficulty="0" maxleveldifficulty="80" locationtype="research" allowatstart="true" chooserandom="true" onceperoutpost="true">
+      <!-- 50% chance of getting a research-specific event (TODO: increase if/when we have more of these available?) -->
+      <ScriptedEvent identifier="tastetest" commonness="150" probability="0.5" />
+      <ScriptedEvent identifier="crawleroutbreak" commonness="150" probability="0.5" />
+      <ScriptedEvent identifier="impromptuengineering" commonness="150" probability="0.5" />
+      <ScriptedEvent identifier="captivesouls" commonness="50" probability="0.5" />
+      <ScriptedEvent identifier="researcherescort" commonness="50" />
+    </EventSet>
+    <!--  Faction-specific events that can only occur once. 
+        In a separate set to make these very common (when they are valid for the situation) -->
+    <EventSet identifier="outpostevents.clowns" allowatstart="true" chooserandom="true" eventcount="3" faction="clowns">
+      <ScriptedEvent identifier="clownspecialhire1" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn1" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn2" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn3" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn4" commonness="100" />
+      <ScriptedEvent identifier="pathofthebikehorn5" commonness="100" />
+    </EventSet>
+    <EventSet identifier="outpostevents.separatists" allowatstart="true" chooserandom="true" eventcount="2" faction="separatists">
+      <ScriptedEvent identifier="separatistspecialhire1" commonness="100" />
+      <ScriptedEvent identifier="separatistspecialhire2" commonness="100" />
+      <ScriptedEvent identifier="missionevent_tormsdalereport" commonness="100" />
+      <ScriptedEvent identifier="missionevent_jailbreak_sootman" commonness="10" faction="separatists" />
+    </EventSet>
+    <EventSet identifier="outpostevents.separatists.triggeralways" allowatstart="true" eventcount="1" faction="separatists">
+      <ScriptedEvent identifier="tormsdalereport_complete" commonness="100" />
+    </EventSet>
+    <EventSet identifier="outpostevents.coalition" allowatstart="true" chooserandom="true" eventcount="1" faction="coalition">
+      <ScriptedEvent identifier="coalitionspecialhire1" commonness="50" />
+      <ScriptedEvent identifier="coalitionspecialhire2" commonness="50" />
+    </EventSet>
+    <EventSet identifier="outpostevents.huskcult" allowatstart="true" chooserandom="true" eventcount="4" faction="huskcult">
+      <ScriptedEvent identifier="huskcultspecialhire1" commonness="100" />
+      <ScriptedEvent identifier="youngcultists" commonness="100" />
+      <ScriptedEvent identifier="waytoascension1" commonness="100" />
+      <ScriptedEvent identifier="waytoascension2" commonness="100" />
+      <ScriptedEvent identifier="waytoascension3" commonness="100" />
+      <ScriptedEvent identifier="waytoascension4" commonness="100" />
+      <ScriptedEvent identifier="waytoascension5" commonness="100" />
+    </EventSet>
+  </EventSet>
+  
 </Randomevents>

@@ -24,6 +24,7 @@ namespace BarotraumaDieHard
             // 调用部分方法（如果客户端文件存在，就会执行那边的逻辑）
             InitClient();
             ModProfiler.AutoHookAllUpdates(HarmonyInstance);
+            //WreckMethodTracker.HookAllSubmarineMethods(HarmonyInstance);
 
 #if SERVER
     // 服务器启动时注册网络监听。只写在server里

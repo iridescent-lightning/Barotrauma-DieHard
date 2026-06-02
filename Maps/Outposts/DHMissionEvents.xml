@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Randomevents>
+  <EventPrefabs>
+    <ScriptedEvent identifier="missionevent_reclaimwreck" commonness="75">
+      <ConversationAction text="EventText.missionevent_reclaimwreck.c1" speakertag="outpostmanager" endeventifinterrupted="false" dialogtype="Small" />
+      <MissionAction missiontag="DieHardreclaimwreck" />
+    </ScriptedEvent>
+  </EventPrefabs>
+</Randomevents>

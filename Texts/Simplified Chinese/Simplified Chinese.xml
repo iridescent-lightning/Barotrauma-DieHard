@@ -402,6 +402,8 @@
   <Storytext.coalitionsview.c7>“我们不只是在拯救少数人，我们是在挽救人类最优秀的那一部分存在。他们会替我们在地球上重建文明，我们承担不起、更不能让这个机会白白溜走。”</Storytext.coalitionsview.c7>
   <DHMissionHeader.towsub>可选任务解锁：牵引沉船至居住地。联盟需要详细分析沉船失事的原因。如果你能把残骸拖至目的地，就能得到奖励。</DHMissionHeader.towsub>
   <DHMissionMessage.towsub>联盟需要详细分析沉船遇险的原因。如果你能把残骸拖至目的地，就能得到奖励。</DHMissionMessage.towsub>
+  <missionheader0.reclaimwreckage>任务完成</missionheader0.reclaimwreckage>
+  <missionmessage0.reclaimwreckage>沉没潜艇成功回收，一些珍稀的资源得以回收利用。干得好。</missionmessage0.reclaimwreckage>
   <DHMissionHeader.towsubcompleted>可选任务完成：奖励随后到账。</DHMissionHeader.towsubcompleted>
   <missionname.fetch_broodmother>猎杀爬行者巢母</missionname.fetch_broodmother>
   <missiondescription.fetch_broodmother>[location1]和[location2]之间的航道上发现了一群藻鬃爬行者。也许能从它们身上拿到一些宝贵的战利品。带着战利品去下一个站点售卖掉以获取资金。</missiondescription.fetch_broodmother>
@@ -455,6 +457,15 @@
   <missiondescription.story_nocargo_beacon>位于[location1]和[location2]两地之间的信标站因故障离线，维修使其重新上线并发射主动声纳。</missiondescription.story_nocargo_beacon>
   <missionsuccess.story_nocargo_beacon>信标站已重新上线。</missionsuccess.story_nocargo_beacon>
   <missionmessage0.story_nocargo_beacon>[location1]与联盟的链接已因故障下线。确保它能够正常发信，并驾驶潜艇前往[location2]去会见你的联系人。</missionmessage0.story_nocargo_beacon>
+
+  <missionname.salvagewreck_light>回收沉没的潜艇</missionname.salvagewreck_light>
+  <missiondescription.salvagewreck_light>一艘潜艇在附近的海域沉没了。把它打捞上来拖到目的地哨站来获得资源。</missiondescription.salvagewreck_light>
+  <missionfailure.salvagewreck_light>潜艇依然沉睡在海底。</missionfailure.salvagewreck_light>
+  <eventtext.missionevent_reclaimwreck.c1>一艘潜艇在附近的水域沉没了。我们认为它的船体以及船上的设备依然有回收价值。把它带回来。</eventtext.missionevent_reclaimwreck.c1>
+  <missiontype.ReclaimSinkedSubmarine>打捞潜艇</missiontype.ReclaimSinkedSubmarine>
+  <missiontypedescription.ReclaimSinkedSubmarine>一艘潜艇在附近的水域沉没了。用装备了打捞设备的潜艇把它捞起来送到终点站</missiontypedescription.ReclaimSinkedSubmarine>
+
+
   <entityname.dhwaterpump>水泵</entityname.dhwaterpump>
   <entitydescription.dhwaterpump>通过电线将水泵连接到喷嘴，使水从喷嘴喷出。</entitydescription.dhwaterpump>
   <entityname.attachablepumpnozzle>水泵喷嘴</entityname.attachablepumpnozzle>
@@ -654,6 +665,8 @@
   <entitydescription.weaponhostler>一个可以携带各类小武器的皮带</entitydescription.weaponhostler>
   <entityname.gunneruniform>炮手制服</entityname.gunneruniform>
   <entitydescription.gunneruniform>炮手的制服</entitydescription.gunneruniform>
+  <entityname.depthchargegrapple>深水炸弹发射器抓钩</entityname.depthchargegrapple>
+  <entitydescription.depthchargegrapple>可以从深水炸弹发射器发射的抓钩，可以用来抓住船只</entitydescription.depthchargegrapple>
 
 
 
@@ -862,6 +875,7 @@
 
   <item.interactve.hint.lock>[[use]] 使用钥匙</item.interactve.hint.lock>
   <itemmsgscavengeuse>[[use]] 搜刮</itemmsgscavengeuse>
+  <itemmsgdrag>[G] 拖拽</itemmsgdrag>
 
 
   <MiniMapModeNormal>系统状态</MiniMapModeNormal>

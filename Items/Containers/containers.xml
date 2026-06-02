@@ -130,7 +130,7 @@
         <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
     </Item>
-    <Item name="" identifier="steelcabinet" tags="locker,container,steelcabinetsfx,playinteractsound, damage_by_passing_bullet, collidable,DrawShadow" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
+    <Item name="" identifier="steelcabinet" tags="locker,container,steelcabinetsfx,playinteractsound,damage_by_passing_bullet,collidable" linkable="true" pickdistance="150" waterproof="true" scale="0.5" damagedbyexplosions="true">
       <Sprite texture="containers.png" depth="0.84" sourcerect="348,2,364,373" origin="0.5,0.5" />
       <BrokenSprite texture="%ModDir%/Items/Containers/Dh_containers.png" sourcerect="348,2,364,373" depth="0.84" origin="0.5,0.5" maxcondition="30" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="350,11,386,365" depth="0.9" origin="0.41,0.47" />
@@ -140,7 +140,8 @@
             density="9000" 
             legwidth="12" 
             legheight="150" 
-            legoffset="150"/>-->
+            legoffset="150"/>
+            <ItemComponent selectkey="Select" canbeselected="true" msg="itemmsgdrag"/>-->
       <ItemContainer capacity="35" slotsperrow="7" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem,mediumitem" />
@@ -152,6 +153,7 @@
           <Containable items="mobilecontainer" />
         </SubContainer>
       </ItemContainer>
+      
       <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keylargecab" WindowedCabinet="true" />
       <Repairable selectkey="Action" header="electricalrepairsheader" RepairThreshold="50" fixDurationHighSkill="5" fixDurationLowSkill="5" msg="ItemMsgRepairWrench" hudpriority="10">
         <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
@@ -162,10 +164,18 @@
         <StatusEffect type="OnFire" target="This" Condition="-2" />
       </Repairable>
     </Item>
-    <Item name="" identifier="medcabinet" tags="container,medcontainer,playinteractsound,DrawShadow" category="Medical" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
+    <Item name="" identifier="medcabinet" tags="container,medcontainer,playinteractsound,DrawShadow,CanBeDragged" category="Medical" linkable="true" pickdistance="150" waterproof="true" scale="0.5">
       <Sprite texture="containers.png" depth="0.84" sourcerect="815,1,208,346" />
       <DecorativeSprite texture="%ModDir%/Items/Containers/containers_shadows.png" sourcerect="752,662,228,333" depth="0.9" origin="0.43,0.47" />
+      <Body customshape="table" 
+            width="190" 
+            height="25" 
+            density="7000" 
+            legwidth="12" 
+            legheight="150" 
+            legoffset="0"/>
       <KeyLock selectkey="Action" canbeselected="true" msg="item.interactve.hint.lock" RequiredKey="keymedical" WindowedCabinet="false" />
+      <ItemComponent selectkey="Select" canbeselected="true" msg="itemmsgdrag"/>
       <ItemContainer capacity="35" slotsperrow="7" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
         <GuiFrame relativesize="0.25,0.45" anchor="Center" slotsperrow="6" style="ItemUI" relativeoffset="0.25,0.25" />
         <Containable items="smallitem,mediumitem" excludedidentifiers="mobilecontainer" />

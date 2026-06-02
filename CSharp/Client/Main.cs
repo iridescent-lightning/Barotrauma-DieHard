@@ -12,6 +12,8 @@ namespace BarotraumaDieHard
     {
         public static Dictionary<string, Sprite> customSprites = new Dictionary<string, Sprite>();
         private static ContentPackage modPackage = ContentPackageManager.AllPackages.FirstOrDefault(p => p.Name == "Barotrauma Die Hard");
+        // 🌟 新增：用于标记异步初始化是否完成的状态锁
+        public static bool IsShadowConfigInitialized { get; private set; } = false;
 
         // 将映射表改为静态只读，避免每次初始化重新构建
         private static readonly Dictionary<string, string> iconMapping = new Dictionary<string, string>()
@@ -37,9 +39,26 @@ namespace BarotraumaDieHard
 
             BarotraumaDieHard.CustomHintManager.Init();    
             
-            // 🌟 核心：在游戏初始化时，一次性把所有墙体预制件的过滤与计算做完！
-            InitializeStructureShadowConfigs();
-            InitializeItemShadowConfigs();
+            // 🌟 核心优化：利用 Task.Run 将沉重的预制件遍历和参数计算彻底移出主线程！
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                try
+                {
+                    IsShadowConfigInitialized = false;
+
+                    // 在后台线程执行高能耗的遍历与匹配
+                    InitializeStructureShadowConfigs();
+                    InitializeItemShadowConfigs();
+
+                    // 标记初始化成功
+                    IsShadowConfigInitialized = true;
+                }
+                catch (Exception e)
+                {
+                    // 防止后台线程崩溃导致异常静默消失，便于排查
+                    Barotrauma.DebugConsole.ThrowError("[DynamicShadow] 后台异步配置初始化失败!", e);
+                }
+            });
                 
             // 1. 注册贴图路径
             RegisterSprites();

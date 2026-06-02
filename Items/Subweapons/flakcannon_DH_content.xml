@@ -96,7 +96,7 @@
         </StatusEffect>
         <StatusEffect type="OnUse" target="This" condition="-4" disabledeltatime="true">
           <RequiredItem items="flakboltflare" type="Contained" />
-          <SpawnItem identifiers="flakshell" spawnposition="This" aimspread="250" rotationtype="Random" />
+          <SpawnItem identifiers="flakshellempty" spawnposition="This" aimspread="250" rotationtype="Random" />
         </StatusEffect>
         <Containable items="flakboltflare" />
       </ItemContainer>

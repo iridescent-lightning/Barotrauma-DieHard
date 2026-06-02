@@ -179,16 +179,39 @@ namespace BarotraumaDieHard
 			}
 		}
 
-        // Not useful
-        public static void LaunchPostfix(Item projectile, Character user, float? launchRotation, float tinkeringStrength, Turret __instance)
+
+    /*[HarmonyPatch("TryLaunch")]
+    [HarmonyPrefix]
+
+        // 使用 Prefix，在 TryLaunch 执行前，悄悄把上一根绳索的自动断裂属性改成 false
+    static void Prefix(Turret __instance)
+    {
+        try
         {
-            
+            // 利用反射获取私有字段 lastProjectile
+            FieldInfo lastProjectileField = typeof(Turret).GetField("lastProjectile", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (lastProjectileField == null) return;
+
+            var lastProjectile = lastProjectileField.GetValue(__instance) as Projectile;
+            if (lastProjectile?.Item != null)
+            {
+                // 获取上一发弹药身上的 Rope 组件
+                var rope = lastProjectile.Item.GetComponent<Rope>();
+                if (rope != null)
+                {
+                    // 强制将其设为 false，这样官方代码的 if (is { SnapWhenWeaponFiredAgain: true }) 就不会成立
+                    rope.SnapWhenWeaponFiredAgain = false;
+                }
+            }
         }
-
-        
-        
-
+        catch
+        {
+            // 防止反射在某些极端版本下报错导致游戏崩溃
+        }
+    }*/
         
 	}
+
+    
     
 }

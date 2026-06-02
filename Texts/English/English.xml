@@ -403,6 +403,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <DHMissionHeader.towsub>Side Mission unlocks: Tow the wreck back to base. The Coalition needs to analyze the causes of the shipwreck. If you can tow the wreckage to the destination, you'll be rewarded.</DHMissionHeader.towsub>
   <DHMissionMessage.towsub>The Coalition needs to analyze the causes of the distress. If you can tow the wreckage to the destination, you'll be rewarded.</DHMissionMessage.towsub>
   <DHMissionHeader.towsubcompleted>Side Mission Completed: You'll be rewarded.</DHMissionHeader.towsubcompleted>
+  <missionheader0.reclaimwreckage>Mission successful</missionheader0.reclaimwreckage>
+  <missionmessage0.reclaimwreckage>Now the lost submarine is reclaimed. Some valueable resources can be reused. Well done.</missionmessage0.reclaimwreckage>
   <missionname.fetch_broodmother>Fetch BroodMother</missionname.fetch_broodmother>
   <missiondescription.fetch_broodmother>A group of crawlers has been spotted between [location1] and [location2]. Something valuable may be looted from them. Carry the loot to next outpost to sell it.</missiondescription.fetch_broodmother>
   <missionsonarlabel.fetch_broodmother>Crawler Broodmother</missionsonarlabel.fetch_broodmother>
@@ -455,6 +457,13 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <missiondescription.story_nocargo_beacon>The beacon station between [location1] and [location2] is down—get in there, and get it back online and transmitting an active sonar signal.</missiondescription.story_nocargo_beacon>
   <missionsuccess.story_nocargo_beacon>Beacon reactivated.</missionsuccess.story_nocargo_beacon>
   <missionmessage0.story_nocargo_beacon>The communication between [location1] and Coalition Engineering Company is back online. Make sure it stays transmitting, and navigate the submarine to [location2] to meet your contact.</missionmessage0.story_nocargo_beacon>
+  <missionname.salvagewreck_light>Reclaim sinked submarine</missionname.salvagewreck_light>
+  <missiondescription.salvagewreck_light>A submarine is sinked in nearby passageway. Tow the submarine to the destination outpost to reclaim it.</missiondescription.salvagewreck_light>
+  <missionfailure.salvagewreck_light>The submarine remains lost in the ocean.</missionfailure.salvagewreck_light>
+  <missiontype.ReclaimSinkedSubmarine>Reclaim Sinked Submarine</missiontype.ReclaimSinkedSubmarine>
+  <missiontypedescription.ReclaimSinkedSubmarine>A submarine sinked in the ocean. Use submarine equipped with grapple equipments to bring it back.</missiontypedescription.ReclaimSinkedSubmarine>
+
+  <eventtext.missionevent_reclaimwreck.c1>A submarine sinked in the nearby water. We think it's still worth to reclaim its hull and devices it it. Bring it back.</eventtext.missionevent_reclaimwreck.c1>
 
 
   <entityname.dhwaterpump>Water Pump</entityname.dhwaterpump>
@@ -656,6 +665,8 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <entitydescription.weaponhostler>A belt that can carry various small arms</entitydescription.weaponhostler>
   <entityname.gunneruniform>Gunner Uniform</entityname.gunneruniform>
   <entitydescription.gunneruniform>Gunner's uniform</entitydescription.gunneruniform>
+  <entityname.depthchargegrapple>Grapple for depthcharge luanchers</entityname.depthchargegrapple>
+  <entitydescription.depthchargegrapple>A grapple that can be fired through depthcahrge luanchers to grab ships.</entitydescription.depthchargegrapple>
 
   <connection.moveup>Move Up</connection.moveup>
   <connection.movedown>Move Down</connection.movedown>
@@ -866,6 +877,7 @@ The man pulled out a syringe and injected something into your arm. You felt some
   <item.interactve.hint.lock>[[use]] Use key</item.interactve.hint.lock>
 
   <itemmsgscavengeuse>[[use]] Scavenge</itemmsgscavengeuse>
+  <itemmsgdrag>[G] Drag</itemmsgdrag>
 
   <MiniMapModeNormal>System Status</MiniMapModeNormal>
   <MiniMapModeBuoyancy>Buoyancy Monitor</MiniMapModeBuoyancy>

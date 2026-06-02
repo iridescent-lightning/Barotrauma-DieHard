@@ -336,7 +336,7 @@
       </Controller>
       <Body width="152" height="240" density="100" friction="50" />
     </Item>
-    <Item name="" identifier="op_cafeteriatable" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable,DrawShadow" damagedbyprojectiles="true" deflectprojectiles="True">
+    <Item name="" identifier="op_cafeteriatable" scale="0.5" noninteractable="true" category="Decorative" Tags="collidable,DrawShadow,CanBeDragged" damagedbyprojectiles="true" deflectprojectiles="True">
       <Body customshape="table" 
             width="240" 
             height="23" 
@@ -345,6 +345,7 @@
             legheight="72" 
             legoffset="5"/>
       <sprite texture="Content/Map/Outposts/Art/CafeteriaGardenAssets.png" sourcerect="338,223,252,172" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
+      <ItemComponent selectkey="Select" canbeselected="true" msg="itemmsgdrag"/>
     </Item>
     <Item name="" identifier="op_vendingmachine1" tags="vendingmachine, damage_by_passing_bullet,DrawShadow" width="238" height="396" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true">
       <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="1,497,238,396" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
@@ -477,14 +478,14 @@
         <StatusEffect type="OnFire" target="This" Condition="-1" />
       </ItemComponent>
     </Item>
-    <Item name="" identifier="opdeco_trashcan" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true" Tags="trashcan,collidable,damage_by_passing_bullet,DrawShadow" damagedbyprojectiles="true" AllowStealingContainedItems="true">
+    <Item name="" identifier="opdeco_trashcan" texturescale="1.0,1.0" scale="0.5" category="Decorative" damagedbyexplosions="true" Tags="trashcan,collidable,damage_by_passing_bullet,DrawShadow,CanBeDragged" damagedbyprojectiles="true" AllowStealingContainedItems="true">
       <Body width="122" height="201" density="40" />
       <sprite texture="Content/Map/Outposts/Art/Storage.png" sourcerect="1662,914,125,205" depth="0.97" premultiplyalpha="false" origin="0.5,0.5" />
       <ItemContainer capacity="3" slotsperrow="3" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect" >
         <GuiFrame relativesize="0.18,0.25" anchor="Center" style="ItemUI" />
         <Containable items="smallitem,mediumitem" />
       </ItemContainer>
-      <ItemComponent>
+      <ItemComponent selectkey="Select" canbeselected="true" msg="itemmsgdrag">
         <StatusEffect type="OnFire" target="This" Condition="-20" />
       </ItemComponent>
     </Item>
